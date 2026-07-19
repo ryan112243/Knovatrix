@@ -184,6 +184,11 @@ function elementaryNotesPanel(subject, topic) {
       title: "自然科學資優特訓重點",
       subtitle: "聚焦實驗變因、進階原理、計算題型與易錯陷阱。",
       notes: window.elementaryScienceNotes
+    },
+    "小學科展與生活探究": {
+      title: "科學探究與專題研究方法",
+      subtitle: "掌握完整探究流程，建立正確邏輯、研究態度與發表能力。",
+      notes: window.elementaryExhibitionNotes
     }
   };
   const noteSet = noteSets[subject];

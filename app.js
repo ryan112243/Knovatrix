@@ -44,7 +44,7 @@ document.querySelector("#year").textContent = new Date().getFullYear();
 function homePage() {
   return `<section class="hero"><div class="wrap hero-copy reveal"><p class="eyebrow">由科學班團隊把關的學習資源</p><h1>把知識整理成<br><span>可以走的路。</span></h1><p class="lead">從國小資優到高中奧賽，將精選題庫、重點實驗、圖解詳解與影音課程，放進一張清晰的學習矩陣。</p><div class="button-row"><a class="button" href="#/learn/junior">開始探索題庫 <span>→</span></a><a class="button secondary" href="#/contribute">一起共創</a></div><div class="proof-strip"><div class="proof-item"><b>5 大學習入口</b><small>常規課綱 × 資優競賽</small></div><div class="proof-item"><b>3 種學習資源</b><small>重點、題庫、影音詳解</small></div><div class="proof-item"><b>完全匿名共創</b><small>勘誤、投稿與難題許願</small></div></div></div></section>
   <section class="section dark-section"><div class="wrap"><div class="section-head"><div><p class="eyebrow">Learning paths</p><h2>找到你的學習座標</h2></div><p>依目前階段進入，再用課綱順序或單元主題自由切換。每一份資源都回到清楚、可查找的知識位置。</p></div><div class="level-grid">${Object.entries(catalogLevels).map(([id, x], i) => `<a class="level-card" href="#/learn/${id}"><span class="num">0${i + 1}</span><h3>${x.name}</h3><p>${x.label}</p><span>↗</span></a>`).join("")}</div></div></section>
-  <section class="section"><div class="wrap"><div class="section-head"><div><p class="eyebrow">Three-part learning</p><h2>一個單元，學習三部曲</h2></div></div><div class="feature-grid"><article class="feature-card"><span class="icon">📖</span><h3>重點與實驗</h3><p>公式定理、學長姐心法與課內必修實驗，整理成可快速複習的脈絡。</p></article><article class="feature-card"><span class="icon">📥</span><h3>試題與下載</h3><p>段考、升學考試、特招與競賽考古題，依單元歸檔並提供乾淨版 PDF。</p></article><article class="feature-card"><span class="icon">💡</span><h3>解題與影音</h3><p>可摺疊文字詳解、手寫圖解與 YouTube 教學，想提示或看完整推導都可以。</p></article></div></div></section>
+  <section class="section"><div class="wrap"><div class="section-head"><div><p class="eyebrow">Three-part learning</p><h2>一個單元，學習三部曲</h2></div></div><div class="feature-grid"><article class="feature-card"><span class="icon">📖</span><h3>重點筆記</h3><p>公式定理、學長姐心法與課內必修實驗，整理成可快速複習的脈絡。</p></article><article class="feature-card"><span class="icon">📥</span><h3>試題</h3><p>升學考試、特招與競賽考古題，依單元歸檔並提供乾淨版 PDF。</p></article><article class="feature-card"><span class="icon">💡</span><h3>解題</h3><p>可摺疊文字詳解與手寫圖解，想看提示或完整推導都可以。</p></article></div></div></section>
   <section class="section"><div class="wrap"><div class="section-head"><div><p class="eyebrow">Latest resources</p><h2>最新上架</h2></div></div><div class="home-empty"><b>資源準備中</b><p>第一批 PDF 與解題影片上架後，這裡會自動顯示最新內容。</p></div></div></section>`;
 }
 
@@ -58,13 +58,16 @@ function learnPage(id) {
   const topics = Array.isArray(subjectData) ? subjectData : (subjectData[learningState.order] || subjectData.curriculum);
   if (!learningState.topic || !topics.includes(learningState.topic)) learningState.topic = topics[0];
   const orderedTopics = topics;
-  const tabs = { notes: "📖 重點與實驗", files: "📥 試題與下載", solutions: "💡 解題與影音" };
+  if (id === "elementary-gifted" && learningState.tab === "solutions") learningState.tab = "notes";
+  const tabs = id === "elementary-gifted"
+    ? { notes: "📖 重點筆記", files: "📥 試題" }
+    : { notes: "📖 重點筆記", files: "📥 試題", solutions: "💡 解題" };
   const isScienceExam = id === "junior-gifted" && learningState.subject === "科學班甄選考古題" && window.scienceClassExamCatalog?.[learningState.topic];
   const hasPublicResources = window.getPublicResources?.(id, learningState.subject, learningState.topic);
   const unitDescription = isScienceExam
     ? "整理 100–115 學年度官方甄選試題入口；直接 PDF、歷屆專區與尚待公開的年份分開標示。"
     : hasPublicResources
-      ? "已整理官方公開來源與使用狀態；請至「試題與下載」查看原始發布頁面。"
+      ? "已整理官方公開來源與使用狀態；請至「試題」查看原始發布頁面。"
       : "這個單元的內容框架已就位，資料會隨 PDF、筆記與影片逐步補齊。";
   return `<section class="page-hero"><div class="wrap reveal"><div class="breadcrumbs"><a href="#/">首頁</a>　/　${level.name}</div><p class="eyebrow">${level.label}</p><h1>${level.name}學習矩陣</h1><p class="lead">${level.intro}</p></div></section><div class="wrap learning-shell"><aside class="sidebar" aria-label="學科單元目錄"><p class="sidebar-label">學科與專題</p>${subjectNames.map(s => `<button class="subject-button ${s === learningState.subject ? "active" : ""}" data-subject="${s}">${s}</button>${s === learningState.subject ? `<ul class="topic-list">${orderedTopics.map(t => `<li><button class="topic-button ${t === learningState.topic ? "active" : ""}" data-topic="${t}">${t}</button></li>`).join("")}</ul>` : ""}`).join("")}</aside><section class="learning-main"><div class="learning-toolbar"><h2>${learningState.subject}</h2><div class="toggle" aria-label="排序方式"><button data-order="curriculum" class="${learningState.order === "curriculum" ? "active" : ""}">按課綱順序</button><button data-order="topic" class="${learningState.order === "topic" ? "active" : ""}">按單元主題</button></div></div><article class="unit-card"><span class="unit-meta">${level.name} · ${learningState.subject}</span><h3>${learningState.topic}</h3><p>${unitDescription}</p><div class="tabs" role="tablist">${Object.entries(tabs).map(([key, label]) => `<button class="tab ${key === learningState.tab ? "active" : ""}" data-tab="${key}" role="tab" aria-selected="${key === learningState.tab}">${label}</button>`).join("")}</div>${tabPanel(learningState.tab, id, learningState.subject, learningState.topic)}</article></section></div>`;
 }
@@ -75,9 +78,17 @@ function scienceExamPanel(schoolName) {
   const files = school.files || {};
   const years = Array.from({ length: 16 }, (_, index) => 115 - index);
   return `<div class="tab-panel exam-panel"><div class="exam-source"><div><span>${school.city} · 科學班歷屆</span><b>${schoolName}</b><p>有檔案的學年度可直接從 Knovatrix 下載。</p></div></div><div class="exam-legend"><span><i class="direct"></i>有檔案</span><span><i class="pending"></i>沒有檔案</span></div><div class="year-grid">${years.map(year => {
-    const localUrl = files[year];
-    if (!localUrl) return `<div class="year-card pending" aria-label="${year} 學年度沒有檔案"><b>${year}</b><small>學年度</small><span>沒有檔案</span></div>`;
-    return `<a class="year-card direct" href="${localUrl}" download><b>${year}</b><small>學年度</small><span>下載檔案 ↓</span></a>`;
+    const localFiles = Array.isArray(files[year])
+      ? files[year]
+      : files[year]
+        ? [{ label: "試題", path: files[year] }]
+        : [];
+    if (!localFiles.length) return `<div class="year-card pending" aria-label="${year} 學年度沒有檔案"><b>${year}</b><small>學年度</small><span>沒有檔案</span></div>`;
+    if (localFiles.length === 1) {
+      const file = localFiles[0];
+      return `<a class="year-card direct" href="${encodeURI(file.path)}" download><b>${year}</b><small>學年度</small><span>${file.label || "下載檔案"} ↓</span></a>`;
+    }
+    return `<details class="year-card direct multi-file"><summary><b>${year}</b><small>學年度 · ${localFiles.length} 份檔案</small><span>展開下載 ↓</span></summary><div class="year-downloads">${localFiles.map(file => `<a href="${encodeURI(file.path)}" download>${file.label || "下載檔案"} ↓</a>`).join("")}</div></details>`;
   }).join("")}</div></div>`;
 }
 
@@ -114,6 +125,7 @@ function supportPage() {
     <article class="info-card crypto-card"><span class="big-icon">⬡</span><h3>EVM 網路</h3><p>支援低手續費網路，接受 ETH、USDT 與 USDC。</p><div class="network-list"><span>Arbitrum</span><span>Optimism</span><span>Base</span></div><div class="wallet-block"><small>收款地址</small><code>0x219Ac5c16dD7011Ff2c7a6DCF58F82Aa2F4aC88c</code><button class="copy-button" data-copy="0x219Ac5c16dD7011Ff2c7a6DCF58F82Aa2F4aC88c">複製地址</button></div></article>
     <article class="info-card crypto-card"><span class="big-icon">◎</span><h3>Solana</h3><p>使用 Solana Mainnet，接受 SOL、USDT 與 USDC。</p><div class="network-list"><span>Solana Mainnet</span></div><div class="wallet-block"><small>收款地址</small><code>9LKm1a5gQjb2armKxAeURWWT4RsFgeGPBTESzH1Kikrm</code><button class="copy-button" data-copy="9LKm1a5gQjb2armKxAeURWWT4RsFgeGPBTESzH1Kikrm">複製地址</button></div></article>
     <article class="info-card linepay-card"><span class="big-icon">💚</span><h3>Line Pay</h3><p>Line Pay 支付功能正在開發中，完成後會在此提供安全的官方付款連結。</p><button class="button disabled placeholder-link">Line Pay 開發中</button></article>
+    <article class="info-card linepay-card"><span class="big-icon">🎮</span><h3>RollerCoin</h3><p>也可以透過 Knovatrix 的 RollerCoin 推薦連結加入，以另一種方式支持網站持續整理學習資源。</p><a class="button" href="https://rollercoin.com/?r=mn67zsfp" target="_blank" rel="noopener noreferrer sponsored">前往 RollerCoin →</a></article>
   </div></div></section>`;
 }
 

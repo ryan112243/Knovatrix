@@ -71,7 +71,6 @@ function supportPage() {
     <article class="info-card crypto-card"><span class="big-icon">⬡</span><h3>EVM 網路</h3><p>支援低手續費網路，接受 ETH、USDT 與 USDC。</p><div class="network-list"><span>Arbitrum</span><span>Optimism</span><span>Base</span></div><div class="wallet-block"><small>收款地址</small><code>0x219Ac5c16dD7011Ff2c7a6DCF58F82Aa2F4aC88c</code><button class="copy-button" data-copy="0x219Ac5c16dD7011Ff2c7a6DCF58F82Aa2F4aC88c">複製地址</button></div></article>
     <article class="info-card crypto-card"><span class="big-icon">◎</span><h3>Solana</h3><p>使用 Solana Mainnet，接受 SOL、USDT 與 USDC。</p><div class="network-list"><span>Solana Mainnet</span></div><div class="wallet-block"><small>收款地址</small><code>9LKm1a5gQjb2armKxAeURWWT4RsFgeGPBTESzH1Kikrm</code><button class="copy-button" data-copy="9LKm1a5gQjb2armKxAeURWWT4RsFgeGPBTESzH1Kikrm">複製地址</button></div></article>
     <article class="info-card linepay-card"><span class="big-icon">💚</span><h3>Line Pay</h3><p>Line Pay 支付功能正在開發中，完成後會在此提供安全的官方付款連結。</p><button class="button disabled placeholder-link">Line Pay 開發中</button></article>
-    <article class="info-card safety-card"><span class="big-icon">⚠</span><h3>轉帳前請再次確認</h3><p>加密貨幣交易無法撤回。請只使用上方列出的網路與幣種，先以小額測試；切勿從其他鏈直接轉入。</p><ul><li>EVM：Arbitrum／Optimism／Base</li><li>Solana：Solana Mainnet</li><li>幣種：ETH／SOL／USDT／USDC</li></ul></article>
   </div></div></section>`;
 }
 

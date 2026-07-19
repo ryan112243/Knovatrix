@@ -130,9 +130,8 @@ h3 { line-height: 1.4; }
 .wallet-block code { display: block; overflow-wrap: anywhere; color: var(--ink); font-family: Consolas, monospace; font-size: 12px; line-height: 1.5; }
 .copy-button { margin-top: 13px; padding: 7px 12px; border: 1px solid var(--forest); border-radius: 99px; color: var(--forest); background: transparent; font-size: 12px; font-weight: 800; cursor: pointer; }
 .copy-button:hover { color: white; background: var(--forest); }
-.linepay-card, .safety-card { display: flex; flex-direction: column; }
+.linepay-card { display: flex; flex-direction: column; }
 .linepay-card .button { align-self: flex-start; margin-top: auto; }
-.safety-card { border-color: #e1c696; background: #fffaf0; }
 .form-card { display: flex; flex-direction: column; }
 .form-card .button { align-self: flex-start; margin-top: auto; }
 .callout { display: flex; align-items: center; justify-content: space-between; gap: 25px; margin-top: 30px; padding: 30px; border-radius: var(--radius); color: white; background: var(--forest); }

@@ -67,7 +67,12 @@ function contributePage() {
 }
 
 function supportPage() {
-  return `<section class="page-hero"><div class="wrap reveal"><p class="eyebrow">Support the project</p><h1>一起維持知識庫，<br>長久而自由地運作。</h1><p class="lead">你的支持將用於網站服務、題目數位化、圖解製作與教學影片器材。金流建立前，所有入口暫時關閉。</p></div></section><section class="section"><div class="wrap"><div class="info-grid"><article class="info-card"><span class="big-icon">☕</span><h3>請團隊喝杯咖啡</h3><p>預計串接綠界或藍新單筆贊助，金額自由、不綁定會員。</p><button class="button disabled placeholder-link">單筆贊助準備中</button></article><article class="info-card"><span class="big-icon">🌿</span><h3>定期支持</h3><p>預計透過 Patreon 支持長期整理與錄製工作。</p><button class="button disabled placeholder-link">定期支持準備中</button></article></div><div class="section" style="padding-bottom:0"><p class="eyebrow">Thank-you wall</p><h2>感謝牆</h2><div class="home-empty"><b>第一個名字，等待你決定是否公開</b><p>贊助流程建立後，只有主動同意的支持者會出現在這裡。</p></div></div></div></section>`;
+  return `<section class="page-hero"><div class="wrap reveal"><p class="eyebrow">Support the project</p><h1>一起維持知識庫，<br>長久而自由地運作。</h1><p class="lead">你的支持將用於網站服務、題目數位化、圖解製作與教學影片器材。加密貨幣贊助已開放，Line Pay 完成審核後提供。</p></div></section><section class="section"><div class="wrap"><div class="info-grid crypto-grid">
+    <article class="info-card crypto-card"><span class="big-icon">⬡</span><h3>EVM 網路</h3><p>支援低手續費網路，接受 ETH、USDT 與 USDC。</p><div class="network-list"><span>Arbitrum</span><span>Optimism</span><span>Base</span></div><div class="wallet-block"><small>收款地址</small><code>0x219Ac5c16dD7011Ff2c7a6DCF58F82Aa2F4aC88c</code><button class="copy-button" data-copy="0x219Ac5c16dD7011Ff2c7a6DCF58F82Aa2F4aC88c">複製地址</button></div></article>
+    <article class="info-card crypto-card"><span class="big-icon">◎</span><h3>Solana</h3><p>使用 Solana Mainnet，接受 SOL、USDT 與 USDC。</p><div class="network-list"><span>Solana Mainnet</span></div><div class="wallet-block"><small>收款地址</small><code>9LKm1a5gQjb2armKxAeURWWT4RsFgeGPBTESzH1Kikrm</code><button class="copy-button" data-copy="9LKm1a5gQjb2armKxAeURWWT4RsFgeGPBTESzH1Kikrm">複製地址</button></div></article>
+    <article class="info-card linepay-card"><span class="big-icon">💚</span><h3>Line Pay</h3><p>付款入口仍在審核中，通過後會在此提供安全的官方付款連結。</p><button class="button disabled placeholder-link">Line Pay 審核中</button></article>
+    <article class="info-card safety-card"><span class="big-icon">⚠</span><h3>轉帳前請再次確認</h3><p>加密貨幣交易無法撤回。請只使用上方列出的網路與幣種，先以小額測試；切勿從其他鏈直接轉入。</p><ul><li>EVM：Arbitrum／Optimism／Base</li><li>Solana：Solana Mainnet</li><li>幣種：ETH／SOL／USDT／USDC</li></ul></article>
+  </div><div class="section" style="padding-bottom:0"><p class="eyebrow">Thank-you wall</p><h2>感謝牆</h2><div class="home-empty"><b>第一個名字，等待你決定是否公開</b><p>只有主動同意的支持者會出現在這裡；鏈上地址不會自動公開列名。</p></div></div></div></section>`;
 }
 
 function notFound() {
@@ -103,6 +108,20 @@ function bindPageEvents() {
   document.querySelectorAll("[data-tab]").forEach(b => b.addEventListener("click", () => { learningState.tab = b.dataset.tab; render(); }));
   document.querySelectorAll("[data-order]").forEach(b => b.addEventListener("click", () => { learningState.order = b.dataset.order; render(); }));
   document.querySelectorAll(".placeholder-link").forEach(b => b.addEventListener("click", () => showToast("入口尚未設定，之後只需替換表單或金流網址。")));
+  document.querySelectorAll(".copy-button").forEach(b => b.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(b.dataset.copy);
+      showToast("地址已複製，轉帳前請再次核對網路與幣種。");
+    } catch {
+      const field = document.createElement("textarea");
+      field.value = b.dataset.copy;
+      document.body.appendChild(field);
+      field.select();
+      document.execCommand("copy");
+      field.remove();
+      showToast("地址已複製，轉帳前請再次核對網路與幣種。");
+    }
+  }));
 }
 
 function showToast(message) {

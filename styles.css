@@ -121,6 +121,18 @@ h3 { line-height: 1.4; }
 .info-card .big-icon { font-size: 32px; }
 .info-card p { color: var(--muted); }
 .info-card ul { padding-left: 20px; color: var(--muted); }
+.crypto-grid { align-items: stretch; }
+.crypto-card { overflow: hidden; }
+.network-list { display: flex; flex-wrap: wrap; gap: 7px; margin: 20px 0; }
+.network-list span { padding: 5px 10px; border: 1px solid #bcd5cb; border-radius: 99px; color: var(--forest-2); background: var(--mint); font-size: 11px; font-weight: 800; }
+.wallet-block { padding: 16px; border-radius: 14px; background: #f2f5f0; }
+.wallet-block small { display: block; margin-bottom: 7px; color: var(--muted); font-weight: 700; }
+.wallet-block code { display: block; overflow-wrap: anywhere; color: var(--ink); font-family: Consolas, monospace; font-size: 12px; line-height: 1.5; }
+.copy-button { margin-top: 13px; padding: 7px 12px; border: 1px solid var(--forest); border-radius: 99px; color: var(--forest); background: transparent; font-size: 12px; font-weight: 800; cursor: pointer; }
+.copy-button:hover { color: white; background: var(--forest); }
+.linepay-card, .safety-card { display: flex; flex-direction: column; }
+.linepay-card .button { align-self: flex-start; margin-top: auto; }
+.safety-card { border-color: #e1c696; background: #fffaf0; }
 .form-card { display: flex; flex-direction: column; }
 .form-card .button { align-self: flex-start; margin-top: auto; }
 .callout { display: flex; align-items: center; justify-content: space-between; gap: 25px; margin-top: 30px; padding: 30px; border-radius: var(--radius); color: white; background: var(--forest); }

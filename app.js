@@ -17,7 +17,7 @@ const levels = {
     "生物": ["必修｜細胞構造、膜與能量", "必修｜遺傳與中心法則基礎", "必修｜演化與生物多樣性", "選修 I｜細胞代謝、呼吸與光合", "選修 I｜染色體、中心法則與基因表現", "選修 I｜基因工程、PCR 與生物技術", "選修 II｜生命起源、植物構造與運輸", "選修 II｜植物生殖、生長與激素", "選修 III｜動物消化、循環、呼吸與排泄", "選修 III｜神經、內分泌與防禦免疫", "選修 IV｜演化機制、哈溫平衡與分類", "選修 IV｜族群、群集、生態系與環境"],
     "地球科學": ["必修｜大氣、海洋與天文", "選修｜地質與地球物理", "選修｜大氣與海洋動力", "選修｜恆星演化與宇宙學"] } },
   "senior-gifted": { name: "高中資優", label: "奧林匹亞與專題研究", intro: "匯集學科競賽、五大奧林匹亞、TRML、清華盃、APCS 與專題研究資源。", subjects: {
-    "數學競賽": ["數論篇", "代數篇", "幾何篇", "組合篇", "TRML 與清華盃"], "物理奧賽": ["進階力學", "電磁學", "熱統計與流體", "波動光學", "近代物理"], "化學奧賽": ["無機與分析化學", "物理化學", "有機化學", "實驗化學"], "生物奧賽": ["細胞與分子生物", "植物與動物生理", "遺傳演化與生態", "實驗與資料判讀"], "地科奧賽": ["地質與地球物理", "氣象與海洋", "天文與行星科學"], "資訊與 APCS": ["程式設計基礎", "資料結構與演算法", "APCS 實作題型"], "高階專題研究與 IYPT 物理辯論建模": ["研究問題與文獻閱讀", "量測、建模與模擬", "IYPT 論證與攻防"] } }
+    "高中數學競賽高階理論": ["先修｜整除、質數與同餘", "先修｜多項式、方程與不等式", "先修｜函數、數列與遞迴", "先修｜三角形、圓與相似", "先修｜排列組合與機率", "進階｜不定方程與數論函數", "進階｜不等式與函數方程", "進階｜幾何變換與軌跡", "進階｜圖論、遞迴與不變量"], "高中自然科學高階特訓": ["物理｜進階力學與能量", "物理｜熱學、流體與氣體", "物理｜波動、光學與電磁", "化學｜定量化學與氣體", "化學｜酸鹼、氧化還原與平衡", "化學｜未知物鑑別", "生物｜顯微、遺傳與生理實驗", "地科｜地質、氣象與天文推理", "跨科｜誤差分析與不確定度"], "數學競賽": ["數論篇", "代數篇", "幾何篇", "組合篇", "TRML 與清華盃"], "物理奧賽": ["進階力學", "電磁學", "熱統計與流體", "波動光學", "近代物理"], "化學奧賽": ["無機與分析化學", "物理化學", "有機化學", "實驗化學"], "生物奧賽": ["細胞與分子生物", "植物與動物生理", "遺傳演化與生態", "實驗與資料判讀"], "地科奧賽": ["地質與地球物理", "氣象與海洋", "天文與行星科學"], "資訊與 APCS": ["程式設計基礎", "資料結構與演算法", "APCS 實作題型"], "高階專題研究與 IYPT 物理辯論建模": ["研究問題與文獻閱讀", "量測、建模與模擬", "IYPT 論證與攻防"] } }
 };
 
 const catalogLevels = window.curriculumLevels || levels;
@@ -49,6 +49,45 @@ function homePage() {
 }
 
 let learningState = { subject: null, topic: null, tab: "notes", order: "curriculum", sidebarOpen: false };
+
+const subjectsWithoutLearningNotes = {
+  "senior-gifted": new Set([
+    "科學班聯合學科資格考",
+    "數學奧林匹亞 TMO／IMO",
+    "APMO 亞太數學奧林匹亞",
+    "EGMO 歐洲女子數學奧林匹亞",
+    "TRML 高中數學競賽",
+    "清華盃高中化學科能力競賽",
+    "AMC 10／12 與 AIME",
+    "學科能力競賽｜數學",
+    "物理奧林匹亞",
+    "化學奧林匹亞",
+    "生物奧林匹亞",
+    "地球科學奧林匹亞",
+    "資訊奧林匹亞 TOI／IOI",
+    "APCS 大學程式設計先修檢測",
+    "學科能力競賽｜物理",
+    "學科能力競賽｜化學",
+    "學科能力競賽｜生物",
+    "學科能力競賽｜地球科學",
+    "學科能力競賽｜資訊",
+    "IYPT 物理辯論",
+    "科展與臺灣國際科展",
+    "高階專題研究"
+  ]),
+  "junior-gifted": new Set([
+    "科學班甄選考古題",
+    "數理資優班甄選",
+    "TRML 國中數學競賽（原 JHMC）",
+    "張進通許世賢國中數學能力競試",
+    "AMC 8／AMC 10",
+    "IMAS 數學競賽",
+    "數學奧林匹亞初選銜接",
+    "IJSO 國際國中科學奧林匹亞",
+    "科展與科學探究競賽"
+  ])
+};
+
 function learnPage(id) {
   const level = catalogLevels[id];
   if (!level) return notFound();
@@ -62,12 +101,13 @@ function learnPage(id) {
   const isScienceExam = id === "junior-gifted" && learningState.subject === "科學班甄選考古題" && window.scienceClassExamCatalog?.[learningState.topic];
   const isCkGiftedExam = id === "junior-gifted" && learningState.subject === "科學班甄選考古題" && learningState.topic === "建中資優班歷屆試題";
   const isElementaryExhibition = id === "elementary-gifted" && learningState.subject === "小學科展與生活探究";
-  if ((isScienceExam || isCkGiftedExam) && learningState.tab === "notes") learningState.tab = "files";
+  const hideLearningNotes = subjectsWithoutLearningNotes[id]?.has(learningState.subject) || false;
+  if ((hideLearningNotes || isScienceExam || isCkGiftedExam) && learningState.tab === "notes") learningState.tab = "files";
   const tabs = isElementaryExhibition
     ? { notes: "探究指南", resources: "科展資源" }
     : id === "elementary-gifted"
       ? { notes: "學習重點", files: "試題" }
-    : (isScienceExam || isCkGiftedExam)
+    : (hideLearningNotes || isScienceExam || isCkGiftedExam)
       ? { files: "試題", solutions: "解題" }
       : { notes: "學習重點", files: "試題", solutions: "解題" };
   const isScienceQualificationExam = id === "senior-gifted" && learningState.subject === "科學班聯合學科資格考";
@@ -230,6 +270,27 @@ function juniorNotesPanel(subject, topic) {
   return `<div class="tab-panel"><div class="note-intro"><b>${noteSet.title}</b><span>${noteSet.subtitle}</span></div><ul class="note-list detailed-notes">${notes.map(note => `<li>${note}</li>`).join("")}</ul></div>`;
 }
 
+function seniorGiftedNotesPanel(subject, topic) {
+  const noteSets = {
+    "高中數學競賽高階理論": {
+      title: "高中數學競賽高階理論",
+      subtitle: "整理數論、代數、幾何、組合與高階奧林匹亞工具。",
+      notes: window.seniorGiftedMathAdvancedNotes
+    },
+    "高中自然科學高階特訓": {
+      title: "高中自然科學、科學班與奧賽複賽高階特訓",
+      subtitle: "聚焦物理建模、化學分析、生物實驗、地科推理與不確定度。",
+      notes: window.seniorGiftedScienceAdvancedNotes
+    }
+  };
+  const noteSet = noteSets[subject];
+  const notes = noteSet?.notes?.[topic] || null;
+  if (!notes) {
+    return `<div class="tab-panel"><ul class="note-list"><li>競賽核心理論與高階解題工具將顯示於此</li><li>複賽、選訓與科學班資格考常見題型</li><li>實驗、模型、圖表與證明策略整理</li></ul></div>`;
+  }
+  return `<div class="tab-panel"><div class="note-intro"><b>${noteSet.title}</b><span>${noteSet.subtitle}</span></div><ul class="note-list detailed-notes">${notes.map(note => `<li>${note}</li>`).join("")}</ul></div>`;
+}
+
 function elementaryExhibitionPanel() {
   return `<div class="tab-panel resource-panel"><div class="rights-banner"><b>小學科展與生活探究</b><p>從生活觀察、問題形成到研究成果展示，這裡提供官方科展作品與探究資源。</p></div><a class="public-resource-card" href="https://twsf.ntsec.gov.tw/Article.aspx?a=41&lang=1" target="_blank" rel="noopener noreferrer"><span class="resource-badge official">官方資源</span><b>全國中小學科展作品與資料庫</b><p>國立臺灣科學教育館官方科展資源。</p><small>開啟官方資源 ↗</small></a></div>`;
 }
@@ -238,6 +299,7 @@ function tabPanel(tab, levelId, subject, topic) {
   if (tab === "resources" && levelId === "elementary-gifted" && subject === "小學科展與生活探究") return elementaryExhibitionPanel();
   if (tab === "notes" && levelId === "elementary-gifted") return elementaryNotesPanel(subject, topic);
   if (tab === "notes" && levelId === "junior") return juniorNotesPanel(subject, topic);
+  if (tab === "notes" && levelId === "senior-gifted") return seniorGiftedNotesPanel(subject, topic);
   if (tab === "notes") return `<div class="tab-panel"><ul class="note-list"><li>單元核心觀念與公式將顯示於此</li><li>常見陷阱與學長姐解題心法</li><li>相關必修實驗、探究步驟與安全提醒</li></ul></div>`;
   if (tab === "files" && levelId === "junior-gifted" && subject === "科學班甄選考古題") return scienceExamPanel(topic);
   if (tab === "files" && levelId === "senior-gifted" && subject === "科學班聯合學科資格考") return scienceQualificationExamPanel(topic);

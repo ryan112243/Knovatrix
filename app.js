@@ -60,12 +60,13 @@ function learnPage(id) {
   const orderedTopics = topics;
   if (id === "elementary-gifted" && learningState.tab === "solutions") learningState.tab = "notes";
   const isScienceExam = id === "junior-gifted" && learningState.subject === "科學班甄選考古題" && window.scienceClassExamCatalog?.[learningState.topic];
+  const isCkGiftedExam = id === "junior-gifted" && learningState.subject === "科學班甄選考古題" && learningState.topic === "建中資優班歷屆試題";
+  if ((isScienceExam || isCkGiftedExam) && learningState.tab === "notes") learningState.tab = "files";
   const tabs = id === "elementary-gifted"
     ? { notes: "重點筆記", files: "試題" }
-    : (isScienceExam || learningState.subject === "建中資優班歷屆試題")
+    : (isScienceExam || isCkGiftedExam)
       ? { files: "試題", solutions: "解題" }
       : { notes: "重點筆記", files: "試題", solutions: "解題" };
-  const isCkGiftedExam = id === "junior-gifted" && learningState.subject === "建中資優班歷屆試題";
   const isScienceQualificationExam = id === "senior-gifted" && learningState.subject === "科學班聯合學科資格考";
   const hasPublicResources = window.getPublicResources?.(id, learningState.subject, learningState.topic);
   const unitDescription = isScienceExam
@@ -77,7 +78,7 @@ function learnPage(id) {
       : hasPublicResources
       ? "已整理官方公開來源與使用狀態；請至「試題」查看原始發布頁面。"
       : "這個單元的內容框架已就位，資料會隨 PDF、筆記與影片逐步補齊。";
-  return `<section class="page-hero"><div class="wrap reveal"><div class="breadcrumbs"><a href="#/">首頁</a>　/　${level.name}</div><p class="eyebrow">${level.label}</p><h1>${level.name}學習矩陣</h1><p class="lead">${level.intro}</p></div></section><div class="wrap learning-shell"><aside class="sidebar" aria-label="學科與專題"><p class="sidebar-label">學科與專題</p>${subjectNames.map(s => `<details class="subject-group" ${s === learningState.subject ? "open" : ""}><summary data-subject="${s}"><span>${s}</span><span aria-hidden="true">⌄</span></summary><ul class="topic-list">${orderedTopics.map(t => `<li><button class="topic-button ${t === learningState.topic ? "active" : ""}" data-topic="${t}">${t}</button></li>`).join("")}</ul></details>`).join("")}</aside><section class="learning-main"><div class="learning-toolbar"><h2>${learningState.subject}</h2><div class="toggle" aria-label="排序方式"><button data-order="curriculum" class="${learningState.order === "curriculum" ? "active" : ""}">按課綱順序</button><button data-order="topic" class="${learningState.order === "topic" ? "active" : ""}">按單元主題</button></div></div><article class="unit-card"><span class="unit-meta">${level.name} · ${learningState.subject}</span><h3>${learningState.topic}</h3><p>${unitDescription}</p><div class="tabs" role="tablist">${Object.entries(tabs).map(([key, label]) => `<button class="tab ${key === learningState.tab ? "active" : ""}" data-tab="${key}" role="tab" aria-selected="${key === learningState.tab}">${label}</button>`).join("")}</div>${tabPanel(learningState.tab, id, learningState.subject, learningState.topic)}</article></section></div>`;
+  return `<section class="page-hero"><div class="wrap reveal"><div class="breadcrumbs"><a href="#/">首頁</a>　/　${level.name}</div><p class="eyebrow">${level.label}</p><h1>${level.name}學習矩陣</h1><p class="lead">${level.intro}</p></div></section><div class="wrap learning-shell"><aside class="sidebar" aria-label="學科與專題"><p class="sidebar-label">學科與專題</p>${subjectNames.map(s => `<details class="subject-group" ${s === learningState.subject ? "open" : ""}><summary data-subject="${s}"><span>${s}</span><span aria-hidden="true">⌄</span></summary><ul class="topic-list">${orderedTopics.map(t => `<li><button class="topic-button ${t === learningState.topic ? "active" : ""}" data-topic="${t}">${t}</button></li>`).join("")}</ul></details>`).join("")}</aside><section class="learning-main"><div class="learning-toolbar"><h2>${learningState.subject}</h2></div><article class="unit-card"><span class="unit-meta">${level.name} · ${learningState.subject}</span><h3>${learningState.topic}</h3><p>${unitDescription}</p><div class="tabs" role="tablist">${Object.entries(tabs).map(([key, label]) => `<button class="tab ${key === learningState.tab ? "active" : ""}" data-tab="${key}" role="tab" aria-selected="${key === learningState.tab}">${label}</button>`).join("")}</div>${tabPanel(learningState.tab, id, learningState.subject, learningState.topic)}</article></section></div>`;
 }
 
 function scienceExamPanel(schoolName) {
@@ -96,13 +97,13 @@ function scienceExamPanel(schoolName) {
     if (localFiles.length === 1) {
       const file = localFiles[0];
       const isPdf = /\.pdf(?:$|[?#])/i.test(file.path);
-      const linkMode = isPdf ? `target="_blank" rel="noopener noreferrer"` : "download";
+      const linkMode = isPdf && schoolName !== "彰化高中科學班" ? `target="_blank" rel="noopener noreferrer"` : "download";
       const label = file.label?.replace(/^學年度/, "") || (isPdf ? "預覽 PDF" : "下載檔案");
       return `<a class="year-card direct" href="${encodeURI(file.path)}" ${linkMode}><b>${year}</b><small>學年度</small><span>${label} ${isPdf ? "↗" : "↓"}</span></a>`;
     }
     return `<details class="year-card direct multi-file"><summary><b>${year}</b><small>學年度 · ${localFiles.length} 份檔案</small><span>展開檔案 ↓</span></summary><div class="year-downloads">${localFiles.map(file => {
       const isPdf = /\.pdf(?:$|[?#])/i.test(file.path);
-      const linkMode = isPdf ? `target="_blank" rel="noopener noreferrer"` : "download";
+      const linkMode = isPdf && schoolName !== "彰化高中科學班" ? `target="_blank" rel="noopener noreferrer"` : "download";
       const label = file.label?.replace(/^學年度/, "") || (isPdf ? "預覽 PDF" : "下載檔案");
       return `<a href="${encodeURI(file.path)}" ${linkMode}>${label} ${isPdf ? "↗" : "↓"}</a>`;
     }).join("")}</div></details>`;
@@ -156,12 +157,38 @@ function scienceQualificationExamPanel(topic) {
   return `<div class="tab-panel public-resource-panel"><div class="rights-banner"><b>全國科學班聯合學科資格考</b><p>${year} 學年度共 ${files.length} 份官方試題或參考答案，點擊後直接在新分頁開啟 PDF 預覽。</p></div><h4>${year} 學年度</h4><div class="public-resource-grid">${files.map(file => `<a class="public-resource-card" href="${file.url}" target="_blank" rel="noopener noreferrer"><span class="resource-badge official">官方 PDF</span><b>${file.label}</b><p>高級中等學校科學班聯合學科資格考</p><small>在新分頁預覽 PDF ↗</small></a>`).join("")}</div><p><a href="${catalog.source}" target="_blank" rel="noopener noreferrer">查看官方歷屆試題總頁面 ↗</a></p></div>`;
 }
 
-function elementaryNotesPanel(subject, topic) {
-  const notes = subject === "數學" ? window.elementaryMathNotes?.[topic] : null;
-  if (!notes) {
-    return `<div class="tab-panel"><ul class="note-list"><li>單元核心觀念與公式將顯示於此</li><li>常見陷阱與學長姐解題心法</li><li>相關必修實驗、探究步驟與安全提醒</li></ul></div>`;
+function featuredNotesPanel(subject, topic) {
+  const featuredNotes = window.elementaryFeaturedNotes?.[subject]?.[topic] || [];
+  if (!featuredNotes.length) {
+    return `<section class="featured-notes"><div class="featured-notes-head"><div><b>優秀筆記</b><span>這裡會收錄同學投稿的高品質筆記、圖解或整理檔。</span></div><a href="#/contribute">踴躍投稿 →</a></div><div class="featured-notes-empty">目前尚無精選筆記，歡迎踴躍投稿。</div></section>`;
   }
-  return `<div class="tab-panel"><div class="note-intro"><b>數學資優與私中特訓重點</b><span>熟練核心心法、速算技巧與必考題型。</span></div><ul class="note-list detailed-notes">${notes.map(note => `<li>${note}</li>`).join("")}</ul></div>`;
+  return `<section class="featured-notes"><div class="featured-notes-head"><div><b>優秀筆記</b><span>同學投稿與社群整理的延伸學習素材。</span></div><a href="#/contribute">投稿筆記 →</a></div><div class="featured-notes-grid">${featuredNotes.map(note => {
+    const content = `<b>${note.title}</b><p>${note.detail || "適合搭配本單元複習的補充筆記。"}</p><small>${note.author ? `投稿者：${note.author}` : "優秀筆記"}</small>`;
+    return note.url
+      ? `<a class="featured-note-card" href="${note.url}" target="_blank" rel="noopener noreferrer">${content}</a>`
+      : `<div class="featured-note-card">${content}</div>`;
+  }).join("")}</div></section>`;
+}
+
+function elementaryNotesPanel(subject, topic) {
+  const noteSets = {
+    "數學": {
+      title: "數學資優與私中特訓重點",
+      subtitle: "熟練核心心法、速算技巧與必考題型。",
+      notes: window.elementaryMathNotes
+    },
+    "自然科學": {
+      title: "自然科學資優特訓重點",
+      subtitle: "聚焦實驗變因、進階原理、計算題型與易錯陷阱。",
+      notes: window.elementaryScienceNotes
+    }
+  };
+  const noteSet = noteSets[subject];
+  const notes = noteSet?.notes?.[topic] || null;
+  if (!notes) {
+    return `<div class="tab-panel"><ul class="note-list"><li>單元核心觀念與公式將顯示於此</li><li>常見陷阱與學長姐解題心法</li><li>相關必修實驗、探究步驟與安全提醒</li></ul>${featuredNotesPanel(subject, topic)}</div>`;
+  }
+  return `<div class="tab-panel"><div class="note-intro"><b>${noteSet.title}</b><span>${noteSet.subtitle}</span></div><ul class="note-list detailed-notes">${notes.map(note => `<li>${note}</li>`).join("")}</ul>${featuredNotesPanel(subject, topic)}</div>`;
 }
 
 function tabPanel(tab, levelId, subject, topic) {
@@ -169,7 +196,7 @@ function tabPanel(tab, levelId, subject, topic) {
   if (tab === "notes") return `<div class="tab-panel"><ul class="note-list"><li>單元核心觀念與公式將顯示於此</li><li>常見陷阱與學長姐解題心法</li><li>相關必修實驗、探究步驟與安全提醒</li></ul></div>`;
   if (tab === "files" && levelId === "junior-gifted" && subject === "科學班甄選考古題") return scienceExamPanel(topic);
   if (tab === "files" && levelId === "senior-gifted" && subject === "科學班聯合學科資格考") return scienceQualificationExamPanel(topic);
-  if (tab === "files" && levelId === "junior-gifted" && subject === "建中資優班歷屆試題") return ckGiftedExamPanel(topic);
+  if (tab === "files" && levelId === "junior-gifted" && topic === "建中資優班歷屆試題") return ckGiftedExamPanel(topic);
   const publicResources = tab === "files" ? window.getPublicResources?.(levelId, subject, topic) : null;
   if (publicResources) return publicResourcePanel(publicResources);
   if (tab === "files") return `<div class="tab-panel empty-state"><div><span>📂</span><b>PDF 題庫尚未上架</b><br>未來將依年份、來源與難度自動整理在這裡。</div></div>`;

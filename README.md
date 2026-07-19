@@ -18,8 +18,8 @@
 ## 後續內容接入
 
 - 學制、學科與單元：集中在 `curriculum-data.js`。
-- 科學班考古題官方來源：集中在 `science-exams.js`，可逐校補上直接 PDF。
-- 競賽官方來源：集中在 `resource-catalog.js`；預設只建立原站索引，不重製題目。
+- 科學班考古題來源盤點：集中在 `science-exams.js`；取得重製授權後才加入站內 PDF。
+- 競賽來源盤點：集中在 `resource-catalog.js`；前台不導向外站，授權確認後改接站內檔案。
 - Google 表單：4 個已發布表單已接到「意見與共創」頁面。
 - PDF 與圖片：儲存方案確認後，再將題庫面板接到 GitHub 目錄清單或 Google Drive 公開連結資料。
 - YouTube：頻道與影片建立後，在各單元的「解題與影音」面板加入嵌入連結。

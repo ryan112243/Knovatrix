@@ -84,6 +84,13 @@ h3 { line-height: 1.4; }
 .learning-shell { display: grid; align-items: start; padding: 40px 0 90px; grid-template-columns: 290px minmax(0, 1fr); gap: 38px; }
 .sidebar { position: sticky; top: 100px; max-height: calc(100vh - 120px); padding: 19px; overflow-y: auto; border: 1px solid var(--line); border-radius: 20px; background: var(--white); }
 .sidebar-label { margin: 0 0 14px 8px; color: var(--muted); font-size: 12px; font-weight: 800; letter-spacing: .12em; }
+.subject-group { margin: 3px 0; border-radius: 10px; }
+.subject-group[open] { background: #f6faf7; }
+.subject-group summary { display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; border-radius: 10px; color: var(--ink); font-weight: 700; cursor: pointer; list-style: none; }
+.subject-group summary::-webkit-details-marker { display: none; }
+.subject-group summary:hover, .subject-group[open] summary { color: var(--forest); background: var(--mint); }
+.subject-group summary span:last-child { color: var(--muted); font-size: 14px; transition: transform .2s ease; }
+.subject-group[open] summary span:last-child { transform: rotate(180deg); }
 .subject-button { width: 100%; margin: 3px 0; padding: 10px 12px; border: 0; border-radius: 10px; color: var(--ink); background: transparent; text-align: left; font-weight: 700; cursor: pointer; }
 .subject-button:hover, .subject-button.active { color: var(--forest); background: var(--mint); }
 .topic-list { margin: 4px 0 12px; padding: 0 0 0 10px; list-style: none; }
@@ -140,7 +147,7 @@ a.year-card:hover { border-color: var(--forest-2); box-shadow: 0 8px 24px rgba(1
 .year-card.multi-file summary { display: flex; min-height: 102px; flex-direction: column; padding: 14px; cursor: pointer; list-style: none; }
 .year-card.multi-file summary::-webkit-details-marker { display: none; }
 .year-downloads { display: grid; gap: 6px; padding: 0 10px 10px; }
-.year-downloads a { overflow: hidden; padding: 8px 9px; border-radius: 8px; color: var(--forest); background: #edf5f1; font-size: 11px; font-weight: 750; text-overflow: ellipsis; white-space: nowrap; }
+.year-downloads a { overflow-wrap: anywhere; padding: 8px 9px; border-radius: 8px; color: var(--forest); background: #edf5f1; font-size: 11px; font-weight: 750; line-height: 1.45; }
 .year-downloads a:hover { color: white; background: var(--forest); }
 .exam-disclaimer { margin: 0; color: var(--muted); font-size: 12px; }
 .public-resource-panel { display: grid; gap: 18px; }

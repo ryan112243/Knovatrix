@@ -6,1085 +6,1085 @@
   "100": [
     {
       "label": "學年度科學班第一階段甄選-化學成就測驗解答",
-      "path": "files\\science-class\\cysh\\100\\100學年度科學班第一階段甄選-化學成就測驗解答.pdf"
+      "path": "files//science-class//cysh//100//100學年度科學班第一階段甄選-化學成就測驗解答.pdf"
     },
     {
       "label": "學年度科學班第一階段甄選-化學成就測驗試題",
-      "path": "files\\science-class\\cysh\\100\\100學年度科學班第一階段甄選-化學成就測驗試題.pdf"
+      "path": "files//science-class//cysh//100//100學年度科學班第一階段甄選-化學成就測驗試題.pdf"
     },
     {
       "label": "學年度科學班第一階段甄選-生物成就測驗解答",
-      "path": "files\\science-class\\cysh\\100\\100學年度科學班第一階段甄選-生物成就測驗解答.pdf"
+      "path": "files//science-class//cysh//100//100學年度科學班第一階段甄選-生物成就測驗解答.pdf"
     },
     {
       "label": "學年度科學班第一階段甄選-生物成就測驗試題",
-      "path": "files\\science-class\\cysh\\100\\100學年度科學班第一階段甄選-生物成就測驗試題.pdf"
+      "path": "files//science-class//cysh//100//100學年度科學班第一階段甄選-生物成就測驗試題.pdf"
     },
     {
       "label": "學年度科學班第一階段甄選-物理成就測驗解答",
-      "path": "files\\science-class\\cysh\\100\\100學年度科學班第一階段甄選-物理成就測驗解答.pdf"
+      "path": "files//science-class//cysh//100//100學年度科學班第一階段甄選-物理成就測驗解答.pdf"
     },
     {
       "label": "學年度科學班第一階段甄選-物理成就測驗試題",
-      "path": "files\\science-class\\cysh\\100\\100學年度科學班第一階段甄選-物理成就測驗試題.pdf"
+      "path": "files//science-class//cysh//100//100學年度科學班第一階段甄選-物理成就測驗試題.pdf"
     },
     {
       "label": "學年度科學班第一階段甄選-語文檢定（英語）解答",
-      "path": "files\\science-class\\cysh\\100\\100學年度科學班第一階段甄選-語文檢定（英語）解答.pdf"
+      "path": "files//science-class//cysh//100//100學年度科學班第一階段甄選-語文檢定（英語）解答.pdf"
     },
     {
       "label": "學年度科學班第一階段甄選-語文檢定（英語）試題",
-      "path": "files\\science-class\\cysh\\100\\100學年度科學班第一階段甄選-語文檢定（英語）試題.pdf"
+      "path": "files//science-class//cysh//100//100學年度科學班第一階段甄選-語文檢定（英語）試題.pdf"
     },
     {
       "label": "學年度科學班第一階段甄選-語文檢定（國文）解答",
-      "path": "files\\science-class\\cysh\\100\\100學年度科學班第一階段甄選-語文檢定（國文）解答.pdf"
+      "path": "files//science-class//cysh//100//100學年度科學班第一階段甄選-語文檢定（國文）解答.pdf"
     },
     {
       "label": "學年度科學班第一階段甄選-語文檢定（國文）試題",
-      "path": "files\\science-class\\cysh\\100\\100學年度科學班第一階段甄選-語文檢定（國文）試題.pdf"
+      "path": "files//science-class//cysh//100//100學年度科學班第一階段甄選-語文檢定（國文）試題.pdf"
     },
     {
       "label": "學年度科學班第一階段甄選-數學成就測驗解答",
-      "path": "files\\science-class\\cysh\\100\\100學年度科學班第一階段甄選-數學成就測驗解答.pdf"
+      "path": "files//science-class//cysh//100//100學年度科學班第一階段甄選-數學成就測驗解答.pdf"
     },
     {
       "label": "學年度科學班第一階段甄選-數學成就測驗試題",
-      "path": "files\\science-class\\cysh\\100\\100學年度科學班第一階段甄選-數學成就測驗試題.pdf"
+      "path": "files//science-class//cysh//100//100學年度科學班第一階段甄選-數學成就測驗試題.pdf"
     },
     {
       "label": "學年度科學班第二階段甄選-化學實作評量解答",
-      "path": "files\\science-class\\cysh\\100\\100學年度科學班第二階段甄選-化學實作評量解答.pdf"
+      "path": "files//science-class//cysh//100//100學年度科學班第二階段甄選-化學實作評量解答.pdf"
     },
     {
       "label": "學年度科學班第二階段甄選-化學實作評量試題",
-      "path": "files\\science-class\\cysh\\100\\100學年度科學班第二階段甄選-化學實作評量試題.pdf"
+      "path": "files//science-class//cysh//100//100學年度科學班第二階段甄選-化學實作評量試題.pdf"
     },
     {
       "label": "學年度科學班第二階段甄選-生物實作評量解答",
-      "path": "files\\science-class\\cysh\\100\\100學年度科學班第二階段甄選-生物實作評量解答.pdf"
+      "path": "files//science-class//cysh//100//100學年度科學班第二階段甄選-生物實作評量解答.pdf"
     },
     {
       "label": "學年度科學班第二階段甄選-生物實作評量試題",
-      "path": "files\\science-class\\cysh\\100\\100學年度科學班第二階段甄選-生物實作評量試題.pdf"
+      "path": "files//science-class//cysh//100//100學年度科學班第二階段甄選-生物實作評量試題.pdf"
     },
     {
       "label": "學年度科學班第二階段甄選-生物實作評量-實驗解答",
-      "path": "files\\science-class\\cysh\\100\\100學年度科學班第二階段甄選-生物實作評量-實驗解答.pdf"
+      "path": "files//science-class//cysh//100//100學年度科學班第二階段甄選-生物實作評量-實驗解答.pdf"
     },
     {
       "label": "學年度科學班第二階段甄選-生物實作評量-實驗試題",
-      "path": "files\\science-class\\cysh\\100\\100學年度科學班第二階段甄選-生物實作評量-實驗試題.pdf"
+      "path": "files//science-class//cysh//100//100學年度科學班第二階段甄選-生物實作評量-實驗試題.pdf"
     },
     {
       "label": "學年度科學班第二階段甄選-物理實作評量解答",
-      "path": "files\\science-class\\cysh\\100\\100學年度科學班第二階段甄選-物理實作評量解答.pdf"
+      "path": "files//science-class//cysh//100//100學年度科學班第二階段甄選-物理實作評量解答.pdf"
     },
     {
       "label": "學年度科學班第二階段甄選-物理實作評量試題",
-      "path": "files\\science-class\\cysh\\100\\100學年度科學班第二階段甄選-物理實作評量試題.pdf"
+      "path": "files//science-class//cysh//100//100學年度科學班第二階段甄選-物理實作評量試題.pdf"
     },
     {
       "label": "學年度科學班第二階段甄選-數學實作評量解答",
-      "path": "files\\science-class\\cysh\\100\\100學年度科學班第二階段甄選-數學實作評量解答.pdf"
+      "path": "files//science-class//cysh//100//100學年度科學班第二階段甄選-數學實作評量解答.pdf"
     },
     {
       "label": "學年度科學班第二階段甄選-數學實作評量試題",
-      "path": "files\\science-class\\cysh\\100\\100學年度科學班第二階段甄選-數學實作評量試題.pdf"
+      "path": "files//science-class//cysh//100//100學年度科學班第二階段甄選-數學實作評量試題.pdf"
     }
   ],
   "101": [
     {
       "label": "學年度科學班第一階段甄選-化學成就測驗試題",
-      "path": "files\\science-class\\cysh\\101\\101學年度科學班第一階段甄選-化學成就測驗試題.pdf"
+      "path": "files//science-class//cysh//101//101學年度科學班第一階段甄選-化學成就測驗試題.pdf"
     },
     {
       "label": "學年度科學班第一階段甄選-英文成就測驗解答",
-      "path": "files\\science-class\\cysh\\101\\101學年度科學班第一階段甄選-英文成就測驗解答.pdf"
+      "path": "files//science-class//cysh//101//101學年度科學班第一階段甄選-英文成就測驗解答.pdf"
     },
     {
       "label": "學年度科學班第一階段甄選-英文成就測驗試題",
-      "path": "files\\science-class\\cysh\\101\\101學年度科學班第一階段甄選-英文成就測驗試題.pdf"
+      "path": "files//science-class//cysh//101//101學年度科學班第一階段甄選-英文成就測驗試題.pdf"
     },
     {
       "label": "學年度科學班第一階段甄選-國文成就測驗解答",
-      "path": "files\\science-class\\cysh\\101\\101學年度科學班第一階段甄選-國文成就測驗解答.pdf"
+      "path": "files//science-class//cysh//101//101學年度科學班第一階段甄選-國文成就測驗解答.pdf"
     },
     {
       "label": "學年度科學班第一階段甄選-國文成就測驗試題",
-      "path": "files\\science-class\\cysh\\101\\101學年度科學班第一階段甄選-國文成就測驗試題.pdf"
+      "path": "files//science-class//cysh//101//101學年度科學班第一階段甄選-國文成就測驗試題.pdf"
     },
     {
       "label": "學年度科學班第一階段甄選-數學成就測驗解答",
-      "path": "files\\science-class\\cysh\\101\\101學年度科學班第一階段甄選-數學成就測驗解答.pdf"
+      "path": "files//science-class//cysh//101//101學年度科學班第一階段甄選-數學成就測驗解答.pdf"
     },
     {
       "label": "學年度科學班第一階段甄選-數學成就測驗試題",
-      "path": "files\\science-class\\cysh\\101\\101學年度科學班第一階段甄選-數學成就測驗試題.pdf"
+      "path": "files//science-class//cysh//101//101學年度科學班第一階段甄選-數學成就測驗試題.pdf"
     }
   ],
   "103": [
     {
       "label": "嘉中科學班複試-生物科解答(乙)",
-      "path": "files\\science-class\\cysh\\103\\103嘉中科學班複試-生物科解答(乙).pdf"
+      "path": "files//science-class//cysh//103//103嘉中科學班複試-生物科解答(乙).pdf"
     },
     {
       "label": "嘉中科學班複試-生物科試題(甲)",
-      "path": "files\\science-class\\cysh\\103\\103嘉中科學班複試-生物科試題(甲).pdf"
+      "path": "files//science-class//cysh//103//103嘉中科學班複試-生物科試題(甲).pdf"
     },
     {
       "label": "學年度科學班科學能力檢定-化學科測驗解答",
-      "path": "files\\science-class\\cysh\\103\\103學年度科學班科學能力檢定-化學科測驗解答.pdf"
+      "path": "files//science-class//cysh//103//103學年度科學班科學能力檢定-化學科測驗解答.pdf"
     },
     {
       "label": "學年度科學班科學能力檢定-化學科測驗解答_修正",
-      "path": "files\\science-class\\cysh\\103\\103學年度科學班科學能力檢定-化學科測驗解答_修正.pdf"
+      "path": "files//science-class//cysh//103//103學年度科學班科學能力檢定-化學科測驗解答_修正.pdf"
     },
     {
       "label": "學年度科學班科學能力檢定-化學科測驗試題",
-      "path": "files\\science-class\\cysh\\103\\103學年度科學班科學能力檢定-化學科測驗試題.pdf"
+      "path": "files//science-class//cysh//103//103學年度科學班科學能力檢定-化學科測驗試題.pdf"
     },
     {
       "label": "學年度科學班科學能力檢定-生物科測驗解答",
-      "path": "files\\science-class\\cysh\\103\\103學年度科學班科學能力檢定-生物科測驗解答.pdf"
+      "path": "files//science-class//cysh//103//103學年度科學班科學能力檢定-生物科測驗解答.pdf"
     },
     {
       "label": "學年度科學班科學能力檢定-生物科測驗試題",
-      "path": "files\\science-class\\cysh\\103\\103學年度科學班科學能力檢定-生物科測驗試題.pdf"
+      "path": "files//science-class//cysh//103//103學年度科學班科學能力檢定-生物科測驗試題.pdf"
     },
     {
       "label": "學年度科學班科學能力檢定-物理科測驗解答",
-      "path": "files\\science-class\\cysh\\103\\103學年度科學班科學能力檢定-物理科測驗解答.pdf"
+      "path": "files//science-class//cysh//103//103學年度科學班科學能力檢定-物理科測驗解答.pdf"
     },
     {
       "label": "學年度科學班科學能力檢定-物理科測驗試題",
-      "path": "files\\science-class\\cysh\\103\\103學年度科學班科學能力檢定-物理科測驗試題.pdf"
+      "path": "files//science-class//cysh//103//103學年度科學班科學能力檢定-物理科測驗試題.pdf"
     },
     {
       "label": "學年度科學班科學能力檢定-英文科測驗解答",
-      "path": "files\\science-class\\cysh\\103\\103學年度科學班科學能力檢定-英文科測驗解答.pdf"
+      "path": "files//science-class//cysh//103//103學年度科學班科學能力檢定-英文科測驗解答.pdf"
     },
     {
       "label": "學年度科學班科學能力檢定-英文科測驗試題",
-      "path": "files\\science-class\\cysh\\103\\103學年度科學班科學能力檢定-英文科測驗試題.pdf"
+      "path": "files//science-class//cysh//103//103學年度科學班科學能力檢定-英文科測驗試題.pdf"
     },
     {
       "label": "學年度科學班科學能力檢定-國文科測驗解答",
-      "path": "files\\science-class\\cysh\\103\\103學年度科學班科學能力檢定-國文科測驗解答.pdf"
+      "path": "files//science-class//cysh//103//103學年度科學班科學能力檢定-國文科測驗解答.pdf"
     },
     {
       "label": "學年度科學班科學能力檢定-國文科測驗試題",
-      "path": "files\\science-class\\cysh\\103\\103學年度科學班科學能力檢定-國文科測驗試題.pdf"
+      "path": "files//science-class//cysh//103//103學年度科學班科學能力檢定-國文科測驗試題.pdf"
     },
     {
       "label": "學年度科學班科學能力檢定-數學科測驗解答",
-      "path": "files\\science-class\\cysh\\103\\103學年度科學班科學能力檢定-數學科測驗解答.pdf"
+      "path": "files//science-class//cysh//103//103學年度科學班科學能力檢定-數學科測驗解答.pdf"
     },
     {
       "label": "學年度科學班科學能力檢定-數學科測驗試題",
-      "path": "files\\science-class\\cysh\\103\\103學年度科學班科學能力檢定-數學科測驗試題.pdf"
+      "path": "files//science-class//cysh//103//103學年度科學班科學能力檢定-數學科測驗試題.pdf"
     },
     {
       "label": "學年度科學班實驗實作複試-化學科解答(一)",
-      "path": "files\\science-class\\cysh\\103\\103學年度科學班實驗實作複試-化學科解答(一).pdf"
+      "path": "files//science-class//cysh//103//103學年度科學班實驗實作複試-化學科解答(一).pdf"
     },
     {
       "label": "學年度科學班實驗實作複試-化學科試題(一)",
-      "path": "files\\science-class\\cysh\\103\\103學年度科學班實驗實作複試-化學科試題(一).pdf"
+      "path": "files//science-class//cysh//103//103學年度科學班實驗實作複試-化學科試題(一).pdf"
     },
     {
       "label": "學年度科學班實驗實作複試-化學科試題(二)",
-      "path": "files\\science-class\\cysh\\103\\103學年度科學班實驗實作複試-化學科試題(二).pdf"
+      "path": "files//science-class//cysh//103//103學年度科學班實驗實作複試-化學科試題(二).pdf"
     },
     {
       "label": "學年度科學班實驗實作複試-生物科解答(甲)",
-      "path": "files\\science-class\\cysh\\103\\103學年度科學班實驗實作複試-生物科解答(甲).pdf"
+      "path": "files//science-class//cysh//103//103學年度科學班實驗實作複試-生物科解答(甲).pdf"
     },
     {
       "label": "學年度科學班實驗實作複試-生物科試題(乙)",
-      "path": "files\\science-class\\cysh\\103\\103學年度科學班實驗實作複試-生物科試題(乙).pdf"
+      "path": "files//science-class//cysh//103//103學年度科學班實驗實作複試-生物科試題(乙).pdf"
     },
     {
       "label": "學年度科學班實驗實作複試-物理科筆試解答",
-      "path": "files\\science-class\\cysh\\103\\103學年度科學班實驗實作複試-物理科筆試解答.pdf"
+      "path": "files//science-class//cysh//103//103學年度科學班實驗實作複試-物理科筆試解答.pdf"
     },
     {
       "label": "學年度科學班實驗實作複試-物理科筆試試題",
-      "path": "files\\science-class\\cysh\\103\\103學年度科學班實驗實作複試-物理科筆試試題.pdf"
+      "path": "files//science-class//cysh//103//103學年度科學班實驗實作複試-物理科筆試試題.pdf"
     },
     {
       "label": "學年度科學班實驗實作複試-物理科實作解答2",
-      "path": "files\\science-class\\cysh\\103\\103學年度科學班實驗實作複試-物理科實作解答2.pdf"
+      "path": "files//science-class//cysh//103//103學年度科學班實驗實作複試-物理科實作解答2.pdf"
     },
     {
       "label": "學年度科學班實驗實作複試-物理科實作試題",
-      "path": "files\\science-class\\cysh\\103\\103學年度科學班實驗實作複試-物理科實作試題.pdf"
+      "path": "files//science-class//cysh//103//103學年度科學班實驗實作複試-物理科實作試題.pdf"
     },
     {
       "label": "學年度科學班實驗實作複試-數學科解答",
-      "path": "files\\science-class\\cysh\\103\\103學年度科學班實驗實作複試-數學科解答.pdf"
+      "path": "files//science-class//cysh//103//103學年度科學班實驗實作複試-數學科解答.pdf"
     },
     {
       "label": "學年度科學班實驗實作複試-數學科試題",
-      "path": "files\\science-class\\cysh\\103\\103學年度科學班實驗實作複試-數學科試題.pdf"
+      "path": "files//science-class//cysh//103//103學年度科學班實驗實作複試-數學科試題.pdf"
     }
   ],
   "104": [
     {
       "label": "學年度科學班科學能力檢定-生物成就測驗試題",
-      "path": "files\\science-class\\cysh\\104\\104學年度科學班科學能力檢定-生物成就測驗試題.pdf"
+      "path": "files//science-class//cysh//104//104學年度科學班科學能力檢定-生物成就測驗試題.pdf"
     },
     {
       "label": "學年度科學班科學能力檢定-物理成就測驗解答-修正",
-      "path": "files\\science-class\\cysh\\104\\104學年度科學班科學能力檢定-物理成就測驗解答-修正.pdf"
+      "path": "files//science-class//cysh//104//104學年度科學班科學能力檢定-物理成就測驗解答-修正.pdf"
     },
     {
       "label": "學年度科學班科學能力檢定-國文成就測驗試題",
-      "path": "files\\science-class\\cysh\\104\\104學年度科學班科學能力檢定-國文成就測驗試題.pdf"
+      "path": "files//science-class//cysh//104//104學年度科學班科學能力檢定-國文成就測驗試題.pdf"
     },
     {
       "label": "學年度科學班科學能力檢定-數學成就測驗試題",
-      "path": "files\\science-class\\cysh\\104\\104學年度科學班科學能力檢定-數學成就測驗試題.pdf"
+      "path": "files//science-class//cysh//104//104學年度科學班科學能力檢定-數學成就測驗試題.pdf"
     },
     {
       "label": "學年度科學班第一階段科學能力檢定-化學成就測驗解答",
-      "path": "files\\science-class\\cysh\\104\\104學年度科學班第一階段科學能力檢定-化學成就測驗解答.pdf"
+      "path": "files//science-class//cysh//104//104學年度科學班第一階段科學能力檢定-化學成就測驗解答.pdf"
     },
     {
       "label": "學年度科學班第一階段科學能力檢定-化學成就測驗試題",
-      "path": "files\\science-class\\cysh\\104\\104學年度科學班第一階段科學能力檢定-化學成就測驗試題.pdf"
+      "path": "files//science-class//cysh//104//104學年度科學班第一階段科學能力檢定-化學成就測驗試題.pdf"
     },
     {
       "label": "學年度科學班第一階段科學能力檢定-生物成就測驗解答",
-      "path": "files\\science-class\\cysh\\104\\104學年度科學班第一階段科學能力檢定-生物成就測驗解答.pdf"
+      "path": "files//science-class//cysh//104//104學年度科學班第一階段科學能力檢定-生物成就測驗解答.pdf"
     },
     {
       "label": "學年度科學班第一階段科學能力檢定-物理成就測驗試題",
-      "path": "files\\science-class\\cysh\\104\\104學年度科學班第一階段科學能力檢定-物理成就測驗試題.pdf"
+      "path": "files//science-class//cysh//104//104學年度科學班第一階段科學能力檢定-物理成就測驗試題.pdf"
     },
     {
       "label": "學年度科學班第一階段科學能力檢定-英文成就測驗試題",
-      "path": "files\\science-class\\cysh\\104\\104學年度科學班第一階段科學能力檢定-英文成就測驗試題.pdf"
+      "path": "files//science-class//cysh//104//104學年度科學班第一階段科學能力檢定-英文成就測驗試題.pdf"
     },
     {
       "label": "學年度科學班第一階段科學能力檢定-英語成就測驗解答",
-      "path": "files\\science-class\\cysh\\104\\104學年度科學班第一階段科學能力檢定-英語成就測驗解答.pdf"
+      "path": "files//science-class//cysh//104//104學年度科學班第一階段科學能力檢定-英語成就測驗解答.pdf"
     },
     {
       "label": "學年度科學班第一階段科學能力檢定-國文成就測驗解答",
-      "path": "files\\science-class\\cysh\\104\\104學年度科學班第一階段科學能力檢定-國文成就測驗解答.pdf"
+      "path": "files//science-class//cysh//104//104學年度科學班第一階段科學能力檢定-國文成就測驗解答.pdf"
     },
     {
       "label": "學年度科學班第一階段科學能力檢定-數學成就測驗解答",
-      "path": "files\\science-class\\cysh\\104\\104學年度科學班第一階段科學能力檢定-數學成就測驗解答.pdf"
+      "path": "files//science-class//cysh//104//104學年度科學班第一階段科學能力檢定-數學成就測驗解答.pdf"
     },
     {
       "label": "學年度科學班第二階段-化學實驗實作解答",
-      "path": "files\\science-class\\cysh\\104\\104學年度科學班第二階段-化學實驗實作解答.pdf"
+      "path": "files//science-class//cysh//104//104學年度科學班第二階段-化學實驗實作解答.pdf"
     },
     {
       "label": "學年度科學班第二階段-化學實驗實作試題",
-      "path": "files\\science-class\\cysh\\104\\104學年度科學班第二階段-化學實驗實作試題.pdf"
+      "path": "files//science-class//cysh//104//104學年度科學班第二階段-化學實驗實作試題.pdf"
     },
     {
       "label": "學年度科學班第二階段-生物實驗實作解答A",
-      "path": "files\\science-class\\cysh\\104\\104學年度科學班第二階段-生物實驗實作解答A.pdf"
+      "path": "files//science-class//cysh//104//104學年度科學班第二階段-生物實驗實作解答A.pdf"
     },
     {
       "label": "學年度科學班第二階段-生物實驗實作解答B",
-      "path": "files\\science-class\\cysh\\104\\104學年度科學班第二階段-生物實驗實作解答B.pdf"
+      "path": "files//science-class//cysh//104//104學年度科學班第二階段-生物實驗實作解答B.pdf"
     },
     {
       "label": "學年度科學班第二階段-生物實驗實作解答C",
-      "path": "files\\science-class\\cysh\\104\\104學年度科學班第二階段-生物實驗實作解答C.pdf"
+      "path": "files//science-class//cysh//104//104學年度科學班第二階段-生物實驗實作解答C.pdf"
     },
     {
       "label": "學年度科學班第二階段-生物實驗實作試題A",
-      "path": "files\\science-class\\cysh\\104\\104學年度科學班第二階段-生物實驗實作試題A.pdf"
+      "path": "files//science-class//cysh//104//104學年度科學班第二階段-生物實驗實作試題A.pdf"
     },
     {
       "label": "學年度科學班第二階段-生物實驗實作試題B",
-      "path": "files\\science-class\\cysh\\104\\104學年度科學班第二階段-生物實驗實作試題B.pdf"
+      "path": "files//science-class//cysh//104//104學年度科學班第二階段-生物實驗實作試題B.pdf"
     },
     {
       "label": "學年度科學班第二階段-生物實驗實作試題C",
-      "path": "files\\science-class\\cysh\\104\\104學年度科學班第二階段-生物實驗實作試題C.pdf"
+      "path": "files//science-class//cysh//104//104學年度科學班第二階段-生物實驗實作試題C.pdf"
     },
     {
       "label": "學年度科學班第二階段-物理實驗實作解答",
-      "path": "files\\science-class\\cysh\\104\\104學年度科學班第二階段-物理實驗實作解答.pdf"
+      "path": "files//science-class//cysh//104//104學年度科學班第二階段-物理實驗實作解答.pdf"
     },
     {
       "label": "學年度科學班第二階段-物理實驗實作試題",
-      "path": "files\\science-class\\cysh\\104\\104學年度科學班第二階段-物理實驗實作試題.pdf"
+      "path": "files//science-class//cysh//104//104學年度科學班第二階段-物理實驗實作試題.pdf"
     },
     {
       "label": "學年度科學班第二階段-數學實驗實作解答",
-      "path": "files\\science-class\\cysh\\104\\104學年度科學班第二階段-數學實驗實作解答.pdf"
+      "path": "files//science-class//cysh//104//104學年度科學班第二階段-數學實驗實作解答.pdf"
     },
     {
       "label": "學年度科學班第二階段-數學實驗實作試題",
-      "path": "files\\science-class\\cysh\\104\\104學年度科學班第二階段-數學實驗實作試題.pdf"
+      "path": "files//science-class//cysh//104//104學年度科學班第二階段-數學實驗實作試題.pdf"
     }
   ],
   "105": [
     {
       "label": "學年度科學班甄選入學實驗實作-生物科實驗實作(乙卷)參考答案",
-      "path": "files\\science-class\\cysh\\105\\105學年度科學班甄選入學實驗實作-生物科實驗實作(乙卷)參考答案.pdf"
+      "path": "files//science-class//cysh//105//105學年度科學班甄選入學實驗實作-生物科實驗實作(乙卷)參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學實驗實作-生物科實驗實作(乙卷)試題",
-      "path": "files\\science-class\\cysh\\105\\105學年度科學班甄選入學實驗實作-生物科實驗實作(乙卷)試題.pdf"
+      "path": "files//science-class//cysh//105//105學年度科學班甄選入學實驗實作-生物科實驗實作(乙卷)試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學實驗實作-生物科實驗實作(甲卷)參考答案",
-      "path": "files\\science-class\\cysh\\105\\105學年度科學班甄選入學實驗實作-生物科實驗實作(甲卷)參考答案.pdf"
+      "path": "files//science-class//cysh//105//105學年度科學班甄選入學實驗實作-生物科實驗實作(甲卷)參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學實驗實作-生物科實驗實作(甲卷)試題",
-      "path": "files\\science-class\\cysh\\105\\105學年度科學班甄選入學實驗實作-生物科實驗實作(甲卷)試題.pdf"
+      "path": "files//science-class//cysh//105//105學年度科學班甄選入學實驗實作-生物科實驗實作(甲卷)試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學實驗實作-生物科實驗實作(跑臺)參考答案",
-      "path": "files\\science-class\\cysh\\105\\105學年度科學班甄選入學實驗實作-生物科實驗實作(跑臺)參考答案.pdf"
+      "path": "files//science-class//cysh//105//105學年度科學班甄選入學實驗實作-生物科實驗實作(跑臺)參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學實驗實作-生物科實驗實作(跑臺)試題",
-      "path": "files\\science-class\\cysh\\105\\105學年度科學班甄選入學實驗實作-生物科實驗實作(跑臺)試題.pdf"
+      "path": "files//science-class//cysh//105//105學年度科學班甄選入學實驗實作-生物科實驗實作(跑臺)試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學實驗實作-數學科實驗實作試題",
-      "path": "files\\science-class\\cysh\\105\\105學年度科學班甄選入學實驗實作-數學科實驗實作試題.pdf"
+      "path": "files//science-class//cysh//105//105學年度科學班甄選入學實驗實作-數學科實驗實作試題.pdf"
     }
   ],
   "107": [
     {
       "label": "學年度科學班化學成就測驗參考答案",
-      "path": "files\\science-class\\cysh\\107\\107學年度科學班化學成就測驗參考答案.pdf"
+      "path": "files//science-class//cysh//107//107學年度科學班化學成就測驗參考答案.pdf"
     },
     {
       "label": "學年度科學班化學成就測驗試題卷",
-      "path": "files\\science-class\\cysh\\107\\107學年度科學班化學成就測驗試題卷.pdf"
+      "path": "files//science-class//cysh//107//107學年度科學班化學成就測驗試題卷.pdf"
     },
     {
       "label": "學年度科學班生物成就測驗參考解答",
-      "path": "files\\science-class\\cysh\\107\\107學年度科學班生物成就測驗參考解答.pdf"
+      "path": "files//science-class//cysh//107//107學年度科學班生物成就測驗參考解答.pdf"
     },
     {
       "label": "學年度科學班生物成就測驗試題1",
-      "path": "files\\science-class\\cysh\\107\\107學年度科學班生物成就測驗試題1.pdf"
+      "path": "files//science-class//cysh//107//107學年度科學班生物成就測驗試題1.pdf"
     },
     {
       "label": "學年度科學班物理成就測驗試題",
-      "path": "files\\science-class\\cysh\\107\\107學年度科學班物理成就測驗試題.pdf"
+      "path": "files//science-class//cysh//107//107學年度科學班物理成就測驗試題.pdf"
     },
     {
       "label": "學年度科學班英語成就測驗參考解答",
-      "path": "files\\science-class\\cysh\\107\\107學年度科學班英語成就測驗參考解答.pdf"
+      "path": "files//science-class//cysh//107//107學年度科學班英語成就測驗參考解答.pdf"
     },
     {
       "label": "學年度科學班英語成就測驗試題",
-      "path": "files\\science-class\\cysh\\107\\107學年度科學班英語成就測驗試題.pdf"
+      "path": "files//science-class//cysh//107//107學年度科學班英語成就測驗試題.pdf"
     },
     {
       "label": "學年度科學班國文成就測驗參考解答",
-      "path": "files\\science-class\\cysh\\107\\107學年度科學班國文成就測驗參考解答.pdf"
+      "path": "files//science-class//cysh//107//107學年度科學班國文成就測驗參考解答.pdf"
     },
     {
       "label": "學年度科學班國文成就測驗試題",
-      "path": "files\\science-class\\cysh\\107\\107學年度科學班國文成就測驗試題.pdf"
+      "path": "files//science-class//cysh//107//107學年度科學班國文成就測驗試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-科學實驗實作(一)物理成就測驗參考答案",
-      "path": "files\\science-class\\cysh\\107\\107學年度科學班甄選入學科學能力檢定-科學實驗實作(一)物理成就測驗參考答案.pdf"
+      "path": "files//science-class//cysh//107//107學年度科學班甄選入學科學能力檢定-科學實驗實作(一)物理成就測驗參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-科學實驗實作(一)物理成就測驗試題",
-      "path": "files\\science-class\\cysh\\107\\107學年度科學班甄選入學科學能力檢定-科學實驗實作(一)物理成就測驗試題.pdf"
+      "path": "files//science-class//cysh//107//107學年度科學班甄選入學科學能力檢定-科學實驗實作(一)物理成就測驗試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-科學實驗實作(二)生物成就測驗參考答案",
-      "path": "files\\science-class\\cysh\\107\\107學年度科學班甄選入學科學能力檢定-科學實驗實作(二)生物成就測驗參考答案.pdf"
+      "path": "files//science-class//cysh//107//107學年度科學班甄選入學科學能力檢定-科學實驗實作(二)生物成就測驗參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-科學實驗實作(二)生物成就測驗試題",
-      "path": "files\\science-class\\cysh\\107\\107學年度科學班甄選入學科學能力檢定-科學實驗實作(二)生物成就測驗試題.pdf"
+      "path": "files//science-class//cysh//107//107學年度科學班甄選入學科學能力檢定-科學實驗實作(二)生物成就測驗試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學實驗實作-科學實驗實作(一)數學科試題",
-      "path": "files\\science-class\\cysh\\107\\107學年度科學班甄選入學實驗實作-科學實驗實作(一)數學科試題.pdf"
+      "path": "files//science-class//cysh//107//107學年度科學班甄選入學實驗實作-科學實驗實作(一)數學科試題.pdf"
     },
     {
       "label": "學年度科學班數學成就測驗參考答案",
-      "path": "files\\science-class\\cysh\\107\\107學年度科學班數學成就測驗參考答案.pdf"
+      "path": "files//science-class//cysh//107//107學年度科學班數學成就測驗參考答案.pdf"
     },
     {
       "label": "學年度科學班數學成就測驗試題",
-      "path": "files\\science-class\\cysh\\107\\107學年度科學班數學成就測驗試題.pdf"
+      "path": "files//science-class//cysh//107//107學年度科學班數學成就測驗試題.pdf"
     },
     {
       "label": "修正-107學年度科學班物理成就測驗參考答案",
-      "path": "files\\science-class\\cysh\\107\\修正-107學年度科學班物理成就測驗參考答案.pdf"
+      "path": "files//science-class//cysh//107//修正-107學年度科學班物理成就測驗參考答案.pdf"
     }
   ],
   "108": [
     {
       "label": "學年度科學班甄選入學科學能力檢定-化學科能力檢定參考答案",
-      "path": "files\\science-class\\cysh\\108\\108學年度科學班甄選入學科學能力檢定-化學科能力檢定參考答案.pdf"
+      "path": "files//science-class//cysh//108//108學年度科學班甄選入學科學能力檢定-化學科能力檢定參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-化學科能力檢定試題",
-      "path": "files\\science-class\\cysh\\108\\108學年度科學班甄選入學科學能力檢定-化學科能力檢定試題.pdf"
+      "path": "files//science-class//cysh//108//108學年度科學班甄選入學科學能力檢定-化學科能力檢定試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-生物科能力檢定試題",
-      "path": "files\\science-class\\cysh\\108\\108學年度科學班甄選入學科學能力檢定-生物科能力檢定試題.pdf"
+      "path": "files//science-class//cysh//108//108學年度科學班甄選入學科學能力檢定-生物科能力檢定試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-生物能力檢定參考答案",
-      "path": "files\\science-class\\cysh\\108\\108學年度科學班甄選入學科學能力檢定-生物能力檢定參考答案.pdf"
+      "path": "files//science-class//cysh//108//108學年度科學班甄選入學科學能力檢定-生物能力檢定參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-物理科能力檢定參考答案",
-      "path": "files\\science-class\\cysh\\108\\108學年度科學班甄選入學科學能力檢定-物理科能力檢定參考答案.pdf"
+      "path": "files//science-class//cysh//108//108學年度科學班甄選入學科學能力檢定-物理科能力檢定參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-物理科能力檢定試題",
-      "path": "files\\science-class\\cysh\\108\\108學年度科學班甄選入學科學能力檢定-物理科能力檢定試題.pdf"
+      "path": "files//science-class//cysh//108//108學年度科學班甄選入學科學能力檢定-物理科能力檢定試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-英語科能力檢定參考答案",
-      "path": "files\\science-class\\cysh\\108\\108學年度科學班甄選入學科學能力檢定-英語科能力檢定參考答案.pdf"
+      "path": "files//science-class//cysh//108//108學年度科學班甄選入學科學能力檢定-英語科能力檢定參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-英語科能力檢定試題",
-      "path": "files\\science-class\\cysh\\108\\108學年度科學班甄選入學科學能力檢定-英語科能力檢定試題.pdf"
+      "path": "files//science-class//cysh//108//108學年度科學班甄選入學科學能力檢定-英語科能力檢定試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-國文科能力檢定試題",
-      "path": "files\\science-class\\cysh\\108\\108學年度科學班甄選入學科學能力檢定-國文科能力檢定試題.pdf"
+      "path": "files//science-class//cysh//108//108學年度科學班甄選入學科學能力檢定-國文科能力檢定試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-國文能力檢定參考答案",
-      "path": "files\\science-class\\cysh\\108\\108學年度科學班甄選入學科學能力檢定-國文能力檢定參考答案.pdf"
+      "path": "files//science-class//cysh//108//108學年度科學班甄選入學科學能力檢定-國文能力檢定參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-數學科能力檢定試題",
-      "path": "files\\science-class\\cysh\\108\\108學年度科學班甄選入學科學能力檢定-數學科能力檢定試題.pdf"
+      "path": "files//science-class//cysh//108//108學年度科學班甄選入學科學能力檢定-數學科能力檢定試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-數學能力檢定參考答案",
-      "path": "files\\science-class\\cysh\\108\\108學年度科學班甄選入學科學能力檢定-數學能力檢定參考答案.pdf"
+      "path": "files//science-class//cysh//108//108學年度科學班甄選入學科學能力檢定-數學能力檢定參考答案.pdf"
     },
     {
       "label": "國立嘉義高級中學 108 學年度科學班入學甄選實驗實作-科學實驗實作(一)物理科參考答案",
-      "path": "files\\science-class\\cysh\\108\\國立嘉義高級中學 108 學年度科學班入學甄選實驗實作-科學實驗實作(一)物理科參考答案.pdf"
+      "path": "files//science-class//cysh//108//國立嘉義高級中學 108 學年度科學班入學甄選實驗實作-科學實驗實作(一)物理科參考答案.pdf"
     },
     {
       "label": "國立嘉義高級中學 108 學年度科學班入學甄選實驗實作-科學實驗實作(一)物理科試題",
-      "path": "files\\science-class\\cysh\\108\\國立嘉義高級中學 108 學年度科學班入學甄選實驗實作-科學實驗實作(一)物理科試題.pdf"
+      "path": "files//science-class//cysh//108//國立嘉義高級中學 108 學年度科學班入學甄選實驗實作-科學實驗實作(一)物理科試題.pdf"
     },
     {
       "label": "國立嘉義高級中學 108 學年度科學班入學甄選實驗實作-科學實驗實作(一)數學科參考答案",
-      "path": "files\\science-class\\cysh\\108\\國立嘉義高級中學 108 學年度科學班入學甄選實驗實作-科學實驗實作(一)數學科參考答案.pdf"
+      "path": "files//science-class//cysh//108//國立嘉義高級中學 108 學年度科學班入學甄選實驗實作-科學實驗實作(一)數學科參考答案.pdf"
     },
     {
       "label": "國立嘉義高級中學 108 學年度科學班入學甄選實驗實作-科學實驗實作(一)數學科題目卷",
-      "path": "files\\science-class\\cysh\\108\\國立嘉義高級中學 108 學年度科學班入學甄選實驗實作-科學實驗實作(一)數學科題目卷.pdf"
+      "path": "files//science-class//cysh//108//國立嘉義高級中學 108 學年度科學班入學甄選實驗實作-科學實驗實作(一)數學科題目卷.pdf"
     },
     {
       "label": "國立嘉義高級中學 108 學年度科學班入學甄選實驗實作-科學實驗實作(二)化學科題目卷",
-      "path": "files\\science-class\\cysh\\108\\國立嘉義高級中學 108 學年度科學班入學甄選實驗實作-科學實驗實作(二)化學科題目卷.pdf"
+      "path": "files//science-class//cysh//108//國立嘉義高級中學 108 學年度科學班入學甄選實驗實作-科學實驗實作(二)化學科題目卷.pdf"
     },
     {
       "label": "國立嘉義高級中學 108 學年度科學班入學甄選實驗實作-科學實驗實作(二)生物科實作試題",
-      "path": "files\\science-class\\cysh\\108\\國立嘉義高級中學 108 學年度科學班入學甄選實驗實作-科學實驗實作(二)生物科實作試題.pdf"
+      "path": "files//science-class//cysh//108//國立嘉義高級中學 108 學年度科學班入學甄選實驗實作-科學實驗實作(二)生物科實作試題.pdf"
     }
   ],
   "109": [
     {
       "label": " 學年度科學班甄選入學科學能力檢定 化學科能力檢定參考答案",
-      "path": "files\\science-class\\cysh\\109\\109 學年度科學班甄選入學科學能力檢定 化學科能力檢定參考答案.pdf"
+      "path": "files//science-class//cysh//109//109 學年度科學班甄選入學科學能力檢定 化學科能力檢定參考答案.pdf"
     },
     {
       "label": " 學年度科學班甄選入學科學能力檢定 化學科能力檢定試題",
-      "path": "files\\science-class\\cysh\\109\\109 學年度科學班甄選入學科學能力檢定 化學科能力檢定試題.pdf"
+      "path": "files//science-class//cysh//109//109 學年度科學班甄選入學科學能力檢定 化學科能力檢定試題.pdf"
     },
     {
       "label": " 學年度科學班甄選入學科學能力檢定 國文科能力檢定參考答案",
-      "path": "files\\science-class\\cysh\\109\\109 學年度科學班甄選入學科學能力檢定 國文科能力檢定參考答案.pdf"
+      "path": "files//science-class//cysh//109//109 學年度科學班甄選入學科學能力檢定 國文科能力檢定參考答案.pdf"
     },
     {
       "label": " 學年度科學班甄選入學科學能力檢定 國文科能力檢定試題",
-      "path": "files\\science-class\\cysh\\109\\109 學年度科學班甄選入學科學能力檢定 國文科能力檢定試題.pdf"
+      "path": "files//science-class//cysh//109//109 學年度科學班甄選入學科學能力檢定 國文科能力檢定試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定 生物科能力檢定參考答案",
-      "path": "files\\science-class\\cysh\\109\\109學年度科學班甄選入學科學能力檢定 生物科能力檢定參考答案.pdf"
+      "path": "files//science-class//cysh//109//109學年度科學班甄選入學科學能力檢定 生物科能力檢定參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定 生物科能力檢定試題",
-      "path": "files\\science-class\\cysh\\109\\109學年度科學班甄選入學科學能力檢定 生物科能力檢定試題.pdf"
+      "path": "files//science-class//cysh//109//109學年度科學班甄選入學科學能力檢定 生物科能力檢定試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定 物理科能力檢定參考答案",
-      "path": "files\\science-class\\cysh\\109\\109學年度科學班甄選入學科學能力檢定 物理科能力檢定參考答案.pdf"
+      "path": "files//science-class//cysh//109//109學年度科學班甄選入學科學能力檢定 物理科能力檢定參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定 物理科能力檢定試題",
-      "path": "files\\science-class\\cysh\\109\\109學年度科學班甄選入學科學能力檢定 物理科能力檢定試題.pdf"
+      "path": "files//science-class//cysh//109//109學年度科學班甄選入學科學能力檢定 物理科能力檢定試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定 英文科能力檢定參考答案",
-      "path": "files\\science-class\\cysh\\109\\109學年度科學班甄選入學科學能力檢定 英文科能力檢定參考答案.pdf"
+      "path": "files//science-class//cysh//109//109學年度科學班甄選入學科學能力檢定 英文科能力檢定參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定 英文科能力檢定試題",
-      "path": "files\\science-class\\cysh\\109\\109學年度科學班甄選入學科學能力檢定 英文科能力檢定試題.pdf"
+      "path": "files//science-class//cysh//109//109學年度科學班甄選入學科學能力檢定 英文科能力檢定試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定 數學科能力檢定參考答案",
-      "path": "files\\science-class\\cysh\\109\\109學年度科學班甄選入學科學能力檢定 數學科能力檢定參考答案.pdf"
+      "path": "files//science-class//cysh//109//109學年度科學班甄選入學科學能力檢定 數學科能力檢定參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定 數學科能力檢定試題",
-      "path": "files\\science-class\\cysh\\109\\109學年度科學班甄選入學科學能力檢定 數學科能力檢定試題.pdf"
+      "path": "files//science-class//cysh//109//109學年度科學班甄選入學科學能力檢定 數學科能力檢定試題.pdf"
     },
     {
       "label": "修正109學年度科學班甄選入學科學能力檢定 物理科能力檢定參考答案",
-      "path": "files\\science-class\\cysh\\109\\修正109學年度科學班甄選入學科學能力檢定 物理科能力檢定參考答案.pdf"
+      "path": "files//science-class//cysh//109//修正109學年度科學班甄選入學科學能力檢定 物理科能力檢定參考答案.pdf"
     }
   ],
   "110": [
     {
       "label": "學年度科學班甄選入學科學能力檢定-化學科能力檢定參考答案",
-      "path": "files\\science-class\\cysh\\110\\110學年度科學班甄選入學科學能力檢定-化學科能力檢定參考答案.pdf"
+      "path": "files//science-class//cysh//110//110學年度科學班甄選入學科學能力檢定-化學科能力檢定參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-化學科能力檢定試題",
-      "path": "files\\science-class\\cysh\\110\\110學年度科學班甄選入學科學能力檢定-化學科能力檢定試題.pdf"
+      "path": "files//science-class//cysh//110//110學年度科學班甄選入學科學能力檢定-化學科能力檢定試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-生物科能力檢定參考答案",
-      "path": "files\\science-class\\cysh\\110\\110學年度科學班甄選入學科學能力檢定-生物科能力檢定參考答案.pdf"
+      "path": "files//science-class//cysh//110//110學年度科學班甄選入學科學能力檢定-生物科能力檢定參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-生物科能力檢定試題",
-      "path": "files\\science-class\\cysh\\110\\110學年度科學班甄選入學科學能力檢定-生物科能力檢定試題.pdf"
+      "path": "files//science-class//cysh//110//110學年度科學班甄選入學科學能力檢定-生物科能力檢定試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-物理科能力檢定參考答案",
-      "path": "files\\science-class\\cysh\\110\\110學年度科學班甄選入學科學能力檢定-物理科能力檢定參考答案.pdf"
+      "path": "files//science-class//cysh//110//110學年度科學班甄選入學科學能力檢定-物理科能力檢定參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-物理科能力檢定試題",
-      "path": "files\\science-class\\cysh\\110\\110學年度科學班甄選入學科學能力檢定-物理科能力檢定試題.pdf"
+      "path": "files//science-class//cysh//110//110學年度科學班甄選入學科學能力檢定-物理科能力檢定試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-英文科能力檢定參考答案",
-      "path": "files\\science-class\\cysh\\110\\110學年度科學班甄選入學科學能力檢定-英文科能力檢定參考答案.pdf"
+      "path": "files//science-class//cysh//110//110學年度科學班甄選入學科學能力檢定-英文科能力檢定參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-英文科能力檢定試題",
-      "path": "files\\science-class\\cysh\\110\\110學年度科學班甄選入學科學能力檢定-英文科能力檢定試題.pdf"
+      "path": "files//science-class//cysh//110//110學年度科學班甄選入學科學能力檢定-英文科能力檢定試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-國文科能力檢定參考答案",
-      "path": "files\\science-class\\cysh\\110\\110學年度科學班甄選入學科學能力檢定-國文科能力檢定參考答案.pdf"
+      "path": "files//science-class//cysh//110//110學年度科學班甄選入學科學能力檢定-國文科能力檢定參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-國文科能力檢定試題",
-      "path": "files\\science-class\\cysh\\110\\110學年度科學班甄選入學科學能力檢定-國文科能力檢定試題.pdf"
+      "path": "files//science-class//cysh//110//110學年度科學班甄選入學科學能力檢定-國文科能力檢定試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-數學科能力檢定參考答案",
-      "path": "files\\science-class\\cysh\\110\\110學年度科學班甄選入學科學能力檢定-數學科能力檢定參考答案.pdf"
+      "path": "files//science-class//cysh//110//110學年度科學班甄選入學科學能力檢定-數學科能力檢定參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-數學科能力檢定試題",
-      "path": "files\\science-class\\cysh\\110\\110學年度科學班甄選入學科學能力檢定-數學科能力檢定試題.pdf"
+      "path": "files//science-class//cysh//110//110學年度科學班甄選入學科學能力檢定-數學科能力檢定試題.pdf"
     },
     {
       "label": "修正-110學年度科學班甄選入學科學能力檢定-化學科能力檢定參考答案",
-      "path": "files\\science-class\\cysh\\110\\修正-110學年度科學班甄選入學科學能力檢定-化學科能力檢定參考答案.pdf"
+      "path": "files//science-class//cysh//110//修正-110學年度科學班甄選入學科學能力檢定-化學科能力檢定參考答案.pdf"
     }
   ],
   "111": [
     {
       "label": "學年度科學班甄選入學科學能力檢定-化學科能力檢定參考答案",
-      "path": "files\\science-class\\cysh\\111\\111學年度科學班甄選入學科學能力檢定-化學科能力檢定參考答案.pdf"
+      "path": "files//science-class//cysh//111//111學年度科學班甄選入學科學能力檢定-化學科能力檢定參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-化學科能力檢定試題",
-      "path": "files\\science-class\\cysh\\111\\111學年度科學班甄選入學科學能力檢定-化學科能力檢定試題.pdf"
+      "path": "files//science-class//cysh//111//111學年度科學班甄選入學科學能力檢定-化學科能力檢定試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-生物科能力檢定參考答案(修正)",
-      "path": "files\\science-class\\cysh\\111\\111學年度科學班甄選入學科學能力檢定-生物科能力檢定參考答案(修正).pdf"
+      "path": "files//science-class//cysh//111//111學年度科學班甄選入學科學能力檢定-生物科能力檢定參考答案(修正).pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-生物科能力檢定參考答案",
-      "path": "files\\science-class\\cysh\\111\\111學年度科學班甄選入學科學能力檢定-生物科能力檢定參考答案.pdf"
+      "path": "files//science-class//cysh//111//111學年度科學班甄選入學科學能力檢定-生物科能力檢定參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-生物科能力檢定試題",
-      "path": "files\\science-class\\cysh\\111\\111學年度科學班甄選入學科學能力檢定-生物科能力檢定試題.pdf"
+      "path": "files//science-class//cysh//111//111學年度科學班甄選入學科學能力檢定-生物科能力檢定試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-物理科能力檢定參考答案(修正)",
-      "path": "files\\science-class\\cysh\\111\\111學年度科學班甄選入學科學能力檢定-物理科能力檢定參考答案(修正).pdf"
+      "path": "files//science-class//cysh//111//111學年度科學班甄選入學科學能力檢定-物理科能力檢定參考答案(修正).pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-物理科能力檢定參考答案",
-      "path": "files\\science-class\\cysh\\111\\111學年度科學班甄選入學科學能力檢定-物理科能力檢定參考答案.pdf"
+      "path": "files//science-class//cysh//111//111學年度科學班甄選入學科學能力檢定-物理科能力檢定參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-物理科能力檢定試題",
-      "path": "files\\science-class\\cysh\\111\\111學年度科學班甄選入學科學能力檢定-物理科能力檢定試題.pdf"
+      "path": "files//science-class//cysh//111//111學年度科學班甄選入學科學能力檢定-物理科能力檢定試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-英文科能力檢定參考答案",
-      "path": "files\\science-class\\cysh\\111\\111學年度科學班甄選入學科學能力檢定-英文科能力檢定參考答案.pdf"
+      "path": "files//science-class//cysh//111//111學年度科學班甄選入學科學能力檢定-英文科能力檢定參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-英文科能力檢定試題",
-      "path": "files\\science-class\\cysh\\111\\111學年度科學班甄選入學科學能力檢定-英文科能力檢定試題.pdf"
+      "path": "files//science-class//cysh//111//111學年度科學班甄選入學科學能力檢定-英文科能力檢定試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-國文科能力檢定參考答案(修正)",
-      "path": "files\\science-class\\cysh\\111\\111學年度科學班甄選入學科學能力檢定-國文科能力檢定參考答案(修正).pdf"
+      "path": "files//science-class//cysh//111//111學年度科學班甄選入學科學能力檢定-國文科能力檢定參考答案(修正).pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-國文科能力檢定參考答案",
-      "path": "files\\science-class\\cysh\\111\\111學年度科學班甄選入學科學能力檢定-國文科能力檢定參考答案.pdf"
+      "path": "files//science-class//cysh//111//111學年度科學班甄選入學科學能力檢定-國文科能力檢定參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-國文科能力檢定試題",
-      "path": "files\\science-class\\cysh\\111\\111學年度科學班甄選入學科學能力檢定-國文科能力檢定試題.pdf"
+      "path": "files//science-class//cysh//111//111學年度科學班甄選入學科學能力檢定-國文科能力檢定試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-數學科參考答案",
-      "path": "files\\science-class\\cysh\\111\\111學年度科學班甄選入學科學能力檢定-數學科參考答案.pdf"
+      "path": "files//science-class//cysh//111//111學年度科學班甄選入學科學能力檢定-數學科參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-數學科試題",
-      "path": "files\\science-class\\cysh\\111\\111學年度科學班甄選入學科學能力檢定-數學科試題.pdf"
+      "path": "files//science-class//cysh//111//111學年度科學班甄選入學科學能力檢定-數學科試題.pdf"
     },
     {
       "label": "國立嘉義高級中學111學年度科學班甄選入學-化學科實驗實作參考答案",
-      "path": "files\\science-class\\cysh\\111\\國立嘉義高級中學111學年度科學班甄選入學-化學科實驗實作參考答案.pdf"
+      "path": "files//science-class//cysh//111//國立嘉義高級中學111學年度科學班甄選入學-化學科實驗實作參考答案.pdf"
     },
     {
       "label": "國立嘉義高級中學111學年度科學班甄選入學-化學科實驗實作試題",
-      "path": "files\\science-class\\cysh\\111\\國立嘉義高級中學111學年度科學班甄選入學-化學科實驗實作試題.pdf"
+      "path": "files//science-class//cysh//111//國立嘉義高級中學111學年度科學班甄選入學-化學科實驗實作試題.pdf"
     },
     {
       "label": "國立嘉義高級中學111學年度科學班甄選入學-生物科實驗實作參考答案",
-      "path": "files\\science-class\\cysh\\111\\國立嘉義高級中學111學年度科學班甄選入學-生物科實驗實作參考答案.pdf"
+      "path": "files//science-class//cysh//111//國立嘉義高級中學111學年度科學班甄選入學-生物科實驗實作參考答案.pdf"
     },
     {
       "label": "國立嘉義高級中學111學年度科學班甄選入學-生物科實驗實作試題",
-      "path": "files\\science-class\\cysh\\111\\國立嘉義高級中學111學年度科學班甄選入學-生物科實驗實作試題.pdf"
+      "path": "files//science-class//cysh//111//國立嘉義高級中學111學年度科學班甄選入學-生物科實驗實作試題.pdf"
     },
     {
       "label": "國立嘉義高級中學111學年度科學班甄選入學-物理科實驗實作參考答案",
-      "path": "files\\science-class\\cysh\\111\\國立嘉義高級中學111學年度科學班甄選入學-物理科實驗實作參考答案.pdf"
+      "path": "files//science-class//cysh//111//國立嘉義高級中學111學年度科學班甄選入學-物理科實驗實作參考答案.pdf"
     },
     {
       "label": "國立嘉義高級中學111學年度科學班甄選入學-物理科實驗實作試題",
-      "path": "files\\science-class\\cysh\\111\\國立嘉義高級中學111學年度科學班甄選入學-物理科實驗實作試題.pdf"
+      "path": "files//science-class//cysh//111//國立嘉義高級中學111學年度科學班甄選入學-物理科實驗實作試題.pdf"
     },
     {
       "label": "國立嘉義高級中學111學年度科學班甄選入學-數學科實驗實作參考答案",
-      "path": "files\\science-class\\cysh\\111\\國立嘉義高級中學111學年度科學班甄選入學-數學科實驗實作參考答案.pdf"
+      "path": "files//science-class//cysh//111//國立嘉義高級中學111學年度科學班甄選入學-數學科實驗實作參考答案.pdf"
     },
     {
       "label": "國立嘉義高級中學111學年度科學班甄選入學-數學科學實驗實作試題",
-      "path": "files\\science-class\\cysh\\111\\國立嘉義高級中學111學年度科學班甄選入學-數學科學實驗實作試題.pdf"
+      "path": "files//science-class//cysh//111//國立嘉義高級中學111學年度科學班甄選入學-數學科學實驗實作試題.pdf"
     },
     {
       "label": "嘉義高中111科學班甄選入學甄選題目疑義釋復申請表",
-      "path": "files\\science-class\\cysh\\111\\嘉義高中111科學班甄選入學甄選題目疑義釋復申請表.pdf"
+      "path": "files//science-class//cysh//111//嘉義高中111科學班甄選入學甄選題目疑義釋復申請表.pdf"
     }
   ],
   "112": [
     {
       "label": " 學年度科學班甄選入學科學能力檢定-化學能力檢定試題",
-      "path": "files\\science-class\\cysh\\112\\112 學年度科學班甄選入學科學能力檢定-化學能力檢定試題.pdf"
+      "path": "files//science-class//cysh//112//112 學年度科學班甄選入學科學能力檢定-化學能力檢定試題.pdf"
     },
     {
       "label": " 學年度科學班甄選入學科學能力檢定-物理能力檢定參考答案",
-      "path": "files\\science-class\\cysh\\112\\112 學年度科學班甄選入學科學能力檢定-物理能力檢定參考答案.pdf"
+      "path": "files//science-class//cysh//112//112 學年度科學班甄選入學科學能力檢定-物理能力檢定參考答案.pdf"
     },
     {
       "label": " 學年度科學班甄選入學科學能力檢定-物理能力檢定試題",
-      "path": "files\\science-class\\cysh\\112\\112 學年度科學班甄選入學科學能力檢定-物理能力檢定試題.pdf"
+      "path": "files//science-class//cysh//112//112 學年度科學班甄選入學科學能力檢定-物理能力檢定試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-化學能力檢定參考答案",
-      "path": "files\\science-class\\cysh\\112\\112學年度科學班甄選入學科學能力檢定-化學能力檢定參考答案.pdf"
+      "path": "files//science-class//cysh//112//112學年度科學班甄選入學科學能力檢定-化學能力檢定參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-生物能力檢定參考答案",
-      "path": "files\\science-class\\cysh\\112\\112學年度科學班甄選入學科學能力檢定-生物能力檢定參考答案.pdf"
+      "path": "files//science-class//cysh//112//112學年度科學班甄選入學科學能力檢定-生物能力檢定參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-生物能力檢定試題",
-      "path": "files\\science-class\\cysh\\112\\112學年度科學班甄選入學科學能力檢定-生物能力檢定試題.pdf"
+      "path": "files//science-class//cysh//112//112學年度科學班甄選入學科學能力檢定-生物能力檢定試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-英文能力檢定參考答案",
-      "path": "files\\science-class\\cysh\\112\\112學年度科學班甄選入學科學能力檢定-英文能力檢定參考答案.pdf"
+      "path": "files//science-class//cysh//112//112學年度科學班甄選入學科學能力檢定-英文能力檢定參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-英文能力檢定試題",
-      "path": "files\\science-class\\cysh\\112\\112學年度科學班甄選入學科學能力檢定-英文能力檢定試題.pdf"
+      "path": "files//science-class//cysh//112//112學年度科學班甄選入學科學能力檢定-英文能力檢定試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-國文能力檢定參考答案",
-      "path": "files\\science-class\\cysh\\112\\112學年度科學班甄選入學科學能力檢定-國文能力檢定參考答案.pdf"
+      "path": "files//science-class//cysh//112//112學年度科學班甄選入學科學能力檢定-國文能力檢定參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-國文能力檢定試題",
-      "path": "files\\science-class\\cysh\\112\\112學年度科學班甄選入學科學能力檢定-國文能力檢定試題.pdf"
+      "path": "files//science-class//cysh//112//112學年度科學班甄選入學科學能力檢定-國文能力檢定試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-數學能力檢定參考答案",
-      "path": "files\\science-class\\cysh\\112\\112學年度科學班甄選入學科學能力檢定-數學能力檢定參考答案.pdf"
+      "path": "files//science-class//cysh//112//112學年度科學班甄選入學科學能力檢定-數學能力檢定參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-數學能力檢定試題",
-      "path": "files\\science-class\\cysh\\112\\112學年度科學班甄選入學科學能力檢定-數學能力檢定試題.pdf"
+      "path": "files//science-class//cysh//112//112學年度科學班甄選入學科學能力檢定-數學能力檢定試題.pdf"
     },
     {
       "label": "國立嘉義高級中學112學年度科學班甄選入學-化學科實驗實作參考答案",
-      "path": "files\\science-class\\cysh\\112\\國立嘉義高級中學112學年度科學班甄選入學-化學科實驗實作參考答案.pdf"
+      "path": "files//science-class//cysh//112//國立嘉義高級中學112學年度科學班甄選入學-化學科實驗實作參考答案.pdf"
     },
     {
       "label": "國立嘉義高級中學112學年度科學班甄選入學-化學科實驗實作試題",
-      "path": "files\\science-class\\cysh\\112\\國立嘉義高級中學112學年度科學班甄選入學-化學科實驗實作試題.pdf"
+      "path": "files//science-class//cysh//112//國立嘉義高級中學112學年度科學班甄選入學-化學科實驗實作試題.pdf"
     },
     {
       "label": "國立嘉義高級中學112學年度科學班甄選入學-生物科實驗實作(A卷)參考答案",
-      "path": "files\\science-class\\cysh\\112\\國立嘉義高級中學112學年度科學班甄選入學-生物科實驗實作(A卷)參考答案.pdf"
+      "path": "files//science-class//cysh//112//國立嘉義高級中學112學年度科學班甄選入學-生物科實驗實作(A卷)參考答案.pdf"
     },
     {
       "label": "國立嘉義高級中學112學年度科學班甄選入學-生物科實驗實作(A卷)試題",
-      "path": "files\\science-class\\cysh\\112\\國立嘉義高級中學112學年度科學班甄選入學-生物科實驗實作(A卷)試題.pdf"
+      "path": "files//science-class//cysh//112//國立嘉義高級中學112學年度科學班甄選入學-生物科實驗實作(A卷)試題.pdf"
     },
     {
       "label": "國立嘉義高級中學112學年度科學班甄選入學-生物科實驗實作(B卷)參考答案",
-      "path": "files\\science-class\\cysh\\112\\國立嘉義高級中學112學年度科學班甄選入學-生物科實驗實作(B卷)參考答案.pdf"
+      "path": "files//science-class//cysh//112//國立嘉義高級中學112學年度科學班甄選入學-生物科實驗實作(B卷)參考答案.pdf"
     },
     {
       "label": "國立嘉義高級中學112學年度科學班甄選入學-生物科實驗實作(B卷)試題",
-      "path": "files\\science-class\\cysh\\112\\國立嘉義高級中學112學年度科學班甄選入學-生物科實驗實作(B卷)試題.pdf"
+      "path": "files//science-class//cysh//112//國立嘉義高級中學112學年度科學班甄選入學-生物科實驗實作(B卷)試題.pdf"
     },
     {
       "label": "國立嘉義高級中學112學年度科學班甄選入學-物理科實驗實作參考答案",
-      "path": "files\\science-class\\cysh\\112\\國立嘉義高級中學112學年度科學班甄選入學-物理科實驗實作參考答案.pdf"
+      "path": "files//science-class//cysh//112//國立嘉義高級中學112學年度科學班甄選入學-物理科實驗實作參考答案.pdf"
     },
     {
       "label": "國立嘉義高級中學112學年度科學班甄選入學-物理科實驗實作試題",
-      "path": "files\\science-class\\cysh\\112\\國立嘉義高級中學112學年度科學班甄選入學-物理科實驗實作試題.pdf"
+      "path": "files//science-class//cysh//112//國立嘉義高級中學112學年度科學班甄選入學-物理科實驗實作試題.pdf"
     },
     {
       "label": "國立嘉義高級中學112學年度科學班甄選入學-數學科實驗實作參考答案",
-      "path": "files\\science-class\\cysh\\112\\國立嘉義高級中學112學年度科學班甄選入學-數學科實驗實作參考答案.pdf"
+      "path": "files//science-class//cysh//112//國立嘉義高級中學112學年度科學班甄選入學-數學科實驗實作參考答案.pdf"
     },
     {
       "label": "國立嘉義高級中學112學年度科學班甄選入學-數學科實驗實作試題",
-      "path": "files\\science-class\\cysh\\112\\國立嘉義高級中學112學年度科學班甄選入學-數學科實驗實作試題.pdf"
+      "path": "files//science-class//cysh//112//國立嘉義高級中學112學年度科學班甄選入學-數學科實驗實作試題.pdf"
     },
     {
       "label": "嘉義高中112科學班甄選入學甄選-題目疑義釋復申請表",
-      "path": "files\\science-class\\cysh\\112\\嘉義高中112科學班甄選入學甄選-題目疑義釋復申請表.pdf"
+      "path": "files//science-class//cysh//112//嘉義高中112科學班甄選入學甄選-題目疑義釋復申請表.pdf"
     }
   ],
   "113": [
     {
       "label": "學年度科學班甄選入學-化學科實驗實作參考答案",
-      "path": "files\\science-class\\cysh\\113\\113學年度科學班甄選入學-化學科實驗實作參考答案.pdf"
+      "path": "files//science-class//cysh//113//113學年度科學班甄選入學-化學科實驗實作參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學-化學科實驗實作試題",
-      "path": "files\\science-class\\cysh\\113\\113學年度科學班甄選入學-化學科實驗實作試題.pdf"
+      "path": "files//science-class//cysh//113//113學年度科學班甄選入學-化學科實驗實作試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學-生物科實驗實作參考答案",
-      "path": "files\\science-class\\cysh\\113\\113學年度科學班甄選入學-生物科實驗實作參考答案.pdf"
+      "path": "files//science-class//cysh//113//113學年度科學班甄選入學-生物科實驗實作參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學-生物科實驗實作試題",
-      "path": "files\\science-class\\cysh\\113\\113學年度科學班甄選入學-生物科實驗實作試題.pdf"
+      "path": "files//science-class//cysh//113//113學年度科學班甄選入學-生物科實驗實作試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學-物理科實驗實作參考答案",
-      "path": "files\\science-class\\cysh\\113\\113學年度科學班甄選入學-物理科實驗實作參考答案.pdf"
+      "path": "files//science-class//cysh//113//113學年度科學班甄選入學-物理科實驗實作參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學-物理科實驗實作試題",
-      "path": "files\\science-class\\cysh\\113\\113學年度科學班甄選入學-物理科實驗實作試題.pdf"
+      "path": "files//science-class//cysh//113//113學年度科學班甄選入學-物理科實驗實作試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-化學能力檢定參考答案",
-      "path": "files\\science-class\\cysh\\113\\113學年度科學班甄選入學科學能力檢定-化學能力檢定參考答案.pdf"
+      "path": "files//science-class//cysh//113//113學年度科學班甄選入學科學能力檢定-化學能力檢定參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-化學能力檢定試題",
-      "path": "files\\science-class\\cysh\\113\\113學年度科學班甄選入學科學能力檢定-化學能力檢定試題.pdf"
+      "path": "files//science-class//cysh//113//113學年度科學班甄選入學科學能力檢定-化學能力檢定試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-生物能力檢定參考答案",
-      "path": "files\\science-class\\cysh\\113\\113學年度科學班甄選入學科學能力檢定-生物能力檢定參考答案.pdf"
+      "path": "files//science-class//cysh//113//113學年度科學班甄選入學科學能力檢定-生物能力檢定參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-生物能力檢定試題",
-      "path": "files\\science-class\\cysh\\113\\113學年度科學班甄選入學科學能力檢定-生物能力檢定試題.pdf"
+      "path": "files//science-class//cysh//113//113學年度科學班甄選入學科學能力檢定-生物能力檢定試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-物理能力檢定參考答案",
-      "path": "files\\science-class\\cysh\\113\\113學年度科學班甄選入學科學能力檢定-物理能力檢定參考答案.pdf"
+      "path": "files//science-class//cysh//113//113學年度科學班甄選入學科學能力檢定-物理能力檢定參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-物理能力檢定試題",
-      "path": "files\\science-class\\cysh\\113\\113學年度科學班甄選入學科學能力檢定-物理能力檢定試題.pdf"
+      "path": "files//science-class//cysh//113//113學年度科學班甄選入學科學能力檢定-物理能力檢定試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-英文能力檢定參考答案",
-      "path": "files\\science-class\\cysh\\113\\113學年度科學班甄選入學科學能力檢定-英文能力檢定參考答案.pdf"
+      "path": "files//science-class//cysh//113//113學年度科學班甄選入學科學能力檢定-英文能力檢定參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-英文能力檢定參考試題",
-      "path": "files\\science-class\\cysh\\113\\113學年度科學班甄選入學科學能力檢定-英文能力檢定參考試題.pdf"
+      "path": "files//science-class//cysh//113//113學年度科學班甄選入學科學能力檢定-英文能力檢定參考試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-國文能力檢定參考答案(修正)",
-      "path": "files\\science-class\\cysh\\113\\113學年度科學班甄選入學科學能力檢定-國文能力檢定參考答案(修正).pdf"
+      "path": "files//science-class//cysh//113//113學年度科學班甄選入學科學能力檢定-國文能力檢定參考答案(修正).pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-國文能力檢定參考答案",
-      "path": "files\\science-class\\cysh\\113\\113學年度科學班甄選入學科學能力檢定-國文能力檢定參考答案.pdf"
+      "path": "files//science-class//cysh//113//113學年度科學班甄選入學科學能力檢定-國文能力檢定參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-國文能力檢定試題",
-      "path": "files\\science-class\\cysh\\113\\113學年度科學班甄選入學科學能力檢定-國文能力檢定試題.pdf"
+      "path": "files//science-class//cysh//113//113學年度科學班甄選入學科學能力檢定-國文能力檢定試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-數學能力檢定參考答案",
-      "path": "files\\science-class\\cysh\\113\\113學年度科學班甄選入學科學能力檢定-數學能力檢定參考答案.pdf"
+      "path": "files//science-class//cysh//113//113學年度科學班甄選入學科學能力檢定-數學能力檢定參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定-數學能力檢定試題",
-      "path": "files\\science-class\\cysh\\113\\113學年度科學班甄選入學科學能力檢定-數學能力檢定試題.pdf"
+      "path": "files//science-class//cysh//113//113學年度科學班甄選入學科學能力檢定-數學能力檢定試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學-數學科實驗實作參考答案",
-      "path": "files\\science-class\\cysh\\113\\113學年度科學班甄選入學-數學科實驗實作參考答案.pdf"
+      "path": "files//science-class//cysh//113//113學年度科學班甄選入學-數學科實驗實作參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學-數學科實驗實作試題",
-      "path": "files\\science-class\\cysh\\113\\113學年度科學班甄選入學-數學科實驗實作試題.pdf"
+      "path": "files//science-class//cysh//113//113學年度科學班甄選入學-數學科實驗實作試題.pdf"
     },
     {
       "label": "科學班甄選入學-甄選題目疑義釋復申請表",
-      "path": "files\\science-class\\cysh\\113\\科學班甄選入學-甄選題目疑義釋復申請表.pdf"
+      "path": "files//science-class//cysh//113//科學班甄選入學-甄選題目疑義釋復申請表.pdf"
     }
   ],
   "114": [
     {
       "label": " 學年度科學班甄選入學科學能力檢定物理能力檢定試題",
-      "path": "files\\science-class\\cysh\\114\\114 學年度科學班甄選入學科學能力檢定物理能力檢定試題.pdf"
+      "path": "files//science-class//cysh//114//114 學年度科學班甄選入學科學能力檢定物理能力檢定試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學 化學科實驗實作試題",
-      "path": "files\\science-class\\cysh\\114\\114學年度科學班甄選入學 化學科實驗實作試題.pdf"
+      "path": "files//science-class//cysh//114//114學年度科學班甄選入學 化學科實驗實作試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學 生物科實驗實作參考答案",
-      "path": "files\\science-class\\cysh\\114\\114學年度科學班甄選入學 生物科實驗實作參考答案.pdf"
+      "path": "files//science-class//cysh//114//114學年度科學班甄選入學 生物科實驗實作參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學 生物科實驗實作試題",
-      "path": "files\\science-class\\cysh\\114\\114學年度科學班甄選入學 生物科實驗實作試題.pdf"
+      "path": "files//science-class//cysh//114//114學年度科學班甄選入學 生物科實驗實作試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學 物理科實驗實作參考答案",
-      "path": "files\\science-class\\cysh\\114\\114學年度科學班甄選入學 物理科實驗實作參考答案.pdf"
+      "path": "files//science-class//cysh//114//114學年度科學班甄選入學 物理科實驗實作參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學 物理科實驗實作試題",
-      "path": "files\\science-class\\cysh\\114\\114學年度科學班甄選入學 物理科實驗實作試題.pdf"
+      "path": "files//science-class//cysh//114//114學年度科學班甄選入學 物理科實驗實作試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學 數學科實驗實作參考答案",
-      "path": "files\\science-class\\cysh\\114\\114學年度科學班甄選入學 數學科實驗實作參考答案.pdf"
+      "path": "files//science-class//cysh//114//114學年度科學班甄選入學 數學科實驗實作參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學 數學科實驗實作試題",
-      "path": "files\\science-class\\cysh\\114\\114學年度科學班甄選入學 數學科實驗實作試題.pdf"
+      "path": "files//science-class//cysh//114//114學年度科學班甄選入學 數學科實驗實作試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定化學能力檢定參考答案",
-      "path": "files\\science-class\\cysh\\114\\114學年度科學班甄選入學科學能力檢定化學能力檢定參考答案.pdf"
+      "path": "files//science-class//cysh//114//114學年度科學班甄選入學科學能力檢定化學能力檢定參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定化學能力檢定試題",
-      "path": "files\\science-class\\cysh\\114\\114學年度科學班甄選入學科學能力檢定化學能力檢定試題.pdf"
+      "path": "files//science-class//cysh//114//114學年度科學班甄選入學科學能力檢定化學能力檢定試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定生物能力檢定參考答案",
-      "path": "files\\science-class\\cysh\\114\\114學年度科學班甄選入學科學能力檢定生物能力檢定參考答案.pdf"
+      "path": "files//science-class//cysh//114//114學年度科學班甄選入學科學能力檢定生物能力檢定參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定生物能力檢定試題",
-      "path": "files\\science-class\\cysh\\114\\114學年度科學班甄選入學科學能力檢定生物能力檢定試題.pdf"
+      "path": "files//science-class//cysh//114//114學年度科學班甄選入學科學能力檢定生物能力檢定試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定物理能力檢定參考答案",
-      "path": "files\\science-class\\cysh\\114\\114學年度科學班甄選入學科學能力檢定物理能力檢定參考答案.pdf"
+      "path": "files//science-class//cysh//114//114學年度科學班甄選入學科學能力檢定物理能力檢定參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定英文能力檢定參考答案",
-      "path": "files\\science-class\\cysh\\114\\114學年度科學班甄選入學科學能力檢定英文能力檢定參考答案.pdf"
+      "path": "files//science-class//cysh//114//114學年度科學班甄選入學科學能力檢定英文能力檢定參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定英文能力檢定試題",
-      "path": "files\\science-class\\cysh\\114\\114學年度科學班甄選入學科學能力檢定英文能力檢定試題.pdf"
+      "path": "files//science-class//cysh//114//114學年度科學班甄選入學科學能力檢定英文能力檢定試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定國文能力檢定參考答案",
-      "path": "files\\science-class\\cysh\\114\\114學年度科學班甄選入學科學能力檢定國文能力檢定參考答案.pdf"
+      "path": "files//science-class//cysh//114//114學年度科學班甄選入學科學能力檢定國文能力檢定參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定國文能力檢定試題",
-      "path": "files\\science-class\\cysh\\114\\114學年度科學班甄選入學科學能力檢定國文能力檢定試題.pdf"
+      "path": "files//science-class//cysh//114//114學年度科學班甄選入學科學能力檢定國文能力檢定試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定數學能力檢定參考答案",
-      "path": "files\\science-class\\cysh\\114\\114學年度科學班甄選入學科學能力檢定數學能力檢定參考答案.pdf"
+      "path": "files//science-class//cysh//114//114學年度科學班甄選入學科學能力檢定數學能力檢定參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定數學能力檢定試題",
-      "path": "files\\science-class\\cysh\\114\\114學年度科學班甄選入學科學能力檢定數學能力檢定試題.pdf"
+      "path": "files//science-class//cysh//114//114學年度科學班甄選入學科學能力檢定數學能力檢定試題.pdf"
     },
     {
       "label": "學度年科學班甄選入學 化學科實驗實作參考答案",
-      "path": "files\\science-class\\cysh\\114\\114學度年科學班甄選入學 化學科實驗實作參考答案.pdf"
+      "path": "files//science-class//cysh//114//114學度年科學班甄選入學 化學科實驗實作參考答案.pdf"
     },
     {
       "label": "科學班甄選入學-甄選題目疑義釋復申請表",
-      "path": "files\\science-class\\cysh\\114\\科學班甄選入學-甄選題目疑義釋復申請表.pdf"
+      "path": "files//science-class//cysh//114//科學班甄選入學-甄選題目疑義釋復申請表.pdf"
     },
     {
       "label": "修正-114學年度科學班甄選入學科學能力檢定物理能力檢定參考答案",
-      "path": "files\\science-class\\cysh\\114\\修正-114學年度科學班甄選入學科學能力檢定物理能力檢定參考答案.pdf"
+      "path": "files//science-class//cysh//114//修正-114學年度科學班甄選入學科學能力檢定物理能力檢定參考答案.pdf"
     },
     {
       "label": "修正-114學年度科學班甄選入學科學能力檢定英文能力檢定參考答案",
-      "path": "files\\science-class\\cysh\\114\\修正-114學年度科學班甄選入學科學能力檢定英文能力檢定參考答案.pdf"
+      "path": "files//science-class//cysh//114//修正-114學年度科學班甄選入學科學能力檢定英文能力檢定參考答案.pdf"
     },
     {
       "label": "修正-114學年度科學班甄選入學科學能力檢定數學能力檢定參考答案",
-      "path": "files\\science-class\\cysh\\114\\修正-114學年度科學班甄選入學科學能力檢定數學能力檢定參考答案.pdf"
+      "path": "files//science-class//cysh//114//修正-114學年度科學班甄選入學科學能力檢定數學能力檢定參考答案.pdf"
     }
   ],
   "115": [
     {
       "label": "學年度科學班甄選入學化學科實驗實作參考答案",
-      "path": "files\\science-class\\cysh\\115\\115學年度科學班甄選入學化學科實驗實作參考答案.pdf"
+      "path": "files//science-class//cysh//115//115學年度科學班甄選入學化學科實驗實作參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學化學科實驗實作試題",
-      "path": "files\\science-class\\cysh\\115\\115學年度科學班甄選入學化學科實驗實作試題.pdf"
+      "path": "files//science-class//cysh//115//115學年度科學班甄選入學化學科實驗實作試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學生物科實驗實作(A卷)參考答案",
-      "path": "files\\science-class\\cysh\\115\\115學年度科學班甄選入學生物科實驗實作(A卷)參考答案.pdf"
+      "path": "files//science-class//cysh//115//115學年度科學班甄選入學生物科實驗實作(A卷)參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學生物科實驗實作(A卷)試題",
-      "path": "files\\science-class\\cysh\\115\\115學年度科學班甄選入學生物科實驗實作(A卷)試題.pdf"
+      "path": "files//science-class//cysh//115//115學年度科學班甄選入學生物科實驗實作(A卷)試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學生物科實驗實作(B卷)參考答案",
-      "path": "files\\science-class\\cysh\\115\\115學年度科學班甄選入學生物科實驗實作(B卷)參考答案.pdf"
+      "path": "files//science-class//cysh//115//115學年度科學班甄選入學生物科實驗實作(B卷)參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學生物科實驗實作(B卷)試題",
-      "path": "files\\science-class\\cysh\\115\\115學年度科學班甄選入學生物科實驗實作(B卷)試題.pdf"
+      "path": "files//science-class//cysh//115//115學年度科學班甄選入學生物科實驗實作(B卷)試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學物理科實驗實作參考答案(更新)",
-      "path": "files\\science-class\\cysh\\115\\115學年度科學班甄選入學物理科實驗實作參考答案(更新).pdf"
+      "path": "files//science-class//cysh//115//115學年度科學班甄選入學物理科實驗實作參考答案(更新).pdf"
     },
     {
       "label": "學年度科學班甄選入學物理科實驗實作試題",
-      "path": "files\\science-class\\cysh\\115\\115學年度科學班甄選入學物理科實驗實作試題.pdf"
+      "path": "files//science-class//cysh//115//115學年度科學班甄選入學物理科實驗實作試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定化學能力檢定參考答案",
-      "path": "files\\science-class\\cysh\\115\\115學年度科學班甄選入學科學能力檢定化學能力檢定參考答案.pdf"
+      "path": "files//science-class//cysh//115//115學年度科學班甄選入學科學能力檢定化學能力檢定參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定化學能力檢定試題",
-      "path": "files\\science-class\\cysh\\115\\115學年度科學班甄選入學科學能力檢定化學能力檢定試題.pdf"
+      "path": "files//science-class//cysh//115//115學年度科學班甄選入學科學能力檢定化學能力檢定試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定生物能力檢定參考答案",
-      "path": "files\\science-class\\cysh\\115\\115學年度科學班甄選入學科學能力檢定生物能力檢定參考答案.pdf"
+      "path": "files//science-class//cysh//115//115學年度科學班甄選入學科學能力檢定生物能力檢定參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定生物能力檢定試題",
-      "path": "files\\science-class\\cysh\\115\\115學年度科學班甄選入學科學能力檢定生物能力檢定試題.pdf"
+      "path": "files//science-class//cysh//115//115學年度科學班甄選入學科學能力檢定生物能力檢定試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定物理能力檢定參考答案",
-      "path": "files\\science-class\\cysh\\115\\115學年度科學班甄選入學科學能力檢定物理能力檢定參考答案.pdf"
+      "path": "files//science-class//cysh//115//115學年度科學班甄選入學科學能力檢定物理能力檢定參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定物理能力檢定試題",
-      "path": "files\\science-class\\cysh\\115\\115學年度科學班甄選入學科學能力檢定物理能力檢定試題.pdf"
+      "path": "files//science-class//cysh//115//115學年度科學班甄選入學科學能力檢定物理能力檢定試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定英文能力檢定參考答案",
-      "path": "files\\science-class\\cysh\\115\\115學年度科學班甄選入學科學能力檢定英文能力檢定參考答案.pdf"
+      "path": "files//science-class//cysh//115//115學年度科學班甄選入學科學能力檢定英文能力檢定參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定英文能力檢定試題",
-      "path": "files\\science-class\\cysh\\115\\115學年度科學班甄選入學科學能力檢定英文能力檢定試題.pdf"
+      "path": "files//science-class//cysh//115//115學年度科學班甄選入學科學能力檢定英文能力檢定試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定國文能力檢定參考答案",
-      "path": "files\\science-class\\cysh\\115\\115學年度科學班甄選入學科學能力檢定國文能力檢定參考答案.pdf"
+      "path": "files//science-class//cysh//115//115學年度科學班甄選入學科學能力檢定國文能力檢定參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定國文能力檢定試題",
-      "path": "files\\science-class\\cysh\\115\\115學年度科學班甄選入學科學能力檢定國文能力檢定試題.pdf"
+      "path": "files//science-class//cysh//115//115學年度科學班甄選入學科學能力檢定國文能力檢定試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定數學能力檢定參考答案",
-      "path": "files\\science-class\\cysh\\115\\115學年度科學班甄選入學科學能力檢定數學能力檢定參考答案.pdf"
+      "path": "files//science-class//cysh//115//115學年度科學班甄選入學科學能力檢定數學能力檢定參考答案.pdf"
     },
     {
       "label": "學年度科學班甄選入學科學能力檢定數學能力檢定試題",
-      "path": "files\\science-class\\cysh\\115\\115學年度科學班甄選入學科學能力檢定數學能力檢定試題.pdf"
+      "path": "files//science-class//cysh//115//115學年度科學班甄選入學科學能力檢定數學能力檢定試題.pdf"
     },
     {
       "label": "學年度科學班甄選入學數學科實驗實作附件",
-      "path": "files\\science-class\\cysh\\115\\115學年度科學班甄選入學數學科實驗實作附件.pdf"
+      "path": "files//science-class//cysh//115//115學年度科學班甄選入學數學科實驗實作附件.pdf"
     },
     {
       "label": "學年度科學班甄選入學數學科實驗實作參考答案(更新)",
-      "path": "files\\science-class\\cysh\\115\\115學年度科學班甄選入學數學科實驗實作參考答案(更新).pdf"
+      "path": "files//science-class//cysh//115//115學年度科學班甄選入學數學科實驗實作參考答案(更新).pdf"
     },
     {
       "label": "學年度科學班甄選入學數學科實驗實作試題",
-      "path": "files\\science-class\\cysh\\115\\115學年度科學班甄選入學數學科實驗實作試題.pdf"
+      "path": "files//science-class//cysh//115//115學年度科學班甄選入學數學科實驗實作試題.pdf"
     },
     {
       "label": "科學班甄選入學-甄選題目疑義釋復申請表",
-      "path": "files\\science-class\\cysh\\115\\科學班甄選入學-甄選題目疑義釋復申請表.pdf"
+      "path": "files//science-class//cysh//115//科學班甄選入學-甄選題目疑義釋復申請表.pdf"
     }
   ]
 };

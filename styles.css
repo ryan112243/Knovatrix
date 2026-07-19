@@ -84,6 +84,10 @@ h3 { line-height: 1.4; }
 .learning-shell { display: grid; align-items: start; padding: 40px 0 90px; grid-template-columns: 290px minmax(0, 1fr); gap: 38px; }
 .sidebar { position: sticky; top: 100px; max-height: calc(100vh - 120px); padding: 19px; overflow-y: auto; border: 1px solid var(--line); border-radius: 20px; background: var(--white); }
 .sidebar-label { margin: 0 0 14px 8px; color: var(--muted); font-size: 12px; font-weight: 800; letter-spacing: .12em; }
+.sidebar-heading { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 10px; }
+.sidebar-heading .sidebar-label { margin-bottom: 0; }
+.collapse-sidebar { padding: 5px 8px; border: 1px solid var(--line); border-radius: 7px; color: var(--muted); background: transparent; font-size: 11px; cursor: pointer; }
+.collapse-sidebar:hover { color: var(--forest); border-color: var(--forest-2); background: var(--mint); }
 .subject-group { margin: 3px 0; border-radius: 10px; }
 .subject-group[open] { background: #f6faf7; }
 .subject-group summary { display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; border-radius: 10px; color: var(--ink); font-weight: 700; cursor: pointer; list-style: none; }

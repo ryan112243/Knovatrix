@@ -248,7 +248,7 @@ function updateNav(path) {
 }
 
 function bindPageEvents() {
-  document.querySelectorAll("[data-subject]").forEach(b => b.addEventListener("click", () => { learningState.subject = b.dataset.subject; learningState.topic = null; learningState.tab = "notes"; render(); }));
+  document.querySelectorAll("[data-subject]").forEach(b => b.addEventListener("click", event => { const group = b.closest(".subject-group"); if (group?.open && learningState.subject === b.dataset.subject) { event.preventDefault(); group.removeAttribute("open"); return; } learningState.subject = b.dataset.subject; learningState.topic = null; learningState.tab = "notes"; render(); }));
   document.querySelectorAll("[data-collapse-sidebar]").forEach(b => b.addEventListener("click", () => { document.querySelectorAll(".subject-group[open]").forEach(group => group.removeAttribute("open")); }));
   document.querySelectorAll("[data-topic]").forEach(b => b.addEventListener("click", () => { learningState.topic = b.dataset.topic; learningState.tab = "notes"; render(); }));
   document.querySelectorAll("[data-tab]").forEach(b => b.addEventListener("click", () => { learningState.tab = b.dataset.tab; render(); }));

@@ -86,19 +86,26 @@ function scienceExamPanel(schoolName) {
     if (!localFiles.length) return `<div class="year-card pending" aria-label="${year} 學年度沒有檔案"><b>${year}</b><small>學年度</small><span>沒有檔案</span></div>`;
     if (localFiles.length === 1) {
       const file = localFiles[0];
-      return `<a class="year-card direct" href="${encodeURI(file.path)}" download><b>${year}</b><small>學年度</small><span>${file.label || "下載檔案"} ↓</span></a>`;
+      const isPdf = /\.pdf(?:$|[?#])/i.test(file.path);
+      const linkMode = isPdf ? `target="_blank" rel="noopener noreferrer"` : "download";
+      return `<a class="year-card direct" href="${encodeURI(file.path)}" ${linkMode}><b>${year}</b><small>學年度</small><span>${file.label || (isPdf ? "預覽 PDF" : "下載檔案")} ${isPdf ? "↗" : "↓"}</span></a>`;
     }
-    return `<details class="year-card direct multi-file"><summary><b>${year}</b><small>學年度 · ${localFiles.length} 份檔案</small><span>展開下載 ↓</span></summary><div class="year-downloads">${localFiles.map(file => `<a href="${encodeURI(file.path)}" download>${file.label || "下載檔案"} ↓</a>`).join("")}</div></details>`;
+    return `<details class="year-card direct multi-file"><summary><b>${year}</b><small>學年度 · ${localFiles.length} 份檔案</small><span>展開檔案 ↓</span></summary><div class="year-downloads">${localFiles.map(file => {
+      const isPdf = /\.pdf(?:$|[?#])/i.test(file.path);
+      const linkMode = isPdf ? `target="_blank" rel="noopener noreferrer"` : "download";
+      return `<a href="${encodeURI(file.path)}" ${linkMode}>${file.label || (isPdf ? "預覽 PDF" : "下載檔案")} ${isPdf ? "↗" : "↓"}</a>`;
+    }).join("")}</div></details>`;
   }).join("")}</div></div>`;
 }
 
 function publicResourcePanel(catalog) {
   return `<div class="tab-panel public-resource-panel"><div class="rights-banner"><b>下載與授權原則</b><p>有合法重製權的檔案直接放在 Knovatrix；其餘只連到主辦單位官方頁面，不採用第三方題庫。</p></div><h4>${catalog.title}</h4><div class="public-resource-grid">${catalog.items.map(item => {
     const href = item.file || item.url;
-    const action = item.file ? "站內下載 PDF ↓" : item.url ? "前往官方發布頁面 ↗" : "待主辦單位提供公開授權";
+    const isPdf = item.file && /\.pdf(?:$|[?#])/i.test(item.file);
+    const action = isPdf ? "在新分頁預覽 PDF ↗" : item.file ? "站內下載檔案 ↓" : item.url ? "前往官方發布頁面 ↗" : "待主辦單位提供公開授權";
     const content = `<span class="resource-badge ${item.status}">${item.badge}</span><b>${item.title}</b><p>${item.detail}</p><small>${action}</small>`;
     if (!href) return `<div class="public-resource-card restricted">${content}</div>`;
-    const linkMode = item.file ? "download" : `target="_blank" rel="noopener noreferrer"`;
+    const linkMode = isPdf || item.url ? `target="_blank" rel="noopener noreferrer"` : "download";
     return `<a class="public-resource-card" href="${href}" ${linkMode}>${content}</a>`;
   }).join("")}</div></div>`;
 }

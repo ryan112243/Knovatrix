@@ -64,10 +64,13 @@ function learnPage(id) {
     : { notes: "📖 重點筆記", files: "📥 試題", solutions: "💡 解題" };
   const isScienceExam = id === "junior-gifted" && learningState.subject === "科學班甄選考古題" && window.scienceClassExamCatalog?.[learningState.topic];
   const isCkGiftedExam = id === "senior-gifted" && learningState.subject === "建中資優班歷屆試題";
+  const isScienceQualificationExam = id === "senior-gifted" && learningState.subject === "科學班聯合學科資格考";
   const hasPublicResources = window.getPublicResources?.(id, learningState.subject, learningState.topic);
   const unitDescription = isScienceExam
     ? "整理 100–115 學年度官方甄選試題入口；直接 PDF、歷屆專區與尚待公開的年份分開標示。"
-    : isCkGiftedExam
+    : isScienceQualificationExam
+      ? "整理全國科學班聯合學科資格考官方試題與參考答案，涵蓋國文、英文、數學、物理、化學及生物。"
+      : isCkGiftedExam
       ? "整理建中官方公開的資優班甄選試題與答案；點擊檔案會在新分頁開啟 Google Drive PDF 預覽。"
       : hasPublicResources
       ? "已整理官方公開來源與使用狀態；請至「試題」查看原始發布頁面。"
@@ -140,9 +143,18 @@ function ckGiftedExamPanel(topic) {
   return `<div class="tab-panel public-resource-panel"><div class="rights-banner"><b>建中資優班官方歷屆試題</b><p>${year} 學年度共 ${files.length} 份試題或答案。點擊後會在新分頁開啟 PDF 預覽。</p></div><h4>${year} 學年度</h4><div class="public-resource-grid">${files.map((file, index) => `<a class="public-resource-card" href="${file.url}" target="_blank" rel="noopener noreferrer"><span class="resource-badge official">官方 PDF</span><b>${labels[year]?.[index] || file.label}</b><p>臺北市立建國高級中學資優班甄選資料</p><small>在新分頁預覽 PDF ↗</small></a>`).join("")}</div><p><a href="${catalog.source}" target="_blank" rel="noopener noreferrer">查看建中官方歷屆試題總頁面 ↗</a></p></div>`;
 }
 
+function scienceQualificationExamPanel(topic) {
+  const year = String(topic).match(/\d{3}/)?.[0];
+  const catalog = window.scienceQualificationExamCatalog;
+  const files = year ? catalog?.years?.[year] || [] : [];
+  if (!files.length) return `<div class="tab-panel empty-state"><div><span>📂</span><b>這個學年度尚無檔案</b></div></div>`;
+  return `<div class="tab-panel public-resource-panel"><div class="rights-banner"><b>全國科學班聯合學科資格考</b><p>${year} 學年度共 ${files.length} 份官方試題或參考答案，點擊後直接在新分頁開啟 PDF 預覽。</p></div><h4>${year} 學年度</h4><div class="public-resource-grid">${files.map(file => `<a class="public-resource-card" href="${file.url}" target="_blank" rel="noopener noreferrer"><span class="resource-badge official">官方 PDF</span><b>${file.label}</b><p>高級中等學校科學班聯合學科資格考</p><small>在新分頁預覽 PDF ↗</small></a>`).join("")}</div><p><a href="${catalog.source}" target="_blank" rel="noopener noreferrer">查看官方歷屆試題總頁面 ↗</a></p></div>`;
+}
+
 function tabPanel(tab, levelId, subject, topic) {
   if (tab === "notes") return `<div class="tab-panel"><ul class="note-list"><li>單元核心觀念與公式將顯示於此</li><li>常見陷阱與學長姐解題心法</li><li>相關必修實驗、探究步驟與安全提醒</li></ul></div>`;
   if (tab === "files" && levelId === "junior-gifted" && subject === "科學班甄選考古題") return scienceExamPanel(topic);
+  if (tab === "files" && levelId === "senior-gifted" && subject === "科學班聯合學科資格考") return scienceQualificationExamPanel(topic);
   if (tab === "files" && levelId === "senior-gifted" && subject === "建中資優班歷屆試題") return ckGiftedExamPanel(topic);
   const publicResources = tab === "files" ? window.getPublicResources?.(levelId, subject, topic) : null;
   if (publicResources) return publicResourcePanel(publicResources);

@@ -44,7 +44,7 @@ document.querySelector("#year").textContent = new Date().getFullYear();
 function homePage() {
   return `<section class="hero"><div class="wrap hero-copy reveal"><p class="eyebrow">由科學班團隊把關的學習資源</p><h1>把知識整理成<br><span>可以走的路。</span></h1><p class="lead">從國小資優到高中奧賽，將精選題庫、重點實驗、圖解詳解與影音課程，放進一張清晰的學習矩陣。</p><div class="button-row"><a class="button" href="#/learn/junior">開始探索題庫 <span>→</span></a><a class="button secondary" href="#/contribute">一起共創</a></div><div class="proof-strip"><div class="proof-item"><b>5 大學習入口</b><small>常規課綱 × 資優競賽</small></div><div class="proof-item"><b>3 種學習資源</b><small>重點、題庫、影音詳解</small></div><div class="proof-item"><b>完全匿名共創</b><small>勘誤、投稿與難題許願</small></div></div></div></section>
   <section class="section dark-section"><div class="wrap"><div class="section-head"><div><p class="eyebrow">Learning paths</p><h2>找到你的學習座標</h2></div><p>依目前階段進入，再用課綱順序或單元主題自由切換。每一份資源都回到清楚、可查找的知識位置。</p></div><div class="level-grid">${Object.entries(catalogLevels).map(([id, x], i) => `<a class="level-card" href="#/learn/${id}"><span class="num">0${i + 1}</span><h3>${x.name}</h3><p>${x.label}</p><span>↗</span></a>`).join("")}</div></div></section>
-  <section class="section"><div class="wrap"><div class="section-head"><div><p class="eyebrow">Three-part learning</p><h2>一個單元，學習三部曲</h2></div></div><div class="feature-grid"><article class="feature-card"><span class="icon">📖</span><h3>重點筆記</h3><p>公式定理、學長姐心法與課內必修實驗，整理成可快速複習的脈絡。</p></article><article class="feature-card"><span class="icon">📥</span><h3>試題</h3><p>升學考試、特招與競賽考古題，依單元歸檔並提供乾淨版 PDF。</p></article><article class="feature-card"><span class="icon">💡</span><h3>解題</h3><p>可摺疊文字詳解與手寫圖解，想看提示或完整推導都可以。</p></article></div></div></section>
+  <section class="section"><div class="wrap"><div class="section-head"><div><p class="eyebrow">Three-part learning</p><h2>一個單元，學習三部曲</h2></div></div><div class="feature-grid"><article class="feature-card"><span class="icon">📖</span><h3>學習重點</h3><p>公式定理、學長姐心法與課內必修實驗，整理成可快速複習的脈絡。</p></article><article class="feature-card"><span class="icon">📥</span><h3>試題</h3><p>升學考試、特招與競賽考古題，依單元歸檔並提供乾淨版 PDF。</p></article><article class="feature-card"><span class="icon">💡</span><h3>解題</h3><p>可摺疊文字詳解與手寫圖解，想看提示或完整推導都可以。</p></article></div></div></section>
   <section class="section"><div class="wrap"><div class="section-head"><div><p class="eyebrow">Latest resources</p><h2>最新上架</h2></div></div><div class="home-empty"><b>資源準備中</b><p>第一批 PDF 與解題影片上架後，這裡會自動顯示最新內容。</p></div></div></section>`;
 }
 
@@ -61,12 +61,15 @@ function learnPage(id) {
   if (id === "elementary-gifted" && learningState.tab === "solutions") learningState.tab = "notes";
   const isScienceExam = id === "junior-gifted" && learningState.subject === "科學班甄選考古題" && window.scienceClassExamCatalog?.[learningState.topic];
   const isCkGiftedExam = id === "junior-gifted" && learningState.subject === "科學班甄選考古題" && learningState.topic === "建中資優班歷屆試題";
+  const isElementaryExhibition = id === "elementary-gifted" && learningState.subject === "小學科展與生活探究";
   if ((isScienceExam || isCkGiftedExam) && learningState.tab === "notes") learningState.tab = "files";
-  const tabs = id === "elementary-gifted"
-    ? { notes: "重點筆記", files: "試題" }
+  const tabs = isElementaryExhibition
+    ? { notes: "探究指南", resources: "科展資源" }
+    : id === "elementary-gifted"
+      ? { notes: "學習重點", files: "試題" }
     : (isScienceExam || isCkGiftedExam)
       ? { files: "試題", solutions: "解題" }
-      : { notes: "重點筆記", files: "試題", solutions: "解題" };
+      : { notes: "學習重點", files: "試題", solutions: "解題" };
   const isScienceQualificationExam = id === "senior-gifted" && learningState.subject === "科學班聯合學科資格考";
   const hasPublicResources = window.getPublicResources?.(id, learningState.subject, learningState.topic);
   const unitDescription = isScienceExam
@@ -160,10 +163,10 @@ function scienceQualificationExamPanel(topic) {
 function featuredNotesPanel(subject, topic) {
   const featuredNotes = window.elementaryFeaturedNotes?.[subject]?.[topic] || [];
   if (!featuredNotes.length) {
-    return `<section class="featured-notes"><div class="featured-notes-head"><div><b>優秀筆記</b><span>這裡會收錄同學投稿的高品質筆記、圖解或整理檔。</span></div><a href="#/contribute">踴躍投稿 →</a></div><div class="featured-notes-empty">目前尚無精選筆記，歡迎踴躍投稿。</div></section>`;
+    return `<section class="featured-notes"><div class="featured-notes-head"><div><b>精選筆記</b><span>這裡會收錄同學投稿的高品質筆記、圖解或整理檔。</span></div><a href="#/contribute">踴躍投稿 →</a></div><div class="featured-notes-empty">目前尚無精選筆記，歡迎踴躍投稿。</div></section>`;
   }
-  return `<section class="featured-notes"><div class="featured-notes-head"><div><b>優秀筆記</b><span>同學投稿與社群整理的延伸學習素材。</span></div><a href="#/contribute">投稿筆記 →</a></div><div class="featured-notes-grid">${featuredNotes.map(note => {
-    const content = `<b>${note.title}</b><p>${note.detail || "適合搭配本單元複習的補充筆記。"}</p><small>${note.author ? `投稿者：${note.author}` : "優秀筆記"}</small>`;
+  return `<section class="featured-notes"><div class="featured-notes-head"><div><b>精選筆記</b><span>同學投稿與社群整理的延伸學習素材。</span></div><a href="#/contribute">投稿筆記 →</a></div><div class="featured-notes-grid">${featuredNotes.map(note => {
+    const content = `<b>${note.title}</b><p>${note.detail || "適合搭配本單元複習的補充筆記。"}</p><small>${note.author ? `投稿者：${note.author}` : "精選筆記"}</small>`;
     return note.url
       ? `<a class="featured-note-card" href="${note.url}" target="_blank" rel="noopener noreferrer">${content}</a>`
       : `<div class="featured-note-card">${content}</div>`;
@@ -191,7 +194,12 @@ function elementaryNotesPanel(subject, topic) {
   return `<div class="tab-panel"><div class="note-intro"><b>${noteSet.title}</b><span>${noteSet.subtitle}</span></div><ul class="note-list detailed-notes">${notes.map(note => `<li>${note}</li>`).join("")}</ul>${featuredNotesPanel(subject, topic)}</div>`;
 }
 
+function elementaryExhibitionPanel() {
+  return `<div class="tab-panel resource-panel"><div class="rights-banner"><b>小學科展與生活探究</b><p>從生活觀察、問題形成到研究成果展示，這裡提供官方科展作品與探究資源。</p></div><a class="public-resource-card" href="https://twsf.ntsec.gov.tw/Article.aspx?a=41&lang=1" target="_blank" rel="noopener noreferrer"><span class="resource-badge official">官方資源</span><b>全國中小學科展作品與資料庫</b><p>國立臺灣科學教育館官方科展資源。</p><small>開啟官方資源 ↗</small></a></div>`;
+}
+
 function tabPanel(tab, levelId, subject, topic) {
+  if (tab === "resources" && levelId === "elementary-gifted" && subject === "小學科展與生活探究") return elementaryExhibitionPanel();
   if (tab === "notes" && levelId === "elementary-gifted") return elementaryNotesPanel(subject, topic);
   if (tab === "notes") return `<div class="tab-panel"><ul class="note-list"><li>單元核心觀念與公式將顯示於此</li><li>常見陷阱與學長姐解題心法</li><li>相關必修實驗、探究步驟與安全提醒</li></ul></div>`;
   if (tab === "files" && levelId === "junior-gifted" && subject === "科學班甄選考古題") return scienceExamPanel(topic);

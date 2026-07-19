@@ -135,6 +135,23 @@ a.year-card:hover { border-color: var(--forest-2); box-shadow: 0 8px 24px rgba(1
 .year-card.pending { border-top: 3px solid #bdc4bf; background: #fafaf8; }
 .year-card.pending span { color: #89928c; }
 .exam-disclaimer { margin: 0; color: var(--muted); font-size: 12px; }
+.public-resource-panel { display: grid; gap: 18px; }
+.rights-banner { padding: 17px 18px; border: 1px solid #cddbd4; border-radius: 14px; background: #f3f7f4; }
+.rights-banner b { color: var(--forest); }
+.rights-banner p { margin: 5px 0 0; color: var(--muted); font-size: 13px; }
+.public-resource-panel h4 { margin: 0; font-size: 18px; }
+.public-resource-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.public-resource-card { display: flex; min-height: 180px; flex-direction: column; padding: 18px; border: 1px solid var(--line); border-radius: 14px; color: var(--ink); background: white; }
+a.public-resource-card:hover { border-color: var(--forest-2); box-shadow: 0 8px 24px rgba(10, 52, 42, .08); transform: translateY(-2px); }
+.public-resource-card > b { margin-top: 12px; font-size: 17px; }
+.public-resource-card p { margin: 7px 0; color: var(--muted); font-size: 13px; }
+.public-resource-card small { margin-top: auto; color: var(--forest-2); font-weight: 800; }
+.public-resource-card.restricted { background: #fafaf8; }
+.public-resource-card.restricted small { color: #8b938e; }
+.resource-badge { align-self: flex-start; padding: 4px 8px; border-radius: 99px; font-size: 10px; font-weight: 800; }
+.resource-badge.official { color: #0c6849; background: #dff3e8; }
+.resource-badge.index { color: #605719; background: #f3efc8; }
+.resource-badge.restricted { color: #6f7471; background: #e9ecea; }
 .topics-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
 .topic-card { padding: 18px; border: 1px solid var(--line); border-radius: 14px; background: var(--white); cursor: pointer; }
 .topic-card:hover { border-color: var(--forest-2); }
@@ -205,6 +222,7 @@ a.year-card:hover { border-color: var(--forest-2); box-shadow: 0 8px 24px rgba(1
   .topics-grid { grid-template-columns: 1fr; }
   .exam-source { align-items: flex-start; flex-direction: column; }
   .year-grid { grid-template-columns: repeat(2, 1fr); }
+  .public-resource-grid { grid-template-columns: 1fr; }
   .site-footer { display: flex; align-items: flex-start; flex-direction: column; }
 }
 @media (max-width: 470px) {

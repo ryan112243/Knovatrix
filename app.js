@@ -74,18 +74,30 @@ function scienceExamPanel(schoolName) {
   if (!school) return "";
   const archiveYears = new Set(school.archiveYears || []);
   const direct = school.direct || {};
+  const files = school.files || {};
   const years = Array.from({ length: 16 }, (_, index) => 115 - index);
-  return `<div class="tab-panel exam-panel"><div class="exam-source"><div><span>${school.city} · 來源已確認</span><b>${school.sourceLabel}</b><p>${school.note}</p></div></div><div class="exam-legend"><span><i class="direct"></i>找到試題，待授權</span><span><i class="archive"></i>找到歷屆，待授權</span><span><i class="pending"></i>待補</span></div><div class="year-grid">${years.map(year => {
+  return `<div class="tab-panel exam-panel"><div class="exam-source"><div><span>${school.city} · 官方來源</span><b>${school.sourceLabel}</b><p>${school.note}</p></div><a href="${school.official}" target="_blank" rel="noopener noreferrer">官方來源 ↗</a></div><div class="exam-legend"><span><i class="direct"></i>站內檔案／直接試題</span><span><i class="archive"></i>官方歷屆入口</span><span><i class="pending"></i>待補</span></div><div class="year-grid">${years.map(year => {
+    const localUrl = files[year];
     const directUrl = direct[year];
     const archiveUrl = archiveYears.has(year) ? school.official : null;
-    const status = directUrl ? "direct" : archiveUrl ? "archive" : "pending";
-    const label = directUrl || archiveUrl ? "待授權上架" : "尚未確認公開";
-    return `<div class="year-card ${status}" aria-label="${year} 學年度${label}"><b>${year}</b><small>學年度</small><span>${label}</span></div>`;
-  }).join("")}</div><p class="exam-disclaimer">本站不導向外部題庫。取得重製授權後，檔案會直接存放於 Knovatrix 並提供站內下載。</p></div>`;
+    const url = localUrl || directUrl || archiveUrl;
+    const status = localUrl || directUrl ? "direct" : archiveUrl ? "archive" : "pending";
+    const label = localUrl ? "站內下載" : directUrl ? "官方試題" : archiveUrl ? "官方歷屆入口" : "尚未確認公開";
+    if (!url) return `<div class="year-card ${status}" aria-label="${year} 學年度${label}"><b>${year}</b><small>學年度</small><span>${label}</span></div>`;
+    const linkMode = localUrl ? "download" : `target="_blank" rel="noopener noreferrer"`;
+    return `<a class="year-card ${status}" href="${url}" ${linkMode}><b>${year}</b><small>學年度</small><span>${label}${localUrl ? " ↓" : " ↗"}</span></a>`;
+  }).join("")}</div><p class="exam-disclaimer">有合法重製權的檔案優先提供站內下載；未取得授權者僅連到主辦單位官方來源。</p></div>`;
 }
 
 function publicResourcePanel(catalog) {
-  return `<div class="tab-panel public-resource-panel"><div class="rights-banner"><b>站內檔案原則</b><p>本站不導向外部題庫。取得主辦單位重製授權或收到可合法發布的檔案後，才會直接存放於 Knovatrix。</p></div><h4>${catalog.title}</h4><div class="public-resource-grid">${catalog.items.map(item => `<div class="public-resource-card restricted"><span class="resource-badge ${item.status}">${item.badge}</span><b>${item.title}</b><p>${item.detail}</p><small>待授權後上架站內檔案</small></div>`).join("")}</div></div>`;
+  return `<div class="tab-panel public-resource-panel"><div class="rights-banner"><b>下載與授權原則</b><p>有合法重製權的檔案直接放在 Knovatrix；其餘只連到主辦單位官方頁面，不採用第三方題庫。</p></div><h4>${catalog.title}</h4><div class="public-resource-grid">${catalog.items.map(item => {
+    const href = item.file || item.url;
+    const action = item.file ? "站內下載 PDF ↓" : item.url ? "前往官方發布頁面 ↗" : "待主辦單位提供公開授權";
+    const content = `<span class="resource-badge ${item.status}">${item.badge}</span><b>${item.title}</b><p>${item.detail}</p><small>${action}</small>`;
+    if (!href) return `<div class="public-resource-card restricted">${content}</div>`;
+    const linkMode = item.file ? "download" : `target="_blank" rel="noopener noreferrer"`;
+    return `<a class="public-resource-card" href="${href}" ${linkMode}>${content}</a>`;
+  }).join("")}</div></div>`;
 }
 
 function tabPanel(tab, levelId, subject, topic) {

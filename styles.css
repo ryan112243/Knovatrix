@@ -140,6 +140,7 @@ a.year-card:hover { border-color: var(--forest-2); box-shadow: 0 8px 24px rgba(1
 .public-resource-panel h4 { margin: 0; font-size: 18px; }
 .public-resource-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
 .public-resource-card { display: flex; min-height: 180px; flex-direction: column; padding: 18px; border: 1px solid var(--line); border-radius: 14px; color: var(--ink); background: white; }
+a.public-resource-card:hover { border-color: var(--forest-2); box-shadow: 0 8px 24px rgba(10, 52, 42, .08); transform: translateY(-2px); }
 .public-resource-card > b { margin-top: 12px; font-size: 17px; }
 .public-resource-card p { margin: 7px 0; color: var(--muted); font-size: 13px; }
 .public-resource-card small { margin-top: auto; color: var(--forest-2); font-weight: 800; }

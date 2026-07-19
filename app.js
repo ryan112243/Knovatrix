@@ -199,6 +199,37 @@ function elementaryNotesPanel(subject, topic) {
   return `<div class="tab-panel"><div class="note-intro"><b>${noteSet.title}</b><span>${noteSet.subtitle}</span></div><ul class="note-list detailed-notes">${notes.map(note => `<li>${note}</li>`).join("")}</ul>${featuredNotesPanel(subject, topic)}</div>`;
 }
 
+function juniorNotesPanel(subject, topic) {
+  const noteSets = {
+    "數學": {
+      title: "國中數學會考與資優銜接重點",
+      subtitle: "統整三年核心單元、速解公式與易混淆陷阱。",
+      notes: window.juniorMathNotes
+    },
+    "生物": {
+      title: "國中生物會考特訓重點",
+      subtitle: "聚焦實驗操作、圖表判讀、生理關聯與易混淆名詞。",
+      notes: window.juniorBiologyNotes
+    },
+    "理化": {
+      title: "國中理化八、九年級會考特訓重點",
+      subtitle: "統整化學基礎、熱學、光學、力學、電學、磁學與進階物理。",
+      notes: window.juniorPhysicsChemistryNotes
+    },
+    "地球科學": {
+      title: "國中地球科學九年級會考特訓重點",
+      subtitle: "聚焦圖表判讀、天文空間概念與台灣本土環境。",
+      notes: window.juniorEarthScienceNotes
+    }
+  };
+  const noteSet = noteSets[subject];
+  const notes = noteSet?.notes?.[topic] || null;
+  if (!notes) {
+    return `<div class="tab-panel"><ul class="note-list"><li>單元核心觀念與公式將顯示於此</li><li>常見陷阱與會考解題心法</li><li>相關實驗、圖表判讀與比較表</li></ul></div>`;
+  }
+  return `<div class="tab-panel"><div class="note-intro"><b>${noteSet.title}</b><span>${noteSet.subtitle}</span></div><ul class="note-list detailed-notes">${notes.map(note => `<li>${note}</li>`).join("")}</ul></div>`;
+}
+
 function elementaryExhibitionPanel() {
   return `<div class="tab-panel resource-panel"><div class="rights-banner"><b>小學科展與生活探究</b><p>從生活觀察、問題形成到研究成果展示，這裡提供官方科展作品與探究資源。</p></div><a class="public-resource-card" href="https://twsf.ntsec.gov.tw/Article.aspx?a=41&lang=1" target="_blank" rel="noopener noreferrer"><span class="resource-badge official">官方資源</span><b>全國中小學科展作品與資料庫</b><p>國立臺灣科學教育館官方科展資源。</p><small>開啟官方資源 ↗</small></a></div>`;
 }
@@ -206,6 +237,7 @@ function elementaryExhibitionPanel() {
 function tabPanel(tab, levelId, subject, topic) {
   if (tab === "resources" && levelId === "elementary-gifted" && subject === "小學科展與生活探究") return elementaryExhibitionPanel();
   if (tab === "notes" && levelId === "elementary-gifted") return elementaryNotesPanel(subject, topic);
+  if (tab === "notes" && levelId === "junior") return juniorNotesPanel(subject, topic);
   if (tab === "notes") return `<div class="tab-panel"><ul class="note-list"><li>單元核心觀念與公式將顯示於此</li><li>常見陷阱與學長姐解題心法</li><li>相關必修實驗、探究步驟與安全提醒</li></ul></div>`;
   if (tab === "files" && levelId === "junior-gifted" && subject === "科學班甄選考古題") return scienceExamPanel(topic);
   if (tab === "files" && levelId === "senior-gifted" && subject === "科學班聯合學科資格考") return scienceQualificationExamPanel(topic);

@@ -2,24 +2,6 @@ const officialLink = (title, url, detail) => ({ title, url, detail, status: "off
 const indexOnly = (title, url, detail) => ({ title, url, detail, status: "index", badge: "僅建立索引" });
 const unavailable = (title, detail) => ({ title, detail, status: "restricted", badge: "未收錄檔案" });
 
-const schoolExamCatalog = {
-  junior: {
-    "新北中正國中": officialLink("新北市立中正國中段考考古題", "https://www.ccjhs.ntpc.edu.tw/p/403-1000-114.php", "依學期、年級與次別發布，官方頁面目前有多頁歷屆資料。"),
-    "高雄中正高中國中部": officialLink("高雄中正高中國中部段考題庫", "https://www.cchs.kh.edu.tw/ischool/publish_page/3/?cid=558", "收錄 108 學年度以前至近期各學期試題與解答。"),
-    "高雄鼓山高中國中部": officialLink("鼓山高中國中部歷屆試題", "https://www.kusjh.kh.edu.tw/side_content/1076", "校方公開各年級段考試題與解答附件。"),
-    "高雄正興國中": officialLink("正興國中歷屆考題資訊網", "https://affairs.kh.edu.tw/3725/upload/file_list/15", "依學年度與段考次別公開各科 PDF。"),
-    "新北頭前國中": officialLink("頭前國中歷屆段考試題", "https://www.tqjh.ntpc.edu.tw/p/403-1000-127.php", "校方分為 101–105 與 106 學年度以後兩套歷屆資料。"),
-    "高雄楠梓國中": officialLink("楠梓國中歷屆段考題目卷", "https://www.ntjh.kh.edu.tw/view/index.php?DataId=258030&MainMenuId=59190&MainType=101&SubMenuId=0&SubType=0&WebID=304&Work=View&page=1", "校方公告明示可自行下載運用，檔案由官方頁面連往公開資料夾。")
-  },
-  senior: {
-    "高雄鼓山高中": officialLink("鼓山高中高中部歷屆試題", "https://www.kusjh.kh.edu.tw/sidelist/67", "涵蓋多學年度、三個年級與各科段考試題及解答。"),
-    "武陵高中": indexOnly("武陵高中公開段考試題範例", "https://www.wlsh.tyc.edu.tw/var/file/0/1000/img/31/551595230.pdf", "校方公開的 111 學年度高二數學段考卷；本站不另存副本。"),
-    "臺中一中": indexOnly("臺中一中公開模擬試題", "https://webapps.tcfsh.tc.edu.tw/jflai/rab/ra269.pdf", "校方公開的學測模擬試題範例；後續再補完整官方索引。"),
-    "臺南一中": indexOnly("臺南一中公開段考詳解", "https://www.tnfsh.tn.edu.tw/df_ufiles/073/%E9%AB%98%E4%B8%80%E5%9C%8B%E6%96%87%E4%B8%89%E6%AE%B5%E8%A9%B3%E8%A7%A3.pdf", "校方公開的高一國文段考試題詳解範例；本站不另存副本。"),
-    "嘉義高中": officialLink("嘉義高中各類題庫", "https://www.cysh.cy.edu.tw/p/412-1008-1422.php", "官方彙整科學班、資優班與國中數學競試等公開題庫。")
-  }
-};
-
 const competitionCatalog = {
   "junior-gifted::TRML 國中數學競賽（原 JHMC）": [officialLink("TRML 國中（原 JHMC）官方題型與試題", "https://www.99cef.org.tw/trml-j/", "九九文教基金會公開競賽規則，以及 2024 競速賽、個人賽與團體賽題型範例。完整歷屆出版品仍不重製。")],
   "junior-gifted::張進通許世賢國中數學能力競試": [officialLink("嘉義高中歷屆國中數學能力競試", "https://www.cysh.cy.edu.tw/p/412-1008-234.php", "承辦學校公開 102–105、108–109、112–114 學年度試題與部分參考答案。")],
@@ -51,10 +33,6 @@ const competitionCatalog = {
 };
 
 window.getPublicResources = (levelId, subject, topic) => {
-  if (subject === "公開段考題庫") {
-    const item = schoolExamCatalog[levelId]?.[topic];
-    return item ? { title: `${topic}公開題庫`, items: [item] } : null;
-  }
   const items = competitionCatalog[`${levelId}::${subject}`];
   return items ? { title: `${subject}官方資源`, items } : null;
 };

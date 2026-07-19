@@ -29,6 +29,13 @@ const forms = [
   { icon: "🙋‍♂️", title: "影片拍攝難題許願", desc: "許願最想看團隊解說的題目與觀念。", fields: ["學制與單元", "想看哪一題", "題目照片"] }
 ];
 
+const formLinks = [
+  "https://docs.google.com/forms/d/e/1FAIpQLSd3tSgs-UOBCmCeDjEiwtPIJW_z_ffC_lC8ubinkDvxo5G0Gw/viewform",
+  "https://docs.google.com/forms/d/e/1FAIpQLSfJ72S7NDm8KJxnoAM4pqgYIbTATcXnDHYHipbfa5XbyVE_gQ/viewform",
+  "https://docs.google.com/forms/d/e/1FAIpQLScMXNeKfxpfMi9aDKnCZy_sJvYCKOfP1WnUgJV0MWV8uGP4zA/viewform",
+  "https://docs.google.com/forms/d/e/1FAIpQLSe29BhFmIi5Hr7-C3fSW1M2t-ZgCNg-BaA7rfX43NxkalnSfQ/viewform"
+];
+
 const main = document.querySelector("main");
 const nav = document.querySelector(".main-nav");
 const menuButton = document.querySelector(".menu-button");
@@ -66,7 +73,7 @@ function aboutPage() {
 }
 
 function contributePage() {
-  return `<section class="page-hero"><div class="wrap reveal"><p class="eyebrow">Anonymous contribution</p><h1>你的回饋，會讓<br>下一份資源更好。</h1><p class="lead">四個完全匿名的入口，沒有姓名欄位。選擇最符合目的的表單，資料就能準確進入對應的處理流程。</p></div></section><section class="section"><div class="wrap"><div class="info-grid">${forms.map((f, i) => `<article class="info-card form-card"><span class="big-icon">${f.icon}</span><h3>${f.title}</h3><p>${f.desc}</p><ul>${f.fields.map(x => `<li>${x}</li>`).join("")}</ul><button class="button disabled placeholder-link" data-form="${i}">表單即將開放</button></article>`).join("")}</div><div class="callout"><div><h3>隱私說明</h3><p>正式表單不收集稱呼或姓名；若使用檔案上傳，Google 可能會要求投稿者登入，表單頁會清楚標示。</p></div></div></div></section>`;
+  return `<section class="page-hero"><div class="wrap reveal"><p class="eyebrow">Anonymous contribution</p><h1>你的回饋，會讓<br>下一份資源更好。</h1><p class="lead">四個完全匿名的入口，沒有姓名欄位。選擇最符合目的的表單，資料就能準確進入對應的處理流程。</p></div></section><section class="section"><div class="wrap"><div class="info-grid">${forms.map((f, i) => `<article class="info-card form-card"><span class="big-icon">${f.icon}</span><h3>${f.title}</h3><p>${f.desc}</p><ul>${f.fields.map(x => `<li>${x}</li>`).join("")}</ul><a class="button" href="${formLinks[i]}" target="_blank" rel="noopener noreferrer">開啟匿名表單 →</a></article>`).join("")}</div><div class="callout"><div><h3>隱私說明</h3><p>表單不收集稱呼或姓名；若使用檔案上傳，Google 會要求投稿者登入，表單頁會清楚標示。</p></div></div></div></section>`;
 }
 
 function supportPage() {

@@ -48,7 +48,7 @@ function homePage() {
   <section class="section"><div class="wrap"><div class="section-head"><div><p class="eyebrow">Latest resources</p><h2>最新上架</h2></div></div><div class="home-empty"><b>資源準備中</b><p>第一批 PDF 與解題影片上架後，這裡會自動顯示最新內容。</p></div></div></section>`;
 }
 
-let learningState = { subject: null, topic: null, tab: "notes", order: "curriculum" };
+let learningState = { subject: null, topic: null, tab: "notes", order: "curriculum", sidebarOpen: false };
 function learnPage(id) {
   const level = catalogLevels[id];
   if (!level) return notFound();
@@ -81,7 +81,7 @@ function learnPage(id) {
       : hasPublicResources
       ? "已整理官方公開來源與使用狀態；請至「試題」查看原始發布頁面。"
       : "這個單元的內容框架已就位，資料會隨 PDF、筆記與影片逐步補齊。";
-  return `<section class="page-hero"><div class="wrap reveal"><div class="breadcrumbs"><a href="#/">首頁</a>　/　${level.name}</div><p class="eyebrow">${level.label}</p><h1>${level.name}學習矩陣</h1><p class="lead">${level.intro}</p></div></section><div class="wrap learning-shell"><aside class="sidebar" aria-label="學科與專題"><div class="sidebar-heading"><p class="sidebar-label">學科與專題</p><button class="collapse-sidebar" type="button" data-collapse-sidebar>全部收合</button></div>${subjectNames.map(s => `<details class="subject-group" ${s === learningState.subject ? "open" : ""}><summary data-subject="${s}"><span>${s}</span><span aria-hidden="true">⌄</span></summary><ul class="topic-list">${orderedTopics.map(t => `<li><button class="topic-button ${t === learningState.topic ? "active" : ""}" data-topic="${t}">${t}</button></li>`).join("")}</ul></details>`).join("")}</aside><section class="learning-main"><div class="learning-toolbar"><h2>${learningState.subject}</h2></div><article class="unit-card"><span class="unit-meta">${level.name} · ${learningState.subject}</span><h3>${learningState.topic}</h3><p>${unitDescription}</p><div class="tabs" role="tablist">${Object.entries(tabs).map(([key, label]) => `<button class="tab ${key === learningState.tab ? "active" : ""}" data-tab="${key}" role="tab" aria-selected="${key === learningState.tab}">${label}</button>`).join("")}</div>${tabPanel(learningState.tab, id, learningState.subject, learningState.topic)}</article></section></div>`;
+  return `<section class="page-hero"><div class="wrap reveal"><div class="breadcrumbs"><a href="#/">首頁</a>　/　${level.name}</div><p class="eyebrow">${level.label}</p><h1>${level.name}學習矩陣</h1><p class="lead">${level.intro}</p></div></section><div class="wrap learning-shell"><aside class="sidebar" aria-label="學科與專題"><div class="sidebar-heading"><p class="sidebar-label">學科與專題</p><button class="collapse-sidebar" type="button" data-collapse-sidebar>全部收合</button></div>${subjectNames.map(s => `<details class="subject-group" ${learningState.sidebarOpen && s === learningState.subject ? "open" : ""}><summary data-subject="${s}"><span>${s}</span><span aria-hidden="true">⌄</span></summary><ul class="topic-list">${orderedTopics.map(t => `<li><button class="topic-button ${t === learningState.topic ? "active" : ""}" data-topic="${t}">${t}</button></li>`).join("")}</ul></details>`).join("")}</aside><section class="learning-main"><div class="learning-toolbar"><h2>${learningState.subject}</h2></div><article class="unit-card"><span class="unit-meta">${level.name} · ${learningState.subject}</span><h3>${learningState.topic}</h3><p>${unitDescription}</p><div class="tabs" role="tablist">${Object.entries(tabs).map(([key, label]) => `<button class="tab ${key === learningState.tab ? "active" : ""}" data-tab="${key}" role="tab" aria-selected="${key === learningState.tab}">${label}</button>`).join("")}</div>${tabPanel(learningState.tab, id, learningState.subject, learningState.topic)}</article></section></div>`;
 }
 
 function scienceExamPanel(schoolName) {
@@ -261,8 +261,8 @@ function updateNav(path) {
 }
 
 function bindPageEvents() {
-  document.querySelectorAll("[data-subject]").forEach(b => b.addEventListener("click", event => { const group = b.closest(".subject-group"); if (group?.open && learningState.subject === b.dataset.subject) { event.preventDefault(); group.removeAttribute("open"); return; } learningState.subject = b.dataset.subject; learningState.topic = null; learningState.tab = "notes"; render(); }));
-  document.querySelectorAll("[data-collapse-sidebar]").forEach(b => b.addEventListener("click", () => { document.querySelectorAll(".subject-group[open]").forEach(group => group.removeAttribute("open")); }));
+  document.querySelectorAll("[data-subject]").forEach(b => b.addEventListener("click", event => { const group = b.closest(".subject-group"); if (group?.open && learningState.subject === b.dataset.subject) { event.preventDefault(); learningState.sidebarOpen = false; group.removeAttribute("open"); return; } learningState.subject = b.dataset.subject; learningState.sidebarOpen = true; learningState.topic = null; learningState.tab = "notes"; render(); }));
+  document.querySelectorAll("[data-collapse-sidebar]").forEach(b => b.addEventListener("click", () => { learningState.sidebarOpen = false; document.querySelectorAll(".subject-group[open]").forEach(group => group.removeAttribute("open")); }));
   document.querySelectorAll("[data-topic]").forEach(b => b.addEventListener("click", () => { learningState.topic = b.dataset.topic; learningState.tab = "notes"; render(); }));
   document.querySelectorAll("[data-tab]").forEach(b => b.addEventListener("click", () => { learningState.tab = b.dataset.tab; render(); }));
   document.querySelectorAll("[data-order]").forEach(b => b.addEventListener("click", () => { learningState.order = b.dataset.order; render(); }));

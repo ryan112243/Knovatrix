@@ -111,6 +111,30 @@ h3 { line-height: 1.4; }
 .empty-state { display: grid; min-height: 170px; padding: 25px; border: 1px dashed #b8c2bb; border-radius: 15px; color: var(--muted); text-align: center; background: #fafaf7; place-content: center; }
 .empty-state span { display: block; margin-bottom: 6px; font-size: 29px; filter: grayscale(.2); }
 .empty-state b { color: var(--ink); }
+.exam-panel { display: grid; gap: 20px; }
+.exam-source { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 18px; border-radius: 15px; background: #f3f6f1; }
+.exam-source span { display: block; margin-bottom: 4px; color: var(--forest-2); font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.exam-source b { font-size: 17px; }
+.exam-source p { margin: 5px 0 0; color: var(--muted); font-size: 13px; }
+.exam-source a { flex: 0 0 auto; padding: 9px 13px; border: 1px solid var(--forest); border-radius: 99px; color: var(--forest); font-size: 12px; font-weight: 800; }
+.exam-source a:hover { color: white; background: var(--forest); }
+.exam-legend { display: flex; flex-wrap: wrap; gap: 14px; color: var(--muted); font-size: 12px; }
+.exam-legend span { display: flex; align-items: center; gap: 6px; }
+.exam-legend i { width: 9px; height: 9px; border-radius: 50%; }
+.exam-legend .direct { background: #16805c; }
+.exam-legend .archive { background: #92b521; }
+.exam-legend .pending { background: #bdc4bf; }
+.year-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.year-card { display: flex; min-height: 105px; flex-direction: column; padding: 14px; border: 1px solid var(--line); border-radius: 13px; color: var(--ink); background: white; }
+a.year-card:hover { border-color: var(--forest-2); box-shadow: 0 8px 24px rgba(10, 52, 42, .08); transform: translateY(-2px); }
+.year-card b { font-size: 22px; }
+.year-card small { color: var(--muted); }
+.year-card span { margin-top: auto; color: var(--forest-2); font-size: 11px; font-weight: 800; }
+.year-card.direct { border-top: 3px solid #16805c; }
+.year-card.archive { border-top: 3px solid #92b521; }
+.year-card.pending { border-top: 3px solid #bdc4bf; background: #fafaf8; }
+.year-card.pending span { color: #89928c; }
+.exam-disclaimer { margin: 0; color: var(--muted); font-size: 12px; }
 .topics-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
 .topic-card { padding: 18px; border: 1px solid var(--line); border-radius: 14px; background: var(--white); cursor: pointer; }
 .topic-card:hover { border-color: var(--forest-2); }
@@ -179,6 +203,8 @@ h3 { line-height: 1.4; }
   .learning-shell { display: block; }
   .sidebar { position: static; max-height: none; margin-bottom: 24px; }
   .topics-grid { grid-template-columns: 1fr; }
+  .exam-source { align-items: flex-start; flex-direction: column; }
+  .year-grid { grid-template-columns: repeat(2, 1fr); }
   .site-footer { display: flex; align-items: flex-start; flex-direction: column; }
 }
 @media (max-width: 470px) {

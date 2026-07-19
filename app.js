@@ -59,11 +59,32 @@ function learnPage(id) {
   if (!learningState.topic || !topics.includes(learningState.topic)) learningState.topic = topics[0];
   const orderedTopics = topics;
   const tabs = { notes: "📖 重點與實驗", files: "📥 試題與下載", solutions: "💡 解題與影音" };
-  return `<section class="page-hero"><div class="wrap reveal"><div class="breadcrumbs"><a href="#/">首頁</a>　/　${level.name}</div><p class="eyebrow">${level.label}</p><h1>${level.name}學習矩陣</h1><p class="lead">${level.intro}</p></div></section><div class="wrap learning-shell"><aside class="sidebar" aria-label="學科單元目錄"><p class="sidebar-label">學科與專題</p>${subjectNames.map(s => `<button class="subject-button ${s === learningState.subject ? "active" : ""}" data-subject="${s}">${s}</button>${s === learningState.subject ? `<ul class="topic-list">${orderedTopics.map(t => `<li><button class="topic-button ${t === learningState.topic ? "active" : ""}" data-topic="${t}">${t}</button></li>`).join("")}</ul>` : ""}`).join("")}</aside><section class="learning-main"><div class="learning-toolbar"><h2>${learningState.subject}</h2><div class="toggle" aria-label="排序方式"><button data-order="curriculum" class="${learningState.order === "curriculum" ? "active" : ""}">按課綱順序</button><button data-order="topic" class="${learningState.order === "topic" ? "active" : ""}">按單元主題</button></div></div><article class="unit-card"><span class="unit-meta">${level.name} · ${learningState.subject}</span><h3>${learningState.topic}</h3><p>這個單元的內容框架已就位，資料會隨 PDF、筆記與影片逐步補齊。</p><div class="tabs" role="tablist">${Object.entries(tabs).map(([key, label]) => `<button class="tab ${key === learningState.tab ? "active" : ""}" data-tab="${key}" role="tab" aria-selected="${key === learningState.tab}">${label}</button>`).join("")}</div>${tabPanel(learningState.tab)}</article><div><p class="eyebrow">Browse this subject</p><h3>其他單元</h3><div class="topics-grid">${orderedTopics.filter(t => t !== learningState.topic).map((t, i) => `<button class="topic-card" data-topic="${t}"><small>UNIT ${String(i + 1).padStart(2, "0")}</small><b>${t}</b></button>`).join("")}</div></div></section></div>`;
+  const isScienceExam = id === "junior-gifted" && learningState.subject === "科學班甄選考古題" && window.scienceClassExamCatalog?.[learningState.topic];
+  const unitDescription = isScienceExam ? "整理 100–115 學年度官方甄選試題入口；直接 PDF、歷屆專區與尚待公開的年份分開標示。" : "這個單元的內容框架已就位，資料會隨 PDF、筆記與影片逐步補齊。";
+  return `<section class="page-hero"><div class="wrap reveal"><div class="breadcrumbs"><a href="#/">首頁</a>　/　${level.name}</div><p class="eyebrow">${level.label}</p><h1>${level.name}學習矩陣</h1><p class="lead">${level.intro}</p></div></section><div class="wrap learning-shell"><aside class="sidebar" aria-label="學科單元目錄"><p class="sidebar-label">學科與專題</p>${subjectNames.map(s => `<button class="subject-button ${s === learningState.subject ? "active" : ""}" data-subject="${s}">${s}</button>${s === learningState.subject ? `<ul class="topic-list">${orderedTopics.map(t => `<li><button class="topic-button ${t === learningState.topic ? "active" : ""}" data-topic="${t}">${t}</button></li>`).join("")}</ul>` : ""}`).join("")}</aside><section class="learning-main"><div class="learning-toolbar"><h2>${learningState.subject}</h2><div class="toggle" aria-label="排序方式"><button data-order="curriculum" class="${learningState.order === "curriculum" ? "active" : ""}">按課綱順序</button><button data-order="topic" class="${learningState.order === "topic" ? "active" : ""}">按單元主題</button></div></div><article class="unit-card"><span class="unit-meta">${level.name} · ${learningState.subject}</span><h3>${learningState.topic}</h3><p>${unitDescription}</p><div class="tabs" role="tablist">${Object.entries(tabs).map(([key, label]) => `<button class="tab ${key === learningState.tab ? "active" : ""}" data-tab="${key}" role="tab" aria-selected="${key === learningState.tab}">${label}</button>`).join("")}</div>${tabPanel(learningState.tab, id, learningState.subject, learningState.topic)}</article><div><p class="eyebrow">Browse this subject</p><h3>其他單元</h3><div class="topics-grid">${orderedTopics.filter(t => t !== learningState.topic).map((t, i) => `<button class="topic-card" data-topic="${t}"><small>UNIT ${String(i + 1).padStart(2, "0")}</small><b>${t}</b></button>`).join("")}</div></div></section></div>`;
 }
 
-function tabPanel(tab) {
+function scienceExamPanel(schoolName) {
+  const school = window.scienceClassExamCatalog?.[schoolName];
+  if (!school) return "";
+  const archiveYears = new Set(school.archiveYears || []);
+  const direct = school.direct || {};
+  const years = Array.from({ length: 16 }, (_, index) => 115 - index);
+  return `<div class="tab-panel exam-panel"><div class="exam-source"><div><span>${school.city} · 官方來源</span><b>${school.sourceLabel}</b><p>${school.note}</p></div><a href="${school.official}" target="_blank" rel="noopener noreferrer">開啟官方專區 ↗</a></div><div class="exam-legend"><span><i class="direct"></i>直接試題</span><span><i class="archive"></i>官方歷屆專區</span><span><i class="pending"></i>待校方公開／待補</span></div><div class="year-grid">${years.map(year => {
+    const directUrl = direct[year];
+    const archiveUrl = archiveYears.has(year) ? school.official : null;
+    const url = directUrl || archiveUrl;
+    const status = directUrl ? "direct" : archiveUrl ? "archive" : "pending";
+    const label = directUrl ? "開啟試題" : archiveUrl ? "前往官方查找" : "尚未確認公開";
+    return url
+      ? `<a class="year-card ${status}" href="${url}" target="_blank" rel="noopener noreferrer"><b>${year}</b><small>學年度</small><span>${label} ↗</span></a>`
+      : `<div class="year-card ${status}" aria-label="${year} 學年度尚未確認公開"><b>${year}</b><small>學年度</small><span>${label}</span></div>`;
+  }).join("")}</div><p class="exam-disclaimer">本站提供官方來源索引，不重新宣稱或變更原試題著作權。若官方更新或連結失效，歡迎透過勘誤表單回報。</p></div>`;
+}
+
+function tabPanel(tab, levelId, subject, topic) {
   if (tab === "notes") return `<div class="tab-panel"><ul class="note-list"><li>單元核心觀念與公式將顯示於此</li><li>常見陷阱與學長姐解題心法</li><li>相關必修實驗、探究步驟與安全提醒</li></ul></div>`;
+  if (tab === "files" && levelId === "junior-gifted" && subject === "科學班甄選考古題") return scienceExamPanel(topic);
   if (tab === "files") return `<div class="tab-panel empty-state"><div><span>📂</span><b>PDF 題庫尚未上架</b><br>未來將依年份、來源與難度自動整理在這裡。</div></div>`;
   return `<div class="tab-panel empty-state"><div><span>🎬</span><b>詳解與影音準備中</b><br>文字詳解、手寫圖解與 YouTube 影片將顯示於此。</div></div>`;
 }

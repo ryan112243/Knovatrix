@@ -103,9 +103,13 @@ h3 { line-height: 1.4; }
 .tab { flex: 0 0 auto; padding: 11px 14px; border: 0; border-bottom: 3px solid transparent; color: var(--muted); background: transparent; font-weight: 700; cursor: pointer; }
 .tab.active { border-bottom-color: var(--forest-2); color: var(--forest); }
 .tab-panel { min-height: 170px; }
+.note-intro { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: baseline; margin-bottom: 14px; color: var(--ink); }
+.note-intro span { color: var(--muted); font-size: 14px; }
 .note-list { display: grid; margin: 0; padding: 0; list-style: none; gap: 10px; }
 .note-list li { padding: 13px 15px; border-radius: 12px; background: #f3f6f1; }
 .note-list li::before { margin-right: 9px; color: var(--forest-2); content: "◆"; font-size: 8px; }
+.detailed-notes li { line-height: 1.75; }
+.overline { text-decoration: overline; text-decoration-thickness: 1px; }
 .empty-state { display: grid; min-height: 170px; padding: 25px; border: 1px dashed #b8c2bb; border-radius: 15px; color: var(--muted); text-align: center; background: #fafaf7; place-content: center; }
 .empty-state span { display: block; margin-bottom: 6px; font-size: 29px; filter: grayscale(.2); }
 .empty-state b { color: var(--ink); }

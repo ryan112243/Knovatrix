@@ -154,7 +154,16 @@ function scienceQualificationExamPanel(topic) {
   return `<div class="tab-panel public-resource-panel"><div class="rights-banner"><b>全國科學班聯合學科資格考</b><p>${year} 學年度共 ${files.length} 份官方試題或參考答案，點擊後直接在新分頁開啟 PDF 預覽。</p></div><h4>${year} 學年度</h4><div class="public-resource-grid">${files.map(file => `<a class="public-resource-card" href="${file.url}" target="_blank" rel="noopener noreferrer"><span class="resource-badge official">官方 PDF</span><b>${file.label}</b><p>高級中等學校科學班聯合學科資格考</p><small>在新分頁預覽 PDF ↗</small></a>`).join("")}</div><p><a href="${catalog.source}" target="_blank" rel="noopener noreferrer">查看官方歷屆試題總頁面 ↗</a></p></div>`;
 }
 
+function elementaryNotesPanel(subject, topic) {
+  const notes = subject === "數學" ? window.elementaryMathNotes?.[topic] : null;
+  if (!notes) {
+    return `<div class="tab-panel"><ul class="note-list"><li>單元核心觀念與公式將顯示於此</li><li>常見陷阱與學長姐解題心法</li><li>相關必修實驗、探究步驟與安全提醒</li></ul></div>`;
+  }
+  return `<div class="tab-panel"><div class="note-intro"><b>數學資優與私中特訓重點</b><span>熟練核心心法、速算技巧與必考題型。</span></div><ul class="note-list detailed-notes">${notes.map(note => `<li>${note}</li>`).join("")}</ul></div>`;
+}
+
 function tabPanel(tab, levelId, subject, topic) {
+  if (tab === "notes" && levelId === "elementary-gifted") return elementaryNotesPanel(subject, topic);
   if (tab === "notes") return `<div class="tab-panel"><ul class="note-list"><li>單元核心觀念與公式將顯示於此</li><li>常見陷阱與學長姐解題心法</li><li>相關必修實驗、探究步驟與安全提醒</li></ul></div>`;
   if (tab === "files" && levelId === "junior-gifted" && subject === "科學班甄選考古題") return scienceExamPanel(topic);
   if (tab === "files" && levelId === "senior-gifted" && subject === "科學班聯合學科資格考") return scienceQualificationExamPanel(topic);

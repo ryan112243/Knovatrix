@@ -18,7 +18,7 @@
 ## 後續內容接入
 
 - 學制、學科與單元：集中在 `curriculum-data.js`。
-- 科學班考古題來源盤點：集中在 `science-exams.js`；有合法重製權時使用 `files` 接站內 PDF，否則連到校方官方來源。
+- 科學班考古題：PDF 放在 `files/science-class/`，並於 `science-exams.js` 的 `files` 登記；沒有站內檔案時只顯示「沒有檔案」。
 - 競賽來源盤點：集中在 `resource-catalog.js`；有合法重製權時使用 `file` 接站內 PDF，否則連到主辦單位官方來源。
 - Google 表單：4 個已發布表單已接到「意見與共創」頁面。
 - PDF 與圖片：儲存方案確認後，再將題庫面板接到 GitHub 目錄清單或 Google Drive 公開連結資料。

@@ -72,21 +72,13 @@ function learnPage(id) {
 function scienceExamPanel(schoolName) {
   const school = window.scienceClassExamCatalog?.[schoolName];
   if (!school) return "";
-  const archiveYears = new Set(school.archiveYears || []);
-  const direct = school.direct || {};
   const files = school.files || {};
   const years = Array.from({ length: 16 }, (_, index) => 115 - index);
-  return `<div class="tab-panel exam-panel"><div class="exam-source"><div><span>${school.city} · 官方來源</span><b>${school.sourceLabel}</b><p>${school.note}</p></div><a href="${school.official}" target="_blank" rel="noopener noreferrer">官方來源 ↗</a></div><div class="exam-legend"><span><i class="direct"></i>站內檔案／直接試題</span><span><i class="archive"></i>官方歷屆入口</span><span><i class="pending"></i>待補</span></div><div class="year-grid">${years.map(year => {
+  return `<div class="tab-panel exam-panel"><div class="exam-source"><div><span>${school.city} · 科學班歷屆</span><b>${schoolName}</b><p>有檔案的學年度可直接從 Knovatrix 下載。</p></div></div><div class="exam-legend"><span><i class="direct"></i>有檔案</span><span><i class="pending"></i>沒有檔案</span></div><div class="year-grid">${years.map(year => {
     const localUrl = files[year];
-    const directUrl = direct[year];
-    const archiveUrl = archiveYears.has(year) ? school.official : null;
-    const url = localUrl || directUrl || archiveUrl;
-    const status = localUrl || directUrl ? "direct" : archiveUrl ? "archive" : "pending";
-    const label = localUrl ? "站內下載" : directUrl ? "官方試題" : archiveUrl ? "官方歷屆入口" : "尚未確認公開";
-    if (!url) return `<div class="year-card ${status}" aria-label="${year} 學年度${label}"><b>${year}</b><small>學年度</small><span>${label}</span></div>`;
-    const linkMode = localUrl ? "download" : `target="_blank" rel="noopener noreferrer"`;
-    return `<a class="year-card ${status}" href="${url}" ${linkMode}><b>${year}</b><small>學年度</small><span>${label}${localUrl ? " ↓" : " ↗"}</span></a>`;
-  }).join("")}</div><p class="exam-disclaimer">有合法重製權的檔案優先提供站內下載；未取得授權者僅連到主辦單位官方來源。</p></div>`;
+    if (!localUrl) return `<div class="year-card pending" aria-label="${year} 學年度沒有檔案"><b>${year}</b><small>學年度</small><span>沒有檔案</span></div>`;
+    return `<a class="year-card direct" href="${localUrl}" download><b>${year}</b><small>學年度</small><span>下載檔案 ↓</span></a>`;
+  }).join("")}</div></div>`;
 }
 
 function publicResourcePanel(catalog) {

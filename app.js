@@ -20,6 +20,8 @@ const levels = {
     "數學競賽": ["數論篇", "代數篇", "幾何篇", "組合篇", "TRML 與清華盃"], "物理奧賽": ["進階力學", "電磁學", "熱統計與流體", "波動光學", "近代物理"], "化學奧賽": ["無機與分析化學", "物理化學", "有機化學", "實驗化學"], "生物奧賽": ["細胞與分子生物", "植物與動物生理", "遺傳演化與生態", "實驗與資料判讀"], "地科奧賽": ["地質與地球物理", "氣象與海洋", "天文與行星科學"], "資訊與 APCS": ["程式設計基礎", "資料結構與演算法", "APCS 實作題型"], "高階專題研究與 IYPT 物理辯論建模": ["研究問題與文獻閱讀", "量測、建模與模擬", "IYPT 論證與攻防"] } }
 };
 
+const catalogLevels = window.curriculumLevels || levels;
+
 const forms = [
   { icon: "🐞", title: "回報試題／詳解勘誤", desc: "告訴我們題目、答案或詳解哪裡需要修正。", fields: ["學制與科目", "單元或題號", "錯誤說明", "截圖（選填）"] },
   { icon: "📝", title: "投稿我的神人筆記", desc: "分享你的 PDF、圖片筆記或公開筆記連結。", fields: ["適用學制與單元", "筆記檔案", "筆記連結（選填）", "備註（選填）"] },
@@ -34,20 +36,21 @@ document.querySelector("#year").textContent = new Date().getFullYear();
 
 function homePage() {
   return `<section class="hero"><div class="wrap hero-copy reveal"><p class="eyebrow">由科學班團隊把關的學習資源</p><h1>把知識整理成<br><span>可以走的路。</span></h1><p class="lead">從國小資優到高中奧賽，將精選題庫、重點實驗、圖解詳解與影音課程，放進一張清晰的學習矩陣。</p><div class="button-row"><a class="button" href="#/learn/junior">開始探索題庫 <span>→</span></a><a class="button secondary" href="#/contribute">一起共創</a></div><div class="proof-strip"><div class="proof-item"><b>5 大學習入口</b><small>常規課綱 × 資優競賽</small></div><div class="proof-item"><b>3 種學習資源</b><small>重點、題庫、影音詳解</small></div><div class="proof-item"><b>完全匿名共創</b><small>勘誤、投稿與難題許願</small></div></div></div></section>
-  <section class="section dark-section"><div class="wrap"><div class="section-head"><div><p class="eyebrow">Learning paths</p><h2>找到你的學習座標</h2></div><p>依目前階段進入，再用課綱順序或單元主題自由切換。每一份資源都回到清楚、可查找的知識位置。</p></div><div class="level-grid">${Object.entries(levels).map(([id, x], i) => `<a class="level-card" href="#/learn/${id}"><span class="num">0${i + 1}</span><h3>${x.name}</h3><p>${x.label}</p><span>↗</span></a>`).join("")}</div></div></section>
+  <section class="section dark-section"><div class="wrap"><div class="section-head"><div><p class="eyebrow">Learning paths</p><h2>找到你的學習座標</h2></div><p>依目前階段進入，再用課綱順序或單元主題自由切換。每一份資源都回到清楚、可查找的知識位置。</p></div><div class="level-grid">${Object.entries(catalogLevels).map(([id, x], i) => `<a class="level-card" href="#/learn/${id}"><span class="num">0${i + 1}</span><h3>${x.name}</h3><p>${x.label}</p><span>↗</span></a>`).join("")}</div></div></section>
   <section class="section"><div class="wrap"><div class="section-head"><div><p class="eyebrow">Three-part learning</p><h2>一個單元，學習三部曲</h2></div></div><div class="feature-grid"><article class="feature-card"><span class="icon">📖</span><h3>重點與實驗</h3><p>公式定理、學長姐心法與課內必修實驗，整理成可快速複習的脈絡。</p></article><article class="feature-card"><span class="icon">📥</span><h3>試題與下載</h3><p>段考、升學考試、特招與競賽考古題，依單元歸檔並提供乾淨版 PDF。</p></article><article class="feature-card"><span class="icon">💡</span><h3>解題與影音</h3><p>可摺疊文字詳解、手寫圖解與 YouTube 教學，想提示或看完整推導都可以。</p></article></div></div></section>
   <section class="section"><div class="wrap"><div class="section-head"><div><p class="eyebrow">Latest resources</p><h2>最新上架</h2></div></div><div class="home-empty"><b>資源準備中</b><p>第一批 PDF 與解題影片上架後，這裡會自動顯示最新內容。</p></div></div></section>`;
 }
 
 let learningState = { subject: null, topic: null, tab: "notes", order: "curriculum" };
 function learnPage(id) {
-  const level = levels[id];
+  const level = catalogLevels[id];
   if (!level) return notFound();
   const subjectNames = Object.keys(level.subjects);
   if (!learningState.subject || !level.subjects[learningState.subject]) learningState.subject = subjectNames[0];
-  const topics = level.subjects[learningState.subject];
+  const subjectData = level.subjects[learningState.subject];
+  const topics = Array.isArray(subjectData) ? subjectData : (subjectData[learningState.order] || subjectData.curriculum);
   if (!learningState.topic || !topics.includes(learningState.topic)) learningState.topic = topics[0];
-  const orderedTopics = learningState.order === "topic" ? [...topics].sort((a, b) => a.localeCompare(b, "zh-Hant")) : topics;
+  const orderedTopics = topics;
   const tabs = { notes: "📖 重點與實驗", files: "📥 試題與下載", solutions: "💡 解題與影音" };
   return `<section class="page-hero"><div class="wrap reveal"><div class="breadcrumbs"><a href="#/">首頁</a>　/　${level.name}</div><p class="eyebrow">${level.label}</p><h1>${level.name}學習矩陣</h1><p class="lead">${level.intro}</p></div></section><div class="wrap learning-shell"><aside class="sidebar" aria-label="學科單元目錄"><p class="sidebar-label">學科與專題</p>${subjectNames.map(s => `<button class="subject-button ${s === learningState.subject ? "active" : ""}" data-subject="${s}">${s}</button>${s === learningState.subject ? `<ul class="topic-list">${orderedTopics.map(t => `<li><button class="topic-button ${t === learningState.topic ? "active" : ""}" data-topic="${t}">${t}</button></li>`).join("")}</ul>` : ""}`).join("")}</aside><section class="learning-main"><div class="learning-toolbar"><h2>${learningState.subject}</h2><div class="toggle" aria-label="排序方式"><button data-order="curriculum" class="${learningState.order === "curriculum" ? "active" : ""}">按課綱順序</button><button data-order="topic" class="${learningState.order === "topic" ? "active" : ""}">按單元主題</button></div></div><article class="unit-card"><span class="unit-meta">${level.name} · ${learningState.subject}</span><h3>${learningState.topic}</h3><p>這個單元的內容框架已就位，資料會隨 PDF、筆記與影片逐步補齊。</p><div class="tabs" role="tablist">${Object.entries(tabs).map(([key, label]) => `<button class="tab ${key === learningState.tab ? "active" : ""}" data-tab="${key}" role="tab" aria-selected="${key === learningState.tab}">${label}</button>`).join("")}</div>${tabPanel(learningState.tab)}</article><div><p class="eyebrow">Browse this subject</p><h3>其他單元</h3><div class="topics-grid">${orderedTopics.filter(t => t !== learningState.topic).map((t, i) => `<button class="topic-card" data-topic="${t}"><small>UNIT ${String(i + 1).padStart(2, "0")}</small><b>${t}</b></button>`).join("")}</div></div></section></div>`;
 }

@@ -5,7 +5,7 @@
   school.files = Object.fromEntries(
     Array.from({ length: 12 }, (_, index) => 101 + index).map(year => [
       year,
-      [{ label: "科學班入學測驗", path: `files/science-class/wlsh/${year}/${year}-science-class-exam.pdf` }]
+      [{ label: "科學班入學測驗數學試題", path: `files/science-class/wlsh/${year}/${year}-science-class-exam.pdf` }]
     ])
   );
 })();

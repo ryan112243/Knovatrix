@@ -80,7 +80,7 @@ function scienceExamPanel(schoolName) {
   if (!school) return "";
   const files = school.files || {};
   const years = Array.from({ length: 16 }, (_, index) => 115 - index);
-  return `<div class="tab-panel exam-panel"><div class="exam-source"><div><span>${school.city} · 科學班歷屆</span><b>${schoolName}</b><p>有檔案的學年度可直接從 Knovatrix 下載。</p></div></div><div class="exam-legend"><span><i class="direct"></i>有檔案</span><span><i class="pending"></i>沒有檔案</span></div><div class="year-grid">${years.map(year => {
+  return `<div class="tab-panel exam-panel"><div class="exam-source"><div><span>${school.city} · 科學班歷屆</span><b>${schoolName}</b><p>PDF 會在新分頁開啟預覽；壓縮檔則直接下載。</p></div></div><div class="exam-legend"><span><i class="direct"></i>有檔案</span><span><i class="pending"></i>沒有檔案</span></div><div class="year-grid">${years.map(year => {
     const localFiles = Array.isArray(files[year])
       ? files[year]
       : files[year]

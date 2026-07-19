@@ -95,12 +95,14 @@ function scienceExamPanel(schoolName) {
       const file = localFiles[0];
       const isPdf = /\.pdf(?:$|[?#])/i.test(file.path);
       const linkMode = isPdf ? `target="_blank" rel="noopener noreferrer"` : "download";
-      return `<a class="year-card direct" href="${encodeURI(file.path)}" ${linkMode}><b>${year}</b><small>學年度</small><span>${file.label || (isPdf ? "預覽 PDF" : "下載檔案")} ${isPdf ? "↗" : "↓"}</span></a>`;
+      const label = file.label?.replace(/^學年度/, "") || (isPdf ? "預覽 PDF" : "下載檔案");
+      return `<a class="year-card direct" href="${encodeURI(file.path)}" ${linkMode}><b>${year}</b><small>學年度</small><span>${label} ${isPdf ? "↗" : "↓"}</span></a>`;
     }
     return `<details class="year-card direct multi-file"><summary><b>${year}</b><small>學年度 · ${localFiles.length} 份檔案</small><span>展開檔案 ↓</span></summary><div class="year-downloads">${localFiles.map(file => {
       const isPdf = /\.pdf(?:$|[?#])/i.test(file.path);
       const linkMode = isPdf ? `target="_blank" rel="noopener noreferrer"` : "download";
-      return `<a href="${encodeURI(file.path)}" ${linkMode}>${file.label || (isPdf ? "預覽 PDF" : "下載檔案")} ${isPdf ? "↗" : "↓"}</a>`;
+      const label = file.label?.replace(/^學年度/, "") || (isPdf ? "預覽 PDF" : "下載檔案");
+      return `<a href="${encodeURI(file.path)}" ${linkMode}>${label} ${isPdf ? "↗" : "↓"}</a>`;
     }).join("")}</div></details>`;
   }).join("")}</div></div>`;
 }

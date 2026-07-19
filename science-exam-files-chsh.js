@@ -13,6 +13,16 @@
       "path": "files\\science-class\\chsh\\106\\106-實驗實作試題及參考答案.rar"
     }
   ],
+  "107": [
+    {
+      "label": "科學能力檢定試題及參考答案",
+      "path": "files\\science-class\\chsh\\107\\107-科學能力檢定試題及參考答案.rar"
+    },
+    {
+      "label": "實驗實作試題及參考答案",
+      "path": "files\\science-class\\chsh\\107\\107-實驗實作試題及參考答案.rar"
+    }
+  ],
   "108": [
     {
       "label": "科學能力檢定試題及參考答案",
@@ -85,4 +95,3 @@
   ]
 };
 })();
-

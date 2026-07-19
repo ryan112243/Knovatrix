@@ -12,9 +12,9 @@ foreach ($yearLink in ($archive.Links | Where-Object { $_.href -match 'c4510\.ph
     New-Item -ItemType Directory -Force $yearDirectory | Out-Null
     $downloaded = 0
 
-    foreach ($link in ($detail.Links | Where-Object { $_.outerHTML -match '\.(pdf|zip|rar)</a>' })) {
-        if ($link.outerHTML -notmatch '>(?<name>[^<>]+\.(pdf|zip|rar))</a>') { continue }
-        $fileName = [Net.WebUtility]::HtmlDecode($Matches.name.Trim())
+    foreach ($link in ($detail.Links | Where-Object { $_.href -match 'Action=downloadfile' -and $_.outerHTML -notmatch '批次下載附件' })) {
+        if ($link.outerHTML -notmatch 'title="(?<name>[^"]+)"') { continue }
+        $fileName = [Net.WebUtility]::HtmlDecode($Matches.name.Trim()) + ".rar"
         $fileUri = [Uri]::new([Uri]$yearLink.href, $link.href)
         $target = Join-Path $yearDirectory $fileName
         try {

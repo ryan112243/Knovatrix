@@ -63,10 +63,13 @@ function learnPage(id) {
     ? { notes: "📖 重點筆記", files: "📥 試題" }
     : { notes: "📖 重點筆記", files: "📥 試題", solutions: "💡 解題" };
   const isScienceExam = id === "junior-gifted" && learningState.subject === "科學班甄選考古題" && window.scienceClassExamCatalog?.[learningState.topic];
+  const isCkGiftedExam = id === "senior-gifted" && learningState.subject === "建中資優班歷屆試題";
   const hasPublicResources = window.getPublicResources?.(id, learningState.subject, learningState.topic);
   const unitDescription = isScienceExam
     ? "整理 100–115 學年度官方甄選試題入口；直接 PDF、歷屆專區與尚待公開的年份分開標示。"
-    : hasPublicResources
+    : isCkGiftedExam
+      ? "整理建中官方公開的資優班甄選試題與答案；點擊檔案會在新分頁開啟 Google Drive PDF 預覽。"
+      : hasPublicResources
       ? "已整理官方公開來源與使用狀態；請至「試題」查看原始發布頁面。"
       : "這個單元的內容框架已就位，資料會隨 PDF、筆記與影片逐步補齊。";
   return `<section class="page-hero"><div class="wrap reveal"><div class="breadcrumbs"><a href="#/">首頁</a>　/　${level.name}</div><p class="eyebrow">${level.label}</p><h1>${level.name}學習矩陣</h1><p class="lead">${level.intro}</p></div></section><div class="wrap learning-shell"><aside class="sidebar" aria-label="學科單元目錄"><p class="sidebar-label">學科與專題</p>${subjectNames.map(s => `<button class="subject-button ${s === learningState.subject ? "active" : ""}" data-subject="${s}">${s}</button>${s === learningState.subject ? `<ul class="topic-list">${orderedTopics.map(t => `<li><button class="topic-button ${t === learningState.topic ? "active" : ""}" data-topic="${t}">${t}</button></li>`).join("")}</ul>` : ""}`).join("")}</aside><section class="learning-main"><div class="learning-toolbar"><h2>${learningState.subject}</h2><div class="toggle" aria-label="排序方式"><button data-order="curriculum" class="${learningState.order === "curriculum" ? "active" : ""}">按課綱順序</button><button data-order="topic" class="${learningState.order === "topic" ? "active" : ""}">按單元主題</button></div></div><article class="unit-card"><span class="unit-meta">${level.name} · ${learningState.subject}</span><h3>${learningState.topic}</h3><p>${unitDescription}</p><div class="tabs" role="tablist">${Object.entries(tabs).map(([key, label]) => `<button class="tab ${key === learningState.tab ? "active" : ""}" data-tab="${key}" role="tab" aria-selected="${key === learningState.tab}">${label}</button>`).join("")}</div>${tabPanel(learningState.tab, id, learningState.subject, learningState.topic)}</article></section></div>`;
@@ -110,9 +113,37 @@ function publicResourcePanel(catalog) {
   }).join("")}</div></div>`;
 }
 
+function ckGiftedExamPanel(topic) {
+  const year = String(topic).match(/\d{2,3}/)?.[0];
+  const catalog = window.ckGiftedExamCatalog;
+  const files = year ? catalog?.years?.[year] || [] : [];
+  if (!files.length) return `<div class="tab-panel empty-state"><div><span>📂</span><b>這個學年度尚無檔案</b></div></div>`;
+  const labels = {
+    91: ["科學能力測驗（一）試題", "科學能力測驗（一）答案", "科學能力測驗（二）試題", "科學能力測驗（二）答案"],
+    92: ["科學能力測驗（一）試題", "科學能力測驗（一）答案", "科學能力測驗（二）試題", "科學能力測驗（二）填充答案", "科學能力測驗（二）計算題答案"],
+    93: ["科學能力測驗（一）試題", "科學能力測驗（一）答案", "科學能力測驗（二）試題", "科學能力測驗（二）答案"],
+    94: ["人文社會測驗（一）試題", "人文社會測驗（一）答案", "科學能力測驗（一）試題", "科學能力測驗（一）答案", "人文社會測驗（二）試題", "科學能力測驗（二）試題"],
+    95: ["人文社會測驗（一）試題", "人文社會測驗（一）答案", "科學能力測驗（一）試題", "科學能力測驗（一）答案", "人文社會測驗（二）試題", "科學能力測驗（二）試題", "科學能力測驗（二）答案"],
+    96: ["人文社會測驗（一）試題", "人文社會測驗（一）解答", "數理科學測驗（一）試題", "數理科學測驗（一）解答", "人文社會測驗（二）試題", "數理科學測驗（二）試題"],
+    97: ["人文社會測驗（一）試題", "人文社會測驗（一）解答", "數理科學測驗（一）試題", "數理科學測驗（一）解答", "人文社會測驗（二）試題", "數理科學測驗（二）試題"],
+    98: ["人文社會測驗（一）試題", "人文社會測驗（一）解答", "數理科學測驗（一）試題", "數理科學測驗（一）解答", "人文社會測驗（二）試題", "數理科學測驗（二）試題"],
+    99: ["人文社會測驗（一）試題", "人文社會測驗（一）解答", "數學", "人文社會測驗（二）試題", "自然", "語文表達試題", "選擇題答案"],
+    100: ["人文社會測驗（一）試題", "人文社會測驗（一）解答", "數學", "人文社會測驗（二）試題", "自然", "數學與自然選擇題答案", "國語文表達試題"],
+    101: ["人文社會測驗（一）試題", "人文社會測驗（一）解答", "數學", "數學選擇題解答", "人文社會測驗（二）試題", "自然", "自然選擇題解答", "國語文表達試題"],
+    102: ["人文社會測驗（一）試題", "人文社會測驗（一）解答", "數學", "數學選擇題解答", "人文社會測驗（二）試題", "自然", "自然選擇題解答", "國語文表達試題"],
+    103: ["人文社會測驗（一）試題", "人文社會測驗（一）解答", "數學", "人文社會測驗（二）試題", "自然", "國語文表達試題", "數學與自然選擇題解答"],
+    104: ["人文社會科學試題", "數學", "語文表達試題", "人文社會選擇題解答", "自然", "自然選擇題解答"],
+    105: ["人文社會科學試題", "數學", "語文表達試題", "人文社會選擇題解答", "自然", "自然選擇題解答"],
+    109: ["人文社會科學試題", "數學", "語文表達試題", "自然", "自然選擇題答案"],
+    110: ["人文社會科學試題", "數學", "語文表達試題", "自然", "自然選擇題答案"]
+  };
+  return `<div class="tab-panel public-resource-panel"><div class="rights-banner"><b>建中資優班官方歷屆試題</b><p>${year} 學年度共 ${files.length} 份試題或答案。點擊後會在新分頁開啟 PDF 預覽。</p></div><h4>${year} 學年度</h4><div class="public-resource-grid">${files.map((file, index) => `<a class="public-resource-card" href="${file.url}" target="_blank" rel="noopener noreferrer"><span class="resource-badge official">官方 PDF</span><b>${labels[year]?.[index] || file.label}</b><p>臺北市立建國高級中學資優班甄選資料</p><small>在新分頁預覽 PDF ↗</small></a>`).join("")}</div><p><a href="${catalog.source}" target="_blank" rel="noopener noreferrer">查看建中官方歷屆試題總頁面 ↗</a></p></div>`;
+}
+
 function tabPanel(tab, levelId, subject, topic) {
   if (tab === "notes") return `<div class="tab-panel"><ul class="note-list"><li>單元核心觀念與公式將顯示於此</li><li>常見陷阱與學長姐解題心法</li><li>相關必修實驗、探究步驟與安全提醒</li></ul></div>`;
   if (tab === "files" && levelId === "junior-gifted" && subject === "科學班甄選考古題") return scienceExamPanel(topic);
+  if (tab === "files" && levelId === "senior-gifted" && subject === "建中資優班歷屆試題") return ckGiftedExamPanel(topic);
   const publicResources = tab === "files" ? window.getPublicResources?.(levelId, subject, topic) : null;
   if (publicResources) return publicResourcePanel(publicResources);
   if (tab === "files") return `<div class="tab-panel empty-state"><div><span>📂</span><b>PDF 題庫尚未上架</b><br>未來將依年份、來源與難度自動整理在這裡。</div></div>`;

@@ -210,13 +210,6 @@ function videoPanel(levelId, subject, topic) {
     url: `https://www.youtube.com/results?search_query=${query}`,
     detail: "依本單元名稱搜尋公開教學、題目解析與實驗示範。"
   }];
-  if (levelId === "junior-gifted" && subject === "科學班甄選考古題") {
-    cards.unshift({
-      title: "正哥愛數學｜建中科學班與競賽解題",
-      url: "https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/建中科學班",
-      detail: "依年度與題型整理建中、北一女、中一中、南一中等科學班數學解題影片。"
-    });
-  }
   return `<div class="tab-panel public-resource-panel"><div class="rights-banner"><b>影音解題與延伸學習</b><p>先從可靠來源觀看，再回到本單元重點筆記整理觀念。</p></div><div class="public-resource-grid">${cards.map(card => `<a class="public-resource-card" href="${card.url}" target="_blank" rel="noopener noreferrer"><span class="resource-badge official">公開影音來源</span><b>${card.title}</b><p>${card.detail}</p><small>開啟來源 ↗</small></a>`).join("")}</div></div>`;
 }
 

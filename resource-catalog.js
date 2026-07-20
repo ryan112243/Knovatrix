@@ -35,5 +35,10 @@ const competitionCatalog = {
 
 window.getPublicResources = (levelId, subject, topic) => {
   const items = competitionCatalog[`${levelId}::${subject}`];
-  return items ? { title: `${subject}官方資源`, items } : null;
+  if (!items) return null;
+  const isExhibition = subject.includes("科展");
+  const pdfItems = isExhibition
+    ? items
+    : items.filter(item => /\.pdf(?:$|[?#])/i.test(item.file || ""));
+  return pdfItems.length ? { title: `${subject}官方資源`, items: pdfItems } : null;
 };

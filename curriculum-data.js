@@ -1440,3 +1440,10 @@ window.juniorGiftedScienceNotes = {
     "<b>實驗設計：</b>一次只改變一個條件，設置對照組並重複測量，最後以平均值、誤差與限制說明結論。"
   ]
 };
+
+// Keep the senior-high curriculum menu aligned with every supplied subject note.
+// Cross-subject indexes remain available through each subject's `topic` list.
+for (const [subject, subjectData] of Object.entries(window.curriculumLevels?.senior?.subjects || {})) {
+  const notes = window.seniorGeneralNotes?.[subject];
+  if (subjectData && notes) subjectData.curriculum = Object.keys(notes);
+}

@@ -147,7 +147,7 @@ function scienceExamPanel(schoolName) {
       const label = file.label?.replace(/^學年度/, "") || (isPdf ? "預覽 PDF" : "下載檔案");
       return `<a href="${encodeURI(file.path)}" ${linkMode}>${label} ${isPdf ? "↗" : "↓"}</a>`;
     }).join("")}</div></details>`;
-  }).join("")}</div><p class="exam-official-link"><a href="${school.official}" target="_blank" rel="noopener noreferrer">前往${schoolName}官方專區查找其他年份 ↗</a></p></div>`;
+  }).join("")}</div></div>`;
 }
 
 function publicResourcePanel(catalog) {

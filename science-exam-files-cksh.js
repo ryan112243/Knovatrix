@@ -17,6 +17,6 @@
       { label: "114 學年度自然科學能力測驗", path: "files/science-class/cksh/114/114-自然科學能力測驗.pdf" }
     ]
   };
-  school.archiveYears = [114, 113, 112];
-  school.note = "本站收錄建中官方公開的 112–114 學年度數學與自然科試題；完整歷屆資料請回到校方專區查詢。";
+  school.archiveYears = scienceExamYears;
+  school.note = "本站已收錄 112–114 學年度數學與自然科試題；其他年份保留官方查找入口，若校方公開即可依年度補入。";
 })();

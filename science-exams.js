@@ -1,7 +1,7 @@
 const scienceExamYears = Array.from({ length: 16 }, (_, index) => 115 - index);
 
 window.scienceClassExamCatalog = {
-  "建國中學科學班": { city: "臺北市", official: "https://sites.google.com/gl.ck.tp.edu.tw/scienter", sourceLabel: "建中科學班官方專區", note: "本站收錄建中官方公開的 112–114 學年度數學與自然科試題；完整歷屆資料請回到校方專區查詢。", archiveYears: [114, 113, 112] },
+  "建國中學科學班": { city: "臺北市", official: "https://sites.google.com/gl.ck.tp.edu.tw/scienter", sourceLabel: "建中科學班官方專區", note: "本站已收錄 112–114 學年度數學與自然科試題；其他年份保留官方查找入口，若校方公開即可依年度補入。", archiveYears: scienceExamYears },
   "北一女中科學班": { city: "臺北市", archiveLabel: "科學班範例試題", official: "https://www.fg.tp.edu.tw/fgscience/%E7%A7%91%E5%AD%B8%E7%8F%AD/", sourceLabel: "北一女科學班官方專區", note: "校方僅公開 107～113 學年度的語文、數學與自然科範例試題；本站不將其標示為正式歷屆考題。" },
   "師大附中科學班": { city: "臺北市", official: "https://www.hs.ntnu.edu.tw/science-class/", sourceLabel: "師大附中科學班官方專區", note: "歷年甄選資訊分散於校方公告；本站先提供逐年官方查找入口。" },
   "武陵高中科學班": { city: "桃園市", official: "https://www.wlsh.tyc.edu.tw/p/404-1000-9975,c103-1.php", sourceLabel: "武陵高中科學班數學試題官方頁面", note: "校方公開 101–112 學年度科學班入學測驗數學試題。", direct: { 110: "https://www.wlsh.tyc.edu.tw/var/file/0/1000/img/31/543074645.pdf", 115: "https://www.wlsh.tyc.edu.tw/p/16-1000-41360.php?Lang=zh-tw" } },

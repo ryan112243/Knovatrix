@@ -99,15 +99,14 @@ function learnPage(id) {
   const orderedTopics = topics;
   if (id === "elementary-gifted" && learningState.tab === "solutions") learningState.tab = "notes";
   const isScienceExam = id === "junior-gifted" && learningState.subject === "科學班甄選考古題" && window.scienceClassExamCatalog?.[learningState.topic];
-  const isCkGiftedExam = id === "junior-gifted" && learningState.subject === "科學班甄選考古題" && learningState.topic === "建中資優班歷屆試題";
   const isElementaryExhibition = id === "elementary-gifted" && learningState.subject === "小學科展與生活探究";
   const hideLearningNotes = subjectsWithoutLearningNotes[id]?.has(learningState.subject) || false;
-  if ((hideLearningNotes || isScienceExam || isCkGiftedExam) && learningState.tab === "notes") learningState.tab = "files";
+  if ((hideLearningNotes || isScienceExam) && learningState.tab === "notes") learningState.tab = "files";
   const tabs = isElementaryExhibition
     ? { notes: "探究指南", resources: "科展資源" }
     : id === "elementary-gifted"
       ? { notes: "學習重點", files: "試題" }
-    : (hideLearningNotes || isScienceExam || isCkGiftedExam)
+    : (hideLearningNotes || isScienceExam)
       ? { files: "試題", solutions: "解題" }
       : { notes: "學習重點", files: "試題", solutions: "解題" };
   const isScienceQualificationExam = id === "senior-gifted" && learningState.subject === "科學班聯合學科資格考";
@@ -116,8 +115,6 @@ function learnPage(id) {
     ? "整理 100–115 學年度官方甄選試題入口；直接 PDF、歷屆專區與尚待公開的年份分開標示。"
     : isScienceQualificationExam
       ? "整理全國科學班聯合學科資格考官方試題與參考答案，涵蓋國文、英文、數學、物理、化學及生物。"
-      : isCkGiftedExam
-      ? "整理建中官方公開的資優班甄選試題與答案；點擊檔案會在新分頁開啟 Google Drive PDF 預覽。"
       : hasPublicResources
       ? "已整理官方公開來源與使用狀態；請至「試題」查看原始發布頁面。"
       : "這個單元的內容框架已就位，資料會隨 PDF、筆記與影片逐步補齊。";
@@ -150,7 +147,7 @@ function scienceExamPanel(schoolName) {
       const label = file.label?.replace(/^學年度/, "") || (isPdf ? "預覽 PDF" : "下載檔案");
       return `<a href="${encodeURI(file.path)}" ${linkMode}>${label} ${isPdf ? "↗" : "↓"}</a>`;
     }).join("")}</div></details>`;
-  }).join("")}</div></div>`;
+  }).join("")}</div><p class="exam-official-link"><a href="${school.official}" target="_blank" rel="noopener noreferrer">前往${schoolName}官方專區查找其他年份 ↗</a></p></div>`;
 }
 
 function publicResourcePanel(catalog) {
@@ -300,6 +297,27 @@ function juniorNotesPanel(subject, topic) {
   return `<div class="tab-panel"><div class="note-intro"><b>${noteSet.title}</b><span>${noteSet.subtitle}</span></div><ul class="note-list detailed-notes">${notes.map(note => `<li>${note}</li>`).join("")}</ul></div>`;
 }
 
+function juniorGiftedNotesPanel(subject, topic) {
+  const noteSets = {
+    "資優數學主題": {
+      title: "國中資優數學特訓重點",
+      subtitle: "整除、代數、幾何、組合與證明方法的競賽銜接。",
+      notes: window.juniorGiftedMathNotes
+    },
+    "資優自然主題": {
+      title: "國中資優自然特訓重點",
+      subtitle: "力學、化學、生物、地科與跨科實驗的高階觀念。",
+      notes: window.juniorGiftedScienceNotes
+    }
+  };
+  const noteSet = noteSets[subject];
+  const notes = noteSet?.notes?.[topic] || null;
+  if (!noteSet || !notes) {
+    return `<div class="tab-panel"><ul class="note-list"><li>本主題的競賽觀念整理正在補充中。</li><li>可先搭配試題與跨科圖表練習建立解題框架。</li></ul></div>`;
+  }
+  return `<div class="tab-panel"><div class="note-intro"><b>${noteSet.title}</b><span>${noteSet.subtitle}</span></div><ul class="note-list detailed-notes">${notes.map(note => `<li>${note}</li>`).join("")}</ul></div>`;
+}
+
 function seniorGiftedNotesPanel(subject, topic) {
   const noteSets = {
     "高中數學競賽高階理論": {
@@ -360,12 +378,12 @@ function tabPanel(tab, levelId, subject, topic) {
   if (tab === "resources" && levelId === "elementary-gifted" && subject === "小學科展與生活探究") return elementaryExhibitionPanel();
   if (tab === "notes" && levelId === "elementary-gifted") return ensureFeaturedNotes(elementaryNotesPanel(subject, topic), levelId, subject, topic);
   if (tab === "notes" && levelId === "junior") return ensureFeaturedNotes(juniorNotesPanel(subject, topic), levelId, subject, topic);
+  if (tab === "notes" && levelId === "junior-gifted") return ensureFeaturedNotes(juniorGiftedNotesPanel(subject, topic), levelId, subject, topic);
   if (tab === "notes" && levelId === "senior") return ensureFeaturedNotes(seniorNotesPanel(subject, topic), levelId, subject, topic);
   if (tab === "notes" && levelId === "senior-gifted") return ensureFeaturedNotes(seniorGiftedNotesPanel(subject, topic), levelId, subject, topic);
   if (tab === "notes") return `<div class="tab-panel"><ul class="note-list"><li>單元核心觀念與公式將顯示於此</li><li>常見陷阱與學長姐解題心法</li><li>相關必修實驗、探究步驟與安全提醒</li></ul></div>`;
   if (tab === "files" && levelId === "junior-gifted" && subject === "科學班甄選考古題") return scienceExamPanel(topic);
   if (tab === "files" && levelId === "senior-gifted" && subject === "科學班聯合學科資格考") return scienceQualificationExamPanel(topic);
-  if (tab === "files" && levelId === "junior-gifted" && topic === "建中資優班歷屆試題") return ckGiftedExamPanel(topic);
   const publicResources = tab === "files" ? window.getPublicResources?.(levelId, subject, topic) : null;
   if (publicResources) return publicResourcePanel(publicResources);
   if (tab === "files") return `<div class="tab-panel empty-state"><div><span>📂</span><b>PDF 題庫尚未上架</b><br>未來將依年份、來源與難度自動整理在這裡。</div></div>`;

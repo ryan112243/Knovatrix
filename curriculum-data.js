@@ -42,7 +42,7 @@ window.curriculumLevels = {
         ["物理｜進階力學與能量", "物理｜熱學、流體與氣體", "物理｜波動、光學與電磁", "化學｜定量化學與氣體", "化學｜酸鹼、氧化還原與平衡", "化學｜未知物鑑別", "生物｜顯微、遺傳與生理實驗", "地科｜地質、氣象與天文推理", "跨科｜科學閱讀、圖表與實驗設計"],
         ["物理｜力學", "物理｜熱學與流體", "物理｜波動與光學", "物理｜電學與磁學", "化學｜反應計量與氣體", "化學｜酸鹼、氧化還原與平衡", "生物｜細胞、生理、遺傳與生態", "地科｜地質、氣象、海洋與天文", "實驗｜量測、誤差、變因與資料分析"]),
       "科學班甄選考古題": dual(
-        ["建國中學科學班", "北一女中科學班", "師大附中科學班", "武陵高中科學班", "新竹科學園區實中科學班", "臺中一中科學班", "彰化高中科學班", "嘉義高中科學班", "臺南一中科學班", "高雄中學科學班", "建中資優班歷屆試題"],
+        ["建國中學科學班", "北一女中科學班", "師大附中科學班", "武陵高中科學班", "新竹科學園區實中科學班", "臺中一中科學班", "彰化高中科學班", "嘉義高中科學班", "臺南一中科學班", "高雄中學科學班"],
         ["數學能力檢定", "物理能力檢定", "化學能力檢定", "生物與地科能力檢定", "科學閱讀與語文門檻", "實驗實作｜物理", "實驗實作｜化學", "實驗實作｜生物", "混合科學與資料分析"]),
       "數理資優班甄選": dual(["各縣市國中數理資優鑑定", "高中數理資優班入班鑑定", "私中資優與特色課程甄選"], ["數學性向", "自然科學性向", "空間與邏輯推理", "實驗操作與面談"]),
       "TRML 國中數學競賽（原 JHMC）": dual(["競速賽歷屆試題", "個人賽歷屆試題", "團體賽歷屆試題"], ["數論", "代數", "幾何", "組合"]),
@@ -1428,3 +1428,15 @@ for (const [subject, topics] of Object.entries(juniorNoteTopics)) {
   const subjectData = window.curriculumLevels?.junior?.subjects?.[subject];
   if (subjectData && topics.length) subjectData.curriculum = topics;
 }
+
+// Junior gifted study pages use the same competition foundations, presented at a
+// junior-high level so these two subjects have real learning points as well.
+window.juniorGiftedMathNotes = window.seniorGiftedMathAdvancedNotes || {};
+window.juniorGiftedScienceNotes = {
+  ...(window.seniorGiftedScienceAdvancedNotes || {}),
+  "跨科｜科學閱讀、圖表與實驗設計": [
+    "<b>科學閱讀：</b>先辨認研究問題、操縱變因、應變變因與控制變因，再讀取表格或圖形中的證據。",
+    "<b>圖表判讀：</b>確認座標軸、單位、刻度與樣本數；比較趨勢時要區分相關性與因果關係。",
+    "<b>實驗設計：</b>一次只改變一個條件，設置對照組並重複測量，最後以平均值、誤差與限制說明結論。"
+  ]
+};

@@ -45,10 +45,10 @@ function homePage() {
   return `<section class="hero"><div class="wrap hero-copy reveal"><p class="eyebrow">由科學班團隊把關的學習資源</p><h1>把知識整理成<br><span>可以走的路。</span></h1><p class="lead">從國小資優到高中奧賽，將精選題庫、重點實驗、圖解詳解與影音課程，放進一張清晰的學習矩陣。</p><div class="button-row"><a class="button" href="#/learn/junior">開始探索題庫 <span>→</span></a><a class="button secondary" href="#/contribute">一起共創</a></div><div class="proof-strip"><div class="proof-item"><b>5 大學習入口</b><small>常規課綱 × 資優競賽</small></div><div class="proof-item"><b>3 種學習資源</b><small>重點、題庫、影音詳解</small></div><div class="proof-item"><b>完全匿名共創</b><small>勘誤、投稿與難題許願</small></div></div></div></section>
   <section class="section dark-section"><div class="wrap"><div class="section-head"><div><p class="eyebrow">Learning paths</p><h2>找到你的學習座標</h2></div><p>依目前階段進入，再用課綱順序或單元主題自由切換。每一份資源都回到清楚、可查找的知識位置。</p></div><div class="level-grid">${Object.entries(catalogLevels).map(([id, x], i) => `<a class="level-card" href="#/learn/${id}"><span class="num">0${i + 1}</span><h3>${x.name}</h3><p>${x.label}</p><span>↗</span></a>`).join("")}</div></div></section>
   <section class="section"><div class="wrap"><div class="section-head"><div><p class="eyebrow">Three-part learning</p><h2>一個單元，學習三部曲</h2></div></div><div class="feature-grid"><article class="feature-card"><span class="icon">📖</span><h3>學習重點</h3><p>公式定理、學長姐心法與課內必修實驗，整理成可快速複習的脈絡。</p></article><article class="feature-card"><span class="icon">📥</span><h3>試題</h3><p>升學考試、特招與競賽考古題，依單元歸檔並提供乾淨版 PDF。</p></article><article class="feature-card"><span class="icon">💡</span><h3>解題</h3><p>可摺疊文字詳解與手寫圖解，想看提示或完整推導都可以。</p></article></div></div></section>
-  <section class="section"><div class="wrap"><div class="section-head"><div><p class="eyebrow">Latest resources</p><h2>最新上架</h2></div></div><div class="home-empty"><b>資源準備中</b><p>第一批 PDF 與解題影片上架後，這裡會自動顯示最新內容。</p></div></div></section>`;
+  <section class="section"><div class="wrap"><div class="section-head"><div><p class="eyebrow">Latest resources</p><h2>最新上架</h2></div><p>已收錄的考古題與競賽資源，從這裡可以直接進入對應學科。</p></div><div class="resource-grid"><a class="resource-card" href="#/learn/junior-gifted?subject=科學班甄選考古題"><span class="resource-kicker">國中資優</span><h3>建中科學班歷屆試題</h3><p>數學與自然科學能力測驗，依年份整理。</p><span class="resource-arrow" aria-hidden="true">→</span></a><a class="resource-card" href="#/learn/senior-gifted?subject=學科能力競賽｜生物"><span class="resource-kicker">高中資優</span><h3>生物科能力競賽</h3><p>收錄決賽筆試題本與相關競賽入口。</p><span class="resource-arrow" aria-hidden="true">→</span></a><a class="resource-card" href="#/learn/senior-gifted?subject=學科能力競賽｜地球科學"><span class="resource-kicker">高中資優</span><h3>地球科學能力競賽</h3><p>收錄歷屆決賽題本，適合圖表判讀訓練。</p><span class="resource-arrow" aria-hidden="true">→</span></a></div></div></section>`;
 }
 
-let learningState = { subject: null, topic: null, tab: "notes", order: "curriculum", sidebarOpen: false };
+let learningState = { subject: null, topic: null, tab: "notes", order: "curriculum", sidebarOpen: false, _routeLevel: null };
 
 const subjectsWithoutLearningNotes = {
   "senior-gifted": new Set([
@@ -128,7 +128,7 @@ function scienceExamPanel(schoolName) {
   const school = window.scienceClassExamCatalog?.[schoolName];
   if (!school) return "";
   const files = school.files || {};
-  const years = Array.from({ length: 16 }, (_, index) => 115 - index);
+  const years = school.archiveYears || Array.from({ length: 16 }, (_, index) => 115 - index);
   const fileHint = Object.keys(files).length ? " PDF 會在新分頁開啟預覽；壓縮檔則直接下載。" : "";
   return `<div class="tab-panel exam-panel"><div class="exam-source"><div><span>${school.city} · ${school.archiveLabel || "科學班歷屆"}</span><b>${schoolName}</b><p>${school.note || ""}${fileHint}</p></div></div><div class="exam-legend"><span><i class="direct"></i>有檔案</span><span><i class="pending"></i>沒有檔案</span></div><div class="year-grid">${years.map(year => {
     const localFiles = Array.isArray(files[year])
@@ -200,8 +200,32 @@ function scienceQualificationExamPanel(topic) {
   return `<div class="tab-panel public-resource-panel"><div class="rights-banner"><b>全國科學班聯合學科資格考</b><p>${year} 學年度共 ${files.length} 份官方試題或參考答案，點擊後直接在新分頁開啟 PDF 預覽。</p></div><h4>${year} 學年度</h4><div class="public-resource-grid">${files.map(file => `<a class="public-resource-card" href="${file.url}" target="_blank" rel="noopener noreferrer"><span class="resource-badge official">官方 PDF</span><b>${file.label}</b><p>高級中等學校科學班聯合學科資格考</p><small>在新分頁預覽 PDF ↗</small></a>`).join("")}</div><p><a href="${catalog.source}" target="_blank" rel="noopener noreferrer">查看官方歷屆試題總頁面 ↗</a></p></div>`;
 }
 
-function featuredNotesPanel(subject, topic) {
-  const featuredNotes = window.elementaryFeaturedNotes?.[subject]?.[topic] || [];
+function videoPanel(levelId, subject, topic) {
+  const query = encodeURIComponent(`${subject} ${topic} 教學 解題`);
+  const cards = [{
+    title: `YouTube｜搜尋「${topic}」教學與解題`,
+    url: `https://www.youtube.com/results?search_query=${query}`,
+    detail: "依本單元名稱搜尋公開教學、題目解析與實驗示範。"
+  }];
+  if (levelId === "junior-gifted" && subject === "科學班甄選考古題") {
+    cards.unshift({
+      title: "正哥愛數學｜建中科學班與競賽解題",
+      url: "https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/建中科學班",
+      detail: "依年度與題型整理建中、北一女、中一中、南一中等科學班數學解題影片。"
+    });
+  }
+  return `<div class="tab-panel public-resource-panel"><div class="rights-banner"><b>影音解題與延伸學習</b><p>先從可靠來源觀看，再回到本單元重點筆記整理觀念。</p></div><div class="public-resource-grid">${cards.map(card => `<a class="public-resource-card" href="${card.url}" target="_blank" rel="noopener noreferrer"><span class="resource-badge official">公開影音來源</span><b>${card.title}</b><p>${card.detail}</p><small>開啟來源 ↗</small></a>`).join("")}</div></div>`;
+}
+
+function featuredNotesPanel(levelId, subject, topic) {
+  if (arguments.length === 2) {
+    topic = subject;
+    subject = levelId;
+    levelId = "elementary-gifted";
+  }
+  const featuredNotes = window.featuredNotesCatalog?.[levelId]?.[subject]?.[topic]
+    || (levelId === "elementary-gifted" ? window.elementaryFeaturedNotes?.[subject]?.[topic] : [])
+    || [];
   if (!featuredNotes.length) {
     return `<section class="featured-notes"><div class="featured-notes-head"><div><b>精選筆記</b><span>這裡會收錄同學投稿的高品質筆記、圖解或整理檔。</span></div><a href="#/contribute">踴躍投稿 →</a></div><div class="featured-notes-empty">目前尚無精選筆記，歡迎踴躍投稿。</div></section>`;
   }
@@ -211,6 +235,12 @@ function featuredNotesPanel(subject, topic) {
       ? `<a class="featured-note-card" href="${note.url}" target="_blank" rel="noopener noreferrer">${content}</a>`
       : `<div class="featured-note-card">${content}</div>`;
   }).join("")}</div></section>`;
+}
+
+function ensureFeaturedNotes(panelHtml, levelId, subject, topic) {
+  return panelHtml.includes("featured-notes")
+    ? panelHtml
+    : `${panelHtml}${featuredNotesPanel(levelId, subject, topic)}`;
 }
 
 function elementaryNotesPanel(subject, topic) {
@@ -291,15 +321,47 @@ function seniorGiftedNotesPanel(subject, topic) {
   return `<div class="tab-panel"><div class="note-intro"><b>${noteSet.title}</b><span>${noteSet.subtitle}</span></div><ul class="note-list detailed-notes">${notes.map(note => `<li>${note}</li>`).join("")}</ul></div>`;
 }
 
+function seniorNotesPanel(subject, topic) {
+  const noteSets = {
+    "數學": {
+      title: "高中數學學測與分科重點",
+      subtitle: "統整必修、數學 A、數學 B 的核心公式與解題心法。"
+    },
+    "物理": {
+      title: "高中物理學測與分科重點",
+      subtitle: "統整必修與選修物理的模型、公式推導與物理直觀。"
+    },
+    "化學": {
+      title: "高中化學學測與分科重點",
+      subtitle: "統整必修與選修化學的反應模型、計量與實驗要點。"
+    },
+    "生物": {
+      title: "高中生物學測與分科重點",
+      subtitle: "統整細胞、遺傳、生理、演化與生態的核心機制。"
+    },
+    "地球科學": {
+      title: "高中地球科學學測與分科重點",
+      subtitle: "統整地質、大氣、海洋、天文與宇宙觀測重點。"
+    }
+  };
+  const noteSet = noteSets[subject];
+  const notes = window.seniorGeneralNotes?.[subject]?.[topic] || null;
+  if (!noteSet || !notes) {
+    return `<div class="tab-panel"><ul class="note-list"><li>單元核心觀念與公式將顯示於此</li><li>常見陷阱與學測、分科解題心法</li><li>相關實驗、圖表判讀與模型整理</li></ul></div>`;
+  }
+  return `<div class="tab-panel"><div class="note-intro"><b>${noteSet.title}</b><span>${noteSet.subtitle}</span></div><ul class="note-list detailed-notes">${notes.map(note => `<li>${note}</li>`).join("")}</ul></div>`;
+}
+
 function elementaryExhibitionPanel() {
   return `<div class="tab-panel resource-panel"><div class="rights-banner"><b>小學科展與生活探究</b><p>從生活觀察、問題形成到研究成果展示，這裡提供官方科展作品與探究資源。</p></div><a class="public-resource-card" href="https://twsf.ntsec.gov.tw/Article.aspx?a=41&lang=1" target="_blank" rel="noopener noreferrer"><span class="resource-badge official">官方資源</span><b>全國中小學科展作品與資料庫</b><p>國立臺灣科學教育館官方科展資源。</p><small>開啟官方資源 ↗</small></a></div>`;
 }
 
 function tabPanel(tab, levelId, subject, topic) {
   if (tab === "resources" && levelId === "elementary-gifted" && subject === "小學科展與生活探究") return elementaryExhibitionPanel();
-  if (tab === "notes" && levelId === "elementary-gifted") return elementaryNotesPanel(subject, topic);
-  if (tab === "notes" && levelId === "junior") return juniorNotesPanel(subject, topic);
-  if (tab === "notes" && levelId === "senior-gifted") return seniorGiftedNotesPanel(subject, topic);
+  if (tab === "notes" && levelId === "elementary-gifted") return ensureFeaturedNotes(elementaryNotesPanel(subject, topic), levelId, subject, topic);
+  if (tab === "notes" && levelId === "junior") return ensureFeaturedNotes(juniorNotesPanel(subject, topic), levelId, subject, topic);
+  if (tab === "notes" && levelId === "senior") return ensureFeaturedNotes(seniorNotesPanel(subject, topic), levelId, subject, topic);
+  if (tab === "notes" && levelId === "senior-gifted") return ensureFeaturedNotes(seniorGiftedNotesPanel(subject, topic), levelId, subject, topic);
   if (tab === "notes") return `<div class="tab-panel"><ul class="note-list"><li>單元核心觀念與公式將顯示於此</li><li>常見陷阱與學長姐解題心法</li><li>相關必修實驗、探究步驟與安全提醒</li></ul></div>`;
   if (tab === "files" && levelId === "junior-gifted" && subject === "科學班甄選考古題") return scienceExamPanel(topic);
   if (tab === "files" && levelId === "senior-gifted" && subject === "科學班聯合學科資格考") return scienceQualificationExamPanel(topic);
@@ -307,7 +369,7 @@ function tabPanel(tab, levelId, subject, topic) {
   const publicResources = tab === "files" ? window.getPublicResources?.(levelId, subject, topic) : null;
   if (publicResources) return publicResourcePanel(publicResources);
   if (tab === "files") return `<div class="tab-panel empty-state"><div><span>📂</span><b>PDF 題庫尚未上架</b><br>未來將依年份、來源與難度自動整理在這裡。</div></div>`;
-  return `<div class="tab-panel empty-state"><div><span>🎬</span><b>詳解與影音準備中</b><br>文字詳解、手寫圖解與 YouTube 影片將顯示於此。</div></div>`;
+  return videoPanel(levelId, subject, topic);
 }
 
 function aboutPage() {
@@ -332,14 +394,27 @@ function notFound() {
 }
 
 function render({ scrollToTop = false } = {}) {
-  const path = location.hash.slice(1) || "/";
-  learningState = path.startsWith("/learn/") ? learningState : { subject: null, topic: null, tab: "notes", order: "curriculum" };
+  const rawPath = location.hash.slice(1) || "/";
+  const [path, queryString = ""] = rawPath.split("?");
+  const routeLevel = path.startsWith("/learn/") ? path.split("/")[2] : null;
+  if (routeLevel !== learningState._routeLevel) {
+    learningState = { subject: null, topic: null, tab: "notes", order: "curriculum", sidebarOpen: false, _routeLevel: routeLevel };
+  }
+  if (path.startsWith("/learn/")) {
+    const params = new URLSearchParams(queryString);
+    if (params.has("subject")) learningState.subject = params.get("subject");
+    if (params.has("topic")) learningState.topic = params.get("topic");
+    if (params.has("tab")) learningState.tab = params.get("tab");
+    if (params.has("order")) learningState.order = params.get("order");
+  }
+  learningState = path.startsWith("/learn/") ? learningState : { subject: null, topic: null, tab: "notes", order: "curriculum", sidebarOpen: false, _routeLevel: null };
   if (path === "/") main.innerHTML = homePage();
   else if (path.startsWith("/learn/")) main.innerHTML = learnPage(path.split("/")[2]);
   else if (path === "/about") main.innerHTML = aboutPage();
   else if (path === "/contribute") main.innerHTML = contributePage();
   else if (path === "/support") main.innerHTML = supportPage();
   else main.innerHTML = notFound();
+  if (path.startsWith("/learn/")) syncLearningUrl({ push: false });
   updateNav(path);
   nav.classList.remove("open");
   menuButton.setAttribute("aria-expanded", "false");
@@ -354,12 +429,26 @@ function updateNav(path) {
   });
 }
 
+function syncLearningUrl({ push = true } = {}) {
+  const route = (location.hash.slice(1) || "/").split("?")[0];
+  if (!route.startsWith("/learn/")) return;
+  const params = new URLSearchParams();
+  if (learningState.subject) params.set("subject", learningState.subject);
+  if (learningState.topic) params.set("topic", learningState.topic);
+  if (learningState.tab && learningState.tab !== "notes") params.set("tab", learningState.tab);
+  if (learningState.order && learningState.order !== "curriculum") params.set("order", learningState.order);
+  const nextHash = `#${route}${params.toString() ? `?${params.toString()}` : ""}`;
+  const nextUrl = `${location.pathname}${location.search}${nextHash}`;
+  if (nextUrl === `${location.pathname}${location.search}${location.hash}`) return;
+  history[push ? "pushState" : "replaceState"]({}, "", nextUrl);
+}
+
 function bindPageEvents() {
-  document.querySelectorAll("[data-subject]").forEach(b => b.addEventListener("click", event => { const group = b.closest(".subject-group"); if (group?.open && learningState.subject === b.dataset.subject) { event.preventDefault(); learningState.sidebarOpen = false; group.removeAttribute("open"); return; } learningState.subject = b.dataset.subject; learningState.sidebarOpen = true; learningState.topic = null; learningState.tab = "notes"; render(); }));
+  document.querySelectorAll("[data-subject]").forEach(b => b.addEventListener("click", event => { const group = b.closest(".subject-group"); if (group?.open && learningState.subject === b.dataset.subject) { event.preventDefault(); learningState.sidebarOpen = false; group.removeAttribute("open"); return; } learningState.subject = b.dataset.subject; learningState.sidebarOpen = true; learningState.topic = null; learningState.tab = "notes"; syncLearningUrl(); render(); }));
   document.querySelectorAll("[data-collapse-sidebar]").forEach(b => b.addEventListener("click", () => { learningState.sidebarOpen = false; document.querySelectorAll(".subject-group[open]").forEach(group => group.removeAttribute("open")); }));
-  document.querySelectorAll("[data-topic]").forEach(b => b.addEventListener("click", () => { learningState.topic = b.dataset.topic; learningState.tab = "notes"; render(); }));
-  document.querySelectorAll("[data-tab]").forEach(b => b.addEventListener("click", () => { learningState.tab = b.dataset.tab; render(); }));
-  document.querySelectorAll("[data-order]").forEach(b => b.addEventListener("click", () => { learningState.order = b.dataset.order; render(); }));
+  document.querySelectorAll("[data-topic]").forEach(b => b.addEventListener("click", () => { learningState.topic = b.dataset.topic; learningState.tab = "notes"; syncLearningUrl(); render(); }));
+  document.querySelectorAll("[data-tab]").forEach(b => b.addEventListener("click", () => { learningState.tab = b.dataset.tab; syncLearningUrl(); render(); }));
+  document.querySelectorAll("[data-order]").forEach(b => b.addEventListener("click", () => { learningState.order = b.dataset.order; syncLearningUrl(); render(); }));
   document.querySelectorAll(".placeholder-link").forEach(b => b.addEventListener("click", () => showToast("入口尚未設定，之後只需替換表單或金流網址。")));
   document.querySelectorAll(".copy-button").forEach(b => b.addEventListener("click", async () => {
     try {
@@ -390,4 +479,5 @@ menuButton.addEventListener("click", () => {
   menuButton.setAttribute("aria-expanded", String(isOpen));
 });
 window.addEventListener("hashchange", () => render({ scrollToTop: true }));
+window.addEventListener("popstate", () => render());
 render({ scrollToTop: true });

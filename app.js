@@ -414,7 +414,12 @@ function notFound() {
 }
 
 function render({ scrollToTop = false, preserveScroll = false } = {}) {
-  const savedScrollY = preserveScroll ? window.scrollY : null;
+  const savedScroll = preserveScroll
+    ? {
+      pageY: window.scrollY,
+      sidebarY: document.querySelector(".sidebar")?.scrollTop || 0
+    }
+    : null;
   const rawPath = location.hash.slice(1) || "/";
   const [path, queryString = ""] = rawPath.split("?");
   const routeLevel = path.startsWith("/learn/") ? path.split("/")[2] : null;
@@ -440,7 +445,15 @@ function render({ scrollToTop = false, preserveScroll = false } = {}) {
   nav.classList.remove("open");
   menuButton.setAttribute("aria-expanded", "false");
   if (scrollToTop) window.scrollTo(0, 0);
-  else if (savedScrollY !== null) window.scrollTo({ top: savedScrollY, left: 0, behavior: "auto" });
+  else if (savedScroll) {
+    const restoreScroll = () => {
+      window.scrollTo({ top: savedScroll.pageY, left: 0, behavior: "auto" });
+      const sidebar = document.querySelector(".sidebar");
+      if (sidebar) sidebar.scrollTop = savedScroll.sidebarY;
+    };
+    restoreScroll();
+    requestAnimationFrame(() => requestAnimationFrame(restoreScroll));
+  }
   bindPageEvents();
 }
 

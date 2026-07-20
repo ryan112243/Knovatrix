@@ -41,6 +41,6 @@
       sample("\u81ea\u7136\u79d1\u7bc4\u4f8b\u8a66\u984c", "files/science-class/fgsh/113/113-natural-science.pdf")
     ]
   };
-  school.archiveYears = [115, 113, 112, 111, 110, 109, 108, 107];
+  school.archiveYears = Array.from({ length: 16 }, (_, index) => 115 - index);
   school.note = "\u6821\u65b9\u516c\u958b\u7684\u662f\u7bc4\u4f8b\u8a66\u984c\uff0c\u4e0d\u662f\u6b63\u5f0f\u6b77\u5c46\u8003\u984c\uff1b\u672c\u7ad9\u6536\u9304 107\uff5e113 \u5b78\u5e74\u5ea6\u672c\u5730 PDF\uff0c\u4ee5\u53ca 115 \u5b78\u5e74\u5ea6\u5b98\u65b9\u7bc4\u4f8b\u9801\u9023\u7d50\u3002";
 })();

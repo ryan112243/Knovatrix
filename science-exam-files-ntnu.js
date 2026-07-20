@@ -1,5 +1,5 @@
-// 師大附中官方公開的資訊科學特色班範例試題頁。
-// 校方未將這些資料標示為科學班正式歷屆考古題，因此僅列為範例練習。
+// 師大附中公開的資訊科學特色班範例試題頁。
+// 附中未將這些資料標示為科學班正式歷屆考古題，因此僅列為範例練習。
 (() => {
   const school = window.scienceClassExamCatalog?.["師大附中科學班"];
   if (!school) return;
@@ -12,8 +12,7 @@
     "109": [sample("109 學年度資訊科學特色班試題與解答", "https://www.hs.ntnu.edu.tw/cs-class/content?a=T0RESU5EWTRPVFl4TlRVPXlRRE01TWpOeGNsVGludGVseQ==")],
     "108": [sample("108 學年度資訊科學特色班試題與解答", "https://www.hs.ntnu.edu.tw/cs-class/content?a=T0RESU5EVXlNVGt3TmpRPXlRRE01TWpOeGNsVGludGVseQ==")],
     "107": [sample("107 學年度資訊科學特色班試題與解答", "https://www.hs.ntnu.edu.tw/cs-class/content?a=T0RESU5ERTFPVGd6T0RjPXlRRE01TWpOeGNsVGludGVseQ==")],
-    "106": [sample("106 學年度資訊科學特色班試題與解答", "https://www.hs.ntnu.edu.tw/cs-class/content?a=T0RESU16a3lPVEExT1RRPXlRRE01TWpOeGNsVGludGVseQ==")],
-    "105": [sample("105 學年度資訊科學特色招生試題組合", "https://www.hs.ntnu.edu.tw/cs-class/content?a=T0RESU16Y3lNakEzTkRFPXlRRE01TWpOeGNsVGludGVseQ==")]
+    "106": [sample("106 學年度資訊科學特色班試題與解答", "https://www.hs.ntnu.edu.tw/cs-class/content?a=T0RESU16a3lPVEExT1RRPXlRRE01TWpOeGNsVGludGVseQ==")]
   };
   school.archiveLabel = "範例試題（非正式歷屆）";
   school.archiveYears = Object.keys(school.files).map(Number).sort((a, b) => b - a);

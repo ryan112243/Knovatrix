@@ -20,6 +20,8 @@ const levels = {
     "高中數學競賽高階理論": ["先修｜整除、質數與同餘", "先修｜多項式、方程與不等式", "先修｜函數、數列與遞迴", "先修｜三角形、圓與相似", "先修｜排列組合與機率", "進階｜不定方程與數論函數", "進階｜不等式與函數方程", "進階｜幾何變換與軌跡", "進階｜圖論、遞迴與不變量"], "高中自然科學高階特訓": ["物理｜進階力學與能量", "物理｜熱學、流體與氣體", "物理｜波動、光學與電磁", "化學｜定量化學與氣體", "化學｜酸鹼、氧化還原與平衡", "化學｜未知物鑑別", "生物｜顯微、遺傳與生理實驗", "地科｜地質、氣象與天文推理", "跨科｜誤差分析與不確定度"], "數學競賽": ["數論篇", "代數篇", "幾何篇", "組合篇", "TRML 與清華盃"], "物理奧賽": ["進階力學", "電磁學", "熱統計與流體", "波動光學", "近代物理"], "化學奧賽": ["無機與分析化學", "物理化學", "有機化學", "實驗化學"], "生物奧賽": ["細胞與分子生物", "植物與動物生理", "遺傳演化與生態", "實驗與資料判讀"], "地科奧賽": ["地質與地球物理", "氣象與海洋", "天文與行星科學"], "資訊與 APCS": ["程式設計基礎", "資料結構與演算法", "APCS 實作題型"], "高階專題研究與 IYPT 物理辯論建模": ["研究問題與文獻閱讀", "量測、建模與模擬", "IYPT 論證與攻防"] } }
 };
 
+if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+
 const catalogLevels = window.curriculumLevels || levels;
 
 const forms = [
@@ -411,7 +413,8 @@ function notFound() {
   return `<section class="page-hero"><div class="wrap"><p class="eyebrow">404</p><h1>這個座標還不存在。</h1><p class="lead">回到首頁，從學習矩陣重新選擇一條路。</p><div class="button-row"><a class="button" href="#/">回到首頁</a></div></div></section>`;
 }
 
-function render({ scrollToTop = false } = {}) {
+function render({ scrollToTop = false, preserveScroll = false } = {}) {
+  const savedScrollY = preserveScroll ? window.scrollY : null;
   const rawPath = location.hash.slice(1) || "/";
   const [path, queryString = ""] = rawPath.split("?");
   const routeLevel = path.startsWith("/learn/") ? path.split("/")[2] : null;
@@ -437,6 +440,7 @@ function render({ scrollToTop = false } = {}) {
   nav.classList.remove("open");
   menuButton.setAttribute("aria-expanded", "false");
   if (scrollToTop) window.scrollTo(0, 0);
+  else if (savedScrollY !== null) window.scrollTo({ top: savedScrollY, left: 0, behavior: "auto" });
   bindPageEvents();
 }
 
@@ -462,11 +466,11 @@ function syncLearningUrl({ push = true } = {}) {
 }
 
 function bindPageEvents() {
-  document.querySelectorAll("[data-subject]").forEach(b => b.addEventListener("click", event => { const group = b.closest(".subject-group"); if (group?.open && learningState.subject === b.dataset.subject) { event.preventDefault(); learningState.sidebarOpen = false; group.removeAttribute("open"); return; } learningState.subject = b.dataset.subject; learningState.sidebarOpen = true; learningState.topic = null; learningState.tab = "notes"; syncLearningUrl(); render(); }));
+  document.querySelectorAll("[data-subject]").forEach(b => b.addEventListener("click", event => { event.preventDefault(); const group = b.closest(".subject-group"); if (group?.open && learningState.subject === b.dataset.subject) { learningState.sidebarOpen = false; group.removeAttribute("open"); return; } learningState.subject = b.dataset.subject; learningState.sidebarOpen = true; learningState.topic = null; learningState.tab = "notes"; syncLearningUrl(); render({ preserveScroll: true }); }));
   document.querySelectorAll("[data-collapse-sidebar]").forEach(b => b.addEventListener("click", () => { learningState.sidebarOpen = false; document.querySelectorAll(".subject-group[open]").forEach(group => group.removeAttribute("open")); }));
-  document.querySelectorAll("[data-topic]").forEach(b => b.addEventListener("click", () => { learningState.topic = b.dataset.topic; learningState.tab = "notes"; syncLearningUrl(); render(); }));
-  document.querySelectorAll("[data-tab]").forEach(b => b.addEventListener("click", () => { learningState.tab = b.dataset.tab; syncLearningUrl(); render(); }));
-  document.querySelectorAll("[data-order]").forEach(b => b.addEventListener("click", () => { learningState.order = b.dataset.order; syncLearningUrl(); render(); }));
+  document.querySelectorAll("[data-topic]").forEach(b => b.addEventListener("click", () => { learningState.topic = b.dataset.topic; learningState.tab = "notes"; syncLearningUrl(); render({ preserveScroll: true }); }));
+  document.querySelectorAll("[data-tab]").forEach(b => b.addEventListener("click", () => { learningState.tab = b.dataset.tab; syncLearningUrl(); render({ preserveScroll: true }); }));
+  document.querySelectorAll("[data-order]").forEach(b => b.addEventListener("click", () => { learningState.order = b.dataset.order; syncLearningUrl(); render({ preserveScroll: true }); }));
   document.querySelectorAll(".placeholder-link").forEach(b => b.addEventListener("click", () => showToast("入口尚未設定，之後只需替換表單或金流網址。")));
   document.querySelectorAll(".copy-button").forEach(b => b.addEventListener("click", async () => {
     try {

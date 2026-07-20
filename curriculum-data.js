@@ -1414,3 +1414,17 @@ window.seniorGeneralNotes = {
     ]
   }
 };
+
+// Keep the junior-high unit menu in sync with the complete note sets above.
+// The broader topic index remains available through each subject's `topic` list.
+const juniorNoteTopics = {
+  "數學": Object.keys(window.juniorMathNotes || {}),
+  "生物": Object.keys(window.juniorBiologyNotes || {}),
+  "理化": Object.keys(window.juniorPhysicsChemistryNotes || {}),
+  "地球科學": Object.keys(window.juniorEarthScienceNotes || {})
+};
+
+for (const [subject, topics] of Object.entries(juniorNoteTopics)) {
+  const subjectData = window.curriculumLevels?.junior?.subjects?.[subject];
+  if (subjectData && topics.length) subjectData.curriculum = topics;
+}

@@ -51,6 +51,11 @@ function homePage() {
 
 let learningState = { subject: null, topic: null, tab: "notes", order: "curriculum", sidebarOpen: false, _routeLevel: null };
 
+const subjectsWithSolutions = new Set([
+  "\u79d1\u5b78\u73ed\u7504\u9078\u8003\u53e4\u984c",
+  "\u6578\u7406\u8cc7\u512a\u73ed\u7504\u9078"
+]);
+
 const subjectsWithoutLearningNotes = {
   "senior-gifted": new Set([
     "科學班聯合學科資格考",
@@ -102,14 +107,20 @@ function learnPage(id) {
   const isScienceExam = id === "junior-gifted" && learningState.subject === "科學班甄選考古題" && window.scienceClassExamCatalog?.[learningState.topic];
   const isElementaryExhibition = id === "elementary-gifted" && learningState.subject === "小學科展與生活探究";
   const hideLearningNotes = subjectsWithoutLearningNotes[id]?.has(learningState.subject) || false;
+  const canUseSolutions = subjectsWithSolutions.has(learningState.subject);
   if ((hideLearningNotes || isScienceExam) && learningState.tab === "notes") learningState.tab = "files";
+  if (!canUseSolutions && learningState.tab === "solutions") learningState.tab = hideLearningNotes || isScienceExam ? "files" : "notes";
   const tabs = isElementaryExhibition
     ? { notes: "探究指南", resources: "科展資源" }
     : id === "elementary-gifted"
       ? { notes: "學習重點", files: "試題" }
-    : (hideLearningNotes || isScienceExam)
+    : canUseSolutions && (hideLearningNotes || isScienceExam)
       ? { files: "試題", solutions: "解題" }
-      : { notes: "學習重點", files: "試題", solutions: "解題" };
+      : canUseSolutions
+        ? { notes: "學習重點", files: "試題", solutions: "解題" }
+        : hideLearningNotes || isScienceExam
+          ? { files: "試題" }
+          : { notes: "學習重點", files: "試題" };
   const isScienceQualificationExam = id === "senior-gifted" && learningState.subject === "科學班聯合學科資格考";
   const hasPublicResources = window.getPublicResources?.(id, learningState.subject, learningState.topic);
   const unitDescription = isScienceExam

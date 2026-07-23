@@ -271,9 +271,9 @@ function elementaryNotesPanel(subject, topic) {
   const noteSet = noteSets[subject];
   const notes = noteSet?.notes?.[topic] || null;
   if (!notes) {
-    return `<div class="tab-panel"><ul class="note-list"><li>單元核心觀念與公式將顯示於此</li><li>常見陷阱與學長姐解題心法</li><li>相關必修實驗、探究步驟與安全提醒</li></ul>${featuredNotesPanel(subject, topic)}</div>`;
+    return `<div class="tab-panel"><ul class="note-list"><li>單元核心觀念與公式將顯示於此</li><li>常見陷阱與學長姐解題心法</li><li>相關必修實驗、探究步驟與安全提醒</li></ul></div>`;
   }
-  return `<div class="tab-panel"><div class="note-intro"><b>${noteSet.title}</b><span>${noteSet.subtitle}</span></div><ul class="note-list detailed-notes">${notes.map(note => `<li>${note}</li>`).join("")}</ul>${featuredNotesPanel(subject, topic)}</div>`;
+  return `<div class="tab-panel"><div class="note-intro"><b>${noteSet.title}</b><span>${noteSet.subtitle}</span></div><ul class="note-list detailed-notes">${notes.map(note => `<li>${note}</li>`).join("")}</ul></div>`;
 }
 
 function juniorNotesPanel(subject, topic) {
@@ -386,7 +386,7 @@ function elementaryExhibitionPanel() {
 
 function tabPanel(tab, levelId, subject, topic) {
   if (tab === "resources" && levelId === "elementary-gifted" && subject === "小學科展與生活探究") return elementaryExhibitionPanel();
-  if (tab === "notes" && levelId === "elementary-gifted") return ensureFeaturedNotes(elementaryNotesPanel(subject, topic), levelId, subject, topic);
+  if (tab === "notes" && levelId === "elementary-gifted") return elementaryNotesPanel(subject, topic);
   if (tab === "notes" && levelId === "junior") return ensureFeaturedNotes(juniorNotesPanel(subject, topic), levelId, subject, topic);
   if (tab === "notes" && levelId === "junior-gifted") return ensureFeaturedNotes(juniorGiftedNotesPanel(subject, topic), levelId, subject, topic);
   if (tab === "notes" && levelId === "senior") return ensureFeaturedNotes(seniorNotesPanel(subject, topic), levelId, subject, topic);

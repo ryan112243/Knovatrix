@@ -318,6 +318,11 @@ function juniorGiftedNotesPanel(subject, topic) {
       title: "國中資優自然特訓重點",
       subtitle: "力學、化學、生物、地科與跨科實驗的高階觀念。",
       notes: window.juniorGiftedScienceNotes
+    },
+    "科學班實驗實作": {
+      title: "科學班實驗實作特訓重點",
+      subtitle: "安全操作、定量分析、資料擬合與實驗報告的完整流程。",
+      notes: window.juniorGiftedLabNotes
     }
   };
   const noteSet = noteSets[subject];

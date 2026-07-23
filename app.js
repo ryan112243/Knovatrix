@@ -100,9 +100,15 @@ function learnPage(id) {
   if (!level) return notFound();
   const subjectNames = Object.keys(level.subjects);
   if (!learningState.subject || !level.subjects[learningState.subject]) learningState.subject = subjectNames[0];
+  const isGiftedMathSelection = id === "junior-gifted" && learningState.subject === "數理資優班甄選";
   const subjectData = level.subjects[learningState.subject];
   const topics = Array.isArray(subjectData) ? subjectData : (subjectData[learningState.order] || subjectData.curriculum);
-  if (!learningState.topic || !topics.includes(learningState.topic)) learningState.topic = topics[0];
+  const giftedSelection = isGiftedMathSelection ? giftedMathSelectionState() : null;
+  if (isGiftedMathSelection) {
+    if (!learningState.giftedCity || !giftedSelection.cities.includes(learningState.giftedCity)) learningState.giftedCity = giftedSelection.city;
+    if (!learningState.giftedSchool || !giftedSelection.schools.some(item => item.name === learningState.giftedSchool)) learningState.giftedSchool = "";
+    learningState.topic = learningState.giftedSchool ? `${learningState.giftedCity}｜${learningState.giftedSchool}` : learningState.giftedCity;
+  } else if (!learningState.topic || !topics.includes(learningState.topic)) learningState.topic = topics[0];
   const orderedTopics = topics;
   if (id === "elementary-gifted" && learningState.tab === "solutions") learningState.tab = "notes";
   const isScienceExam = id === "junior-gifted" && learningState.subject === "科學班甄選考古題" && window.scienceClassExamCatalog?.[learningState.topic];
@@ -131,7 +137,7 @@ function learnPage(id) {
       : hasPublicResources
       ? "已整理官方公開來源與使用狀態；請至「試題」查看原始發布頁面。"
       : "這個單元的內容框架已就位，資料會隨 PDF、筆記與影片逐步補齊。";
-  return `<section class="page-hero"><div class="wrap reveal"><div class="breadcrumbs"><a href="#/">首頁</a>　/　${level.name}</div><p class="eyebrow">${level.label}</p><h1>${level.name}學習矩陣</h1><p class="lead">${level.intro}</p></div></section><div class="wrap learning-shell"><aside class="sidebar" aria-label="學科與專題"><div class="sidebar-heading"><p class="sidebar-label">學科與專題</p><button class="collapse-sidebar" type="button" data-collapse-sidebar>全部收合</button></div>${subjectNames.map(s => `<details class="subject-group" ${learningState.sidebarOpen && s === learningState.subject ? "open" : ""}><summary data-subject="${s}"><span>${s}</span><span aria-hidden="true">⌄</span></summary><ul class="topic-list">${orderedTopics.map(t => `<li><button class="topic-button ${t === learningState.topic ? "active" : ""}" data-topic="${t}">${t}</button></li>`).join("")}</ul></details>`).join("")}</aside><section class="learning-main"><div class="learning-toolbar"><h2>${learningState.subject}</h2></div><article class="unit-card"><span class="unit-meta">${level.name} · ${learningState.subject}</span><h3>${learningState.topic}</h3><p>${unitDescription}</p><div class="tabs" role="tablist">${Object.entries(tabs).map(([key, label]) => `<button class="tab ${key === learningState.tab ? "active" : ""}" data-tab="${key}" role="tab" aria-selected="${key === learningState.tab}">${label}</button>`).join("")}</div>${tabPanel(learningState.tab, id, learningState.subject, learningState.topic)}</article></section></div>`;
+  return `<section class="page-hero"><div class="wrap reveal"><div class="breadcrumbs"><a href="#/">首頁</a>　/　${level.name}</div><p class="eyebrow">${level.label}</p><h1>${level.name}學習矩陣</h1><p class="lead">${level.intro}</p></div></section><div class="wrap learning-shell"><aside class="sidebar" aria-label="學科與專題"><div class="sidebar-heading"><p class="sidebar-label">學科與專題</p><button class="collapse-sidebar" type="button" data-collapse-sidebar>全部收合</button></div>${subjectSidebar(subjectNames, id, orderedTopics)}</aside><section class="learning-main"><div class="learning-toolbar"><h2>${learningState.subject}</h2></div><article class="unit-card"><span class="unit-meta">${level.name} · ${learningState.subject}</span><h3>${learningState.topic}</h3><p>${unitDescription}</p><div class="tabs" role="tablist">${Object.entries(tabs).map(([key, label]) => `<button class="tab ${key === learningState.tab ? "active" : ""}" data-tab="${key}" role="tab" aria-selected="${key === learningState.tab}">${label}</button>`).join("")}</div>${tabPanel(learningState.tab, id, learningState.subject, learningState.topic)}</article></section></div>`;
 }
 
 function scienceExamPanel(schoolName) {
@@ -165,6 +171,35 @@ function scienceExamPanel(schoolName) {
       return `<a href="${encodeURI(href)}" ${linkMode}>${label} ${isExternal ? "↗" : isPdf ? "PDF" : "↓"}</a>`;
     }).join("")}</div></details>`;
   }).join("")}</div></div>`;
+}
+
+function giftedMathSchoolPanel(city, schoolName) {
+  const catalog = window.juniorGiftedMathExamCatalog || {};
+  const schools = catalog[city] || [];
+  const school = schools.find(item => item.name === schoolName);
+  if (!city) return `<div class="tab-panel empty-state"><div><span>📍</span><b>請先選擇縣市</b></div></div>`;
+  if (!school) return `<div class="tab-panel empty-state"><div><span>🏫</span><b>${city} 尚未建檔學校資料</b><p>目前沒有可顯示的正式數理資優班學校題庫。</p></div></div>`;
+  const files = school.files || [];
+  if (!files.length) return `<div class="tab-panel empty-state"><div><span>📂</span><b>${city}｜${school.name}</b><p>目前尚未建檔試題。</p></div></div>`;
+  return `<div class="tab-panel public-resource-panel"><div class="rights-banner"><b>${city}｜${school.name}</b><p>以下為已收錄的數理資優班甄選試題。</p></div><div class="public-resource-grid">${files.map(file => `<a class="public-resource-card" href="${file.url}" target="_blank" rel="noopener noreferrer"><span class="resource-badge official">官方資料</span><b>${file.label}</b><p>${file.year || ""} ${file.detail || ""}</p><small>開啟試題 ↗</small></a>`).join("")}</div></div>`;
+}
+
+function giftedMathSelectionState() {
+  const catalog = window.juniorGiftedMathExamCatalog || {};
+  const cities = Object.keys(catalog);
+  const city = learningState.giftedCity || cities[0] || "";
+  const school = learningState.giftedSchool || "";
+  return { catalog, cities, city, school, schools: catalog[city] || [] };
+}
+
+function subjectSidebar(subjectNames, id, orderedTopics) {
+  return subjectNames.map(subject => {
+    if (id !== "junior-gifted" || subject !== "數理資優班甄選") {
+      return `<details class="subject-group" ${learningState.sidebarOpen && subject === learningState.subject ? "open" : ""}><summary data-subject="${subject}"><span>${subject}</span><span aria-hidden="true">⌄</span></summary><ul class="topic-list">${orderedTopics.map(topic => `<li><button class="topic-button ${topic === learningState.topic ? "active" : ""}" data-topic="${topic}">${topic}</button></li>`).join("")}</ul></details>`;
+    }
+    const state = giftedMathSelectionState();
+    return `<details class="subject-group" ${learningState.sidebarOpen && subject === learningState.subject ? "open" : ""}><summary data-subject="${subject}"><span>${subject}</span><span aria-hidden="true">⌄</span></summary><ul class="topic-list gifted-math-tree">${state.cities.map(city => `<li><details class="city-group" ${city === state.city ? "open" : ""}><summary data-gifted-city="${city}">${city}</summary><ul class="topic-list">${(state.catalog[city] || []).length ? state.catalog[city].map(item => `<li><button class="topic-button ${state.city === city && state.school === item.name ? "active" : ""}" data-gifted-school="${city}::${item.name}">${item.name}</button></li>`).join("") : `<li class="topic-empty">尚未建檔學校</li>`}</ul></details></li>`).join("")}</ul></details>`;
+  }).join("");
 }
 
 function publicResourcePanel(catalog) {
@@ -398,6 +433,10 @@ function tabPanel(tab, levelId, subject, topic) {
   if (tab === "notes" && levelId === "senior-gifted") return ensureFeaturedNotes(seniorGiftedNotesPanel(subject, topic), levelId, subject, topic);
   if (tab === "notes") return `<div class="tab-panel"><ul class="note-list"><li>單元核心觀念與公式將顯示於此</li><li>常見陷阱與學長姐解題心法</li><li>相關必修實驗、探究步驟與安全提醒</li></ul></div>`;
   if (tab === "files" && levelId === "junior-gifted" && subject === "科學班甄選考古題") return scienceExamPanel(topic);
+  if (tab === "files" && levelId === "junior-gifted" && subject === "數理資優班甄選") {
+    const selected = giftedMathSelectionState();
+    return giftedMathSchoolPanel(selected.city, selected.school);
+  }
   if (tab === "files" && levelId === "senior-gifted" && subject === "科學班聯合學科資格考") return scienceQualificationExamPanel(topic);
   const publicResources = tab === "files" ? window.getPublicResources?.(levelId, subject, topic) : null;
   if (publicResources) return publicResourcePanel(publicResources);
@@ -444,6 +483,8 @@ function render({ scrollToTop = false, preserveScroll = false } = {}) {
     if (params.has("topic")) learningState.topic = params.get("topic");
     if (params.has("tab")) learningState.tab = params.get("tab");
     if (params.has("order")) learningState.order = params.get("order");
+    if (params.has("city")) learningState.giftedCity = params.get("city");
+    if (params.has("school")) learningState.giftedSchool = params.get("school");
   }
   learningState = path.startsWith("/learn/") ? learningState : { subject: null, topic: null, tab: "notes", order: "curriculum", sidebarOpen: false, _routeLevel: null };
   if (path === "/") main.innerHTML = homePage();
@@ -484,6 +525,8 @@ function syncLearningUrl({ push = true } = {}) {
   if (learningState.topic) params.set("topic", learningState.topic);
   if (learningState.tab && learningState.tab !== "notes") params.set("tab", learningState.tab);
   if (learningState.order && learningState.order !== "curriculum") params.set("order", learningState.order);
+  if (learningState.subject === "數理資優班甄選" && learningState.giftedCity) params.set("city", learningState.giftedCity);
+  if (learningState.subject === "數理資優班甄選" && learningState.giftedSchool) params.set("school", learningState.giftedSchool);
   const nextHash = `#${route}${params.toString() ? `?${params.toString()}` : ""}`;
   const nextUrl = `${location.pathname}${location.search}${nextHash}`;
   if (nextUrl === `${location.pathname}${location.search}${location.hash}`) return;
@@ -494,6 +537,8 @@ function bindPageEvents() {
   document.querySelectorAll("[data-subject]").forEach(b => b.addEventListener("click", event => { event.preventDefault(); const group = b.closest(".subject-group"); if (group?.open && learningState.subject === b.dataset.subject) { learningState.sidebarOpen = false; group.removeAttribute("open"); return; } learningState.subject = b.dataset.subject; learningState.sidebarOpen = true; learningState.topic = null; learningState.tab = "notes"; syncLearningUrl(); render({ preserveScroll: true }); }));
   document.querySelectorAll("[data-collapse-sidebar]").forEach(b => b.addEventListener("click", () => { learningState.sidebarOpen = false; document.querySelectorAll(".subject-group[open]").forEach(group => group.removeAttribute("open")); }));
   document.querySelectorAll("[data-topic]").forEach(b => b.addEventListener("click", () => { learningState.topic = b.dataset.topic; learningState.tab = "notes"; syncLearningUrl(); render({ preserveScroll: true }); }));
+  document.querySelectorAll("[data-gifted-city]").forEach(b => b.addEventListener("click", () => { learningState.giftedCity = b.dataset.giftedCity; learningState.giftedSchool = ""; learningState.subject = "數理資優班甄選"; learningState.tab = "files"; learningState.sidebarOpen = true; syncLearningUrl(); render({ preserveScroll: true }); }));
+  document.querySelectorAll("[data-gifted-school]").forEach(b => b.addEventListener("click", event => { event.stopPropagation(); const [city, school] = b.dataset.giftedSchool.split("::"); learningState.giftedCity = city; learningState.giftedSchool = school; learningState.subject = "數理資優班甄選"; learningState.topic = `${city}｜${school}`; learningState.tab = "files"; learningState.sidebarOpen = true; syncLearningUrl(); render({ preserveScroll: true }); }));
   document.querySelectorAll("[data-tab]").forEach(b => b.addEventListener("click", () => { learningState.tab = b.dataset.tab; syncLearningUrl(); render({ preserveScroll: true }); }));
   document.querySelectorAll("[data-order]").forEach(b => b.addEventListener("click", () => { learningState.order = b.dataset.order; syncLearningUrl(); render({ preserveScroll: true }); }));
   document.querySelectorAll(".placeholder-link").forEach(b => b.addEventListener("click", () => showToast("入口尚未設定，之後只需替換表單或金流網址。")));

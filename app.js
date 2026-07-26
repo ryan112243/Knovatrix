@@ -121,9 +121,12 @@ function learnPage(id) {
   const isElementaryExhibition = id === "elementary-gifted" && learningState.subject === "小學科展與生活探究";
   const hideLearningNotes = subjectsWithoutLearningNotes[id]?.has(learningState.subject) || false;
   const canUseSolutions = subjectsWithSolutions.has(learningState.subject);
+  const isGiftedMathDirectory = isGiftedMathSelection && !learningState.giftedSchool;
   if ((hideLearningNotes || isScienceExam) && learningState.tab === "notes") learningState.tab = "files";
   if (!canUseSolutions && learningState.tab === "solutions") learningState.tab = hideLearningNotes || isScienceExam ? "files" : "notes";
-  const tabs = isElementaryExhibition
+  const tabs = isGiftedMathDirectory
+    ? { files: "學校選擇" }
+    : isElementaryExhibition
     ? { notes: "探究指南", resources: "科展資源" }
     : id === "elementary-gifted"
       ? { notes: "學習重點", files: "試題" }
@@ -143,7 +146,8 @@ function learnPage(id) {
       : hasPublicResources
       ? "已整理官方公開來源與使用狀態；請至「試題」查看原始發布頁面。"
       : "這個單元的內容框架已就位，資料會隨 PDF、筆記與影片逐步補齊。";
-  return `<section class="page-hero"><div class="wrap reveal"><div class="breadcrumbs"><a href="#/">首頁</a>　/　${level.name}</div><h1>${pageTitle}</h1></div></section><div class="wrap learning-shell"><aside class="sidebar" aria-label="學科與專題"><div class="sidebar-heading"><p class="sidebar-label">學科與專題</p><button class="collapse-sidebar" type="button" data-collapse-sidebar>全部收合</button></div>${subjectSidebar(subjectNames, id, orderedTopics)}</aside><section class="learning-main"><div class="learning-toolbar"><h2>${learningState.subject}</h2></div><article class="unit-card"><span class="unit-meta">${level.name} · ${learningState.subject}</span><h3>${learningState.topic}</h3><p>${unitDescription}</p><div class="tabs" role="tablist">${Object.entries(tabs).map(([key, label]) => `<button class="tab ${key === learningState.tab ? "active" : ""}" data-tab="${key}" role="tab" aria-selected="${key === learningState.tab}">${label}</button>`).join("")}</div><div class="learning-tab-content">${tabPanel(learningState.tab, id, learningState.subject, learningState.topic)}</div></article></section></div>`;
+  const unitTitle = isGiftedMathDirectory ? `${learningState.giftedCity}｜選擇學校` : learningState.topic;
+  return `<section class="page-hero"><div class="wrap reveal"><div class="breadcrumbs"><a href="#/">首頁</a>　/　${level.name}</div><h1>${pageTitle}</h1></div></section><div class="wrap learning-shell"><aside class="sidebar" aria-label="學科與專題"><div class="sidebar-heading"><p class="sidebar-label">學科與專題</p><button class="collapse-sidebar" type="button" data-collapse-sidebar>全部收合</button></div>${subjectSidebar(subjectNames, id, orderedTopics)}</aside><section class="learning-main"><div class="learning-toolbar"><h2>${learningState.subject}</h2></div><article class="unit-card"><span class="unit-meta">${level.name} · ${learningState.subject}</span><h3>${unitTitle}</h3><p>${unitDescription}</p><div class="tabs" role="tablist">${Object.entries(tabs).map(([key, label]) => `<button class="tab ${key === learningState.tab ? "active" : ""}" data-tab="${key}" role="tab" aria-selected="${key === learningState.tab}">${label}</button>`).join("")}</div><div class="learning-tab-content">${tabPanel(learningState.tab, id, learningState.subject, learningState.topic)}</div></article></section></div>`;
 }
 
 function scienceExamPanel(schoolName) {
@@ -184,6 +188,10 @@ function giftedMathSchoolPanel(city, schoolName) {
   const schools = catalog[city] || [];
   const school = schools.find(item => item.name === schoolName);
   if (!city) return `<div class="tab-panel empty-state"><div><span>📍</span><b>請先選擇縣市</b></div></div>`;
+  if (!schoolName) {
+    if (!schools.length) return `<div class="tab-panel empty-state"><div><span>🏫</span><b>${city} 尚未建檔學校資料</b><p>目前沒有可顯示的正式數理資優班學校題庫。</p></div></div>`;
+    return `<div class="tab-panel school-selection-panel"><div class="school-selection-intro"><b>請選擇 ${city} 的學校</b><p>選定學校後，中央區域才會顯示該校的歷屆試題。</p></div><div class="public-resource-grid school-selection-grid">${schools.map(item => `<button class="public-resource-card school-choice" type="button" data-gifted-school="${city}::${item.name}"><span class="resource-badge official">學校</span><b>${item.name}</b><p>${item.detail || "數理資優班甄選試題"}</p><small>查看該校試題 →</small></button>`).join("")}</div></div>`;
+  }
   if (!school) return `<div class="tab-panel empty-state"><div><span>🏫</span><b>${city} 尚未建檔學校資料</b><p>目前沒有可顯示的正式數理資優班學校題庫。</p></div></div>`;
   const files = school.files || [];
   if (!files.length) return `<div class="tab-panel empty-state"><div><span>📂</span><b>${city}｜${school.name}</b><p>目前尚未建檔試題。</p></div></div>`;

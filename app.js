@@ -143,7 +143,7 @@ function learnPage(id) {
       : hasPublicResources
       ? "已整理官方公開來源與使用狀態；請至「試題」查看原始發布頁面。"
       : "這個單元的內容框架已就位，資料會隨 PDF、筆記與影片逐步補齊。";
-  return `<section class="page-hero"><div class="wrap reveal"><div class="breadcrumbs"><a href="#/">首頁</a>　/　${level.name}</div><h1>${pageTitle}</h1></div></section><div class="wrap learning-shell"><aside class="sidebar" aria-label="學科與專題"><div class="sidebar-heading"><p class="sidebar-label">學科與專題</p><button class="collapse-sidebar" type="button" data-collapse-sidebar>全部收合</button></div>${subjectSidebar(subjectNames, id, orderedTopics)}</aside><section class="learning-main"><div class="learning-toolbar"><h2>${learningState.subject}</h2></div><article class="unit-card"><span class="unit-meta">${level.name} · ${learningState.subject}</span><h3>${learningState.topic}</h3><p>${unitDescription}</p><div class="tabs" role="tablist">${Object.entries(tabs).map(([key, label]) => `<button class="tab ${key === learningState.tab ? "active" : ""}" data-tab="${key}" role="tab" aria-selected="${key === learningState.tab}">${label}</button>`).join("")}</div>${tabPanel(learningState.tab, id, learningState.subject, learningState.topic)}</article></section></div>`;
+  return `<section class="page-hero"><div class="wrap reveal"><div class="breadcrumbs"><a href="#/">首頁</a>　/　${level.name}</div><h1>${pageTitle}</h1></div></section><div class="wrap learning-shell"><aside class="sidebar" aria-label="學科與專題"><div class="sidebar-heading"><p class="sidebar-label">學科與專題</p><button class="collapse-sidebar" type="button" data-collapse-sidebar>全部收合</button></div>${subjectSidebar(subjectNames, id, orderedTopics)}</aside><section class="learning-main"><div class="learning-toolbar"><h2>${learningState.subject}</h2></div><article class="unit-card"><span class="unit-meta">${level.name} · ${learningState.subject}</span><h3>${learningState.topic}</h3><p>${unitDescription}</p><div class="tabs" role="tablist">${Object.entries(tabs).map(([key, label]) => `<button class="tab ${key === learningState.tab ? "active" : ""}" data-tab="${key}" role="tab" aria-selected="${key === learningState.tab}">${label}</button>`).join("")}</div><div class="learning-tab-content">${tabPanel(learningState.tab, id, learningState.subject, learningState.topic)}</div></article></section></div>`;
 }
 
 function scienceExamPanel(schoolName) {
@@ -587,7 +587,17 @@ function bindPageEvents() {
   document.querySelectorAll("[data-topic]").forEach(b => b.addEventListener("click", () => { learningState.topic = b.dataset.topic; learningState.tab = "notes"; syncLearningUrl(); render({ preserveScroll: true }); }));
   document.querySelectorAll("[data-gifted-city]").forEach(b => b.addEventListener("click", () => { learningState.giftedCity = b.dataset.giftedCity; learningState.giftedSchool = ""; learningState.subject = "數理資優班甄選"; learningState.tab = "files"; learningState.sidebarOpen = true; syncLearningUrl(); render({ preserveScroll: true }); }));
   document.querySelectorAll("[data-gifted-school]").forEach(b => b.addEventListener("click", event => { event.stopPropagation(); const [city, school] = b.dataset.giftedSchool.split("::"); learningState.giftedCity = city; learningState.giftedSchool = school; learningState.subject = "數理資優班甄選"; learningState.topic = `${city}｜${school}`; learningState.tab = "files"; learningState.sidebarOpen = true; syncLearningUrl(); render({ preserveScroll: true }); }));
-  document.querySelectorAll("[data-tab]").forEach(b => b.addEventListener("click", () => { learningState.tab = b.dataset.tab; syncLearningUrl(); render({ preserveScroll: true }); }));
+  document.querySelectorAll("[data-tab]").forEach(b => b.addEventListener("click", () => {
+    learningState.tab = b.dataset.tab;
+    syncLearningUrl();
+    document.querySelectorAll("[data-tab]").forEach(tab => {
+      const active = tab.dataset.tab === learningState.tab;
+      tab.classList.toggle("active", active);
+      tab.setAttribute("aria-selected", String(active));
+    });
+    const content = document.querySelector(".learning-tab-content");
+    if (content) content.innerHTML = tabPanel(learningState.tab, learningState._routeLevel, learningState.subject, learningState.topic);
+  }));
   document.querySelectorAll("[data-order]").forEach(b => b.addEventListener("click", () => { learningState.order = b.dataset.order; syncLearningUrl(); render({ preserveScroll: true }); }));
   document.querySelectorAll(".placeholder-link").forEach(b => b.addEventListener("click", () => showToast("入口尚未設定，之後只需替換表單或金流網址。")));
   document.querySelectorAll(".copy-button").forEach(b => b.addEventListener("click", async () => {

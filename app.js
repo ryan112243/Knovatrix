@@ -209,7 +209,7 @@ function subjectSidebar(subjectNames, id, orderedTopics) {
 }
 
 function publicResourcePanel(catalog) {
-  return `<div class="tab-panel public-resource-panel"><div class="rights-banner"><b>下載與授權原則</b><p>有合法重製權的檔案直接放在 Knovatrix；其餘只連到主辦單位官方頁面，不採用第三方題庫。</p></div><h4>${catalog.title}</h4><div class="public-resource-grid">${catalog.items.map(item => {
+  return `<div class="tab-panel public-resource-panel"><h4>${catalog.title}</h4><div class="public-resource-grid">${catalog.items.map(item => {
     const href = item.file || item.url;
     const isPdf = item.file && /\.pdf(?:$|[?#])/i.test(item.file);
     const action = isPdf ? "在新分頁預覽 PDF ↗" : item.file ? "站內下載檔案 ↓" : item.url ? "前往官方發布頁面 ↗" : "待主辦單位提供公開授權";

@@ -4,7 +4,7 @@ const indexOnly = (title, url, detail) => ({ title, url, detail, status: "index"
 const unavailable = (title, detail) => ({ title, detail, status: "restricted", badge: "未收錄檔案" });
 
 const competitionCatalog = {
-  "junior-gifted::TRML 國中數學競賽（原 JHMC）": [officialLink("TRML 國中（原 JHMC）官方題型與試題", "https://www.99cef.org.tw/trml-j/", "九九文教基金會公開競賽規則，以及 2024 競速賽、個人賽與團體賽題型範例。完整歷屆出版品仍不重製。")],
+  "junior-gifted::TRML 國中數學競賽（原 JHMC）": [officialLink("2024 JHMC 競速賽試題", "https://www.99cef.org.tw/wp-content/uploads/2025/12/2024JHMC%E7%AB%B6%E9%80%9F%E8%B3%BD%E8%A9%A6%E9%A1%8C.pdf", "九九文教基金會公開的 2024 JHMC 競速賽官方 PDF。"), officialLink("TRML 國中（原 JHMC）官方題型與試題", "https://www.99cef.org.tw/trml-j/", "九九文教基金會公開競賽規則，以及 2024 競速賽、個人賽與團體賽題型範例。完整歷屆出版品仍不重製。")],
   "junior-gifted::張進通許世賢國中數學能力競試": [officialLink("嘉義高中歷屆國中數學能力競試", "https://www.cysh.cy.edu.tw/p/412-1008-234.php", "承辦學校公開 102–105、108–109、112–114 學年度試題與部分參考答案。")],
   "junior-gifted::AMC 8／AMC 10": [indexOnly("MAA American Mathematics Competitions", "https://maa.org/student-programs/amc/", "題目權利屬 MAA；本站只導向主辦單位資訊，不重製試卷。")],
   "junior-gifted::IMAS 數學競賽": [indexOnly("九章數學教育基金會 IMAS 公告", "https://www.chiuchang.org.tw/modules/news/article.php?storyid=585", "臺灣主辦單位的試題公告入口；只索引基金會公開頁面，不彙整或重製非公開題本。")],

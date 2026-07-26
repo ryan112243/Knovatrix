@@ -1,5 +1,4 @@
 const officialLink = (title, url, detail) => ({ title, url, detail, status: "official", badge: "官方公開來源" });
-const localFile = (title, file, detail) => ({ title, file, detail, status: "official", badge: "本站收錄檔案" });
 const indexOnly = (title, url, detail) => ({ title, url, detail, status: "index", badge: "僅建立索引" });
 const unavailable = (title, detail) => ({ title, detail, status: "restricted", badge: "未收錄檔案" });
 
@@ -20,8 +19,8 @@ const competitionCatalog = {
   "senior-gifted::學科能力競賽｜數學": [officialLink("TMO 歷屆試題延伸", "https://tpmso.org/tmo/index.php/problems/", "作為數學學科能力競賽的官方公開進階練習來源。")],
   "senior-gifted::學科能力競賽｜物理": [unavailable("物理學科能力競賽歷屆試題", "試題由各區與承辦學校分散發布，尚未找到教育部統一公開授權題庫；不採第三方整理包。")],
   "senior-gifted::學科能力競賽｜化學": [officialLink("高中化學學科中心能力競賽題庫", "https://chem.asdc.tw/taxonomy/term/378", "官方學科中心公開教育部 92–95 學年度決賽、分區複賽、筆試、實驗與參考答案。")],
-  "senior-gifted::學科能力競賽｜生物": [localFile("111 學年度全國生物科學科能力競賽決賽筆試", "files/academic-competition/biology/111-全國生物科學科能力競賽決賽筆試.pdf", "國立彰化師範大學官方公開試題；本站收錄檔案並保留原始來源。"), officialLink("生物學科能力競賽官方題庫入口", "https://biology.ncue.edu.tw/", "國立彰化師範大學承辦網站，持續更新歷屆試題與競賽資訊。")],
-  "senior-gifted::學科能力競賽｜地球科學": [localFile("108 學年度地球科學科能力競賽決賽筆試含答案", "files/academic-competition/earth-science/108-地球科學科能力競賽決賽筆試含答案.pdf", "國立中正大學地球與環境科學系官方公開試題；本站收錄檔案並保留原始來源。"), localFile("107 學年度地球科學科能力競賽決賽筆試含答案", "files/academic-competition/earth-science/107-地球科學科能力競賽決賽筆試含答案.pdf", "國立中正大學地球與環境科學系官方公開試題；本站收錄檔案並保留原始來源。"), officialLink("地球科學能力競賽官方試題下載頁", "https://eq.ccu.edu.tw/p/412-1070-1953.php?Lang=zh-tw", "中正大學官方頁面公開 96–108 學年度決賽筆試、口試與參考答案。")] ,
+  "senior-gifted::學科能力競賽｜生物": [officialLink("生物學科能力競賽官方題庫入口", "https://biology.ncue.edu.tw/", "試題、答案與公告請以承辦單位公開頁面為準。")],
+  "senior-gifted::學科能力競賽｜地球科學": [officialLink("地球科學能力競賽官方試題下載頁", "https://eq.ccu.edu.tw/p/412-1070-1953.php?Lang=zh-tw", "試題、答案與公告請以承辦單位公開頁面為準。")],
   "senior-gifted::學科能力競賽｜資訊": [unavailable("資訊學科能力競賽歷屆試題", "各承辦單位的公開方式不同；未確認授權前不搬運題目或測資。")],
   "senior-gifted::物理奧林匹亞": [officialLink("物理奧林匹亞國內選拔歷屆試題", "https://tpmso.org/ipho/index.php/problems/", "官方整理國內初選、複選與相關資料。")],
   "senior-gifted::化學奧林匹亞": [officialLink("高中化學學科中心化奧題庫（一）", "https://chem.asdc.tw/book/55?order=created&page=1&sort=asc", "公開 IChO 初選、選訓、理論與實作試題。"), officialLink("高中化學學科中心化奧題庫（二）", "https://chem.asdc.tw/book/55?page=5", "公開第 44 屆 IChO 理論、實驗與初選試題入口。")],
@@ -36,9 +35,5 @@ const competitionCatalog = {
 window.getPublicResources = (levelId, subject, topic) => {
   const items = competitionCatalog[`${levelId}::${subject}`];
   if (!items) return null;
-  const isExhibition = subject.includes("科展");
-  const pdfItems = isExhibition
-    ? items
-    : items.filter(item => /\.pdf(?:$|[?#])/i.test(item.file || ""));
-  return pdfItems.length ? { title: `${subject}官方資源`, items: pdfItems } : null;
+  return items.length ? { title: `${subject}官方來源`, items } : null;
 };

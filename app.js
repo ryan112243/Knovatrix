@@ -140,7 +140,7 @@ function learnPage(id) {
   return `<section class="page-hero"><div class="wrap reveal"><div class="breadcrumbs"><a href="#/">首頁</a>　/　${level.name}</div><p class="eyebrow">${level.label}</p><h1>${level.name}學習矩陣</h1><p class="lead">${level.intro}</p></div></section><div class="wrap learning-shell"><aside class="sidebar" aria-label="學科與專題"><div class="sidebar-heading"><p class="sidebar-label">學科與專題</p><button class="collapse-sidebar" type="button" data-collapse-sidebar>全部收合</button></div>${subjectSidebar(subjectNames, id, orderedTopics)}</aside><section class="learning-main"><div class="learning-toolbar"><h2>${learningState.subject}</h2></div><article class="unit-card"><span class="unit-meta">${level.name} · ${learningState.subject}</span><h3>${learningState.topic}</h3><p>${unitDescription}</p><div class="tabs" role="tablist">${Object.entries(tabs).map(([key, label]) => `<button class="tab ${key === learningState.tab ? "active" : ""}" data-tab="${key}" role="tab" aria-selected="${key === learningState.tab}">${label}</button>`).join("")}</div>${tabPanel(learningState.tab, id, learningState.subject, learningState.topic)}</article></section></div>`;
 }
 
-function scienceExamPanel(schoolName) {
+function legacyScienceExamPanel(schoolName) {
   const school = window.scienceClassExamCatalog?.[schoolName];
   if (!school) return "";
   const files = school.files || {};
@@ -173,6 +173,26 @@ function scienceExamPanel(schoolName) {
   }).join("")}</div></div>`;
 }
 
+function scienceExamPanel(schoolName) {
+  const school = window.scienceClassExamCatalog?.[schoolName];
+  if (!school) return "";
+  const files = school.files || {};
+  const years = school.archiveYears || Array.from({ length: 16 }, (_, index) => 115 - index);
+  const source = school.official
+    ? `<a href="${school.official}" target="_blank" rel="noopener noreferrer">查看官方來源 ↗</a>`
+    : "";
+  return `<div class="tab-panel exam-panel"><div class="exam-source"><div><span>${school.city}｜${school.archiveLabel || "科學班甄選考古題"}</span><b>${schoolName}</b><p>${school.note || "試題以原始發布單位的公開頁面為準。"}</p></div>${source}</div><div class="exam-legend"><span><i class="direct"></i>官方公開連結</span><span><i class="pending"></i>未確認公開來源</span></div><div class="year-grid">${years.map(year => {
+    const entries = Array.isArray(files[year]) ? files[year] : files[year] ? [{ label: "試題", path: files[year] }] : [];
+    const officialFiles = entries.filter(file => /^https?:\/\//i.test(file.url || ""));
+    if (!officialFiles.length) return `<div class="year-card pending"><b>${year}</b><small>歷屆試題</small><span>請見官方來源</span></div>`;
+    if (officialFiles.length === 1) {
+      const file = officialFiles[0];
+      return `<a class="year-card direct" href="${encodeURI(file.url)}" target="_blank" rel="noopener noreferrer"><b>${year}</b><small>歷屆試題</small><span>${file.label || "官方試題"} ↗</span></a>`;
+    }
+    return `<details class="year-card direct multi-file"><summary><b>${year}</b><small>歷屆試題｜${officialFiles.length} 份</small><span>展開查看 ↓</span></summary><div class="year-downloads">${officialFiles.map(file => `<a href="${encodeURI(file.url)}" target="_blank" rel="noopener noreferrer">${file.label || "官方試題"} ↗</a>`).join("")}</div></details>`;
+  }).join("")}</div></div>`;
+}
+
 function giftedMathSchoolPanel(city, schoolName) {
   const catalog = window.juniorGiftedMathExamCatalog || {};
   const schools = catalog[city] || [];
@@ -202,7 +222,7 @@ function subjectSidebar(subjectNames, id, orderedTopics) {
   }).join("");
 }
 
-function publicResourcePanel(catalog) {
+function legacyPublicResourcePanel(catalog) {
   return `<div class="tab-panel public-resource-panel"><div class="rights-banner"><b>下載與授權原則</b><p>有合法重製權的檔案直接放在 Knovatrix；其餘只連到主辦單位官方頁面，不採用第三方題庫。</p></div><h4>${catalog.title}</h4><div class="public-resource-grid">${catalog.items.map(item => {
     const href = item.file || item.url;
     const isPdf = item.file && /\.pdf(?:$|[?#])/i.test(item.file);
@@ -211,6 +231,16 @@ function publicResourcePanel(catalog) {
     if (!href) return `<div class="public-resource-card restricted">${content}</div>`;
     const linkMode = isPdf || item.url ? `target="_blank" rel="noopener noreferrer"` : "download";
     return `<a class="public-resource-card" href="${href}" ${linkMode}>${content}</a>`;
+  }).join("")}</div></div>`;
+}
+
+function publicResourcePanel(catalog) {
+  return `<div class="tab-panel public-resource-panel"><div class="rights-banner"><b>官方來源與使用說明</b><p>本站不再託管或提供下載試題、答案與解析檔案；資源一律連往主辦機關、學校或授權單位的原始公開頁面。</p></div><h4>${catalog.title}</h4><div class="public-resource-grid">${catalog.items.map(item => {
+    const href = item.url;
+    const content = `<span class="resource-badge ${item.status}">${item.badge}</span><b>${item.title}</b><p>${item.detail}</p><small>${href ? "前往官方發布頁面 ↗" : "尚待確認公開來源"}</small>`;
+    return href
+      ? `<a class="public-resource-card" href="${href}" target="_blank" rel="noopener noreferrer">${content}</a>`
+      : `<div class="public-resource-card restricted">${content}</div>`;
   }).join("")}</div></div>`;
 }
 
@@ -259,7 +289,7 @@ function videoPanel(levelId, subject, topic) {
   return `<div class="tab-panel public-resource-panel"><div class="rights-banner"><b>影音解題與延伸學習</b><p>先從可靠來源觀看，再回到本單元重點筆記整理觀念。</p></div><div class="public-resource-grid">${cards.map(card => `<a class="public-resource-card" href="${card.url}" target="_blank" rel="noopener noreferrer"><span class="resource-badge official">公開影音來源</span><b>${card.title}</b><p>${card.detail}</p><small>開啟來源 ↗</small></a>`).join("")}</div></div>`;
 }
 
-function featuredNotesPanel(levelId, subject, topic) {
+function legacyFeaturedNotesPanel(levelId, subject, topic) {
   if (arguments.length === 2) {
     topic = subject;
     subject = levelId;
@@ -277,6 +307,34 @@ function featuredNotesPanel(levelId, subject, topic) {
       ? `<a class="featured-note-card" href="${note.url}" target="_blank" rel="noopener noreferrer">${content}</a>`
       : `<div class="featured-note-card">${content}</div>`;
   }).join("")}</div></section>`;
+}
+
+function getFeaturedNotes(levelId, subject, topic) {
+  return window.featuredNotesCatalog?.[levelId]?.[subject]?.[topic]
+    || (levelId === "elementary-gifted" ? window.elementaryFeaturedNotes?.[subject]?.[topic] : [])
+    || [];
+}
+
+function featuredNoteCard(note) {
+  const content = `<b>${note.title}</b><p>${note.detail || "重點整理與延伸學習筆記。"}</p><small>${note.author ? `投稿者：${note.author}` : "精選筆記"}</small>`;
+  return note.url
+    ? `<a class="featured-note-card" href="${note.url}" target="_blank" rel="noopener noreferrer">${content}</a>`
+    : `<div class="featured-note-card">${content}</div>`;
+}
+
+function featuredNotesPanel(levelId, subject, topic) {
+  if (arguments.length === 2) {
+    topic = subject;
+    subject = levelId;
+    levelId = "elementary-gifted";
+  }
+  const featuredNotes = getFeaturedNotes(levelId, subject, topic);
+  if (!featuredNotes.length) {
+    return `<section class="featured-notes"><div class="featured-notes-head"><div><b>精選筆記</b><span>這裡會收錄同學投稿的高品質筆記、圖解或整理檔。</span></div><div class="featured-notes-actions"><a href="#/contribute">踴躍投稿 →</a></div></div><div class="featured-notes-empty">目前尚無精選筆記，歡迎踴躍投稿。</div></section>`;
+  }
+  const notesUrl = `#/notes?level=${encodeURIComponent(levelId)}&subject=${encodeURIComponent(subject)}&topic=${encodeURIComponent(topic)}`;
+  const actions = `${featuredNotes.length > 3 ? `<a href="${notesUrl}">查看更多（${featuredNotes.length}）→</a>` : ""}<a href="#/contribute">投稿筆記 →</a>`;
+  return `<section class="featured-notes"><div class="featured-notes-head"><div><b>精選筆記</b><span>同學投稿與社群整理的延伸學習素材。</span></div><div class="featured-notes-actions">${actions}</div></div><div class="featured-notes-grid">${featuredNotes.slice(0, 3).map(featuredNoteCard).join("")}</div></section>`;
 }
 
 function ensureFeaturedNotes(panelHtml, levelId, subject, topic) {
@@ -460,6 +518,19 @@ function supportPage() {
   </div></div></section>`;
 }
 
+function notesPage(params) {
+  const levelId = params.get("level") || "";
+  const subject = params.get("subject") || "";
+  const topic = params.get("topic") || "";
+  const level = levels.find(item => item.id === levelId);
+  const notes = getFeaturedNotes(levelId, subject, topic);
+  const backUrl = levelId && subject && topic
+    ? `#/learn/${levelId}?subject=${encodeURIComponent(subject)}&topic=${encodeURIComponent(topic)}`
+    : "#/";
+  const context = [level?.name, subject, topic].filter(Boolean).join("｜");
+  return `<section class="page-hero"><div class="wrap reveal"><div class="breadcrumbs"><a href="${backUrl}">返回學習頁</a></div><p class="eyebrow">Featured notes</p><h1>精選筆記</h1><p class="lead">${context || "完整收錄社群投稿與整理筆記。"}</p></div></section><section class="section notes-page-section"><div class="wrap">${notes.length ? `<div class="featured-notes-grid all-notes-grid">${notes.map(featuredNoteCard).join("")}</div>` : `<div class="featured-notes-empty">目前尚無精選筆記，歡迎踴躍投稿。</div>`}</div></section>`;
+}
+
 function notFound() {
   return `<section class="page-hero"><div class="wrap"><p class="eyebrow">404</p><h1>這個座標還不存在。</h1><p class="lead">回到首頁，從學習矩陣重新選擇一條路。</p><div class="button-row"><a class="button" href="#/">回到首頁</a></div></div></section>`;
 }
@@ -489,6 +560,7 @@ function render({ scrollToTop = false, preserveScroll = false } = {}) {
   learningState = path.startsWith("/learn/") ? learningState : { subject: null, topic: null, tab: "notes", order: "curriculum", sidebarOpen: false, _routeLevel: null };
   if (path === "/") main.innerHTML = homePage();
   else if (path.startsWith("/learn/")) main.innerHTML = learnPage(path.split("/")[2]);
+  else if (path === "/notes") main.innerHTML = notesPage(new URLSearchParams(queryString));
   else if (path === "/about") main.innerHTML = aboutPage();
   else if (path === "/contribute") main.innerHTML = contributePage();
   else if (path === "/support") main.innerHTML = supportPage();

@@ -35,7 +35,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
 .menu-button { display: none; border: 0; background: transparent; }
 .menu-button em { position: absolute; width: 1px; height: 1px; overflow: hidden; }
 main { min-height: 70vh; }
-.wrap { width: min(1180px, 92vw); margin-inline: auto; }
+.wrap { width: min(1420px, 96vw); margin-inline: auto; }
 .eyebrow { display: inline-flex; align-items: center; gap: 8px; margin: 0 0 13px; color: var(--forest-2); font-size: 12px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; }
 .eyebrow::before { width: 25px; height: 2px; content: ""; background: var(--lime); }
 h1, h2, h3, p { margin-top: 0; }
@@ -89,8 +89,8 @@ h3 { line-height: 1.4; }
 .page-hero h1 { max-width: 850px; margin-bottom: 14px; font-size: clamp(38px, 5vw, 65px); }
 .breadcrumbs { margin-bottom: 22px; color: var(--muted); font-size: 13px; }
 .breadcrumbs a:hover { color: var(--forest-2); }
-.learning-shell { display: grid; align-items: start; padding: 40px 0 90px; grid-template-columns: 290px minmax(0, 1fr); gap: 38px; }
-.sidebar { position: sticky; top: 100px; max-height: calc(100vh - 120px); padding: 19px; overflow-y: auto; overscroll-behavior: contain; scrollbar-gutter: stable; border: 1px solid var(--line); border-radius: 20px; background: var(--white); }
+.learning-shell { display: grid; align-items: start; padding: 28px 0 72px; grid-template-columns: 244px minmax(0, 1fr); gap: 20px; }
+.sidebar { position: sticky; top: 92px; max-height: calc(100vh - 108px); padding: 14px; overflow-y: auto; overscroll-behavior: contain; scrollbar-gutter: stable; border: 1px solid var(--line); border-radius: 12px; background: var(--white); }
 .sidebar-label { margin: 0 0 14px 8px; color: var(--muted); font-size: 12px; font-weight: 800; letter-spacing: .12em; }
 .sidebar-heading { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 10px; }
 .sidebar-heading .sidebar-label { margin-bottom: 0; }
@@ -133,10 +133,13 @@ h3 { line-height: 1.4; }
 .featured-notes-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 12px; }
 .featured-notes-head b, .featured-notes-head span { display: block; }
 .featured-notes-head span { color: var(--muted); font-size: 13px; }
-.featured-notes-head a { flex: 0 0 auto; padding: 7px 11px; border: 1px solid var(--forest-2); border-radius: 99px; color: var(--forest-2); font-size: 12px; font-weight: 800; }
-.featured-notes-head a:hover { color: white; background: var(--forest-2); }
+.featured-notes-actions { display: flex; flex: 0 0 auto; flex-wrap: wrap; justify-content: flex-end; gap: 8px; }
+.featured-notes-actions a { padding: 7px 11px; border: 1px solid var(--forest-2); border-radius: 99px; color: var(--forest-2); font-size: 12px; font-weight: 800; }
+.featured-notes-actions a:hover { color: white; background: var(--forest-2); }
 .featured-notes-empty { padding: 16px; border: 1px dashed #b8c2bb; border-radius: 12px; color: var(--muted); background: #fafaf7; text-align: center; }
-.featured-notes-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.featured-notes-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.all-notes-grid { grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; }
+.notes-page-section { padding-top: 34px; }
 .featured-note-card { display: block; padding: 15px; border: 1px solid var(--line); border-radius: 12px; background: white; }
 .featured-note-card p { margin: 5px 0; color: var(--muted); font-size: 13px; }
 .featured-note-card small { color: var(--forest-2); font-weight: 800; }
@@ -277,6 +280,7 @@ a.public-resource-card:hover { border-color: var(--forest-2); box-shadow: 0 8px 
   .year-grid { grid-template-columns: repeat(2, 1fr); }
   .public-resource-grid { grid-template-columns: 1fr; }
   .featured-notes-head { align-items: flex-start; flex-direction: column; }
+  .featured-notes-actions { justify-content: flex-start; }
   .featured-notes-grid { grid-template-columns: 1fr; }
   .seo-grid { grid-template-columns: 1fr; }
   .site-footer { display: flex; align-items: flex-start; flex-direction: column; }

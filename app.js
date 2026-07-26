@@ -100,9 +100,9 @@ function learnPage(id) {
   const level = catalogLevels[id];
   if (!level) return notFound();
   const subjectNames = Object.keys(level.subjects);
-  const examArchiveLabel = ["junior", "junior-gifted"].includes(id)
+  const examArchiveLabel = id === "junior"
     ? "｜會考歷屆"
-    : ["senior", "senior-gifted"].includes(id)
+    : id === "senior"
       ? "｜學測／分科歷屆"
       : "";
   const pageTitle = `${level.name}${examArchiveLabel}`;

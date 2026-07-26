@@ -230,6 +230,11 @@ competitionCatalog["junior-gifted::AMC 8\uFF0FAMC 10"].splice(-1, 0,
   indexOnly("2010 AMC 10B \u7b54\u6848", "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_10B_Answer_Key", "AoPS Wiki \u516c\u958b\u7b54\u6848\u7d22\u5f15\u9801\u9762\uff1b\u672c\u7ad9\u50c5\u63d0\u4f9b\u5916\u90e8\u9023\u7d50\u3002")
 );
 
+competitionCatalog["junior-gifted::AMC 8\uFF0FAMC 10"].splice(-1, 0,
+  indexOnly("2011 AMC 10A \u984C\u76EE", "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10A_Problems", "AoPS Wiki \u516c\u958b\u984C\u76EE\u7d22\u5f15\u9801\u9762\uff1b\u672c\u7ad9\u50c5\u63d0\u4f9b\u5916\u90e8\u9023\u7d50\u3002"),
+  indexOnly("2011 AMC 10A \u7b54\u6848", "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10A_Answer_Key", "AoPS Wiki \u516c\u958b\u7b54\u6848\u7d22\u5f15\u9801\u9762\uff1b\u672c\u7ad9\u50c5\u63d0\u4f9b\u5916\u90e8\u9023\u7d50\u3002")
+);
+
 window.getPublicResources = (levelId, subject, topic) => {
   const items = competitionCatalog[`${levelId}::${subject}`];
   if (!items) return null;

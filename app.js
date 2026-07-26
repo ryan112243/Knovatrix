@@ -89,8 +89,6 @@ const subjectsWithoutLearningNotes = {
     "TRML 國中數學競賽（原 JHMC）",
     "張進通許世賢國中數學能力競試",
     "AMC 8／AMC 10",
-    "IMAS 數學競賽",
-    "數學奧林匹亞初選銜接",
     "IJSO 國際國中科學奧林匹亞",
     "科展與科學探究競賽"
   ])

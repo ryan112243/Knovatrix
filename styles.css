@@ -219,6 +219,8 @@ a.public-resource-card:hover { border-color: var(--forest-2); box-shadow: 0 8px 
 .form-card .button { align-self: flex-start; margin-top: auto; }
 .callout { display: flex; align-items: center; justify-content: space-between; gap: 25px; margin-top: 30px; padding: 30px; border-radius: var(--radius); color: white; background: var(--forest); }
 .callout p { margin: 0; color: #c6d8d4; }
+.callout a { color: var(--lime); font-weight: 800; text-decoration: underline; text-underline-offset: 3px; }
+.rights-note { margin-top: 18px; color: var(--muted); font-size: 13px; }
 .callout .button { border-color: var(--lime); color: var(--forest); background: var(--lime); }
 .steps { counter-reset: steps; display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; margin-top: 38px; }
 .step { padding-top: 18px; border-top: 2px solid var(--line); }

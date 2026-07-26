@@ -99,6 +99,12 @@ function learnPage(id) {
   const level = catalogLevels[id];
   if (!level) return notFound();
   const subjectNames = Object.keys(level.subjects);
+  const examArchiveLabel = ["junior", "junior-gifted"].includes(id)
+    ? "｜會考歷屆"
+    : ["senior", "senior-gifted"].includes(id)
+      ? "｜學測／分科歷屆"
+      : "";
+  const pageTitle = `${level.name}${examArchiveLabel}`;
   if (!learningState.subject || !level.subjects[learningState.subject]) learningState.subject = subjectNames[0];
   const isGiftedMathSelection = id === "junior-gifted" && learningState.subject === "數理資優班甄選";
   const subjectData = level.subjects[learningState.subject];
@@ -137,10 +143,10 @@ function learnPage(id) {
       : hasPublicResources
       ? "已整理官方公開來源與使用狀態；請至「試題」查看原始發布頁面。"
       : "這個單元的內容框架已就位，資料會隨 PDF、筆記與影片逐步補齊。";
-  return `<section class="page-hero"><div class="wrap reveal"><div class="breadcrumbs"><a href="#/">首頁</a>　/　${level.name}</div><p class="eyebrow">${level.label}</p><h1>${level.name}學習矩陣</h1><p class="lead">${level.intro}</p></div></section><div class="wrap learning-shell"><aside class="sidebar" aria-label="學科與專題"><div class="sidebar-heading"><p class="sidebar-label">學科與專題</p><button class="collapse-sidebar" type="button" data-collapse-sidebar>全部收合</button></div>${subjectSidebar(subjectNames, id, orderedTopics)}</aside><section class="learning-main"><div class="learning-toolbar"><h2>${learningState.subject}</h2></div><article class="unit-card"><span class="unit-meta">${level.name} · ${learningState.subject}</span><h3>${learningState.topic}</h3><p>${unitDescription}</p><div class="tabs" role="tablist">${Object.entries(tabs).map(([key, label]) => `<button class="tab ${key === learningState.tab ? "active" : ""}" data-tab="${key}" role="tab" aria-selected="${key === learningState.tab}">${label}</button>`).join("")}</div>${tabPanel(learningState.tab, id, learningState.subject, learningState.topic)}</article></section></div>`;
+  return `<section class="page-hero"><div class="wrap reveal"><div class="breadcrumbs"><a href="#/">首頁</a>　/　${level.name}</div><h1>${pageTitle}</h1></div></section><div class="wrap learning-shell"><aside class="sidebar" aria-label="學科與專題"><div class="sidebar-heading"><p class="sidebar-label">學科與專題</p><button class="collapse-sidebar" type="button" data-collapse-sidebar>全部收合</button></div>${subjectSidebar(subjectNames, id, orderedTopics)}</aside><section class="learning-main"><div class="learning-toolbar"><h2>${learningState.subject}</h2></div><article class="unit-card"><span class="unit-meta">${level.name} · ${learningState.subject}</span><h3>${learningState.topic}</h3><p>${unitDescription}</p><div class="tabs" role="tablist">${Object.entries(tabs).map(([key, label]) => `<button class="tab ${key === learningState.tab ? "active" : ""}" data-tab="${key}" role="tab" aria-selected="${key === learningState.tab}">${label}</button>`).join("")}</div>${tabPanel(learningState.tab, id, learningState.subject, learningState.topic)}</article></section></div>`;
 }
 
-function legacyScienceExamPanel(schoolName) {
+function scienceExamPanel(schoolName) {
   const school = window.scienceClassExamCatalog?.[schoolName];
   if (!school) return "";
   const files = school.files || {};
@@ -173,26 +179,6 @@ function legacyScienceExamPanel(schoolName) {
   }).join("")}</div></div>`;
 }
 
-function scienceExamPanel(schoolName) {
-  const school = window.scienceClassExamCatalog?.[schoolName];
-  if (!school) return "";
-  const files = school.files || {};
-  const years = school.archiveYears || Array.from({ length: 16 }, (_, index) => 115 - index);
-  const source = school.official
-    ? `<a href="${school.official}" target="_blank" rel="noopener noreferrer">查看官方來源 ↗</a>`
-    : "";
-  return `<div class="tab-panel exam-panel"><div class="exam-source"><div><span>${school.city}｜${school.archiveLabel || "科學班甄選考古題"}</span><b>${schoolName}</b><p>${school.note || "試題以原始發布單位的公開頁面為準。"}</p></div>${source}</div><div class="exam-legend"><span><i class="direct"></i>官方公開連結</span><span><i class="pending"></i>未確認公開來源</span></div><div class="year-grid">${years.map(year => {
-    const entries = Array.isArray(files[year]) ? files[year] : files[year] ? [{ label: "試題", path: files[year] }] : [];
-    const officialFiles = entries.filter(file => /^https?:\/\//i.test(file.url || ""));
-    if (!officialFiles.length) return `<div class="year-card pending"><b>${year}</b><small>歷屆試題</small><span>請見官方來源</span></div>`;
-    if (officialFiles.length === 1) {
-      const file = officialFiles[0];
-      return `<a class="year-card direct" href="${encodeURI(file.url)}" target="_blank" rel="noopener noreferrer"><b>${year}</b><small>歷屆試題</small><span>${file.label || "官方試題"} ↗</span></a>`;
-    }
-    return `<details class="year-card direct multi-file"><summary><b>${year}</b><small>歷屆試題｜${officialFiles.length} 份</small><span>展開查看 ↓</span></summary><div class="year-downloads">${officialFiles.map(file => `<a href="${encodeURI(file.url)}" target="_blank" rel="noopener noreferrer">${file.label || "官方試題"} ↗</a>`).join("")}</div></details>`;
-  }).join("")}</div></div>`;
-}
-
 function giftedMathSchoolPanel(city, schoolName) {
   const catalog = window.juniorGiftedMathExamCatalog || {};
   const schools = catalog[city] || [];
@@ -222,7 +208,7 @@ function subjectSidebar(subjectNames, id, orderedTopics) {
   }).join("");
 }
 
-function legacyPublicResourcePanel(catalog) {
+function publicResourcePanel(catalog) {
   return `<div class="tab-panel public-resource-panel"><div class="rights-banner"><b>下載與授權原則</b><p>有合法重製權的檔案直接放在 Knovatrix；其餘只連到主辦單位官方頁面，不採用第三方題庫。</p></div><h4>${catalog.title}</h4><div class="public-resource-grid">${catalog.items.map(item => {
     const href = item.file || item.url;
     const isPdf = item.file && /\.pdf(?:$|[?#])/i.test(item.file);
@@ -231,16 +217,6 @@ function legacyPublicResourcePanel(catalog) {
     if (!href) return `<div class="public-resource-card restricted">${content}</div>`;
     const linkMode = isPdf || item.url ? `target="_blank" rel="noopener noreferrer"` : "download";
     return `<a class="public-resource-card" href="${href}" ${linkMode}>${content}</a>`;
-  }).join("")}</div></div>`;
-}
-
-function publicResourcePanel(catalog) {
-  return `<div class="tab-panel public-resource-panel"><div class="rights-banner"><b>官方來源與使用說明</b><p>本站不再託管或提供下載試題、答案與解析檔案；資源一律連往主辦機關、學校或授權單位的原始公開頁面。</p></div><h4>${catalog.title}</h4><div class="public-resource-grid">${catalog.items.map(item => {
-    const href = item.url;
-    const content = `<span class="resource-badge ${item.status}">${item.badge}</span><b>${item.title}</b><p>${item.detail}</p><small>${href ? "前往官方發布頁面 ↗" : "尚待確認公開來源"}</small>`;
-    return href
-      ? `<a class="public-resource-card" href="${href}" target="_blank" rel="noopener noreferrer">${content}</a>`
-      : `<div class="public-resource-card restricted">${content}</div>`;
   }).join("")}</div></div>`;
 }
 
@@ -507,7 +483,7 @@ function aboutPage() {
 }
 
 function contributePage() {
-  return `<section class="page-hero"><div class="wrap reveal"><p class="eyebrow">Anonymous contribution</p><h1>你的回饋，會讓<br>下一份資源更好。</h1><p class="lead">四個完全匿名的入口，沒有姓名欄位。選擇最符合目的的表單，資料就能準確進入對應的處理流程。</p></div></section><section class="section"><div class="wrap"><div class="info-grid">${forms.map((f, i) => `<article class="info-card form-card"><span class="big-icon">${f.icon}</span><h3>${f.title}</h3><p>${f.desc}</p><ul>${f.fields.map(x => `<li>${x}</li>`).join("")}</ul><a class="button" href="${formLinks[i]}" target="_blank" rel="noopener noreferrer">開啟匿名表單 →</a></article>`).join("")}</div><div class="callout"><div><h3>隱私說明</h3><p>表單不收集稱呼或姓名；若使用檔案上傳，Google 會要求投稿者登入，表單頁會清楚標示。</p></div></div></div></section>`;
+  return `<section class="page-hero"><div class="wrap reveal"><p class="eyebrow">Anonymous contribution</p><h1>你的回饋，會讓<br>下一份資源更好。</h1><p class="lead">四個完全匿名的入口，沒有姓名欄位。選擇最符合目的的表單，資料就能準確進入對應的處理流程。</p></div></section><section class="section"><div class="wrap"><div class="info-grid">${forms.map((f, i) => `<article class="info-card form-card"><span class="big-icon">${f.icon}</span><h3>${f.title}</h3><p>${f.desc}</p><ul>${f.fields.map(x => `<li>${x}</li>`).join("")}</ul><a class="button" href="${formLinks[i]}" target="_blank" rel="noopener noreferrer">開啟匿名表單 →</a></article>`).join("")}</div><div class="callout contact-callout"><div><h3>其他問題</h3><p>如果有任何其他方面的問題，請聯絡 <a href="mailto:yutze0314+Knovatrix@gmail.com">yutze0314+Knovatrix@gmail.com</a>。</p></div></div><div class="callout"><div><h3>隱私說明</h3><p>表單不收集稱呼或姓名；若使用檔案上傳，Google 會要求投稿者登入，表單頁會清楚標示。</p></div></div></div></section>`;
 }
 
 function supportPage() {

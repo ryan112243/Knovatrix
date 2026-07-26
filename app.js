@@ -518,6 +518,7 @@ function tabPanel(tab, levelId, subject, topic) {
   const publicResources = tab === "files" ? window.getPublicResources?.(levelId, subject, topic) : null;
   if (publicResources) return publicResourcePanel(publicResources);
   if (tab === "files") return `<div class="tab-panel empty-state"><div><span>📂</span><b>PDF 題庫尚未上架</b><br>未來將依年份、來源與難度自動整理在這裡。</div></div>`;
+  if (tab === "solutions") return `<div class="tab-panel empty-state"><div><span>💡</span><b>文字解題整理中</b><p>本站解題會以文字推導、圖解與關鍵步驟呈現，不自動放入影音搜尋連結。</p></div></div>`;
   return videoPanel(levelId, subject, topic);
 }
 

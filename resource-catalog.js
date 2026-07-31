@@ -346,6 +346,10 @@ window.getPublicResources = (levelId, subject, topic) => {
     const match = topic.startsWith('AMC 8') ? 'AMC 8' : topic.includes('10A') ? 'AMC 10A' : topic.includes('10B') ? 'AMC 10B' : '';
     if (match) scopedItems = items.filter(item => item.title.includes(match) || item.title.includes('MAA American Mathematics Competitions'));
   }
+  if (levelId === 'junior-gifted' && subject === '張進通許世賢國中數學能力競試' && topic) {
+    const year = topic.match(/\d{2,3}/)?.[0] || '';
+    if (year) scopedItems = items.filter(item => item.title.includes(year) || item.title.includes('歷屆'));
+  }
   const pdfItems = showExternal || isExhibition
     ? scopedItems
     : scopedItems.filter(item => /\.pdf(?:$|[?#])/i.test(item.file || ''));

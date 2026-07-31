@@ -507,6 +507,7 @@ function tabPanel(tab, levelId, subject, topic) {
   if (tab === "notes") return `<div class="tab-panel"><ul class="note-list"><li>單元核心觀念與公式將顯示於此</li><li>常見陷阱與學長姐解題心法</li><li>相關必修實驗、探究步驟與安全提醒</li></ul></div>`;
   if (tab === "files" && levelId === "junior-gifted" && subject === "科學班甄選考古題") return scienceExamPanel(topic);
   if (tab === "files" && levelId === "senior-gifted" && subject === "科學班聯合學科資格考") return scienceQualificationExamPanel(topic);
+  if (tab === "files" && levelId === "junior-gifted" && subject === "張進通許世賢國中數學能力競試" && !window.getPublicResources?.(levelId, subject, topic)) return `<div class="tab-panel empty-state"><div><span>📂</span><b>${topic}</b><p>目前沒有檔案。</p></div></div>`;
   const publicResources = tab === "files" ? window.getPublicResources?.(levelId, subject, topic) : null;
   if (publicResources) return publicResourcePanel(publicResources);
   if (tab === "files") return `<div class="tab-panel empty-state"><div><span>📂</span><b>PDF 題庫尚未上架</b><br>未來將依年份、來源與難度自動整理在這裡。</div></div>`;

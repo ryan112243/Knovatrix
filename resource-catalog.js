@@ -348,7 +348,7 @@ window.getPublicResources = (levelId, subject, topic) => {
   }
   if (levelId === 'junior-gifted' && subject === '張進通許世賢國中數學能力競試' && topic) {
     const year = topic.match(/\d{2,3}/)?.[0] || '';
-    if (year) scopedItems = items.filter(item => item.title.includes(year) || item.title.includes('歷屆'));
+    if (year) scopedItems = items.filter(item => item.title.includes(year));
   }
   const pdfItems = showExternal || isExhibition
     ? scopedItems

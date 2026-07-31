@@ -60,9 +60,7 @@ const subjectsWithSolutions = new Set([
 const subjectsWithoutLearningNotes = {
   "senior-gifted": new Set([
     "科學班聯合學科資格考",
-    "數學奧林匹亞 TMO／IMO",
-    "APMO 亞太數學奧林匹亞",
-    "EGMO 歐洲女子數學奧林匹亞",
+    "數學奧林匹亞 TMO／IMO、APMO、EGMO",
     "TRML 高中數學競賽",
     "清華盃高中化學科能力競賽",
     "AMC 10／12 與 AIME",

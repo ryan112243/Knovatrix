@@ -9,9 +9,6 @@ const competitionCatalog = {
   "junior-gifted::AMC 8／AMC 10": [indexOnly("2020 AMC 8 題目", "https://artofproblemsolving.com/wiki/index.php/2020_AMC_8_Problems", "AoPS Wiki 公開題目索引頁面；題目權利屬原主辦單位，本站僅提供外部連結。"), indexOnly("2020 AMC 8 答案", "https://artofproblemsolving.com/wiki/index.php/2020_AMC_8_Answer_Key", "AoPS Wiki 公開答案索引頁面；本站僅提供外部連結。"), indexOnly("2019 AMC 8 題目", "https://artofproblemsolving.com/wiki/index.php/2019_AMC_8_Problems", "AoPS Wiki 公開題目索引頁面；題目權利屬原主辦單位，本站僅提供外部連結。"), indexOnly("2019 AMC 8 答案", "https://artofproblemsolving.com/wiki/index.php/2019_AMC_8_Answer_Key", "AoPS Wiki 公開答案索引頁面；本站僅提供外部連結。"), indexOnly("2018 AMC 8 題目", "https://artofproblemsolving.com/wiki/index.php/2018_AMC_8_Problems", "AoPS Wiki 公開題目索引頁面；題目權利屬原主辦單位，本站僅提供外部連結。"), indexOnly("2018 AMC 8 答案", "https://artofproblemsolving.com/wiki/index.php/2018_AMC_8_Answer_Key", "AoPS Wiki 公開答案索引頁面；本站僅提供外部連結。"), indexOnly("2017 AMC 8 題目", "https://artofproblemsolving.com/wiki/index.php/2017_AMC_8_Problems", "AoPS Wiki 公開題目索引頁面；題目權利屬原主辦單位，本站僅提供外部連結。"), indexOnly("2017 AMC 8 答案", "https://artofproblemsolving.com/wiki/index.php/2017_AMC_8_Answer_Key", "AoPS Wiki 公開答案索引頁面；本站僅提供外部連結。"), indexOnly("2016 AMC 8 題目", "https://artofproblemsolving.com/wiki/index.php/2016_AMC_8_Problems", "AoPS Wiki 公開題目索引頁面；題目權利屬原主辦單位，本站僅提供外部連結。"), indexOnly("2016 AMC 8 答案", "https://artofproblemsolving.com/wiki/index.php/2016_AMC_8_Answer_Key", "AoPS Wiki 公開答案索引頁面；本站僅提供外部連結。"), indexOnly("2015 AMC 8 題目", "https://artofproblemsolving.com/wiki/index.php/2015_AMC_8_Problems", "AoPS Wiki 公開題目索引頁面；題目權利屬原主辦單位，本站僅提供外部連結。"), indexOnly("2015 AMC 8 答案", "https://artofproblemsolving.com/wiki/index.php/2015_AMC_8_Answer_Key", "AoPS Wiki 公開答案索引頁面；本站僅提供外部連結。"), indexOnly("2014 AMC 8 題目", "https://artofproblemsolving.com/wiki/index.php/2014_AMC_8_Problems", "AoPS Wiki 公開題目索引頁面；題目權利屬原主辦單位，本站僅提供外部連結。"), indexOnly("2014 AMC 8 答案", "https://artofproblemsolving.com/wiki/index.php/2014_AMC_8_Answer_Key", "AoPS Wiki 公開答案索引頁面；本站僅提供外部連結。"), indexOnly("2013 AMC 8 題目", "https://artofproblemsolving.com/wiki/index.php/2013_AMC_8_Problems", "AoPS Wiki 公開題目索引頁面；題目權利屬原主辦單位，本站僅提供外部連結。"), indexOnly("2013 AMC 8 答案", "https://artofproblemsolving.com/wiki/index.php/2013_AMC_8_Answer_Key", "AoPS Wiki 公開答案索引頁面；本站僅提供外部連結。"), indexOnly("2012 AMC 8 題目", "https://artofproblemsolving.com/wiki/index.php/2012_AMC_8_Problems", "AoPS Wiki 公開題目索引頁面；題目權利屬原主辦單位，本站僅提供外部連結。"), indexOnly("2012 AMC 8 答案", "https://artofproblemsolving.com/wiki/index.php/2012_AMC_8_Answer_Key", "AoPS Wiki 公開答案索引頁面；本站僅提供外部連結。"), indexOnly("2011 AMC 8 題目", "https://artofproblemsolving.com/wiki/index.php/2011_AMC_8_Problems", "AoPS Wiki 公開題目索引頁面；題目權利屬原主辦單位，本站僅提供外部連結。"), indexOnly("2011 AMC 8 答案", "https://artofproblemsolving.com/wiki/index.php/2011_AMC_8_Answer_Key", "AoPS Wiki 公開答案索引頁面；本站僅提供外部連結。"), indexOnly("MAA American Mathematics Competitions", "https://maa.org/student-programs/amc/", "MAA American Mathematics Competitions 官方入口；本站不重製試卷。")],
   "junior-gifted::IJSO 國際國中科學奧林匹亞": [officialLink("IJSO 近五屆國際賽試題", "https://tpmso.org/twijso/index.php/about/exam/", "官方提供中文、英文選擇題、理論題與實驗題。"), indexOnly("IJSO 題目與資料 Google Drive 資料夾", "https://drive.google.com/drive/folders/1ZGezeBcs7ielIcdd0JS-MydQ3L7oRcaW", "使用者提供的 IJSO Google Drive 資料夾；本站僅提供外部連結。")],
   "junior-gifted::科展與科學探究競賽": [officialLink("全國中小學科展作品庫", "https://twsf.ntsec.gov.tw/", "國立臺灣科學教育館官方科展資料庫。")],
-  "senior-gifted::數學奧林匹亞 TMO／IMO": [officialLink("TMO 國內選拔歷屆試題", "https://tpmso.org/tmo/index.php/problems/", "臺灣數學奧林匹亞辦公室公開資料。"), officialLink("2026 TMO 試題與參考解答", "https://tpmso.org/tmo/wp-content/uploads/2026/02/2026TMO%E9%A1%8C%E7%9B%AE%E5%8F%8A%E5%8F%83%E8%80%83%E8%A7%A3%E7%AD%94.pdf", "臺灣數學奧林匹亞辦公室官方 PDF。"), officialLink("2025 TMO 試題", "https://tpmso.org/tmo/wp-content/uploads/2025/02/2025_TMO_Problems%E5%85%AC%E5%91%8A.pdf", "臺灣數學奧林匹亞辦公室官方 PDF。"), officialLink("2024 TMO 試題", "https://tpmso.org/tmo/wp-content/uploads/2025/01/2024_TMO_%E5%85%AC%E5%91%8A.pdf", "臺灣數學奧林匹亞辦公室官方 PDF。"), officialLink("2023 TMO 試題", "https://tpmso.org/tmo/wp-content/uploads/2023/09/2023_TMO.pdf", "臺灣數學奧林匹亞辦公室官方 PDF。"), officialLink("2022 TMO 試題", "https://tpmso.org/tmo/wp-content/uploads/2023/09/2022_TMO.pdf", "臺灣數學奧林匹亞辦公室官方 PDF。"), officialLink("2021 TMO 試題", "https://tpmso.org/tmo/wp-content/uploads/2023/09/2021_TMO.pdf", "臺灣數學奧林匹亞辦公室官方 PDF。"), officialLink("IMO 官方歷屆試題", "https://imo-official.com/problems.aspx", "國際數學奧林匹亞官方依年份與語言提供 PDF。")],
-  "senior-gifted::APMO 亞太數學奧林匹亞": [indexOnly("APMO 臺灣選拔資訊", "https://tpmso.org/tmo/", "透過臺灣數學奧林匹亞辦公室查詢最新選拔與公開資料。")],
-  "senior-gifted::EGMO 歐洲女子數學奧林匹亞": [officialLink("EGMO 歷屆賽事", "https://www.egmo.org/egmos/", "EGMO 官方歷屆賽事與題目入口。")],
   "senior-gifted::TRML 高中數學競賽": [officialLink("TRML 高中官方題型與近期試題", "https://www.99cef.org.tw/trml-s/", "九九文教基金會公開競賽規則，以及 2025 團體賽、思考賽與個人賽題型。完整歷屆出版品仍不重製。")],
   "senior-gifted::清華盃高中化學科能力競賽": [officialLink("清華盃第 4–10 屆試題", "https://chem.asdc.tw/book/55?page=4", "高中化學學科中心公開 2007–2013 年筆試、解答與決賽試題。"), officialLink("清華盃第 1–4 屆試題", "https://chem.asdc.tw/book/55?page=5", "高中化學學科中心公開 2004–2007 年筆試、解答與決賽試題。")],
   "senior-gifted::AMC 10／12 與 AIME": [indexOnly("MAA AMC 官方入口", "https://maa.org/student-programs/amc/", "MAA 管理競賽題目與出版；本站不複製或重新散布。")],
@@ -37,6 +34,40 @@ competitionCatalog["junior::會考歷屆"] = [
 competitionCatalog["senior::學測／分科歷屆"] = [
   officialLink("學科能力測驗歷年試題及答題卷", "https://www.ceec.edu.tw/xmfile?xsmsid=0J052427633128416650", "大學入學考試中心官方歷年試題頁面；包含試題、答題卷、答案與評分原則。"),
   officialLink("分科測驗歷年試題及答題卷", "https://www.ceec.edu.tw/xmfile?xsmsid=0J052427633128416650", "大學入學考試中心官方歷年試題頁面；可由頁面選擇分科測驗與考科。")
+];
+competitionCatalog["senior-gifted::數學奧林匹亞 TMO／IMO、APMO、EGMO"] = [
+  officialLink("TMO 2026 試題與參考解答", "https://tpmso.org/tmo/wp-content/uploads/2026/02/2026TMO%E9%A1%8C%E7%9B%AE%E5%8F%8A%E5%8F%83%E8%80%83%E8%A7%A3%E7%AD%94.pdf", "臺灣數學奧林匹亞辦公室公開 PDF；本站僅提供官方來源連結。"),
+  officialLink("TMO 2025 試題", "https://tpmso.org/tmo/wp-content/uploads/2025/02/2025_TMO_Problems%E5%85%AC%E5%91%8A.pdf", "臺灣數學奧林匹亞辦公室公開 PDF；本站僅提供官方來源連結。"),
+  officialLink("TMO 2024 試題", "https://tpmso.org/tmo/wp-content/uploads/2025/01/2024_TMO_%E5%85%AC%E5%91%8A.pdf", "臺灣數學奧林匹亞辦公室公開 PDF；本站僅提供官方來源連結。"),
+  officialLink("TMO 2023 試題", "https://tpmso.org/tmo/wp-content/uploads/2023/09/2023_TMO.pdf", "臺灣數學奧林匹亞辦公室公開 PDF；本站僅提供官方來源連結。"),
+  officialLink("TMO 2022 試題", "https://tpmso.org/tmo/wp-content/uploads/2023/09/2022_TMO.pdf", "臺灣數學奧林匹亞辦公室公開 PDF；本站僅提供官方來源連結。"),
+  officialLink("TMO 2021 試題", "https://tpmso.org/tmo/wp-content/uploads/2023/09/2021_TMO.pdf", "臺灣數學奧林匹亞辦公室公開 PDF；本站僅提供官方來源連結。"),
+  officialLink("APMO 2024 正式賽試題", "https://tpmso.org/tmo/wp-content/uploads/2025/02/2024APMO_%E9%A1%8C%E7%9B%AE-%E5%85%AC%E5%91%8A%E7%94%A8.pdf", "臺灣數學奧林匹亞辦公室公開 PDF；本站僅提供官方來源連結。"),
+  officialLink("APMO 2023 正式賽試題", "https://tpmso.org/tmo/wp-content/uploads/2023/07/2022APMO%E9%A1%8C%E6%9C%AC_%E5%85%AC%E5%91%8A.pdf", "臺灣數學奧林匹亞辦公室公開 PDF；本站僅提供官方來源連結。"),
+  officialLink("APMO 2022 正式賽試題", "https://tpmso.org/tmo/wp-content/uploads/2022/09/2022APMO%E9%A1%8C%E7%9B%AE%E6%9C%AC.pdf", "臺灣數學奧林匹亞辦公室公開 PDF；本站僅提供官方來源連結。"),
+  officialLink("APMO 2021 正式賽試題", "https://tpmso.org/tmo/wp-content/uploads/2022/09/2021AP%E9%A1%8C%E6%9C%AC.pdf", "臺灣數學奧林匹亞辦公室公開 PDF；本站僅提供官方來源連結。"),
+  officialLink("APMO 2020 正式賽試題", "https://tpmso.org/tmo/wp-content/uploads/2022/09/0305.pdf", "臺灣數學奧林匹亞辦公室公開 PDF；本站僅提供官方來源連結。"),
+  officialLink("APMO 2019 正式賽試題", "https://tpmso.org/tmo/wp-content/uploads/2022/09/img20190304_12115659-1.pdf", "臺灣數學奧林匹亞辦公室公開 PDF；本站僅提供官方來源連結。"),
+  officialLink("APMO 初選二階 2026", "https://tpmso.org/tmo/wp-content/uploads/2026/01/2026-APMO-Pre2%E5%85%AC%E5%91%8A.pdf", "臺灣數學奧林匹亞辦公室公開 PDF；本站僅提供官方來源連結。"),
+  officialLink("APMO 初選二階 2025", "https://tpmso.org/tmo/wp-content/uploads/2025/02/2025-APMO-Pre2.pdf", "臺灣數學奧林匹亞辦公室公開 PDF；本站僅提供官方來源連結。"),
+  officialLink("APMO 初選二階 2024", "https://tpmso.org/tmo/wp-content/uploads/2024/11/2024_APMO_Pre2_unlocked.pdf", "臺灣數學奧林匹亞辦公室公開 PDF；本站僅提供官方來源連結。"),
+  officialLink("APMO 初選二階 2023 答案卷", "https://tpmso.org/tmo/wp-content/uploads/2023/02/2023APMOpretestII_%E7%AD%94%E6%A1%88%E5%8D%B7.pdf", "臺灣數學奧林匹亞辦公室公開 PDF；本站僅提供官方來源連結。"),
+  officialLink("APMO 初選二階 2022", "https://tpmso.org/tmo/wp-content/uploads/2022/09/APMO22-2-0206.pdf", "臺灣數學奧林匹亞辦公室公開 PDF；本站僅提供官方來源連結。"),
+  officialLink("APMO 初選二階 2021 答案卷", "https://tpmso.org/tmo/wp-content/uploads/2022/09/2021APMOpretestII_%E7%AD%94%E6%A1%88%E5%8D%B7%E5%B0%81%E9%9D%A2.pdf", "臺灣數學奧林匹亞辦公室公開 PDF；本站僅提供官方來源連結。"),
+  officialLink("APMO 初選一階 2026", "https://tpmso.org/tmo/wp-content/uploads/2025/11/2026APMO%E5%88%9D%E9%81%B8%E4%B8%80%E9%9A%8E%E9%A1%8C%E6%9C%AC%E5%8F%8A%E8%A7%A3%E7%AD%94%E5%85%AC%E5%91%8A.pdf", "臺灣數學奧林匹亞辦公室公開 PDF；本站僅提供官方來源連結。"),
+  officialLink("APMO 初選一階 2025", "https://tpmso.org/tmo/wp-content/uploads/2024/11/2025_APMO_Pre1_20241109.pdf", "臺灣數學奧林匹亞辦公室公開 PDF；本站僅提供官方來源連結。"),
+  officialLink("APMO 初選一階 2024", "https://tpmso.org/tmo/wp-content/uploads/2023/11/2024_APMO_Pre1_20231031_unlocked.pdf", "臺灣數學奧林匹亞辦公室公開 PDF；本站僅提供官方來源連結。"),
+  officialLink("APMO 初選一階 2023", "https://tpmso.org/tmo/wp-content/uploads/2023/06/2023_APMO_Pre1.pdf", "臺灣數學奧林匹亞辦公室公開 PDF；本站僅提供官方來源連結。"),
+  officialLink("APMO 初選一階 2022", "https://tpmso.org/tmo/wp-content/uploads/2023/06/211105-E.pdf", "臺灣數學奧林匹亞辦公室公開 PDF；本站僅提供官方來源連結。"),
+  officialLink("APMO 初選一階 2021", "https://tpmso.org/tmo/wp-content/uploads/2025/02/2021APMO%E5%88%9D%E9%81%B8%E7%AC%AC%E4%B8%80%E9%9A%8E%E6%AE%B5%E8%80%83%E9%A1%8C%E5%90%AB%E8%A7%A3%E7%AD%94.pdf", "臺灣數學奧林匹亞辦公室公開 PDF；本站僅提供官方來源連結。"),
+  officialLink("APMO 初選一階 2020", "https://tpmso.org/tmo/wp-content/uploads/2022/10/2020APMO%E5%88%9D%E9%81%B8%E5%90%AB%E8%A7%A3%E7%AD%94.pdf", "臺灣數學奧林匹亞辦公室公開 PDF；本站僅提供官方來源連結。"),
+  officialLink("APMO 初選一階 2019", "https://tpmso.org/tmo/wp-content/uploads/2022/09/2019APMO%E5%88%9D%E9%81%B8%E8%80%83%E8%A9%A6%E8%A7%A3%E7%AD%94%E6%9B%B4%E6%AD%A3.pdf", "臺灣數學奧林匹亞辦公室公開 PDF；本站僅提供官方來源連結。"),
+  officialLink("EGMO 初選 2026", "https://tpmso.org/tmo/wp-content/uploads/2025/11/2026EGMO%E5%88%9D%E9%81%B8%E9%A1%8C%E7%9B%AE%E5%8F%8A%E8%A7%A3%E7%AD%94%E5%85%AC%E5%91%8A.pdf", "臺灣數學奧林匹亞辦公室公開 PDF；本站僅提供官方來源連結。"),
+  officialLink("EGMO 初選 2025", "https://tpmso.org/tmo/wp-content/uploads/2025/02/2025EGMO%E5%88%9D%E9%81%B8%E8%80%83%E8%A9%A6%E9%A1%8C%E7%9B%AE.pdf", "臺灣數學奧林匹亞辦公室公開 PDF；本站僅提供官方來源連結。"),
+  officialLink("EGMO 初選 2024", "https://tpmso.org/tmo/wp-content/uploads/2023/10/2023_TGMO_Pre1_Corrected_unlocked.pdf", "臺灣數學奧林匹亞辦公室公開 PDF；本站僅提供官方來源連結。"),
+  officialLink("EGMO 複選 2026 詳解與評分標準", "https://tpmso.org/tmo/wp-content/uploads/2025/12/2026EGMO%E8%A4%87%E8%A9%A6%E8%A7%A3%E7%AD%94.pdf", "臺灣數學奧林匹亞辦公室公開 PDF；本站僅提供官方來源連結。"),
+  officialLink("IMO 官方歷屆試題", "https://imo-official.com/problems.aspx", "國際數學奧林匹亞官方歷屆試題入口。"),
+  officialLink("TMO 辦公室歷屆試題頁", "https://tpmso.org/tmo/index.php/problems/", "來源頁面與最新 PDF 索引。")
 ];
 competitionCatalog["junior-gifted::AMC 8\uFF0FAMC 10"].splice(-1, 0,
   indexOnly("2010 AMC 8 \u984C\u76EE", "https://artofproblemsolving.com/wiki/index.php/2010_AMC_8_Problems", "AoPS Wiki \u516C\u958B\u984C\u76EE\u7d22\u5f15\u9801\u9762\uff1b\u672c\u7ad9\u50c5\u63d0\u4f9b\u5916\u90e8\u9023\u7d50\u3002"),
@@ -349,6 +380,10 @@ window.getPublicResources = (levelId, subject, topic) => {
   const isExhibition = subject.includes('科展');
   const showExternal = levelId === 'junior-gifted' || (levelId === 'junior' && subject === '會考歷屆') || (levelId === 'senior' && subject === '學測／分科歷屆');
   let scopedItems = items;
+  if (levelId === 'senior-gifted' && subject === '數學奧林匹亞 TMO／IMO、APMO、EGMO' && topic) {
+    const match = topic.startsWith('APMO') ? 'APMO' : topic.startsWith('EGMO') ? 'EGMO' : 'TMO';
+    scopedItems = items.filter(item => item.title.includes(match) || (match === 'TMO' && item.title.includes('IMO')));
+  }
   if (levelId === 'senior' && subject === '學測／分科歷屆' && topic) {
     const match = topic.startsWith('學科能力') ? '學科能力' : '分科測驗';
     scopedItems = items.filter(item => item.title.includes(match));

@@ -222,6 +222,10 @@ a.public-resource-card:hover { border-color: var(--forest-2); box-shadow: 0 8px 
 .info-card ul { padding-left: 20px; color: var(--muted); }
 .crypto-grid { align-items: stretch; }
 .crypto-card { overflow: hidden; }
+.crypto-wallet-list { display: grid; gap: 18px; margin-top: 20px; }
+.crypto-wallet { padding-top: 18px; border-top: 1px solid var(--line); }
+.crypto-wallet:first-child { padding-top: 0; border-top: 0; }
+.crypto-wallet > p { margin: 5px 0 10px; color: var(--muted); }
 .network-list { display: flex; flex-wrap: wrap; gap: 7px; margin: 20px 0; }
 .network-list span { padding: 5px 10px; border: 1px solid #bcd5cb; border-radius: 99px; color: var(--forest-2); background: var(--mint); font-size: 11px; font-weight: 800; }
 .wallet-block { padding: 16px; border-radius: 14px; background: #f2f5f0; }

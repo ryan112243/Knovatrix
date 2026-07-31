@@ -90,7 +90,9 @@ const subjectsWithoutLearningNotes = {
     "AMC 8／AMC 10",
     "IJSO 國際國中科學奧林匹亞",
     "科展與科學探究競賽"
-  ])
+  ]),
+  junior: new Set(["會考歷屆"]),
+  senior: new Set(["學測／分科歷屆"])
 };
 
 function learnPage(id) {

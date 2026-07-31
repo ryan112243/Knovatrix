@@ -31,6 +31,13 @@ const competitionCatalog = {
   "senior-gifted::科展與臺灣國際科展": [officialLink("臺灣國際科展與全國科展", "https://twsf.ntsec.gov.tw/", "國立臺灣科學教育館官方作品與競賽資料庫。")]
 };
 
+competitionCatalog["junior::會考歷屆"] = [
+  officialLink("國中教育會考官方歷屆試題與資料", "https://cap.rcpet.edu.tw/index.html", "國中教育會考官方網站；本站連結至主辦單位公開頁面，不代為託管試題。")
+];
+competitionCatalog["senior::學測／分科歷屆"] = [
+  officialLink("學科能力測驗歷年試題及答題卷", "https://www.ceec.edu.tw/xmfile?xsmsid=0J052427633128416650", "大學入學考試中心官方歷年試題頁面；包含試題、答題卷、答案與評分原則。"),
+  officialLink("分科測驗歷年試題及答題卷", "https://www.ceec.edu.tw/xmfile?xsmsid=0J052427633128416650", "大學入學考試中心官方歷年試題頁面；可由頁面選擇分科測驗與考科。")
+];
 competitionCatalog["junior-gifted::AMC 8\uFF0FAMC 10"].splice(-1, 0,
   indexOnly("2010 AMC 8 \u984C\u76EE", "https://artofproblemsolving.com/wiki/index.php/2010_AMC_8_Problems", "AoPS Wiki \u516C\u958B\u984C\u76EE\u7d22\u5f15\u9801\u9762\uff1b\u672c\u7ad9\u50c5\u63d0\u4f9b\u5916\u90e8\u9023\u7d50\u3002"),
   indexOnly("2010 AMC 8 \u7b54\u6848", "https://artofproblemsolving.com/wiki/index.php/2010_AMC_8_Answer_Key", "AoPS Wiki \u516c\u958b\u7b54\u6848\u7d22\u5f15\u9801\u9762\uff1b\u672c\u7ad9\u50c5\u63d0\u4f9b\u5916\u90e8\u9023\u7d50\u3002")
@@ -340,8 +347,12 @@ window.getPublicResources = (levelId, subject, topic) => {
   const items = competitionCatalog[levelId + "::" + subject];
   if (!items) return null;
   const isExhibition = subject.includes('科展');
-  const showExternal = levelId === 'junior-gifted';
+  const showExternal = levelId === 'junior-gifted' || (levelId === 'junior' && subject === '會考歷屆') || (levelId === 'senior' && subject === '學測／分科歷屆');
   let scopedItems = items;
+  if (levelId === 'senior' && subject === '學測／分科歷屆' && topic) {
+    const match = topic.startsWith('學科能力') ? '學科能力' : '分科測驗';
+    scopedItems = items.filter(item => item.title.includes(match));
+  }
   if (levelId === 'junior-gifted' && subject === 'AMC 8／AMC 10' && topic) {
     const match = topic.startsWith('AMC 8') ? 'AMC 8' : topic.includes('10A') ? 'AMC 10A' : topic.includes('10B') ? 'AMC 10B' : '';
     if (match) scopedItems = items.filter(item => item.title.includes(match) || item.title.includes('MAA American Mathematics Competitions'));

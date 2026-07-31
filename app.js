@@ -105,7 +105,7 @@ function learnPage(id) {
   const pageTitle = `${level.name}${examArchiveLabel}`;
   if (!learningState.subject || !level.subjects[learningState.subject]) learningState.subject = subjectNames[0];
   const isGiftedMathSelection = false;
-  const isScienceLabSelection = id === "junior-gifted" && learningState.subject === "數理資優班甄選";
+  const isScienceLabSelection = false;
   const subjectData = level.subjects[learningState.subject];
   const topics = Array.isArray(subjectData) ? subjectData : (subjectData[learningState.order] || subjectData.curriculum);
   const giftedSelection = isGiftedMathSelection ? giftedMathSelectionState() : null;
@@ -237,7 +237,7 @@ function giftedMathSelectionState() {
 function subjectSidebar(subjectNames, id, orderedTopics) {
   return subjectNames.map(subject => {
     if (id === "junior-gifted" && subject === "數理資優班甄選") {
-      return `<details class="subject-group" ${learningState.sidebarOpen && subject === learningState.subject ? "open" : ""}><summary data-subject="${subject}"><span>${subject}</span><span aria-hidden="true">⌄</span></summary><ul class="topic-list"><li class="topic-empty">請在中央區域選擇學校</li></ul></details>`;
+      return `<details class="subject-group" ${learningState.sidebarOpen && subject === learningState.subject ? "open" : ""}><summary data-subject="${subject}"><span>${subject}</span><span aria-hidden="true">⌄</span></summary><ul class="topic-list"><li class="topic-empty">目前暫無公開資料</li></ul></details>`;
     }
     if (id !== "junior-gifted" || subject !== "數理資優班甄選") {
       return `<details class="subject-group" ${learningState.sidebarOpen && subject === learningState.subject ? "open" : ""}><summary data-subject="${subject}"><span>${subject}</span><span aria-hidden="true">⌄</span></summary><ul class="topic-list">${orderedTopics.map(topic => `<li><button class="topic-button ${topic === learningState.topic ? "active" : ""}" data-topic="${topic}">${topic}</button></li>`).join("")}</ul></details>`;
@@ -506,7 +506,6 @@ function tabPanel(tab, levelId, subject, topic) {
   if (tab === "notes" && levelId === "senior-gifted") return ensureFeaturedNotes(seniorGiftedNotesPanel(subject, topic), levelId, subject, topic);
   if (tab === "notes") return `<div class="tab-panel"><ul class="note-list"><li>單元核心觀念與公式將顯示於此</li><li>常見陷阱與學長姐解題心法</li><li>相關必修實驗、探究步驟與安全提醒</li></ul></div>`;
   if (tab === "files" && levelId === "junior-gifted" && subject === "科學班甄選考古題") return scienceExamPanel(topic);
-  if (tab === "files" && levelId === "junior-gifted" && subject === "數理資優班甄選") return scienceLabExamPanel(learningState.scienceLabSchool);
   if (tab === "files" && levelId === "senior-gifted" && subject === "科學班聯合學科資格考") return scienceQualificationExamPanel(topic);
   const publicResources = tab === "files" ? window.getPublicResources?.(levelId, subject, topic) : null;
   if (publicResources) return publicResourcePanel(publicResources);

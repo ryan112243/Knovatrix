@@ -337,12 +337,17 @@ competitionCatalog["junior-gifted::AMC 8\uFF0FAMC 10"].splice(-1, 0,
 );
 
 window.getPublicResources = (levelId, subject, topic) => {
-  const items = competitionCatalog[`${levelId}::${subject}`];
+  const items = competitionCatalog[levelId + "::" + subject];
   if (!items) return null;
-  const isExhibition = subject.includes("科展");
-  const showExternal = levelId === "junior-gifted";
+  const isExhibition = subject.includes('科展');
+  const showExternal = levelId === 'junior-gifted';
+  let scopedItems = items;
+  if (levelId === 'junior-gifted' && subject === 'AMC 8／AMC 10' && topic) {
+    const match = topic.startsWith('AMC 8') ? 'AMC 8' : topic.includes('10A') ? 'AMC 10A' : topic.includes('10B') ? 'AMC 10B' : '';
+    if (match) scopedItems = items.filter(item => item.title.includes(match) || item.title.includes('MAA American Mathematics Competitions'));
+  }
   const pdfItems = showExternal || isExhibition
-    ? items
-    : items.filter(item => /\.pdf(?:$|[?#])/i.test(item.file || ""));
-  return pdfItems.length ? { title: `${subject}官方資源`, items: pdfItems } : null;
+    ? scopedItems
+    : scopedItems.filter(item => /\.pdf(?:$|[?#])/i.test(item.file || ''));
+  return pdfItems.length ? { title: topic ? subject + '｜' + topic + '官方資源' : subject + '官方資源', items: pdfItems } : null;
 };

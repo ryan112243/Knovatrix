@@ -130,6 +130,8 @@ function learnPage(id) {
   if (!canUseSolutions && learningState.tab === "solutions") learningState.tab = hideLearningNotes || isScienceExam ? "files" : "notes";
   const tabs = isGiftedMathDirectory || isScienceLabDirectory
     ? { files: "學校選擇" }
+    : isScienceExam
+      ? { files: "一般試題", lab: "實驗實作試題", solutions: "解題" }
     : isElementaryExhibition
     ? { notes: "探究指南", resources: "科展資源" }
     : id === "elementary-gifted"
@@ -156,20 +158,30 @@ function learnPage(id) {
   return `<section class="page-hero"><div class="wrap reveal"><div class="breadcrumbs"><a href="#/">首頁</a>　/　${level.name}</div><h1>${pageTitle}</h1></div></section><div class="wrap learning-shell"><aside class="sidebar" aria-label="學科與專題"><div class="sidebar-heading"><p class="sidebar-label">學科與專題</p><button class="collapse-sidebar" type="button" data-collapse-sidebar>全部收合</button></div>${subjectSidebar(subjectNames, id, orderedTopics)}</aside><section class="learning-main"><div class="learning-toolbar"><h2>${learningState.subject}</h2></div><article class="unit-card"><span class="unit-meta">${level.name} · ${learningState.subject}</span><h3>${unitTitle}</h3><p>${unitDescription}</p><div class="tabs" role="tablist">${Object.entries(tabs).map(([key, label]) => `<button class="tab ${key === learningState.tab ? "active" : ""}" data-tab="${key}" role="tab" aria-selected="${key === learningState.tab}">${label}</button>`).join("")}</div><div class="learning-tab-content">${tabPanel(learningState.tab, id, learningState.subject, learningState.topic)}</div></article></section></div>`;
 }
 
+function isScienceLabFile(file) {
+  return /實驗|實作/.test(`${file?.label || ""} ${file?.path || ""} ${file?.url || ""}`);
+}
+
+function scienceSchoolYears(school) {
+  const configured = Array.isArray(school?.archiveYears) && school.archiveYears.length ? school.archiveYears : Object.keys(school?.files || {}).map(Number).sort((a, b) => b - a);
+  return configured.length ? configured : Array.from({ length: 16 }, (_, index) => 115 - index);
+}
+
 function scienceExamPanel(schoolName, sourceFiles = null) {
   const school = window.scienceClassExamCatalog?.[schoolName];
   if (!school) return "";
   const files = sourceFiles || school.files || {};
   const years = sourceFiles
     ? Object.keys(files).map(Number).sort((a, b) => b - a)
-    : school.archiveYears || Array.from({ length: 16 }, (_, index) => 115 - index);
+    : scienceSchoolYears(school);
   const fileHint = Object.keys(files).length ? " PDF 會在新分頁開啟預覽；壓縮檔則直接下載。" : "";
   return `<div class="tab-panel exam-panel"><div class="exam-source"><div><span>${school.city} · ${school.archiveLabel || "科學班歷屆"}</span><b>${schoolName}</b><p>${school.note || ""}${fileHint}</p></div></div><div class="exam-legend"><span><i class="direct"></i>有檔案</span><span><i class="pending"></i>沒有檔案</span></div><div class="year-grid">${years.map(year => {
-    const localFiles = Array.isArray(files[year])
+    const rawFiles = Array.isArray(files[year])
       ? files[year]
       : files[year]
         ? [{ label: "試題", path: files[year] }]
         : [];
+    const localFiles = rawFiles.filter(file => sourceFiles ? isScienceLabFile(file) : !isScienceLabFile(file));
     if (!localFiles.length) return `<div class="year-card pending" aria-label="${year} 學年度沒有檔案"><b>${year}</b><small>學年度</small><span>沒有檔案</span></div>`;
     if (localFiles.length === 1) {
       const file = localFiles[0];
@@ -202,7 +214,7 @@ function scienceLabExamPanel(schoolName) {
   }
   const school = catalog[schoolName];
   if (!school) return `<div class="tab-panel empty-state"><div><span>🏫</span><b>找不到這所學校</b><p>請重新選擇學校。</p></div></div>`;
-  const years = school.archiveYears || Array.from({ length: 16 }, (_, index) => 115 - index);
+  const years = scienceSchoolYears(school);
   const labFiles = Object.fromEntries(years.map(year => {
     const value = school.files?.[year];
     const files = Array.isArray(value) ? value : value ? [{ label: "試題", path: value }] : [];
@@ -505,6 +517,7 @@ function tabPanel(tab, levelId, subject, topic) {
   if (tab === "notes" && levelId === "senior") return ensureFeaturedNotes(seniorNotesPanel(subject, topic), levelId, subject, topic);
   if (tab === "notes" && levelId === "senior-gifted") return ensureFeaturedNotes(seniorGiftedNotesPanel(subject, topic), levelId, subject, topic);
   if (tab === "notes") return `<div class="tab-panel"><ul class="note-list"><li>單元核心觀念與公式將顯示於此</li><li>常見陷阱與學長姐解題心法</li><li>相關必修實驗、探究步驟與安全提醒</li></ul></div>`;
+  if (tab === "lab" && levelId === "junior-gifted" && subject === "科學班甄選考古題") return scienceLabExamPanel(topic);
   if (tab === "files" && levelId === "junior-gifted" && subject === "科學班甄選考古題") return scienceExamPanel(topic);
   if (tab === "files" && levelId === "senior-gifted" && subject === "科學班聯合學科資格考") return scienceQualificationExamPanel(topic);
   if (tab === "files" && levelId === "junior-gifted" && subject === "張進通許世賢國中數學能力競試" && !window.getPublicResources?.(levelId, subject, topic)) return `<div class="tab-panel empty-state"><div><span>📂</span><b>${topic}</b><p>目前沒有檔案。</p></div></div>`;

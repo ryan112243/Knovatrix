@@ -109,6 +109,20 @@ h3 { line-height: 1.4; }
 .topic-button { width: 100%; padding: 7px 8px; border: 0; border-left: 2px solid var(--line); color: var(--muted); background: transparent; text-align: left; font-size: 13px; cursor: pointer; }
 .topic-button:hover, .topic-button.active { border-left-color: var(--forest-2); color: var(--forest-2); }
 .learning-main { min-width: 0; }
+.index-panel { padding: 4px 0 0; }
+.index-intro { margin-bottom: 24px; }
+.index-intro h3 { margin: 8px 0; font-size: clamp(24px, 3vw, 36px); }
+.index-intro p { max-width: 700px; margin: 0; color: var(--muted); }
+.subject-index-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.subject-index-card { position: relative; min-height: 150px; padding: 22px 24px 20px; border: 1px solid var(--line); border-radius: var(--radius); color: var(--ink); background: var(--white); text-align: left; cursor: pointer; transition: border-color .18s ease, transform .18s ease, box-shadow .18s ease; }
+.subject-index-card:hover, .subject-index-card:focus-visible { border-color: var(--forest-2); box-shadow: var(--shadow); transform: translateY(-2px); outline: none; }
+.index-card-number { display: block; margin-bottom: 18px; color: var(--forest-2); font-size: 12px; font-weight: 800; letter-spacing: .08em; }
+.subject-index-card h3 { margin: 0 0 7px; font-size: 20px; }
+.subject-index-card p { margin: 0 0 9px; color: var(--forest-2); font-size: 13px; font-weight: 700; }
+.subject-index-card small { display: block; max-width: calc(100% - 24px); color: var(--muted); line-height: 1.6; }
+.index-card-arrow { position: absolute; right: 20px; bottom: 18px; color: var(--forest-2); font-size: 20px; }
+@media (max-width: 680px) { .subject-index-grid { grid-template-columns: 1fr; } .subject-index-card { min-height: 132px; } }
+
 .learning-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-bottom: 28px; }
 .learning-toolbar h2 { margin: 0; font-size: clamp(25px, 3vw, 37px); }
 .toggle { display: flex; flex: 0 0 auto; padding: 4px; border: 1px solid var(--line); border-radius: 99px; background: var(--white); }

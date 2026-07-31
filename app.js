@@ -50,7 +50,7 @@ function homePage() {
   `;
 }
 
-let learningState = { subject: null, topic: null, tab: "notes", order: "curriculum", sidebarOpen: false, giftedCity: null, giftedSchool: null, scienceLabSchool: null, _routeLevel: null };
+let learningState = { index: true, subject: null, topic: null, tab: "notes", order: "curriculum", sidebarOpen: false, giftedCity: null, giftedSchool: null, scienceLabSchool: null, _routeLevel: null };
 
 const subjectsWithSolutions = new Set([
   "\u79d1\u5b78\u73ed\u7504\u9078\u8003\u53e4\u984c",
@@ -95,6 +95,17 @@ const subjectsWithoutLearningNotes = {
   senior: new Set(["學測／分科歷屆"])
 };
 
+function learningIndexPanel(id, subjectNames) {
+  const level = catalogLevels[id];
+  const cards = subjectNames.map((subject, index) => {
+    const data = level.subjects[subject];
+    const topics = Array.isArray(data) ? data : (data.curriculum || data.topic || []);
+    const preview = topics.slice(0, 3).join(" · ");
+    return '<button class="subject-index-card" type="button" data-index-subject="' + subject + '"><span class="index-card-number">' + String(index + 1).padStart(2, "0") + '</span><h3>' + subject + '</h3><p>' + topics.length + ' 個學習單元</p><small>' + (preview || "點選進入內容") + '</small><span class="index-card-arrow" aria-hidden="true">→</span></button>';
+  }).join("");
+  return '<div class="tab-panel index-panel"><div class="index-intro"><span class="unit-meta">' + level.name + ' · 學科與專題</span><h3>選擇學科與專題</h3><p>先從分類開始，再進入對應的學習重點、試題或歷屆資料。</p></div><div class="subject-index-grid">' + cards + '</div></div>';
+}
+
 function learnPage(id) {
   const level = catalogLevels[id];
   if (!level) return notFound();
@@ -105,7 +116,11 @@ function learnPage(id) {
       ? "｜學測／分科歷屆"
       : "";
   const pageTitle = `${level.name}${examArchiveLabel}`;
-  if (!learningState.subject || !level.subjects[learningState.subject]) learningState.subject = subjectNames[0];
+  const showLearningIndex = learningState.index === true && !learningState.subject;
+  if (!showLearningIndex && (!learningState.subject || !level.subjects[learningState.subject])) learningState.subject = subjectNames[0];
+  if (showLearningIndex) {
+    return '<section class="page-hero"><div class="wrap reveal"><div class="breadcrumbs"><a href="#/">首頁</a>　/　' + level.name + '</div><h1>' + pageTitle + '</h1></div></section><div class="wrap learning-shell"><aside class="sidebar" aria-label="學科與專題"><div class="sidebar-heading"><p class="sidebar-label">學科與專題</p><button class="collapse-sidebar" type="button" data-collapse-sidebar>全部收合</button></div>' + subjectSidebar(subjectNames, id, []) + '</aside><section class="learning-main"><div class="learning-toolbar"><h2>學科與專題</h2></div><article class="unit-card">' + learningIndexPanel(id, subjectNames) + '</article></section></div>';
+  }
   const isGiftedMathSelection = false;
   const isScienceLabSelection = false;
   const subjectData = level.subjects[learningState.subject];
@@ -574,11 +589,12 @@ function render({ scrollToTop = false, preserveScroll = false } = {}) {
   const [path, queryString = ""] = rawPath.split("?");
   const routeLevel = path.startsWith("/learn/") ? path.split("/")[2] : null;
   if (routeLevel !== learningState._routeLevel) {
-    learningState = { subject: null, topic: null, tab: "notes", order: "curriculum", sidebarOpen: false, giftedCity: null, giftedSchool: null, scienceLabSchool: null, _routeLevel: routeLevel };
+    learningState = { index: true, subject: null, topic: null, tab: "notes", order: "curriculum", sidebarOpen: false, giftedCity: null, giftedSchool: null, scienceLabSchool: null, _routeLevel: routeLevel };
   }
   if (path.startsWith("/learn/")) {
     const params = new URLSearchParams(queryString);
-    if (params.has("subject")) learningState.subject = params.get("subject");
+    if (params.has("subject")) { learningState.subject = params.get("subject"); learningState.index = false; }
+    if (!params.has("subject")) { learningState.index = true; learningState.subject = null; learningState.topic = null; }
     if (params.has("topic")) learningState.topic = params.get("topic");
     if (params.has("tab")) learningState.tab = params.get("tab");
     if (params.has("order")) learningState.order = params.get("order");
@@ -586,7 +602,7 @@ function render({ scrollToTop = false, preserveScroll = false } = {}) {
     if (params.has("school")) learningState.giftedSchool = params.get("school");
     if (params.has("school")) learningState.scienceLabSchool = params.get("school");
   }
-  learningState = path.startsWith("/learn/") ? learningState : { subject: null, topic: null, tab: "notes", order: "curriculum", sidebarOpen: false, giftedCity: null, giftedSchool: null, scienceLabSchool: null, _routeLevel: null };
+  learningState = path.startsWith("/learn/") ? learningState : { index: true, subject: null, topic: null, tab: "notes", order: "curriculum", sidebarOpen: false, giftedCity: null, giftedSchool: null, scienceLabSchool: null, _routeLevel: null };
   if (path === "/") main.innerHTML = homePage();
   else if (path.startsWith("/learn/")) main.innerHTML = learnPage(path.split("/")[2]);
   else if (path === "/notes") main.innerHTML = notesPage(new URLSearchParams(queryString));
@@ -634,7 +650,8 @@ function syncLearningUrl({ push = true } = {}) {
 }
 
 function bindPageEvents() {
-  document.querySelectorAll("[data-subject]").forEach(b => b.addEventListener("click", event => { event.preventDefault(); const group = b.closest(".subject-group"); if (group?.open && learningState.subject === b.dataset.subject) { learningState.sidebarOpen = false; group.removeAttribute("open"); return; } learningState.subject = b.dataset.subject; learningState.sidebarOpen = true; learningState.topic = null; learningState.tab = "notes"; if (learningState.subject === "數理資優班甄選") learningState.scienceLabSchool = ""; syncLearningUrl(); render({ preserveScroll: true }); }));
+  document.querySelectorAll("[data-subject]").forEach(b => b.addEventListener("click", event => { event.preventDefault(); const group = b.closest(".subject-group"); if (group?.open && learningState.subject === b.dataset.subject) { learningState.sidebarOpen = false; group.removeAttribute("open"); return; } learningState.index = false; learningState.index = false; learningState.subject = b.dataset.subject; learningState.sidebarOpen = true; learningState.topic = null; learningState.tab = "notes"; if (learningState.subject === "數理資優班甄選") learningState.scienceLabSchool = ""; syncLearningUrl(); render({ preserveScroll: true }); }));
+  document.querySelectorAll("[data-index-subject]").forEach(b => b.addEventListener("click", () => { learningState.index = false; learningState.subject = b.dataset.indexSubject; learningState.topic = null; learningState.tab = "notes"; learningState.sidebarOpen = true; syncLearningUrl(); render({ preserveScroll: true }); }));
   document.querySelectorAll("[data-collapse-sidebar]").forEach(b => b.addEventListener("click", () => { learningState.sidebarOpen = false; document.querySelectorAll(".subject-group[open]").forEach(group => group.removeAttribute("open")); }));
   document.querySelectorAll("[data-topic]").forEach(b => b.addEventListener("click", () => { learningState.topic = b.dataset.topic; learningState.tab = "notes"; syncLearningUrl(); render({ preserveScroll: true }); }));
   document.querySelectorAll("[data-gifted-city]").forEach(b => b.addEventListener("click", () => { learningState.giftedCity = b.dataset.giftedCity; learningState.giftedSchool = ""; learningState.subject = "數理資優班甄選"; learningState.tab = "files"; learningState.sidebarOpen = true; syncLearningUrl(); render({ preserveScroll: true }); }));

@@ -25,7 +25,6 @@ const competitionCatalog = {
   "senior-gifted::資訊奧林匹亞 TOI／IOI": [officialLink("TOI 推廣歷屆試題", "https://tpmso.org/toi/index.php/tasks/", "資訊奧林匹亞官方練習賽與歷屆題目入口。")],
   "senior-gifted::APCS 大學程式設計先修檢測": [indexOnly("APCS 官方網站", "https://apcs.csie.ntnu.edu.tw/", "查詢檢測資訊與官方公開資源；本站不重製試題。")],
   "senior-gifted::IYPT 物理辯論": [indexOnly("IYPT 歷屆問題入口", "https://old.iypt.org/Problems.html", "IYPT 官方舊站指向歷屆問題典藏；本站只建立來源索引。")],
-  "senior-gifted::科展與臺灣國際科展": [officialLink("臺灣國際科展與全國科展", "https://twsf.ntsec.gov.tw/", "國立臺灣科學教育館官方作品與競賽資料庫。")]
 };
 
 competitionCatalog["junior::會考歷屆"] = [

@@ -383,6 +383,10 @@ window.getPublicResources = (levelId, subject, topic) => {
     const match = topic.startsWith('APMO') ? 'APMO' : topic.startsWith('EGMO') ? 'EGMO' : 'TMO';
     scopedItems = items.filter(item => item.title.includes(match) || (match === 'TMO' && item.title.includes('IMO')));
   }
+  if (levelId === 'senior-gifted' && subject === '生物奧林匹亞' && topic) {
+    const match = topic === '初賽' ? '｜初賽｜' : topic === '複賽' ? '｜複賽｜' : topic === '選拔營' ? '｜選拔營｜' : topic === '國際賽實作' ? '｜國際賽實作｜' : '｜國際賽理論｜';
+    scopedItems = items.filter(item => item.title.includes(match) || item.title.includes('｜' + topic + '官方頁面'));
+  }
   if (levelId === 'senior' && subject === '學測／分科歷屆' && topic) {
     const match = topic.startsWith('學科能力') ? '學科能力' : '分科測驗';
     scopedItems = items.filter(item => item.title.includes(match));

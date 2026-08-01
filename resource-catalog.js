@@ -383,7 +383,6 @@ competitionCatalog["senior-gifted::AMC 10\uFF0F12 與 AIME"].push(
   indexOnly("2003 AMC 12B 題目", "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12B", "AoPS Wiki 公開題目索引頁面；本站僅提供外部連結。"),
   indexOnly("2004 AMC 12A 題目", "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12A", "AoPS Wiki 公開題目索引頁面；本站僅提供外部連結。"),
   indexOnly("2004 AMC 12B 題目", "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12B", "AoPS Wiki 公開題目索引頁面；本站僅提供外部連結。"),
-);
   indexOnly("2005 AMC 12A 題目", "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_12A", "AoPS Wiki 公開題目索引頁面；本站僅提供外部連結。"),
   indexOnly("2005 AMC 12B 題目", "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_12B", "AoPS Wiki 公開題目索引頁面；本站僅提供外部連結。"),
   indexOnly("2006 AMC 12A 題目", "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12A", "AoPS Wiki 公開題目索引頁面；本站僅提供外部連結。"),
@@ -497,6 +496,7 @@ competitionCatalog["senior-gifted::AMC 10\uFF0F12 與 AIME"].push(
   indexOnly("2025 AIME II 題目", "https://artofproblemsolving.com/wiki/index.php?title=2025_AIME_II", "AoPS Wiki 公開題目索引頁面；本站僅提供外部連結。"),
   indexOnly("2026 AIME I 題目", "https://artofproblemsolving.com/wiki/index.php?title=2026_AIME_I", "AoPS Wiki 公開題目索引頁面；本站僅提供外部連結。"),
   indexOnly("2026 AIME II 題目", "https://artofproblemsolving.com/wiki/index.php?title=2026_AIME_II", "AoPS Wiki 公開題目索引頁面；本站僅提供外部連結。"),
+);
 competitionCatalog["senior-gifted::學科能力競賽｜數學"].push(
   officialLink("嘉義高中學科能力競賽全國決賽試題", "https://www.cysh.cy.edu.tw/p/406-1008-57252,r180.php?Lang=zh-tw", "國立嘉義高中官方全國決賽試題入口。"),
   officialLink("110 學年度數學科能力競賽試題觀摩", "https://cantor.math.ntnu.edu.tw/workshop/110hsm/index.php?menu=Exam", "國立臺灣師範大學數學系官方競賽頁面。"),
@@ -721,6 +721,10 @@ window.getPublicResources = (levelId, subject, topic) => {
   const isExhibition = subject.includes('科展');
   const showExternal = (levelId === 'senior-gifted' && (subject === 'AMC 10／12 與 AIME' || subject === '清華盃高中化學科能力競賽' || subject.startsWith('學科能力競賽｜'))) || levelId === 'junior-gifted' || (levelId === 'junior' && subject === '會考歷屆') || (levelId === 'senior' && subject === '學測／分科歷屆') || (levelId === 'senior-gifted' && subject.includes('IYPT')) || (levelId === 'senior-gifted' && subject.includes('TOI')) || (levelId === 'senior-gifted' && subject.includes('TRML'));
   let scopedItems = items;
+  if (levelId === 'senior-gifted' && subject === 'AMC 10／12 與 AIME' && topic) {
+    const match = topic.startsWith('AMC 10') ? 'AMC 10' : topic.startsWith('AMC 12') ? 'AMC 12' : 'AIME';
+    scopedItems = items.filter(item => item.title.includes(match) || item.title.includes('MAA AMC 官方入口'));
+  }
   if (levelId === 'senior-gifted' && subject === '數學奧林匹亞 TMO／IMO、APMO、EGMO' && topic) {
     const match = topic.startsWith('APMO') ? 'APMO' : topic.startsWith('EGMO') ? 'EGMO' : 'TMO';
     scopedItems = items.filter(item => item.title.includes(match) || (match === 'TMO' && item.title.includes('IMO')));

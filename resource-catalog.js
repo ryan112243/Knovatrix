@@ -498,7 +498,6 @@ competitionCatalog["senior-gifted::AMC 10\uFF0F12 與 AIME"].push(
   indexOnly("2026 AIME I 題目", "https://artofproblemsolving.com/wiki/index.php?title=2026_AIME_I", "AoPS Wiki 公開題目索引頁面；本站僅提供外部連結。"),
   indexOnly("2026 AIME II 題目", "https://artofproblemsolving.com/wiki/index.php?title=2026_AIME_II", "AoPS Wiki 公開題目索引頁面；本站僅提供外部連結。"),
 competitionCatalog["senior-gifted::學科能力競賽｜數學"].push(
-  officialLink("嘉義高中學科能力競賽歷屆試題入口", "https://www.cysh.cy.edu.tw/p/403-1008-180.php", "國立嘉義高中官方學科能力競賽歷屆試題入口。"),
   officialLink("嘉義高中學科能力競賽全國決賽試題", "https://www.cysh.cy.edu.tw/p/406-1008-57252,r180.php?Lang=zh-tw", "國立嘉義高中官方全國決賽試題入口。"),
   officialLink("110 學年度數學科能力競賽試題觀摩", "https://cantor.math.ntnu.edu.tw/workshop/110hsm/index.php?menu=Exam", "國立臺灣師範大學數學系官方競賽頁面。"),
   officialLink("110 數學科能力競賽｜110北一區筆試一試題(含解答).pdf", "https://cantor.math.ntnu.edu.tw/workshop/110hsm/files/110%E5%8C%97%E4%B8%80%E5%8D%80%E7%AD%86%E8%A9%A6%E4%B8%80%E8%A9%A6%E9%A1%8C(%E5%90%AB%E8%A7%A3%E7%AD%94).pdf", "國立臺灣師範大學官方公開 PDF。"),
@@ -547,7 +546,6 @@ competitionCatalog["senior-gifted::學科能力競賽｜數學"].push(
   officialLink("110 數學科能力競賽｜110決賽試題(含解答).pdf", "https://cantor.math.ntnu.edu.tw/workshop/110hsm/files/110%E6%B1%BA%E8%B3%BD%E8%A9%A6%E9%A1%8C(%E5%90%AB%E8%A7%A3%E7%AD%94).pdf", "國立臺灣師範大學官方公開 PDF。")
 );
 competitionCatalog["senior-gifted::學科能力競賽｜物理"] = [
-  officialLink("嘉義高中學科能力競賽歷屆試題入口", "https://www.cysh.cy.edu.tw/p/403-1008-180.php", "國立嘉義高中官方學科能力競賽歷屆試題入口。"),
   officialLink("嘉義高中學科能力競賽全國決賽試題", "https://www.cysh.cy.edu.tw/p/406-1008-57252,r180.php?Lang=zh-tw", "國立嘉義高中官方全國決賽試題入口。"),
   indexOnly("物理學科能力競賽歷屆試題整理頁", "https://sites.google.com/view/yizhe/%E7%89%A9%E7%90%86%E7%AB%B6%E8%B3%BD/%E5%AD%B8%E7%A7%91%E8%83%BD%E5%8A%9B%E7%AB%B6%E8%B3%BD", "外部整理頁；題目連結指向 Google Drive，本站僅提供外部連結。"),
   indexOnly("物理學科能力競賽｜106花蓮區學科能力競賽物理理論試題", "https://drive.google.com/open?id=1no-mH9YvJsIC96ZvXJL3HaKKsoLcF6PR", "外部整理頁提供的 Google Drive 題目連結；本站僅提供外部連結。"),

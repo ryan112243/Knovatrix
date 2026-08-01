@@ -719,7 +719,7 @@ window.getPublicResources = (levelId, subject, topic) => {
   const items = competitionCatalog[levelId + "::" + subject];
   if (!items) return null;
   const isExhibition = subject.includes('科展');
-  const showExternal = (levelId === 'senior-gifted' && (subject === 'AMC 10／12 與 AIME' || subject === '清華盃高中化學科能力競賽' || subject.startsWith('學科能力競賽｜'))) || levelId === 'junior-gifted' || (levelId === 'junior' && subject === '會考歷屆') || (levelId === 'senior' && subject === '學測／分科歷屆') || (levelId === 'senior-gifted' && subject.includes('IYPT'));
+  const showExternal = (levelId === 'senior-gifted' && (subject === 'AMC 10／12 與 AIME' || subject === '清華盃高中化學科能力競賽' || subject.startsWith('學科能力競賽｜'))) || levelId === 'junior-gifted' || (levelId === 'junior' && subject === '會考歷屆') || (levelId === 'senior' && subject === '學測／分科歷屆') || (levelId === 'senior-gifted' && subject.includes('IYPT')) || (levelId === 'senior-gifted' && subject.includes('TOI'));
   let scopedItems = items;
   if (levelId === 'senior-gifted' && subject === '數學奧林匹亞 TMO／IMO、APMO、EGMO' && topic) {
     const match = topic.startsWith('APMO') ? 'APMO' : topic.startsWith('EGMO') ? 'EGMO' : 'TMO';

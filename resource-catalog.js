@@ -26,12 +26,11 @@ const competitionCatalog = {
   "senior-gifted::IYPT 物理辯論": [officialLink("1988 IYPT 題目", "https://iypt.org/problems/iypt-1988-problems/", "IYPT 官方 Problems 頁面的年度題目。"), officialLink("1989 IYPT 題目", "https://iypt.org/problems/iypt-1989-problems/", "IYPT 官方 Problems 頁面的年度題目。"), officialLink("1990 IYPT 題目", "https://iypt.org/problems/iypt-1990-problems/", "IYPT 官方 Problems 頁面的年度題目。"), officialLink("1991 IYPT 題目", "https://iypt.org/problems/iypt-1991-problems/", "IYPT 官方 Problems 頁面的年度題目。"), officialLink("1992 IYPT 題目", "https://iypt.org/problems/iypt-1992-problems/", "IYPT 官方 Problems 頁面的年度題目。"), officialLink("1993 IYPT 題目", "https://iypt.org/problems/iypt-1993-problems/", "IYPT 官方 Problems 頁面的年度題目。"), officialLink("1994 IYPT 題目", "https://iypt.org/problems/iypt-1994-problems/", "IYPT 官方 Problems 頁面的年度題目。"), officialLink("1995 IYPT 題目", "https://iypt.org/problems/iypt-1995-problems/", "IYPT 官方 Problems 頁面的年度題目。"), officialLink("1996 IYPT 題目", "https://iypt.org/problems/iypt-1996-problems/", "IYPT 官方 Problems 頁面的年度題目。"), officialLink("1997 IYPT 題目", "https://iypt.org/problems/iypt-1997-problems/", "IYPT 官方 Problems 頁面的年度題目。"), officialLink("1998 IYPT 題目", "https://iypt.org/problems/iypt-1998-problems/", "IYPT 官方 Problems 頁面的年度題目。"), officialLink("1999 IYPT 題目", "https://iypt.org/problems/iypt-1999-problems/", "IYPT 官方 Problems 頁面的年度題目。"), officialLink("2000 IYPT 題目", "https://iypt.org/problems/iypt-2000-problems/", "IYPT 官方 Problems 頁面的年度題目。"), officialLink("2001 IYPT 題目", "https://iypt.org/problems/iypt-2001-problems/", "IYPT 官方 Problems 頁面的年度題目。"), officialLink("2002 IYPT 題目", "https://iypt.org/problems/iypt-2002-problems/", "IYPT 官方 Problems 頁面的年度題目。"), officialLink("2003 IYPT 題目", "https://iypt.org/problems/iypt-2003-problems/", "IYPT 官方 Problems 頁面的年度題目。"), officialLink("2004 IYPT 題目", "https://iypt.org/problems/iypt-2004-problems/", "IYPT 官方 Problems 頁面的年度題目。"), officialLink("2005 IYPT 題目", "https://iypt.org/problems/iypt-2005-problems/", "IYPT 官方 Problems 頁面的年度題目。"), officialLink("2006 IYPT 題目", "https://iypt.org/problems/iypt-2006-problems/", "IYPT 官方 Problems 頁面的年度題目。"), officialLink("2007 IYPT 題目", "https://iypt.org/problems/iypt-2007-problems/", "IYPT 官方 Problems 頁面的年度題目。"), officialLink("2008 IYPT 題目", "https://iypt.org/problems/iypt-2008-problems/", "IYPT 官方 Problems 頁面的年度題目。"), officialLink("2009 IYPT 題目", "https://iypt.org/problems/iypt-2009-problems/", "IYPT 官方 Problems 頁面的年度題目。"), officialLink("2010 IYPT 題目", "https://iypt.org/problems/iypt-2010-problems/", "IYPT 官方 Problems 頁面的年度題目。"), officialLink("2011 IYPT 題目", "https://iypt.org/problems/iypt-2011-problems/", "IYPT 官方 Problems 頁面的年度題目。"), officialLink("2012 IYPT 題目", "https://iypt.org/problems/iypt-2012-problems/", "IYPT 官方 Problems 頁面的年度題目。"), officialLink("2013 IYPT 題目", "https://iypt.org/problems/iypt-2013-problems/", "IYPT 官方 Problems 頁面的年度題目。"), officialLink("2014 IYPT 題目", "https://iypt.org/problems/iypt-2014-problems/", "IYPT 官方 Problems 頁面的年度題目。"), officialLink("2015 IYPT 題目", "https://iypt.org/problems/iypt-2015-problems/", "IYPT 官方 Problems 頁面的年度題目。"), officialLink("2016 IYPT 題目", "https://iypt.org/problems/iypt-2016-problems/", "IYPT 官方 Problems 頁面的年度題目。"), officialLink("2017 IYPT 題目", "https://iypt.org/problems/iypt-2017-problems/", "IYPT 官方 Problems 頁面的年度題目。"), officialLink("2018 IYPT 題目", "https://iypt.org/problems/problems-for-the-31st-iypt-2018/", "IYPT 官方 Problems 頁面的年度題目。"), officialLink("2019 IYPT 題目", "https://iypt.org/problems/problems-for-the-32nd-iypt-2019/", "IYPT 官方 Problems 頁面的年度題目。"), officialLink("2020 IYPT 題目", "https://iypt.org/problems/iypt-2020-problems/", "IYPT 官方 Problems 頁面的年度題目。"), officialLink("2021 IYPT 題目", "https://iypt.org/problems/problems-for-the-34th-iypt-2021/", "IYPT 官方 Problems 頁面的年度題目。"), officialLink("2022 IYPT 題目", "https://iypt.org/problems/problems-for-the-35th-iypt-2022/", "IYPT 官方 Problems 頁面的年度題目。"), officialLink("2023 IYPT 題目", "https://iypt.org/problems/problems-for-the-36th-iypt-2023/", "IYPT 官方 Problems 頁面的年度題目。"), officialLink("2024 IYPT 題目", "https://iypt.org/problems/problems-iypt-2024/", "IYPT 官方 Problems 頁面的年度題目。"), officialLink("2025 IYPT 題目", "https://iypt.org/problems/problems-for-the-38th-iypt-2025/", "IYPT 官方 Problems 頁面的年度題目。"), officialLink("2026 IYPT 題目", "https://iypt.org/problems/iypt-2026-problems/", "IYPT 官方 Problems 頁面的年度題目。")],
 };
 
-competitionCatalog["junior::會考歷屆"] = [
-  officialLink("國中教育會考官方歷屆試題與資料", "https://cap.rcpet.edu.tw/index.html", "國中教育會考官方網站；本站連結至主辦單位公開頁面，不代為託管試題。")
+competitionCatalog["junior::會考歷屆"] = (window.yearlyExamResources && window.yearlyExamResources.junior) || [
+  unavailable("會考歷屆｜年度資料載入中", "官方年度試題索引尚未載入，請稍後重新整理。")
 ];
-competitionCatalog["senior::學測／分科歷屆"] = [
-  officialLink("學科能力測驗歷年試題及答題卷", "https://www.ceec.edu.tw/xmfile?xsmsid=0J052427633128416650", "大學入學考試中心官方歷年試題頁面；包含試題、答題卷、答案與評分原則。"),
-  officialLink("分科測驗歷年試題及答題卷", "https://www.ceec.edu.tw/xmfile?xsmsid=0J052427633128416650", "大學入學考試中心官方歷年試題頁面；可由頁面選擇分科測驗與考科。")
+competitionCatalog["senior::學測／分科歷屆"] = (window.yearlyExamResources && window.yearlyExamResources.senior) || [
+  unavailable("學測／分科歷屆｜年度資料載入中", "官方年度試題索引尚未載入，請稍後重新整理。")
 ];
 competitionCatalog["senior-gifted::數學奧林匹亞 TMO／IMO、APMO、EGMO"] = [
   officialLink("TMO 2026 試題與參考解答", "https://tpmso.org/tmo/wp-content/uploads/2026/02/2026TMO%E9%A1%8C%E7%9B%AE%E5%8F%8A%E5%8F%83%E8%80%83%E8%A7%A3%E7%AD%94.pdf", "臺灣數學奧林匹亞辦公室公開 PDF；本站僅提供官方來源連結。"),
@@ -734,8 +733,12 @@ window.getPublicResources = (levelId, subject, topic) => {
     scopedItems = items.filter(item => item.title.includes(match) || item.title.includes('｜' + topic + '官方頁面'));
   }
   if (levelId === 'senior' && subject === '學測／分科歷屆' && topic) {
-    const match = topic.startsWith('學科能力') ? '學科能力' : '分科測驗';
-    scopedItems = items.filter(item => item.title.includes(match));
+    const year = topic.match(/\d{2,3}/)?.[0] || '';
+    scopedItems = year ? items.filter(item => item.title.includes(year)) : items;
+  }
+  if (levelId === 'junior' && subject === '會考歷屆' && topic) {
+    const year = topic.match(/\d{2,3}/)?.[0] || '';
+    scopedItems = year ? items.filter(item => item.title.includes(year)) : items;
   }
   if (levelId === 'senior-gifted' && subject.startsWith('學科能力競賽｜') && topic) {
     const isSchool = topic === '校內初選';

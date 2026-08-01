@@ -373,6 +373,7 @@ competitionCatalog["junior-gifted::AMC 8\uFF0FAMC 10"].splice(-1, 0,
   indexOnly("2025 AMC 10B \u7b54\u6848", "https://artofproblemsolving.com/wiki/index.php?title=2025_AMC_10B_Answer_Key", "AoPS Wiki \u516c\u958b\u7b54\u6848\u7d22\u5f15\u9801\u9762\uff1b\u672c\u7ad9\u50c5\u63d0\u4f9b\u5916\u90e8\u9023\u7d50\u3002")
 );
 
+competitionCatalog["senior-gifted::AMC 10\uFF0F12 與 AIME"] = competitionCatalog["junior-gifted::AMC 8\uFF0FAMC 10"].filter(item => /AMC 10/.test(item.title));
 window.getPublicResources = (levelId, subject, topic) => {
   const items = competitionCatalog[levelId + "::" + subject];
   if (!items) return null;

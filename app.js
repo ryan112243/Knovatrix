@@ -275,7 +275,8 @@ function subjectSidebar(subjectNames, id, orderedTopics) {
 }
 
 function publicResourcePanel(catalog) {
-  return `<div class="tab-panel public-resource-panel"><h4>${catalog.title}</h4><div class="public-resource-grid">${catalog.items.map(item => {
+  const rightsNotice = `<div class="rights-banner resource-rights-notice"><b>檔案權利與存取說明</b><p>試題檔案的著作權與檔案權利歸出題方所有。本站僅提供原始公開連結；若 Google Drive 顯示沒有存取權，Knovatrix 無法代為處理，請向檔案擁有者或出題方申請存取。</p></div>`;
+  return `<div class="tab-panel public-resource-panel">${rightsNotice}<h4>${catalog.title}</h4><div class="public-resource-grid">${catalog.items.map(item => {
     const href = item.file || item.url;
     const isPdf = item.file && /\.pdf(?:$|[?#])/i.test(item.file);
     const action = isPdf ? "在新分頁預覽 PDF ↗" : item.file ? "站內下載檔案 ↓" : item.url ? "前往官方發布頁面 ↗" : "待主辦單位提供公開授權";

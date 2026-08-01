@@ -123,9 +123,9 @@ function learnPage(id) {
   const topics = Array.isArray(subjectData) ? subjectData : (subjectData[learningState.order] || subjectData.curriculum);
   const giftedSelection = isGiftedMathSelection ? giftedMathSelectionState() : null;
   if (isGiftedMathSelection) {
-    if (!learningState.giftedCity || !giftedSelection.cities.includes(learningState.giftedCity)) learningState.giftedCity = giftedSelection.city;
+    if (learningState.giftedCity && !giftedSelection.cities.includes(learningState.giftedCity)) learningState.giftedCity = "";
     if (!learningState.giftedSchool || !giftedSelection.schools.some(item => item.name === learningState.giftedSchool)) learningState.giftedSchool = "";
-    learningState.topic = learningState.giftedSchool ? `${learningState.giftedCity}｜${learningState.giftedSchool}` : learningState.giftedCity;
+    learningState.topic = learningState.giftedSchool ? learningState.giftedCity + "｜" + learningState.giftedSchool : (learningState.giftedCity || "選擇縣市");
   } else if (isScienceLabSelection) {
     const schoolNames = Object.keys(window.scienceClassExamCatalog || {});
     if (!schoolNames.includes(learningState.scienceLabSchool)) learningState.scienceLabSchool = "";
@@ -137,12 +137,12 @@ function learnPage(id) {
   const isElementaryExhibition = id === "elementary-gifted" && learningState.subject === "小學科展與生活探究";
   const hideLearningNotes = subjectsWithoutLearningNotes[id]?.has(learningState.subject) || false;
   const canUseSolutions = subjectsWithSolutions.has(learningState.subject);
-  const isGiftedMathDirectory = isGiftedMathSelection && !learningState.giftedSchool;
+  const isGiftedMathDirectory = isGiftedMathSelection && (!learningState.giftedCity || !learningState.giftedSchool);
   const isScienceLabDirectory = isScienceLabSelection && !learningState.scienceLabSchool;
   if ((hideLearningNotes || isScienceExam) && learningState.tab === "notes") learningState.tab = "files";
   if (!canUseSolutions && learningState.tab === "solutions") learningState.tab = hideLearningNotes || isScienceExam ? "files" : "notes";
   const tabs = isGiftedMathDirectory || isScienceLabDirectory
-    ? { files: "學校選擇" }
+? { files: isGiftedMathSelection ? (learningState.giftedCity ? "學校選擇" : "縣市選擇") : "學校選擇" }
     : isScienceExam
       ? { files: "一般試題", lab: "實驗實作試題", solutions: "解題" }
     : isElementaryExhibition
@@ -167,7 +167,7 @@ function learnPage(id) {
       : hasPublicResources
       ? "已整理官方公開來源與使用狀態；請至「試題」查看原始發布頁面。"
       : "這個單元的內容框架已就位，資料會隨 PDF、筆記與影片逐步補齊。";
-  const unitTitle = isGiftedMathDirectory ? `${learningState.giftedCity}｜選擇學校` : isScienceLabDirectory ? "選擇學校" : learningState.topic;
+  const unitTitle = isGiftedMathSelection && !learningState.giftedCity ? "選擇縣市" : isGiftedMathDirectory ? learningState.giftedCity + "｜選擇學校" : isScienceLabDirectory ? "選擇學校" : learningState.topic;
   return `<section class="page-hero"><div class="wrap reveal"><div class="breadcrumbs"><a href="#/">首頁</a>　/　${level.name}</div><h1>${pageTitle}</h1></div></section><div class="wrap learning-shell"><aside class="sidebar" aria-label="學科與專題"><div class="sidebar-heading"><p class="sidebar-label">學科與專題</p><button class="collapse-sidebar" type="button" data-collapse-sidebar>全部收合</button></div>${subjectSidebar(subjectNames, id, orderedTopics)}</aside><section class="learning-main"><div class="learning-toolbar"><h2>${learningState.subject}</h2></div><article class="unit-card"><span class="unit-meta">${level.name} · ${learningState.subject}</span><h3>${unitTitle}</h3><p>${unitDescription}</p><div class="tabs" role="tablist">${Object.entries(tabs).map(([key, label]) => `<button class="tab ${key === learningState.tab ? "active" : ""}" data-tab="${key}" role="tab" aria-selected="${key === learningState.tab}">${label}</button>`).join("")}</div><div class="learning-tab-content">${tabPanel(learningState.tab, id, learningState.subject, learningState.topic)}</div></article></section></div>`;
 }
 
@@ -238,6 +238,8 @@ function scienceLabExamPanel(schoolName) {
 
 function giftedMathSchoolPanel(city, schoolName) {
   const catalog = window.juniorGiftedMathExamCatalog || {};
+  const cities = Object.keys(catalog);
+  if (!city) return "<div class=\"tab-panel school-selection-panel\"><div class=\"school-selection-intro\"><b>請先選擇縣市</b><p>選定縣市後，中央區域才會顯示該縣市的學校。</p></div><div class=\"public-resource-grid school-selection-grid\">" + cities.map(item => "<button class=\"public-resource-card school-choice\" type=\"button\" data-gifted-city=\"" + item + "\"><span class=\"resource-badge official\">縣市</span><b>" + item + "</b><p>數理資優班甄選</p><small>查看學校列表 →</small></button>").join("") + "</div></div>";
   const schools = catalog[city] || [];
   const school = schools.find(item => item.name === schoolName);
   if (!city) return `<div class="tab-panel empty-state"><div><span>📍</span><b>請先選擇縣市</b></div></div>`;
@@ -254,7 +256,7 @@ function giftedMathSchoolPanel(city, schoolName) {
 function giftedMathSelectionState() {
   const catalog = window.juniorGiftedMathExamCatalog || {};
   const cities = Object.keys(catalog);
-  const city = learningState.giftedCity || cities[0] || "";
+  const city = learningState.giftedCity || "";
   const school = learningState.giftedSchool || "";
   return { catalog, cities, city, school, schools: catalog[city] || [] };
 }

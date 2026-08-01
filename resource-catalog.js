@@ -374,11 +374,22 @@ competitionCatalog["junior-gifted::AMC 8\uFF0FAMC 10"].splice(-1, 0,
 );
 
 competitionCatalog["senior-gifted::AMC 10\uFF0F12 與 AIME"] = competitionCatalog["junior-gifted::AMC 8\uFF0FAMC 10"].filter(item => /AMC 10/.test(item.title));
+competitionCatalog["senior-gifted::AMC 10\uFF0F12 與 AIME"].push(
+  indexOnly("2000 AMC 12 題目", "https://artofproblemsolving.com/wiki/index.php?title=2000_AMC_12", "AoPS Wiki 公開題目索引頁面；本站僅提供外部連結。"),
+  indexOnly("2001 AMC 12 題目", "https://artofproblemsolving.com/wiki/index.php?title=2001_AMC_12", "AoPS Wiki 公開題目索引頁面；本站僅提供外部連結。"),
+  indexOnly("2002 AMC 12P 題目", "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12P", "AoPS Wiki 公開題目索引頁面；本站僅提供外部連結。"),
+  indexOnly("2002 AMC 12A 題目", "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12A", "AoPS Wiki 公開題目索引頁面；本站僅提供外部連結。"),
+  indexOnly("2002 AMC 12B 題目", "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12B", "AoPS Wiki 公開題目索引頁面；本站僅提供外部連結。"),
+  indexOnly("2003 AMC 12A 題目", "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12A", "AoPS Wiki 公開題目索引頁面；本站僅提供外部連結。"),
+  indexOnly("2003 AMC 12B 題目", "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12B", "AoPS Wiki 公開題目索引頁面；本站僅提供外部連結。"),
+  indexOnly("2004 AMC 12A 題目", "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12A", "AoPS Wiki 公開題目索引頁面；本站僅提供外部連結。"),
+  indexOnly("2004 AMC 12B 題目", "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12B", "AoPS Wiki 公開題目索引頁面；本站僅提供外部連結。"),
+);
 window.getPublicResources = (levelId, subject, topic) => {
   const items = competitionCatalog[levelId + "::" + subject];
   if (!items) return null;
   const isExhibition = subject.includes('科展');
-  const showExternal = levelId === 'junior-gifted' || (levelId === 'junior' && subject === '會考歷屆') || (levelId === 'senior' && subject === '學測／分科歷屆');
+  const showExternal = (levelId === 'senior-gifted' && subject === 'AMC 10／12 與 AIME') || levelId === 'junior-gifted' || (levelId === 'junior' && subject === '會考歷屆') || (levelId === 'senior' && subject === '學測／分科歷屆');
   let scopedItems = items;
   if (levelId === 'senior-gifted' && subject === '數學奧林匹亞 TMO／IMO、APMO、EGMO' && topic) {
     const match = topic.startsWith('APMO') ? 'APMO' : topic.startsWith('EGMO') ? 'EGMO' : 'TMO';

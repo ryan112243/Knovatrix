@@ -652,6 +652,19 @@ window.getPublicResources = (levelId, subject, topic) => {
     const match = topic.startsWith('學科能力') ? '學科能力' : '分科測驗';
     scopedItems = items.filter(item => item.title.includes(match));
   }
+  if (levelId === 'senior-gifted' && subject.startsWith('學科能力競賽｜') && topic) {
+    const isSchool = topic === '校內初選';
+    const isRegional = topic === '分區複賽';
+    const isFinal = topic === '全國決賽';
+    scopedItems = items.filter(item => {
+      const title = item.title || '';
+      const generic = !/(校內|初選|區|複賽|全國|決賽)/.test(title);
+      if (isSchool) return /校內|初選/.test(title);
+      if (isRegional) return /區|複賽/.test(title) || generic;
+      if (isFinal) return /全國|決賽/.test(title) || generic;
+      return true;
+    });
+  }
   if (levelId === 'junior-gifted' && subject === 'AMC 8／AMC 10' && topic) {
     const match = topic.startsWith('AMC 8') ? 'AMC 8' : topic.includes('10A') ? 'AMC 10A' : topic.includes('10B') ? 'AMC 10B' : '';
     if (match) scopedItems = items.filter(item => item.title.includes(match) || item.title.includes('MAA American Mathematics Competitions'));

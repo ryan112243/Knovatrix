@@ -111,8 +111,8 @@ function learnPage(id) {
     : id === "senior"
       ? "｜學測／分科歷屆"
       : "";
-  const pageTitle = `${level.name}${examArchiveLabel}`;
   const showLearningIndex = learningState.index === true && !learningState.subject;
+  const pageTitle = showLearningIndex ? level.name : `${level.name}${examArchiveLabel}`;
   if (!showLearningIndex && (!learningState.subject || !level.subjects[learningState.subject])) learningState.subject = subjectNames[0];
   if (showLearningIndex) {
     return '<section class="page-hero"><div class="wrap reveal"><div class="breadcrumbs"><a href="#/">首頁</a>　/　' + level.name + '</div><h1>' + pageTitle + '</h1></div></section><div class="wrap learning-shell"><aside class="sidebar" aria-label="學科與專題"><div class="sidebar-heading"><p class="sidebar-label">學科與專題</p><button class="collapse-sidebar" type="button" data-collapse-sidebar>全部收合</button></div>' + subjectSidebar(subjectNames, id, []) + '</aside><section class="learning-main"><div class="learning-toolbar"><h2>學科與專題</h2></div><article class="unit-card">' + learningIndexPanel(id, subjectNames) + '</article></section></div>';
@@ -652,7 +652,7 @@ function syncLearningUrl({ push = true } = {}) {
 }
 
 function bindPageEvents() {
-  document.querySelectorAll("[data-subject]").forEach(b => b.addEventListener("click", event => { event.preventDefault(); const group = b.closest(".subject-group"); if (group?.open && learningState.subject === b.dataset.subject) { learningState.sidebarOpen = false; group.removeAttribute("open"); return; } learningState.index = false; learningState.index = false; learningState.subject = b.dataset.subject; learningState.sidebarOpen = true; learningState.topic = null; learningState.tab = "notes"; if (learningState.subject === "數理資優班甄選") { learningState.giftedSchool = ""; learningState.scienceLabSchool = ""; } syncLearningUrl(); render({ preserveScroll: true }); }));
+  document.querySelectorAll("[data-subject]").forEach(b => b.addEventListener("click", event => { event.preventDefault(); const group = b.closest(".subject-group"); if (group?.open && learningState.subject === b.dataset.subject) { learningState.sidebarOpen = false; group.removeAttribute("open"); return; } learningState.index = false; learningState.subject = b.dataset.subject; learningState.sidebarOpen = true; learningState.topic = null; learningState.tab = "notes"; if (learningState.subject === "數理資優班甄選") { learningState.giftedSchool = ""; learningState.scienceLabSchool = ""; } syncLearningUrl(); render({ preserveScroll: true }); }));
   document.querySelectorAll("[data-index-subject]").forEach(b => b.addEventListener("click", () => { learningState.index = false; learningState.subject = b.dataset.indexSubject; learningState.topic = null; learningState.tab = "notes"; learningState.sidebarOpen = true; syncLearningUrl(); render({ preserveScroll: true }); }));
   document.querySelectorAll("[data-collapse-sidebar]").forEach(b => b.addEventListener("click", () => { learningState.sidebarOpen = false; document.querySelectorAll(".subject-group[open]").forEach(group => group.removeAttribute("open")); }));
   document.querySelectorAll("[data-topic]").forEach(b => b.addEventListener("click", () => { learningState.topic = b.dataset.topic; learningState.tab = "notes"; syncLearningUrl(); render({ preserveScroll: true }); }));

@@ -254,7 +254,7 @@ a.public-resource-card:hover { border-color: var(--forest-2); box-shadow: 0 8px 
 .footer-links { display: flex; gap: 22px; font-size: 13px; font-weight: 600; }
 .site-footer p { text-align: right; }
 .copyright-notice { grid-column: 1 / -1; padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
-.copyright-notice summary { width: max-content; color: var(--ink); font-weight: 700; cursor: pointer; }
+.copyright-notice b { display: block; width: max-content; color: var(--ink); font-weight: 700; }
 .copyright-notice p { max-width: 920px; margin: 10px 0 0; text-align: left; }
 .copyright-notice a { color: var(--forest-2); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
 .seo-page { min-height: 70vh; }

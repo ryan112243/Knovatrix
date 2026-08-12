@@ -49,3 +49,37 @@
     render({ preserveScroll: true });
   }, true);
 })();
+
+// Remove the standalone science-lab training entry. Historical science-class files stay intact.
+(() => {
+  const standaloneLab = "\u79d1\u5b78\u73ed\u5be6\u9a57\u5be6\u4f5c";
+  if (typeof levels !== "undefined" && levels["junior-gifted"]?.subjects) {
+    delete levels["junior-gifted"].subjects[standaloneLab];
+  }
+  const route = (location.hash.slice(1) || "/").split("?")[0];
+  if (route === "/learn/junior-gifted" && learningState.subject === standaloneLab) {
+    learningState.index = true;
+    learningState.subject = null;
+    learningState.topic = null;
+    learningState.tab = "notes";
+    render({ preserveScroll: true });
+  } else if (route === "/learn/junior-gifted") {
+    render({ preserveScroll: true });
+  }
+})();
+
+// The core catalogue is encapsulated; remove only the standalone entry from rendered navigation.
+(() => {
+  const standaloneLab = "\u79d1\u5b78\u73ed\u5be6\u9a57\u5be6\u4f5c";
+  const removeStandaloneLabEntry = () => {
+    document.querySelectorAll("[data-subject], [data-index-subject]").forEach(control => {
+      const subject = control.dataset.subject || control.dataset.indexSubject;
+      if (subject !== standaloneLab) return;
+      const container = control.closest(".subject-group, .index-subject-card, .subject-card, li") || control;
+      container.remove();
+    });
+  };
+  const target = document.querySelector("#app") || document.body;
+  new MutationObserver(removeStandaloneLabEntry).observe(target, { childList: true, subtree: true });
+  removeStandaloneLabEntry();
+})();

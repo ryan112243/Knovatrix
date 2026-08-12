@@ -1,0 +1,51 @@
+﻿(function () {
+  const juniorGifted = "junior-gifted";
+  const mathSelection = "\u6578\u7406\u8cc7\u512a\u73ed\u7504\u9078";
+  const scienceSelection = "\u79d1\u5b78\u73ed\u7504\u9078\u8003\u53e4\u984c";
+  const originalSubjectSidebar = window.subjectSidebar;
+  const originalTabPanel = window.tabPanel;
+
+  function scienceExamSchoolPanel(schoolName) {
+    const catalog = window.scienceClassExamCatalog || {};
+    const schoolNames = Object.keys(catalog);
+    if (!schoolName) {
+      return `<div class="tab-panel school-selection-panel"><div class="school-selection-intro"><b>\u8acb\u5148\u9078\u64c7\u5b78\u6821</b><p>\u9078\u5b9a\u5b78\u6821\u5f8c\uff0c\u4e2d\u592e\u5340\u57df\u624d\u6703\u986f\u793a\u8a72\u6821\u7684\u79d1\u5b78\u73ed\u7504\u9078\u6b77\u5c46\u8a66\u984c\u3002</p></div><div class="public-resource-grid school-selection-grid">${schoolNames.map(name => { const school = catalog[name]; return `<button class="public-resource-card school-choice" type="button" data-science-exam-school="${name}"><span class="resource-badge official">\u5b78\u6821</span><b>${name}</b><p>${school.city || ""} \u00b7 \u79d1\u5b78\u73ed\u7504\u9078\u8003\u53e4\u984c</p><small>\u67e5\u770b\u6b77\u5c46\u8a66\u984c \u2192</small></button>`; }).join("")}</div></div>`;
+    }
+    return window.scienceExamPanel(schoolName);
+  }
+
+  window.subjectSidebar = function (subjectNames, id, orderedTopics) {
+    if (id !== juniorGifted) return originalSubjectSidebar(subjectNames, id, orderedTopics);
+    return subjectNames.map(subject => {
+      const isOpen = learningState.sidebarOpen && subject === learningState.subject;
+      if (subject === mathSelection) {
+        const catalog = window.juniorGiftedMathExamCatalog || {};
+        const cities = Object.keys(catalog);
+        return `<details class="subject-group" ${isOpen ? "open" : ""}><summary data-subject="${subject}"><span>${subject}</span><span aria-hidden="true">⌄</span></summary><ul class="topic-list gifted-math-tree">${cities.map(city => `<li><details class="city-group" ${city === learningState.giftedCity ? "open" : ""}><summary data-gifted-city="${city}">${city}</summary><ul class="topic-list">${(catalog[city] || []).length ? catalog[city].map(item => `<li><button class="topic-button ${learningState.giftedCity === city && learningState.giftedSchool === item.name ? "active" : ""}" data-gifted-school="${city}::${item.name}">${item.name}</button></li>`).join("") : `<li class="topic-empty">\u5c1a\u672a\u5efa\u6a94\u5b78\u6821</li>`}</ul></details></li>`).join("")}</ul></details>`;
+      }
+      if (subject === scienceSelection) {
+        const schools = Object.keys(window.scienceClassExamCatalog || {});
+        return `<details class="subject-group" ${isOpen ? "open" : ""}><summary data-subject="${subject}"><span>${subject}</span><span aria-hidden="true">⌄</span></summary><ul class="topic-list">${schools.map(name => `<li><button class="topic-button ${learningState.scienceLabSchool === name ? "active" : ""}" data-science-exam-school="${name}">${name}</button></li>`).join("")}</ul></details>`;
+      }
+      return originalSubjectSidebar([subject], id, orderedTopics);
+    }).join("");
+  };
+
+  window.tabPanel = function (tab, levelId, subject, topic) {
+    if (tab === "files" && levelId === juniorGifted && subject === scienceSelection) return scienceExamSchoolPanel(learningState.scienceLabSchool);
+    return originalTabPanel(tab, levelId, subject, topic);
+  };
+
+  document.addEventListener("click", event => {
+    const button = event.target.closest("[data-science-exam-school]");
+    if (!button) return;
+    event.preventDefault();
+    learningState.subject = scienceSelection;
+    learningState.scienceLabSchool = button.dataset.scienceExamSchool;
+    learningState.topic = learningState.scienceLabSchool;
+    learningState.tab = "files";
+    learningState.sidebarOpen = true;
+    syncLearningUrl();
+    render({ preserveScroll: true });
+  }, true);
+})();

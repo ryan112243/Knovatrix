@@ -83,3 +83,20 @@
   new MutationObserver(removeStandaloneLabEntry).observe(target, { childList: true, subtree: true });
   removeStandaloneLabEntry();
 })();
+
+// Practice policy: regular learning routes use the practice studio instead of PDF lists.
+(() => {
+  const practiceUrl = "https://ryan112243.github.io/Knovatrix-Practice/";
+  const practiceOnlyLevels = new Set(["elementary-gifted", "junior", "senior"]);
+  const giftedLevels = new Set(["junior-gifted", "senior-gifted"]);
+  const previousTabPanel = window.tabPanel;
+  const practicePanel = (levelId, subject, topic) => `<div class="tab-panel public-resource-panel practice-studio-panel"><div class="rights-banner"><b>\u672c\u55ae\u5143\u6539\u7528\u5237\u984c\u7ad9\u7df4\u7fd2</b><p>\u9078\u64c7\u5b78\u6bb5\u3001\u55ae\u5143\u8207\u984c\u578b\uff0c\u5efa\u7acb\u4f60\u7684\u7df4\u7fd2\u4efb\u52d9\u3002\u9019\u500b\u5b78\u7fd2\u8def\u7dda\u4e0d\u63d0\u4f9b PDF \u4e0b\u8f09\u3002</p></div><div class="public-resource-grid"><a class="public-resource-card" href="${practiceUrl}" target="_blank" rel="noopener noreferrer"><span class="resource-badge official">\u5237\u984c\u7ad9</span><b>${subject || "\u7df4\u7fd2\u4efb\u52d9"}</b><p>${topic || "\u9078\u64c7\u55ae\u5143\u5f8c\u958b\u59cb\u7df4\u7fd2"}</p><small>\u524d\u5f80\u5237\u984c\u7ad9 \u2197</small></a></div></div>`;
+  const giftedPracticeLink = `<section class="featured-notes practice-link-panel"><div class="featured-notes-head"><div><b>\u5237\u984c\u7df4\u7fd2</b><span>\u9664\u4e86\u6b77\u5c46 PDF\uff0c\u4e5f\u53ef\u4ee5\u81ea\u884c\u9078\u64c7\u55ae\u5143\u8207\u984c\u578b\u7df4\u7fd2\u3002</span></div><a href="${practiceUrl}" target="_blank" rel="noopener noreferrer">\u524d\u5f80\u5237\u984c\u7ad9 \u2192</a></div></section>`;
+  window.tabPanel = function(tab, levelId, subject, topic) {
+    if (tab === "files" && practiceOnlyLevels.has(levelId)) return practicePanel(levelId, subject, topic);
+    const panel = previousTabPanel(tab, levelId, subject, topic);
+    if (tab === "files" && giftedLevels.has(levelId)) return `${panel}${giftedPracticeLink}`;
+    return panel;
+  };
+  if ((location.hash || "").includes("/learn/")) render({ preserveScroll: true });
+})();

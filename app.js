@@ -23,6 +23,24 @@ const levels = {
 if ("scrollRestoration" in history) history.scrollRestoration = "manual";
 
 const catalogLevels = window.curriculumLevels || levels;
+const practiceSiteUrl = "https://ryan112243.github.io/Knovatrix-Practice/";
+
+function practiceLinkPanel(levelId, subject, topic) {
+  const level = catalogLevels[levelId]?.name || "";
+  const params = new URLSearchParams({ level, subject, deck: topic });
+  const href = `${practiceSiteUrl}#/setup/options?${params.toString()}`;
+  return `<div class="tab-panel practice-link-panel"><div class="practice-link-copy"><span class="resource-badge official">線上刷題</span><h4>${topic}</h4><p>此單元已提供選擇題與填充題，可直接建立練習任務並自動核對答案。</p></div><a class="button" href="${href}" target="_blank" rel="noopener noreferrer">前往刷題站 →</a></div>`;
+}
+
+function hasPracticeBank(levelId, subject) {
+  const supported = {
+    "elementary-gifted": ["數學", "自然科學"],
+    junior: ["數學", "生物", "理化", "地球科學"],
+    senior: ["數學", "物理", "化學", "生物", "地球科學"],
+    "junior-gifted": ["資優數學主題", "資優自然主題"]
+  };
+  return supported[levelId]?.includes(subject) || false;
+}
 
 const forms = [
   { icon: "🐞", title: "回報試題／詳解勘誤", desc: "告訴我們題目、答案或詳解哪裡需要修正。", fields: ["學制與科目", "單元或題號", "錯誤說明", "截圖（選填）"] },
@@ -628,6 +646,7 @@ function tabPanel(tab, levelId, subject, topic) {
   if (tab === "files" && levelId === "junior-gifted" && subject === "科學班甄選考古題") return scienceExamPanel(topic);
   if (tab === "files" && levelId === "senior-gifted" && subject === "科學班聯合學科資格考") return scienceQualificationExamPanel(topic);
   if (tab === "files" && levelId === "junior-gifted" && subject === "張進通許世賢國中數學能力競試" && !window.getPublicResources?.(levelId, subject, topic)) return `<div class="tab-panel empty-state"><div><span>📂</span><b>${topic}</b><p>目前沒有檔案。</p></div></div>`;
+  if (tab === "files" && hasPracticeBank(levelId, subject)) return practiceLinkPanel(levelId, subject, topic);
   const publicResources = tab === "files" ? window.getPublicResources?.(levelId, subject, topic) : null;
   if (publicResources) return publicResourcePanel(publicResources);
   if (tab === "files") return `<div class="tab-panel empty-state"><div><span>📂</span><b>PDF 題庫尚未上架</b><br>未來將依年份、來源與難度自動整理在這裡。</div></div>`;

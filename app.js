@@ -369,19 +369,18 @@ function giftedMathSelectionState() {
   return { catalog, cities, city, school, schools: catalog[city] || [] };
 }
 
-function subjectSidebar(subjectNames, id, orderedTopics) {
+function subjectSidebar(subjectNames, id) {
+  const level = catalogLevels[id];
   return subjectNames.map(subject => {
     if (id === "junior-gifted" && subject === "數理資優班甄選") {
-      return `<details class="subject-group" ${learningState.sidebarOpen && subject === learningState.subject ? "open" : ""}><summary data-subject="${subject}"><span>${subject}</span><span aria-hidden="true">⌄</span></summary><ul class="topic-list"><li class="topic-empty">目前暫無公開資料</li></ul></details>`;
+      const state = giftedMathSelectionState();
+      return `<details class="subject-group" ${learningState.sidebarOpen && subject === learningState.subject ? "open" : ""}><summary data-subject="${subject}"><span>${subject}</span><span aria-hidden="true">⌄</span></summary><ul class="topic-list gifted-math-tree">${state.cities.map(city => `<li><details class="city-group" ${city === state.city ? "open" : ""}><summary data-gifted-city="${city}">${city}</summary><ul class="topic-list">${(state.catalog[city] || []).length ? state.catalog[city].map(item => `<li><button class="topic-button ${state.city === city && state.school === item.name ? "active" : ""}" data-gifted-school="${city}::${item.name}">${item.name}</button></li>`).join("") : `<li class="topic-empty">尚未建檔學校</li>`}</ul></details></li>`).join("")}</ul></details>`;
     }
-    if (id !== "junior-gifted" || subject !== "數理資優班甄選") {
-      return `<details class="subject-group" ${learningState.sidebarOpen && subject === learningState.subject ? "open" : ""}><summary data-subject="${subject}"><span>${subject}</span><span aria-hidden="true">⌄</span></summary><ul class="topic-list">${orderedTopics.map(topic => `<li><button class="topic-button ${topic === learningState.topic ? "active" : ""}" data-topic="${topic}">${topic}</button></li>`).join("")}</ul></details>`;
-    }
-    const state = giftedMathSelectionState();
-    return `<details class="subject-group" ${learningState.sidebarOpen && subject === learningState.subject ? "open" : ""}><summary data-subject="${subject}"><span>${subject}</span><span aria-hidden="true">⌄</span></summary><ul class="topic-list gifted-math-tree">${state.cities.map(city => `<li><details class="city-group" ${city === state.city ? "open" : ""}><summary data-gifted-city="${city}">${city}</summary><ul class="topic-list">${(state.catalog[city] || []).length ? state.catalog[city].map(item => `<li><button class="topic-button ${state.city === city && state.school === item.name ? "active" : ""}" data-gifted-school="${city}::${item.name}">${item.name}</button></li>`).join("") : `<li class="topic-empty">尚未建檔學校</li>`}</ul></details></li>`).join("")}</ul></details>`;
+    const subjectData = level?.subjects?.[subject];
+    const subjectTopics = Array.isArray(subjectData) ? subjectData : (subjectData?.[learningState.order] || subjectData?.curriculum || []);
+    return `<details class="subject-group" ${learningState.sidebarOpen && subject === learningState.subject ? "open" : ""}><summary data-subject="${subject}"><span>${subject}</span><span aria-hidden="true">⌄</span></summary><ul class="topic-list">${subjectTopics.map(topic => `<li><button class="topic-button ${subject === learningState.subject && topic === learningState.topic ? "active" : ""}" data-topic="${topic}" data-topic-subject="${subject}">${topic}</button></li>`).join("")}</ul></details>`;
   }).join("");
 }
-
 function publicResourcePanel(catalog) {
   const rightsNotice = `<div class="rights-banner resource-rights-notice"><b>檔案權利與存取說明</b><p>試題檔案的著作權與檔案權利歸出題方所有。本站僅提供原始公開連結；若 Google Drive 顯示沒有存取權，Knovatrix 無法代為處理，請向檔案擁有者或出題方申請存取。</p></div>`;
   return `<div class="tab-panel public-resource-panel">${rightsNotice}<h4>${catalog.title}</h4><div class="public-resource-grid">${catalog.items.map(item => {
@@ -774,7 +773,7 @@ function bindPageEvents() {
   document.querySelectorAll("[data-subject]").forEach(b => b.addEventListener("click", event => { event.preventDefault(); const group = b.closest(".subject-group"); if (group?.open && learningState.subject === b.dataset.subject) { learningState.sidebarOpen = false; group.removeAttribute("open"); return; } learningState.index = false; learningState.subject = b.dataset.subject; learningState.sidebarOpen = true; learningState.topic = null; learningState.tab = "notes"; if (learningState.subject === "數理資優班甄選") { learningState.giftedSchool = ""; learningState.scienceLabSchool = ""; } syncLearningUrl(); render({ preserveScroll: true }); }));
   document.querySelectorAll("[data-index-subject]").forEach(b => b.addEventListener("click", () => { learningState.index = false; learningState.subject = b.dataset.indexSubject; learningState.topic = null; learningState.tab = "notes"; learningState.sidebarOpen = true; syncLearningUrl(); render({ preserveScroll: true }); }));
   document.querySelectorAll("[data-collapse-sidebar]").forEach(b => b.addEventListener("click", () => { learningState.sidebarOpen = false; document.querySelectorAll(".subject-group[open]").forEach(group => group.removeAttribute("open")); }));
-  document.querySelectorAll("[data-topic]").forEach(b => b.addEventListener("click", () => { learningState.topic = b.dataset.topic; learningState.tab = "notes"; syncLearningUrl(); render({ preserveScroll: true }); }));
+  document.querySelectorAll("[data-topic]").forEach(b => b.addEventListener("click", () => { if (b.dataset.topicSubject) learningState.subject = b.dataset.topicSubject; learningState.index = false; learningState.topic = b.dataset.topic; learningState.tab = "notes"; learningState.sidebarOpen = true; syncLearningUrl(); render({ preserveScroll: true }); }));
   document.querySelectorAll("[data-gifted-city]").forEach(b => b.addEventListener("click", () => { learningState.giftedCity = b.dataset.giftedCity; learningState.giftedSchool = ""; learningState.subject = "數理資優班甄選"; learningState.tab = "files"; learningState.sidebarOpen = true; syncLearningUrl(); render({ preserveScroll: true }); }));
   document.querySelectorAll("[data-gifted-school]").forEach(b => b.addEventListener("click", event => { event.stopPropagation(); const [city, school] = b.dataset.giftedSchool.split("::"); learningState.giftedCity = city; learningState.giftedSchool = school; learningState.subject = "數理資優班甄選"; learningState.topic = `${city}｜${school}`; learningState.tab = "files"; learningState.sidebarOpen = true; syncLearningUrl(); render({ preserveScroll: true }); }));
   document.querySelectorAll("[data-science-lab-school]").forEach(b => b.addEventListener("click", () => { learningState.subject = "科學班甄選考古題"; learningState.scienceLabSchool = b.dataset.scienceLabSchool; learningState.topic = learningState.scienceLabSchool; learningState.tab = "files"; learningState.sidebarOpen = true; syncLearningUrl(); render({ preserveScroll: true }); }));

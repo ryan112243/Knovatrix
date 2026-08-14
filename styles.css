@@ -378,3 +378,14 @@ html { scroll-padding-top: 88px; }
   line-height: 1;
   transform: translateY(-0.52em);
 }
+.archive-home-button { margin-left: auto; }
+.archive-page-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; }
+.archive-rights { margin-bottom: 18px; }
+.archive-resource-heading { margin: 28px 0 16px; font-size: 24px; }
+.archive-index-links { margin-bottom: 16px; }
+.archive-index-links .button-row { margin-top: 14px; }
+.archive-year-grid .public-resource-card { min-height: 154px; }
+@media (max-width: 600px) {
+  .archive-home-button { min-height: 40px; padding: 10px 13px; }
+  .archive-page-actions .button { width: 100%; }
+}

@@ -24,6 +24,18 @@ if ("scrollRestoration" in history) history.scrollRestoration = "manual";
 
 const catalogLevels = window.curriculumLevels || levels;
 const practiceSiteUrl = "https://ryan112243.github.io/Knovatrix-Practice/";
+const annualArchivePages = {
+  junior: { base: "https://ryan112243.github.io/Knovatrix/exam-archives/junior-high-cap/", label: "會考歷屆" },
+  senior: { base: "https://ryan112243.github.io/Knovatrix/exam-archives/gsat-ast/", label: "學測／分科歷屆" }
+};
+
+function annualArchivePageLinks(levelId, topic) {
+  const archive = annualArchivePages[levelId];
+  if (!archive) return "";
+  const year = String(topic || "").match(/\d{2,3}/)?.[0];
+  const yearLink = year ? `<a class="button" href="${archive.base}${year}/">${year} 學年度總頁</a>` : "";
+  return `<div class="tab-panel archive-index-links"><div class="rights-banner"><b>獨立年度索引</b><p>歷屆總頁與每個學年度都有可由搜尋引擎直接建立索引的英文網址。</p></div><div class="button-row"><a class="button secondary" href="${archive.base}">${archive.label}總頁</a>${yearLink}</div></div>`;
+}
 
 function practiceLinkPanel(levelId, subject, topic) {
   const level = catalogLevels[levelId]?.name || "";
@@ -651,7 +663,7 @@ function tabPanel(tab, levelId, subject, topic) {
   if (tab === "files" && isAnnualExamArchive) {
     const archiveResources = window.getPublicResources?.(levelId, subject, topic);
     return archiveResources
-      ? publicResourcePanel(archiveResources)
+      ? `${annualArchivePageLinks(levelId, topic)}${publicResourcePanel(archiveResources)}`
       : `<div class="tab-panel empty-state"><div><span>📂</span><b>${topic}</b><p>此年度官方試題資料尚未建檔。</p></div></div>`;
   }
 

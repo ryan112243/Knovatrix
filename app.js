@@ -646,6 +646,16 @@ function tabPanel(tab, levelId, subject, topic) {
   if (tab === "files" && levelId === "junior-gifted" && subject === "科學班甄選考古題") return scienceExamPanel(topic);
   if (tab === "files" && levelId === "senior-gifted" && subject === "科學班聯合學科資格考") return scienceQualificationExamPanel(topic);
   if (tab === "files" && levelId === "junior-gifted" && subject === "張進通許世賢國中數學能力競試" && !window.getPublicResources?.(levelId, subject, topic)) return `<div class="tab-panel empty-state"><div><span>📂</span><b>${topic}</b><p>目前沒有檔案。</p></div></div>`;
+  const isAnnualExamArchive =
+    (levelId === "junior" && subject === "會考歷屆") ||
+    (levelId === "senior" && subject === "學測／分科歷屆");
+  if (tab === "files" && isAnnualExamArchive) {
+    const archiveResources = window.getPublicResources?.(levelId, subject, topic);
+    return archiveResources
+      ? publicResourcePanel(archiveResources)
+      : `<div class="tab-panel empty-state"><div><span>📂</span><b>${topic}</b><p>此年度官方試題資料尚未建檔。</p></div></div>`;
+  }
+
   if (tab === "files" && hasPracticeBank(levelId, subject)) return practiceLinkPanel(levelId, subject, topic);
   const publicResources = tab === "files" ? window.getPublicResources?.(levelId, subject, topic) : null;
   if (publicResources) return publicResourcePanel(publicResources);

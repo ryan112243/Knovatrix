@@ -26,7 +26,7 @@ const catalogLevels = window.curriculumLevels || levels;
 const practiceSiteUrl = "https://ryan112243.github.io/Knovatrix-Practice/";
 const annualArchivePages = {
   junior: { base: "https://ryan112243.github.io/Knovatrix/exam-archives/junior-high-cap/", label: "會考歷屆" },
-  senior: { base: "https://ryan112243.github.io/Knovatrix/exam-archives/gsat-ast/", label: "學測／分科歷屆" }
+  senior: { base: "https://ryan112243.github.io/Knovatrix/exam-archives/gsat-ast/", label: "學測／分科歷屆", external: { title: "學測模擬考題｜CYVS 外部資源", url: "https://www.cyvs.cy.edu.tw/ischool/public/resource_view/show.php?view=1&aid=996", detail: "由學校網站提供的學測模擬考題外部資源；不代表正式學測歷屆試題。" } }
 };
 
 function annualArchivePageLinks(levelId, topic) {
@@ -34,7 +34,8 @@ function annualArchivePageLinks(levelId, topic) {
   if (!archive) return "";
   const year = String(topic || "").match(/\d{2,3}/)?.[0];
   const yearLink = year ? `<a class="button" href="${archive.base}${year}/">${year} 學年度總頁</a>` : "";
-  return `<div class="tab-panel archive-index-links"><div class="rights-banner"><b>獨立年度索引</b><p>歷屆總頁與每個學年度都有可由搜尋引擎直接建立索引的英文網址。</p></div><div class="button-row"><a class="button secondary" href="${archive.base}">${archive.label}總頁</a>${yearLink}</div></div>`;
+  const external = archive.external ? `<div class="public-resource-grid annual-external-grid"><a class="public-resource-card" href="${archive.external.url}" target="_blank" rel="noopener noreferrer"><span class="resource-badge index">外部資源</span><b>${archive.external.title}</b><p>${archive.external.detail}</p><small>前往學校原始頁面 ↗</small></a></div>` : "";
+  return `<div class="tab-panel archive-index-links"><div class="rights-banner"><b>獨立年度索引</b><p>歷屆總頁與每個學年度都有可由搜尋引擎直接建立索引的英文網址。</p></div><div class="button-row"><a class="button secondary" href="${archive.base}">${archive.label}總頁</a>${yearLink}</div>${external}</div>`;
 }
 
 function practiceLinkPanel(levelId, subject, topic) {

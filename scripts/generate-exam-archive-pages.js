@@ -23,7 +23,8 @@ const archives = [
     title: "學測／分科測驗歷屆試題",
     shortTitle: "學測／分科歷屆",
     description: "依學年度整理學科能力測驗、分科測驗與歷史指考的試題、參考答案及官方公開資料。",
-    spa: `${siteRoot}/#/learn/senior`
+    spa: `${siteRoot}/#/learn/senior`,
+    extras: [{ title: "學測模擬考題｜CYVS 外部資源", url: "https://www.cyvs.cy.edu.tw/ischool/public/resource_view/show.php?view=1&aid=996", detail: "由學校網站提供的學測模擬考題外部資源；不代表正式學測歷屆試題。" }]
   }
 ];
 
@@ -96,7 +97,9 @@ for (const archive of archives) {
     return `<a class="public-resource-card" href="${yearUrl}"><span class="resource-badge official">${yearLabel}</span><b>${archive.key === "junior" ? `${year} 年國中教育會考` : `${year} 學年度學測／分科測驗`}</b><p>共整理 ${grouped.get(year).length} 份試題、答案或官方資料。</p><small>查看年度總頁 →</small></a>`;
   }).join("");
 
-  const overviewBody = `<section class="section"><div class="wrap"><div class="archive-page-actions"><a class="button" href="${archive.spa}">回到學習區</a></div><div class="rights-banner archive-rights"><b>年度索引</b><p>選擇學年度後，可查看該年度已整理的原始公開試題與答案連結。</p></div><div class="public-resource-grid archive-year-grid">${yearCards}</div></div></section>`;
+  const extraCards = (archive.extras || []).map(extra => `<a class="public-resource-card" href="${escapeHtml(extra.url)}" target="_blank" rel="noopener noreferrer"><span class="resource-badge index">外部資源</span><b>${escapeHtml(extra.title)}</b><p>${escapeHtml(extra.detail)}</p><small>前往學校原始頁面 ↗</small></a>`).join("");
+  const extraSection = extraCards ? `<h2 class="archive-resource-heading">外部模擬考資源</h2><div class="public-resource-grid">${extraCards}</div>` : "";
+  const overviewBody = `<section class="section"><div class="wrap"><div class="archive-page-actions"><a class="button" href="${archive.spa}">回到學習區</a></div><div class="rights-banner archive-rights"><b>年度索引</b><p>選擇學年度後，可查看該年度已整理的原始公開試題與答案連結。</p></div><div class="public-resource-grid archive-year-grid">${yearCards}</div>${extraSection}</div></section>`;
   const overviewStructuredData = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",

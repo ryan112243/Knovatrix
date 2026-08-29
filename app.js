@@ -319,7 +319,7 @@ function scienceExamPanel(schoolName, sourceFiles = null) {
     if (!localFiles.length) return `<div class="year-card pending" aria-label="${year} 學年度沒有檔案"><b>${year}</b><small>學年度</small><span>沒有檔案</span></div>`;
     if (localFiles.length === 1) {
       const file = localFiles[0];
-      const href = file.url || file.path;
+      const href = file.url || (file.path ? file.path.replace(/\\/g, "/").replace(/\/{2,}/g, "/") : "");
       const isExternal = /^https?:\/\//i.test(href);
       const isPdf = file.type === "pdf" || /\.pdf(?:$|[?#])/i.test(href);
       const linkMode = isExternal || (isPdf && schoolName !== "彰化高中科學班") ? `target="_blank" rel="noopener noreferrer"` : "download";
@@ -327,7 +327,7 @@ function scienceExamPanel(schoolName, sourceFiles = null) {
       return `<a class="year-card direct" href="${encodeURI(href)}" ${linkMode}><b>${year}</b><small>學年度</small><span>${label} ${isExternal ? "↗" : isPdf ? "PDF" : "↓"}</span></a>`;
     }
     return `<details class="year-card direct multi-file"><summary><b>${year}</b><small>學年度 · ${localFiles.length} 份檔案</small><span>展開檔案 ↓</span></summary><div class="year-downloads">${localFiles.map(file => {
-      const href = file.url || file.path;
+      const href = file.url || (file.path ? file.path.replace(/\\/g, "/").replace(/\/{2,}/g, "/") : "");
       const isExternal = /^https?:\/\//i.test(href);
       const isPdf = file.type === "pdf" || /\.pdf(?:$|[?#])/i.test(href);
       const linkMode = isExternal || (isPdf && schoolName !== "彰化高中科學班") ? `target="_blank" rel="noopener noreferrer"` : "download";

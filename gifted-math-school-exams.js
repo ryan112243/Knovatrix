@@ -8,6 +8,7 @@ window.juniorGiftedMathRegionMap = {
 };
 const school = (name, files = [], officialUrl = "") => ({ name, files, officialUrl });
 const official = (label, url, detail) => ({ label, url, detail });
+const zhengge = (label, url, detail) => ({ label, url, detail, source: "正哥愛數學" });
 window.juniorGiftedMathExamCatalog = {
   "基隆市": [school("國立基隆高級中學"), school("國立基隆高級女子中學")],
   "臺北市": [school("臺北市立建國高級中學"), school("臺北市立第一女子高級中學"), school("國立臺灣師範大學附屬高級中學"), school("臺北市立成功高級中學"), school("臺北市立中山女子高級中學"), school("臺北市立松山高級中學"), school("臺北市立大同高級中學"), school("臺北市立麗山高級中學"), school("臺北市立景美女子高級中學"), school("臺北市立成淵高級中學"), school("臺北市立大直高級中學"), school("臺北市立百齡高級中學")],
@@ -30,3 +31,44 @@ window.juniorGiftedMathExamCatalog = {
   "臺東縣": [school("國立臺東高級中學"), school("國立臺東女子高級中學")],
   "澎湖縣": [], "金門縣": [], "連江縣": []
 };
+
+// 只收錄已核對的學校官方題庫與「正哥愛數學」頁面；其他來源先不加入。
+const setGiftedMathFiles = (city, name, files) => {
+  const entry = window.juniorGiftedMathExamCatalog[city].find(item => item.name === name);
+  if (entry) entry.files = files;
+};
+setGiftedMathFiles("臺北市", "臺北市立建國高級中學", [
+  zhengge("建中數理資優班逐年試題", "https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/建中資優班", "100–114 年；原站可選擇各年試題。")
+]);
+setGiftedMathFiles("桃園市", "桃園市立武陵高級中學", [
+  official("武陵數理資優班參考試題", "https://www.wlsh.tyc.edu.tw/p/16-1000-14437.php?Lang=zh-tw", "校方提供的參考試題；不是特定學年度的歷屆考卷。")
+]);
+setGiftedMathFiles("臺中市", "臺中市立臺中第一高級中等學校", [
+  official("中一中數資班歷屆考題", "https://tcfsh.tc.edu.tw/p/403-1076-4401.php", "106–115 學年度；逐年提供各科試題，部分年份含解答與實作。"),
+  zhengge("中一中資優班逐年試題", "https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/中一中資優班", "100–114 年；含第一階段及部分年份第二階段實作。")
+]);
+setGiftedMathFiles("臺中市", "臺中市立文華高級中等學校", [
+  official("文華高中資優鑑定歷屆考題", "https://web.whsh.tc.edu.tw/ischool/publish_page/7/?cid=1183", "官方頁面列有 98–110 學年度試題；部分年度為數理暨語文合併資料，請依檔案內容辨識。")
+]);
+setGiftedMathFiles("彰化縣", "國立彰化高級中學", [
+  official("彰中數理資優班歷屆試題", "https://www.chsh.chc.edu.tw/p/412-1009-414.php?Lang=zh-tw", "校方歷屆試題入口。"),
+  official("114 學年度數理資優班複選試題", "https://www.chsh.chc.edu.tw/p/405-1009-169977,c414.php?Lang=zh-tw", "數學、物理、化學官方試題與參考解答。"),
+  zhengge("彰中資優班逐年試題", "https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/彰中資優班", "100–114 年；原站可選擇各年複試試題。")
+]);
+setGiftedMathFiles("彰化縣", "國立彰化女子高級中學", [
+  official("彰女資優鑑定複選參考例題", "https://www.chgsh.chc.edu.tw/%E5%85%AC%E5%91%8A%E8%A8%8A%E6%81%AF/%E8%A1%8C%E6%94%BF%E5%96%AE%E4%BD%8D/%E6%95%99%E5%8B%99%E8%99%95/%E7%89%B9%E6%95%99%E7%B5%84/%E5%AD%B8%E8%A1%93%E6%80%A7%E5%90%91%E8%B3%87%E5%84%AA%E9%91%91%E5%AE%9A/", "官方數理科複選例題；並非歷屆正式考卷。")
+]);
+setGiftedMathFiles("雲林縣", "國立斗六高級中學", [
+  official("斗六高中數理資優班歷屆試題", "https://www.tlsh.ylc.edu.tw/affairs/aca-affairs/tlsh3/tlsh3-4/", "107–114 學年度複選；逐年提供數學、化學、生物、物理考題。")
+]);
+setGiftedMathFiles("雲林縣", "國立虎尾高級中學", [
+  official("虎尾高中數理資優班歷屆試題", "https://www.hwsh.ylc.edu.tw/ischool/publish_page/3/?cid=57", "官方招生訊息頁列有 109–114 學年度甄選試題；依年份選擇下載。")
+]);
+setGiftedMathFiles("嘉義市", "國立嘉義高級中學", [
+  official("嘉中資優班歷屆試題與解答", "https://www.cysh.cy.edu.tw/p/403-1008-242-1.php?Lang=zh-tw", "100–113 學年度；原站逐年提供各科試題與解答。"),
+  zhengge("嘉中資優班逐年試題", "https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/嘉中資優班", "102–114 年；原站可選擇各年複試試題。")
+]);
+setGiftedMathFiles("臺南市", "國立臺南第一高級中學", [
+  official("110 學年度數理資優班複選試題", "https://www.tnfsh.tn.edu.tw/latestevent/Details.aspx?Parser=22%2C6%2C256%2C%2C%2C%2C4802", "校方提供數學、自然及數學／物理／化學／生物實作試題。"),
+  zhengge("南一中資優班逐年試題", "https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/南一中資優班", "100–113 年；原站可選擇各年第一階段及部分複試試題。")
+]);

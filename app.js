@@ -377,7 +377,7 @@ function giftedMathSchoolPanel(city, schoolName) {
   if (!school) return `<div class="tab-panel empty-state"><div><span>🏫</span><b>${city} 尚未建檔學校資料</b><p>目前沒有可顯示的正式數理資優班學校題庫。</p></div></div>`;
   const files = school.files || [];
   if (!files.length) return `<div class="tab-panel empty-state"><div><span>📂</span><b>${city}｜${school.name}</b><p>目前尚未建檔試題。</p></div></div>`;
-  return `<div class="tab-panel public-resource-panel"><div class="rights-banner"><b>${city}｜${school.name}</b><p>以下為已收錄的數理資優班甄選試題。</p></div><div class="public-resource-grid">${files.map(file => `<a class="public-resource-card" href="${file.url}" target="_blank" rel="noopener noreferrer"><span class="resource-badge official">官方資料</span><b>${file.label}</b><p>${file.year || ""} ${file.detail || ""}</p><small>開啟試題 ↗</small></a>`).join("")}</div></div>`;
+  return `<div class="tab-panel public-resource-panel"><div class="rights-banner"><b>${city}｜${school.name}</b><p>以下是已核對的學校官方題庫或正哥愛數學試題頁。各來源所收錄的科目與年份，請以原站內容為準。</p></div><div class="public-resource-grid">${files.map(file => `<a class="public-resource-card" href="${file.url}" target="_blank" rel="noopener noreferrer"><span class="resource-badge ${file.source === "正哥愛數學" ? "index" : "official"}">${file.source || "官方資料"}</span><b>${file.label}</b><p>${file.year || ""} ${file.detail || ""}</p><small>開啟來源 ↗</small></a>`).join("")}</div></div>`;
 }
 
 function giftedMathSelectionState() {

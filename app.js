@@ -334,17 +334,13 @@ function scienceExamPanel(schoolName, sourceFiles = null) {
       const label = file.label?.replace(/^學年度/, "") || (isPdf ? "預覽 PDF" : "下載檔案");
       return `<a href="${encodeURI(href)}" ${linkMode}>${label} ${isExternal ? "↗" : isPdf ? "PDF" : "↓"}</a>`;
     }).join("")}</div></details>`;
-  }).join("")}</div>${!sourceFiles ? `<div class="rights-banner science-credit"><b>補題來源與致謝</b><p>部分年度找不到可取得的官方題目，數學試題整理版承蒙「正哥愛數學」的資料幫助補齊。整理版並非學校官方原卷；感謝正哥分享題目與解題資源。${school.mathSolutions ? `想看更完整的數學解析，可到 <a href="${encodeURI(school.mathSolutions)}" target="_blank" rel="noopener noreferrer">正哥愛數學｜${schoolName} ↗</a>。` : ""}</p></div>` : ""}</div>`;
+  }).join("")}</div>${!sourceFiles ? `<div class="rights-banner science-credit"><b>補題來源與致謝</b><p>部分年度找不到可取得的官方題目，數學試題整理版承蒙「正哥愛數學」的資料幫助補齊。整理版並非學校官方原卷；感謝正哥分享題目資料。</p></div>` : ""}</div>`;
 }
 
 function scienceMathSolutionsPanel(schoolName) {
   const school = window.scienceClassExamCatalog?.[schoolName];
   if (!school) return "";
-  if (!school.mathSolutions) {
-    return `<div class="tab-panel empty-state"><div><span>💡</span><b>${schoolName} 數學解題來源尚未建檔</b><p>正哥愛數學目前沒有這所學校的科學班分類頁；請先參考試題頁的校方來源，不將其他學校的解答誤作本校資料。</p></div></div>`;
-  }
-  const yearLinks = Object.entries(school.mathSolutionYears || {}).sort((a, b) => Number(b[0]) - Number(a[0]));
-  return `<div class="tab-panel public-resource-panel"><div class="rights-banner"><b>${schoolName}｜數學解題</b><p>若想看更完整的數學解答與解題說明，可到「正哥愛數學」查找；各年度是否有解析，仍以原站內容為準。感謝正哥分享。</p></div><div class="public-resource-grid"><a class="public-resource-card" href="${encodeURI(school.mathSolutions)}" target="_blank" rel="noopener noreferrer"><span class="resource-badge official">外部解題資源</span><b>${schoolName}歷屆整理</b><p>正哥愛數學的學校分類頁，可依學年度查找題目與解析。</p><small>查看正哥網站 ↗</small></a>${yearLinks.map(([year, url]) => `<a class="public-resource-card" href="${encodeURI(url)}" target="_blank" rel="noopener noreferrer"><span class="resource-badge official">對應年度</span><b>${year} 學年度數學</b><p>${schoolName}的題目與解題來源頁。</p><small>開啟年度頁 ↗</small></a>`).join("")}</div></div>`;
+  return `<div class="tab-panel empty-state"><div><span>💡</span><b>${schoolName} 數學解題尚未收錄</b><p>目前先提供可核對來源的試題；解題內容待整理後再收錄。</p></div></div>`;
 }
 
 function scienceLabExamPanel(schoolName) {

@@ -53,7 +53,7 @@ const pageShell = ({ title, description, canonical, breadcrumb, body, structured
   <meta name="twitter:card" content="summary">
   <title>${escapeHtml(title)}</title>
   <link rel="icon" href="${siteRoot}/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="${siteRoot}/styles.css?v=visual-refresh-20261004-1">
+  <link rel="stylesheet" href="${siteRoot}/styles.css?v=exam-archives-20260814-1">
 </head>
 <body>
   <a class="skip-link" href="#main-content">跳至主要內容</a>

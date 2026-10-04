@@ -1088,5 +1088,21 @@
     }
   ]
 };
+school.files["102"] = [
+  {
+    label: "102學年度科學班數學試題整理版（20題、2頁；非官方原卷）",
+    path: "files/science-class/cysh/102/102嘉義高中科學班數學試題整理版.pdf"
+  }
+];
+school.files["106"] = [
+  {
+    label: "106學年度官方各科試題下載頁（數學、國文、英語、物理、生物、化學）",
+    url: "https://www.cysh.cy.edu.tw/p/406-1008-2444,r255.php"
+  },
+  {
+    label: "106學年度科學班數學試題整理版（20題、2頁；非官方原卷）",
+    path: "files/science-class/cysh/106/106嘉義高中科學班數學試題整理版.pdf"
+  }
+];
 })();
 

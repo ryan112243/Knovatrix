@@ -241,7 +241,15 @@ function learnPage(id) {
   const isGiftedMathSelection = id === "junior-gifted" && learningState.subject === "數理資優班甄選";
   const isScienceLabSelection = id === "junior-gifted" && learningState.subject === "科學班甄選考古題";
   const subjectData = level.subjects[learningState.subject];
-  const topics = Array.isArray(subjectData) ? subjectData : (subjectData[learningState.order] || subjectData.curriculum);
+  const topics = Array.isArray(subjectData)
+    ? [...subjectData]
+    : [...(subjectData[learningState.order] || subjectData.curriculum)];
+  const proofLibraryTopic = id === "junior" && learningState.subject === "數學"
+    ? "證明與公式"
+    : id === "junior-gifted" && learningState.subject === "資優數學主題"
+      ? "證明與公式"
+      : "";
+  if (proofLibraryTopic && !topics.includes(proofLibraryTopic)) topics.push(proofLibraryTopic);
   const giftedSelection = isGiftedMathSelection ? giftedMathSelectionState() : null;
   if (isGiftedMathSelection) {
     if (learningState.giftedCity && !giftedSelection.cities.includes(learningState.giftedCity)) learningState.giftedCity = "";
@@ -252,6 +260,11 @@ function learnPage(id) {
     if (!schoolNames.includes(learningState.scienceLabSchool)) learningState.scienceLabSchool = "";
     learningState.topic = learningState.scienceLabSchool || "選擇學校";
   } else if (!learningState.topic || !topics.includes(learningState.topic)) learningState.topic = topics[0];
+  const isProofLibrary = Boolean(proofLibraryTopic && learningState.topic === proofLibraryTopic);
+  if (isProofLibrary) {
+    const files = juniorMathProofFiles(id === "junior-gifted");
+    return `<section class="page-hero"><div class="wrap reveal"><div class="breadcrumbs"><a href="#/">首頁</a>　/　${level.name}</div><h1>${pageTitle}</h1></div></section><div class="wrap learning-shell"><aside class="sidebar" aria-label="學科與專題"><div class="sidebar-heading"><p class="sidebar-label">學科與專題</p><button class="collapse-sidebar" type="button" data-collapse-sidebar>全部收合</button></div>${subjectSidebar(subjectNames, id, topics)}</aside><section class="learning-main"><div class="learning-toolbar"><h2>${learningState.subject}</h2></div><article class="unit-card"><h3>${proofLibraryTopic}</h3><div class="proof-resource-grid">${files.map(file => `<a class="proof-resource-card" href="files/junior-math/${file.kind}/${encodeURIComponent(file.name)}" download>${file.name.replace(/\.docx$/i, "")}</a>`).join("")}</div></article></section></div>`;
+  }
   const orderedTopics = topics;
   if (id === "elementary-gifted" && learningState.tab === "solutions") learningState.tab = "notes";
   const isScienceExam = id === "junior-gifted" && learningState.subject === "科學班甄選考古題" && window.scienceClassExamCatalog?.[learningState.topic];
@@ -273,10 +286,11 @@ function learnPage(id) {
     : canUseSolutions && (hideLearningNotes || isScienceExam)
       ? { files: "試題", solutions: "解題" }
       : canUseSolutions
-        ? { notes: "學習重點", files: "試題", solutions: "解題", ...(id === "junior" && learningState.subject === "數學" ? { proofs: "證明與公式" } : id === "junior-gifted" && learningState.subject === "資優數學主題" ? { proofs: "證明與公式" } : {}) }
+        ? { notes: "學習重點", files: "試題", solutions: "解題" }
         : hideLearningNotes || isScienceExam
           ? { files: "試題" }
-          : { notes: "學習重點", files: "試題", ...(id === "junior" && learningState.subject === "數學" ? { proofs: "證明與公式" } : id === "junior-gifted" && learningState.subject === "資優數學主題" ? { proofs: "證明與公式" } : {}) };
+          : { notes: "學習重點", files: "試題" };
+  if (!Object.hasOwn(tabs, learningState.tab)) learningState.tab = Object.keys(tabs)[0];
   const isScienceQualificationExam = id === "senior-gifted" && learningState.subject === "科學班聯合學科資格考";
   const hasPublicResources = window.getPublicResources?.(id, learningState.subject, learningState.topic);
   const unitDescription = isScienceLabSelection
@@ -396,7 +410,8 @@ function subjectSidebar(subjectNames, id) {
       return `<details class="subject-group" ${learningState.sidebarOpen && subject === learningState.subject ? "open" : ""}><summary data-subject="${subject}"><span>${subject}</span><span aria-hidden="true">⌄</span></summary><ul class="topic-list gifted-math-tree">${state.cities.map(city => `<li><details class="city-group" ${city === state.city ? "open" : ""}><summary data-gifted-city="${city}">${city}</summary><ul class="topic-list">${(state.catalog[city] || []).length ? state.catalog[city].map(item => `<li><button class="topic-button ${state.city === city && state.school === item.name ? "active" : ""}" data-gifted-school="${city}::${item.name}">${item.name}</button></li>`).join("") : `<li class="topic-empty">尚未建檔學校</li>`}</ul></details></li>`).join("")}</ul></details>`;
     }
     const subjectData = level?.subjects?.[subject];
-    const subjectTopics = Array.isArray(subjectData) ? subjectData : (subjectData?.[learningState.order] || subjectData?.curriculum || []);
+    const subjectTopics = Array.isArray(subjectData) ? [...subjectData] : [...(subjectData?.[learningState.order] || subjectData?.curriculum || [])];
+    if ((id === "junior" && subject === "數學") || (id === "junior-gifted" && subject === "資優數學主題")) subjectTopics.push("證明與公式");
     return `<details class="subject-group" ${learningState.sidebarOpen && subject === learningState.subject ? "open" : ""}><summary data-subject="${subject}"><span>${subject}</span><span aria-hidden="true">⌄</span></summary><ul class="topic-list">${subjectTopics.map(topic => `<li><button class="topic-button ${subject === learningState.subject && topic === learningState.topic ? "active" : ""}" data-topic="${topic}" data-topic-subject="${subject}">${topic}</button></li>`).join("")}</ul></details>`;
   }).join("");
 }
@@ -512,16 +527,15 @@ function ensureFeaturedNotes(panelHtml, levelId, subject, topic) {
     : `${panelHtml}${featuredNotesPanel(levelId, subject, topic)}`;
 }
 
-function juniorMathProofsPanel(gifted = false) {
+function juniorMathProofFiles(gifted = false) {
   const catalog = window.juniorMathProofCatalog;
-  if (!catalog) return `<div class="tab-panel empty-state"><b>證明資料載入中</b></div>`;
+  if (!catalog) return [];
   const proofFiles = gifted ? catalog.allProofs : catalog.curriculumProofs;
-  const proofCards = proofFiles.map(name => `<a class="proof-resource-card" href="files/junior-math/proofs/${encodeURIComponent(name)}" download><span class="resource-badge ${gifted ? "index" : "official"}">${gifted ? "資優延伸" : "課內"}</span><b>${name.replace(/\.docx$/i, "")}</b><small>下載 Word 文件 ↓</small></a>`).join("");
   const formulaKeys = ["math", "physics", "chemistry"];
-  const formulaNames = { math: "數學公式表", physics: "物理公式表", chemistry: "化學公式表" };
-  const formulaCards = formulaKeys.map(key => `<a class="proof-resource-card formula-resource-card" href="files/junior-math/formulas/${encodeURIComponent(catalog.formulaFiles[key])}" download><span class="resource-badge index">公式表</span><b>${formulaNames[key]}</b><small>下載 Word 文件 ↓</small></a>`).join("");
-  const giftedLink = gifted ? "" : `<p class="proof-gifted-link">想看完整延伸證明？<a href="#/learn/junior-gifted?subject=${encodeURIComponent("資優數學主題")}&topic=${encodeURIComponent("先修｜整除、質數與同餘")}&tab=proofs">前往國中資優版 →</a></p>`;
-  return `<div class="tab-panel proof-library"><div class="proof-library-intro"><b>國中數學證明${gifted ? "｜資優完整收錄" : "｜課內範圍"}</b><p>${gifted ? "完整收錄證明資料夾中的延伸主題，包含國中資優、競賽與更進階的數學內容。" : "只列出對應國中課程的證明；資優與競賽延伸內容不會混在這裡。"}</p></div><h4>證明講義 <span>${proofFiles.length} 份</span></h4><div class="proof-resource-grid">${proofCards}</div>${giftedLink}<h4 class="formula-library-heading">公式表</h4><div class="proof-resource-grid">${formulaCards}</div></div>`;
+  return [
+    ...proofFiles.map(name => ({ name, kind: "proofs" })),
+    ...formulaKeys.map(key => ({ name: catalog.formulaFiles[key], kind: "formulas" }))
+  ];
 }
 
 function elementaryNotesPanel(subject, topic) {
@@ -664,8 +678,6 @@ function elementaryExhibitionPanel() {
 }
 
 function tabPanel(tab, levelId, subject, topic) {
-  if (tab === "proofs" && levelId === "junior" && subject === "數學") return juniorMathProofsPanel(false);
-  if (tab === "proofs" && levelId === "junior-gifted" && subject === "資優數學主題") return juniorMathProofsPanel(true);
   if (tab === "resources" && levelId === "elementary-gifted" && subject === "小學科展與生活探究") return elementaryExhibitionPanel();
   if (tab === "notes" && levelId === "elementary-gifted") return elementaryNotesPanel(subject, topic);
   if (tab === "notes" && levelId === "junior") return ensureFeaturedNotes(juniorNotesPanel(subject, topic), levelId, subject, topic);

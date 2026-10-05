@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 // Generate standalone pages for schools with published science-class resources.
-// Usage: node scripts/generate-science-school-pages.js [output-root]
+// Usage: node scripts/generate-science-school-pages.js [output-root] [--overwrite]
 // Preview: node scripts/generate-science-school-pages.js science-pages-preview
-// Publish: node scripts/generate-science-school-pages.js .
+// Publish or refresh: node scripts/generate-science-school-pages.js . --overwrite
 const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
@@ -10,6 +10,7 @@ const vm = require('node:vm');
 const root = path.resolve(__dirname, '..');
 const outputRoot = path.resolve(root, process.argv[2] || 'science-pages-preview');
 const pagesRoot = path.join(outputRoot, 'science-class-exams');
+const overwrite = process.argv[3] === '--overwrite';
 const schools = [
   ['建國中學科學班', 'cksh'],
   ['北一女中科學班', 'fgsh'],
@@ -45,7 +46,7 @@ const relativeFromOutput = (folder, target) => {
 
 for (const [, slug] of schools) {
   const folder = path.join(pagesRoot, slug);
-  if (fs.existsSync(folder) && fs.readdirSync(folder).length) {
+  if (!overwrite && fs.existsSync(folder) && fs.readdirSync(folder).length) {
     throw new Error(`Refusing to overwrite non-empty school page directory: ${folder}`);
   }
 }

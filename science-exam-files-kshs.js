@@ -87,6 +87,10 @@
     {
       "label": "數學科",
       "path": "files//science-class//kshs//106//數學科.pdf"
+    },
+    {
+      "label": "物理與地科合卷",
+      "path": "files//science-class//kshs//106//106物理與地科合卷.pdf"
     }
   ],
   "107": [

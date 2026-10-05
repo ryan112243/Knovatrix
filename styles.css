@@ -22,6 +22,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
 .skip-link:focus { transform: none; }
 .site-header { position: sticky; z-index: 20; top: 0; display: flex; align-items: center; min-height: 76px; padding: 0 4vw; border-bottom: 1px solid rgba(19,41,39,.09); background: rgba(247,245,239,.92); backdrop-filter: blur(14px); }
 .brand { display: flex; align-items: center; flex: 0 0 auto; gap: 11px; margin-right: auto; }
+.brand-image { display: block; width: 38px; height: 38px; flex: 0 0 38px; border-radius: 11px; object-fit: cover; }
 .brand b { display: block; font-size: 17px; letter-spacing: .14em; }
 .brand small { display: block; margin-top: -5px; color: var(--forest-2); font: 700 9px/1 Arial, sans-serif; letter-spacing: .23em; }
 .brand-mark { position: relative; display: grid; width: 38px; height: 38px; grid-template: repeat(2, 1fr) / repeat(2, 1fr); gap: 3px; transform: rotate(45deg); }

@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Knovatrix 整理國小資優、國中、高中與資優進階的學習重點、公開試題資源與線上刷題，依學段、科目與單元快速查找。" />
+    <meta name="description" content="Knovatrix 依學段、科目與單元整理國小資優至高中學習內容、公開歷屆試題與競賽資源，並提供線上刷題。" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
     <meta name="theme-color" content="#102f2b" />
     <meta name="google-site-verification" content="kcuPEihwcJ03spsnAI97qioijvYXTxBKTGEwFcgVAsw" />
     <link rel="canonical" href="https://ryan112243.github.io/Knovatrix/" />
@@ -13,8 +14,15 @@
     <meta property="og:url" content="https://ryan112243.github.io/Knovatrix/" />
     <meta property="og:site_name" content="Knovatrix" />
     <meta property="og:locale" content="zh_TW" />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content="https://ryan112243.github.io/Knovatrix/knovatrix-search-preview.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Knovatrix 學習資源與刷題：國小資優至高中學習重點、歷屆試題與線上練習" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://ryan112243.github.io/Knovatrix/knovatrix-search-preview.png" />
     <title>Knovatrix｜國小到高中學習資源與刷題</title>
+    <link rel="icon" href="favicon.png" type="image/png" sizes="128x128" />
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="styles.css?v=science-archive-20261004-2" />
       <!-- Google tag (gtag.js) -->
@@ -30,7 +38,7 @@
     <a class="skip-link" href="#main-content">跳至主要內容</a>
     <header class="site-header">
       <a class="brand" href="#/" aria-label="Knovatrix 首頁">
-        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <img class="brand-image" src="favicon.png" alt="Knovatrix" width="38" height="38" />
         <span><b>Knovatrix</b><small>學習資源與刷題</small></span>
       </a>
       <button class="menu-button" type="button" aria-expanded="false" aria-controls="main-nav"><span></span><span></span><span></span><em>選單</em></button>
@@ -56,7 +64,7 @@
       <p>© <span id="year"></span> Knovatrix · 公開測試版 · 版本 v1.0.1</p>
       <details class="copyright-notice"><summary>檔案權利與使用說明</summary><p>本站提供的試題、答案與解析，其著作權與檔案權利歸原出題方或發布單位所有。本站僅提供公開來源連結或依授權提供資源；如連結顯示沒有存取權，請向檔案擁有者或出題方申請。若發現內容有權利疑慮，請透過<a href="#/contribute">意見與共創</a>聯絡我們。</p></details>
     </footer>    <div id="toast" class="toast" role="status" aria-live="polite"></div>
-    <script src="curriculum-data.js?v=year-indexed-exams-20260801-1"></script>
+    <script src="curriculum-data.js?v=competition-tabs-20261004-1"></script>
     <script src="gifted-math-school-exams.js?v=gifted-math-school-20261004-1"></script>
     <script src="science-class-lab-notes.js?v=lab-notes-2"></script>
     <script src="science-exams.js?v=science-archive-20261004-2"></script>
@@ -71,14 +79,14 @@
     <script src="science-exam-files-fgsh.js?v=fgsh-archive-links-2"></script>
     <script src="qualification-exam-files.js"></script>
     <script src="exam-year-resources.js?v=year-indexed-exams-20260814-1"></script>
-    <script src="resource-catalog.js?v=ijso-local-files-20260829-1"></script>
+    <script src="resource-catalog.js?v=competition-year-audit-20261004-1"></script>
     <script src="junior-math-proofs.js?v=proofs-20261005-1"></script>
     <script src="app.js?v=junior-proofs-20261005-4"></script>
     <script src="search.js?v=search-seo-20260812-5"></script>
     <script src="site-enhancements.js?v=ui-copy-20260812-2"></script>
     <script src="selection-flow-fix.js?v=annual-exam-routing-20260814-3"></script>
     <script type="application/ld+json">
-      {"@context":"https://schema.org","@type":"WebSite","name":"Knovatrix","alternateName":"Knovatrix 學習資源與刷題","url":"https://ryan112243.github.io/Knovatrix/","description":"整理國小資優、國中、高中與資優進階的學習重點、公開試題資源與線上刷題。","inLanguage":"zh-Hant"}
+      {"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://ryan112243.github.io/Knovatrix/#website","name":"Knovatrix","alternateName":"Knovatrix 學習資源與刷題","url":"https://ryan112243.github.io/Knovatrix/","description":"依學段、科目與單元整理國小資優至高中學習內容、公開歷屆試題與競賽資源，並提供線上刷題。","inLanguage":"zh-Hant","publisher":{"@id":"https://ryan112243.github.io/Knovatrix/#organization"}},{"@type":"Organization","@id":"https://ryan112243.github.io/Knovatrix/#organization","name":"Knovatrix","url":"https://ryan112243.github.io/Knovatrix/","logo":{"@type":"ImageObject","url":"https://ryan112243.github.io/Knovatrix/favicon.png","width":128,"height":128}},{"@type":"WebPage","@id":"https://ryan112243.github.io/Knovatrix/#webpage","url":"https://ryan112243.github.io/Knovatrix/","name":"Knovatrix｜國小到高中學習資源與刷題","isPartOf":{"@id":"https://ryan112243.github.io/Knovatrix/#website"},"primaryImageOfPage":{"@type":"ImageObject","contentUrl":"https://ryan112243.github.io/Knovatrix/knovatrix-search-preview.png","width":1200,"height":630}}]}
     </script>
   </body>
 </html>

@@ -8,6 +8,7 @@ vm.createContext(context);
 vm.runInContext(fs.readFileSync(path.join(root, "exam-year-resources.js"), "utf8"), context, { filename: "exam-year-resources.js" });
 
 const siteRoot = "https://ryan112243.github.io/Knovatrix";
+const siteImage = `${siteRoot}/knovatrix-search-preview.png`;
 const archives = [
   {
     key: "junior",
@@ -41,7 +42,7 @@ const pageShell = ({ title, description, canonical, breadcrumb, body, structured
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="${escapeHtml(description)}">
-  <meta name="robots" content="index,follow">
+  <meta name="robots" content="index,follow,max-image-preview:large">
   <meta name="theme-color" content="#102f2b">
   <link rel="canonical" href="${canonical}">
   <meta property="og:title" content="${escapeHtml(title)}">
@@ -50,15 +51,21 @@ const pageShell = ({ title, description, canonical, breadcrumb, body, structured
   <meta property="og:url" content="${canonical}">
   <meta property="og:site_name" content="Knovatrix">
   <meta property="og:locale" content="zh_TW">
-  <meta name="twitter:card" content="summary">
+  <meta property="og:image" content="${siteImage}">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Knovatrix 學習資源與刷題">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="${siteImage}">
   <title>${escapeHtml(title)}</title>
-  <link rel="icon" href="${siteRoot}/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="${siteRoot}/favicon.png" type="image/png" sizes="128x128">
   <link rel="stylesheet" href="${siteRoot}/styles.css?v=exam-archives-20260814-1">
 </head>
 <body>
   <a class="skip-link" href="#main-content">跳至主要內容</a>
   <header class="site-header">
-    <a class="brand" href="${siteRoot}/#/" aria-label="Knovatrix 首頁"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span><b>Knovatrix</b><small>學習資源與刷題</small></span></a>
+    <a class="brand" href="${siteRoot}/#/" aria-label="Knovatrix 首頁"><img class="brand-image" src="${siteRoot}/favicon.png" alt="Knovatrix" width="38" height="38"><span><b>Knovatrix</b><small>學習資源與刷題</small></span></a>
     <a class="button secondary archive-home-button" href="${siteRoot}/#/">回主網站</a>
   </header>
   <main id="main-content" tabindex="-1">
@@ -106,6 +113,7 @@ for (const archive of archives) {
     name: archive.title,
     description: archive.description,
     url: archiveUrl,
+    primaryImageOfPage: { "@type": "ImageObject", contentUrl: siteImage, width: 1200, height: 630 },
     inLanguage: "zh-Hant",
     hasPart: years.map(year => ({ "@type": "CollectionPage", name: `${year} ${archive.shortTitle}`, url: `${archiveUrl}${year}/` }))
   };
@@ -134,6 +142,7 @@ for (const archive of archives) {
       name: yearTitle,
       description: yearDescription,
       url: yearUrl,
+      primaryImageOfPage: { "@type": "ImageObject", contentUrl: siteImage, width: 1200, height: 630 },
       inLanguage: "zh-Hant",
       isPartOf: { "@type": "CollectionPage", name: archive.title, url: archiveUrl }
     };
@@ -148,7 +157,8 @@ for (const archive of archives) {
   }
 }
 
-const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${allUrls.map((url, index) => `  <url><loc>${url}</loc><lastmod>2026-08-14</lastmod><changefreq>${index < 3 ? "weekly" : url.endsWith("junior-high-cap/") || url.endsWith("gsat-ast/") ? "monthly" : "yearly"}</changefreq><priority>${index === 0 ? "1.0" : index < 3 ? "0.8" : url.endsWith("junior-high-cap/") || url.endsWith("gsat-ast/") ? "0.9" : "0.7"}</priority></url>`).join("\n")}\n</urlset>\n`;
+const today = new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Taipei" }).format(new Date());
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${allUrls.map((url, index) => `  <url><loc>${url}</loc><lastmod>${today}</lastmod><changefreq>${index < 3 ? "weekly" : url.endsWith("junior-high-cap/") || url.endsWith("gsat-ast/") ? "monthly" : "yearly"}</changefreq><priority>${index === 0 ? "1.0" : index < 3 ? "0.8" : url.endsWith("junior-high-cap/") || url.endsWith("gsat-ast/") ? "0.9" : "0.7"}</priority></url>`).join("\n")}\n</urlset>\n`;
 fs.writeFileSync(path.join(root, "sitemap.xml"), sitemap);
 fs.writeFileSync(path.join(root, "search-console-links.txt"), `${allUrls.join("\n")}\n`);
 console.log(`Generated ${allUrls.length - 3} exam archive pages.`);

@@ -6,20 +6,20 @@
   const official = (label, url) => ({ label, url, type: "pdf" });
   school.files = {
     "114": [
-      { label: "數學能力測驗（本站 PDF）", path: "files/science-class/cksh/114/114-建中科學班數學能力測驗.pdf" },
-      { label: "自然科學能力測驗（本站 PDF）", path: "files/science-class/cksh/114/114-建中科學班自然科學能力測驗.pdf" },
+      { label: "數學能力測驗（本站 PDF）", path: "files/science-class/cksh/114/114-數學能力測驗.pdf" },
+      { label: "自然科學能力測驗（本站 PDF）", path: "files/science-class/cksh/114/114-自然科學能力測驗.pdf" },
       official("語文能力測驗", "https://drive.google.com/file/d/1ib6cr4mnkeX-IKkcTSxiMVydRNW-KYQb/view?usp=sharing"),
       official("選擇題解答", "https://drive.google.com/file/d/1f9jSMkIUreuBmnE5Kes7JJUTYP5yI64y/view?usp=sharing")
     ],
     "113": [
-      { label: "數學能力測驗（本站 PDF）", path: "files/science-class/cksh/113/113-建中科學班數學能力測驗.pdf" },
-      { label: "自然科學能力測驗（本站 PDF）", path: "files/science-class/cksh/113/113-建中科學班自然科學能力測驗.pdf" },
+      { label: "數學能力測驗（本站 PDF）", path: "files/science-class/cksh/113/113-數學能力測驗.pdf" },
+      { label: "自然科學能力測驗（本站 PDF）", path: "files/science-class/cksh/113/113-自然科學能力測驗.pdf" },
       official("語文能力測驗", "https://drive.google.com/file/d/1vpI69oyI-yS8EaqDXn8TCmpJaavQ3gcQ/view?usp=sharing"),
       official("選擇題解答", "https://drive.google.com/file/d/11BQSEnDjBS2VH16OdDCfVT-Qg-WWg2qT/view?usp=sharing")
     ],
     "112": [
-      { label: "數學能力測驗（本站 PDF）", path: "files/science-class/cksh/112/112-建中科學班數學能力測驗.pdf" },
-      { label: "自然科學能力測驗（本站 PDF）", path: "files/science-class/cksh/112/112-建中科學班自然科學能力測驗.pdf" },
+      { label: "數學能力測驗（本站 PDF）", path: "files/science-class/cksh/112/112-數學能力測驗.pdf" },
+      { label: "自然科學能力測驗（本站 PDF）", path: "files/science-class/cksh/112/112-自然科學能力測驗.pdf" },
       official("語文能力測驗", "https://drive.google.com/file/d/1o9SBIVvNzWwHHlg9SV927Ngx2Lkrmi6c/view?usp=sharing"),
       official("選擇題解答", "https://drive.google.com/file/d/1ie2Iz-RLzkPepR-DEZrQg08YuiQn2GCL/view?usp=sharing")
     ],

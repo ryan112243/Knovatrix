@@ -24,6 +24,18 @@
 - PDF 與圖片：儲存方案確認後，再將題庫面板接到 GitHub 目錄清單或 Google Drive 公開連結資料。
 - YouTube：頻道與影片建立後，在各單元的「解題與影音」面板加入嵌入連結。
 
+## 專案檔案配置
+
+- 網站入口與主程式：根目錄 `index.html`、`app.js`、`styles.css` 及資料目錄旁的 `*.js`。
+- 靜態搜尋入口：`catalog.html`、`science-class-exams.html` 與 `exam-archives/`。
+- 科學班校別 SEO 頁：`science-class-exams/<school>/index.html`；由 `scripts/generate-science-school-pages.js` 產生。
+- 公開題目檔：`files/` 依考試類別、學校與學年度收納；頁面資料中的相對路徑必須保持一致。
+- 可重用維護工具：`scripts/`；臨時分析、渲染與 QA 產物集中保留在 `tmp/`。
+- 本機社群草稿與頭貼：`content/threads/`（不隨網站部署）；競賽來源盤點與報告分別放在 `tools/`、`reports/`。
+- 學校名稱的初試解析 Word 工作資料夾屬未完成內容，保留原位，不納入本次整理或網站發佈。
+
+新增或搬動公開檔案前，先確認 `app.js`／資料檔的連結路徑，再逐一驗證部署後的實際網址。
+
 ## MVP 已包含
 
 - 9 個全局導覽入口

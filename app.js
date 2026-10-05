@@ -687,6 +687,10 @@ function aboutPage() {
   return `<section class="page-hero"><div class="wrap reveal"><p class="eyebrow">About Knovatrix</p><h1>關於我們</h1><p class="lead">Knovatrix 是一個由我獨自建立的學習整理網站。</p></div></section><section class="section"><div class="wrap"><div class="info-grid"><article class="info-card"><span class="big-icon">🎯</span><h3>創立動機</h3><p>我在準備考試時，常遇到試題、答案與學習資料分散在不同網站，查找和整理都很不方便。因此我建立 Knovatrix，希望把值得保存的學習資源集中整理，讓準備考試與自主學習更有效率。</p></article><article class="info-card"><span class="big-icon">🧭</span><h3>整理方式</h3><p>網站依學制、學科、單元與競賽分類，逐步加入試題、參考答案、重點整理與官方資源。</p></article><article class="info-card"><span class="big-icon">📚</span><h3>網站定位</h3><p>Knovatrix 只負責整理與導覽公開學習資料，題目與內容的著作權仍歸原出題方或原作者所有。</p></article><article class="info-card"><span class="big-icon">🌱</span><h3>持續更新</h3><p>這是一個持續建置中的個人專案，會依照實際需求逐步補充資料、修正錯誤並改善使用體驗。</p></article><article class="info-card"><span class="big-icon">🗂️</span><h3>內容架構</h3><p>從一般課綱、資優延伸到競賽與歷屆試題，依學制、學科、專題和年份整理，讓你可以先看索引，再逐步縮小到需要的單元。</p></article><article class="info-card"><span class="big-icon">🔎</span><h3>我們重視什麼</h3><p>除了整理知識，也重視實驗操作、圖表判讀、解題思路與資料來源。希望每一份內容都能幫助你理解問題，而不只是記住答案。</p></article><article class="info-card"><span class="big-icon">🤝</span><h3>一起共創</h3><p>如果你發現單元遺漏、連結失效或資料需要修正，可以透過意見與共創頁面回報。網站會持續依照實際需求更新，讓資源越來越完整。</p></article></div></div></section>`;
 }
 
+function resourcesPage() {
+  return `<section class="page-hero"><div class="wrap reveal"><p class="eyebrow">More Learning Resources</p><h1>更多學習資源</h1><p class="lead">收錄 Knovatrix 以外值得參考的學習網站，帶你前往原始來源。</p></div></section><section class="section"><div class="wrap"><div class="resource-grid"><a class="resource-card" href="https://tangentjr.com/" target="_blank" rel="noopener noreferrer"><span class="resource-kicker">外部學習網站</span><h3>小見解｜高中物理考古題</h3><p>蒐集高中物理試卷與詳解，適合想練習歷屆題目或延伸學習的同學。試卷與解答內容請以原網站說明為準。</p><span class="resource-arrow" aria-hidden="true">↗</span></a></div><p class="rights-note">外部網站由原作者或管理者維護；Knovatrix 僅提供連結，並不代表已建立合作關係。</p></div></section>`;
+}
+
 function contributePage() {
   return `<section class="page-hero"><div class="wrap reveal"><p class="eyebrow">Anonymous contribution</p><h1>你的回饋，會讓<br>下一份資源更好。</h1><p class="lead">四個完全匿名的入口，沒有姓名欄位。選擇最符合目的的表單，資料就能準確進入對應的處理流程。</p></div></section><section class="section"><div class="wrap"><div class="info-grid">${forms.map((f, i) => `<article class="info-card form-card"><span class="big-icon">${f.icon}</span><h3>${f.title}</h3><p>${f.desc}</p><ul>${f.fields.map(x => `<li>${x}</li>`).join("")}</ul><a class="button" href="${formLinks[i]}" target="_blank" rel="noopener noreferrer">開啟匿名表單 →</a></article>`).join("")}</div><div class="callout contact-callout"><div><h3>其他問題</h3><p>如果有任何其他方面的問題，請聯絡 <a href="mailto:yutze0314+Knovatrix@gmail.com">yutze0314+Knovatrix@gmail.com</a>。</p></div></div><div class="callout"><div><h3>隱私說明</h3><p>表單不收集稱呼或姓名；若使用檔案上傳，Google 會要求投稿者登入，表單頁會清楚標示。</p></div></div></div></section>`;
 }
@@ -742,6 +746,7 @@ function render({ scrollToTop = false, preserveScroll = false } = {}) {
   if (path === "/") main.innerHTML = homePage();
   else if (path.startsWith("/learn/")) main.innerHTML = learnPage(path.split("/")[2]);
   else if (path === "/notes") main.innerHTML = notesPage(new URLSearchParams(queryString));
+  else if (path === "/resources") main.innerHTML = resourcesPage();
   else if (path === "/about") main.innerHTML = aboutPage();
   else if (path === "/contribute") main.innerHTML = contributePage();
   else if (path === "/support") main.innerHTML = supportPage();

@@ -10,7 +10,7 @@
     "線上兩點距離和最短證明.docx", "餘式定理與因式定理證明.docx", "輾轉相除法證明.docx", "鴿籠原理證明與應用.docx", "點到直線距離公式證明.docx"
   ];
   const curriculumProofs = [
-    "常用乘法公式推導與應用.docx", "重心定理證明.docx", "外心定理證明.docx",
+    "畢氏定理20種證明.docx", "常用乘法公式推導與應用.docx", "重心定理證明.docx", "外心定理證明.docx",
     "內心定理證明.docx", "二次方程式公式解法證明.docx", "等差級數求和公式證明.docx"
   ];
   const formulaFiles = {

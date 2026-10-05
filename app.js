@@ -521,8 +521,7 @@ function juniorMathProofsPanel(gifted = false) {
   const formulaNames = { math: "數學公式表", physics: "物理公式表", chemistry: "化學公式表" };
   const formulaCards = formulaKeys.map(key => `<a class="proof-resource-card formula-resource-card" href="files/junior-math/formulas/${encodeURIComponent(catalog.formulaFiles[key])}" download><span class="resource-badge index">公式表</span><b>${formulaNames[key]}</b><small>下載 Word 文件 ↓</small></a>`).join("");
   const giftedLink = gifted ? "" : `<p class="proof-gifted-link">想看完整延伸證明？<a href="#/learn/junior-gifted?subject=${encodeURIComponent("資優數學主題")}&topic=${encodeURIComponent("先修｜整除、質數與同餘")}&tab=proofs">前往國中資優版 →</a></p>`;
-  const curriculumPythagorean = gifted ? "" : `<article class="curriculum-proof-card"><span class="resource-badge official">課內</span><h5>畢氏定理｜相似三角形證明</h5><p>在 △ABC 中，∠A＝90°，從 A 向斜邊 BC 作高 AD。</p><ol><li>由 △ABD ∼ △CBA，得 AB²＝BD × BC。</li><li>由 △ACD ∼ △BCA，得 AC²＝CD × BC。</li><li>兩式相加：AB²＋AC²＝(BD＋CD) × BC＝BC²。</li></ol></article>`;
-  return `<div class="tab-panel proof-library"><div class="proof-library-intro"><b>國中數學證明${gifted ? "｜資優完整收錄" : "｜課內範圍"}</b><p>${gifted ? "完整收錄證明資料夾中的延伸主題，包含國中資優、競賽與更進階的數學內容。" : "只列出對應國中課程的證明；資優與競賽延伸內容不會混在這裡。"}</p></div><h4>證明講義 <span>${proofFiles.length + (gifted ? 0 : 1)} 份</span></h4>${curriculumPythagorean}<div class="proof-resource-grid">${proofCards}</div>${giftedLink}<h4 class="formula-library-heading">公式表</h4><div class="proof-resource-grid">${formulaCards}</div></div>`;
+  return `<div class="tab-panel proof-library"><div class="proof-library-intro"><b>國中數學證明${gifted ? "｜資優完整收錄" : "｜課內範圍"}</b><p>${gifted ? "完整收錄證明資料夾中的延伸主題，包含國中資優、競賽與更進階的數學內容。" : "只列出對應國中課程的證明；資優與競賽延伸內容不會混在這裡。"}</p></div><h4>證明講義 <span>${proofFiles.length} 份</span></h4><div class="proof-resource-grid">${proofCards}</div>${giftedLink}<h4 class="formula-library-heading">公式表</h4><div class="proof-resource-grid">${formulaCards}</div></div>`;
 }
 
 function elementaryNotesPanel(subject, topic) {

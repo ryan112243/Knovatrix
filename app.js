@@ -688,7 +688,7 @@ function aboutPage() {
 }
 
 function resourcesPage() {
-  return `<section class="page-hero"><div class="wrap reveal"><p class="eyebrow">More Learning Resources</p><h1>更多學習資源</h1><p class="lead">收錄 Knovatrix 以外值得參考的學習網站，帶你前往原始來源。</p></div></section><section class="section"><div class="wrap"><div class="resource-grid"><a class="resource-card" href="https://tangentjr.com/" target="_blank" rel="noopener noreferrer"><span class="resource-kicker">外部學習網站</span><h3>小見解｜高中物理考古題</h3><p>蒐集高中物理試卷與詳解，適合想練習歷屆題目或延伸學習的同學。試卷與解答內容請以原網站說明為準。</p><span class="resource-arrow" aria-hidden="true">↗</span></a></div><p class="rights-note">外部網站由原作者或管理者維護；Knovatrix 僅提供連結，並不代表已建立合作關係。</p></div></section>`;
+  return `<section class="page-hero"><div class="wrap reveal"><p class="eyebrow">More Learning Resources</p><h1>更多學習資源</h1><p class="lead">整理值得參考的學習網站與工具，方便你延伸探索。</p></div></section><section class="section"><div class="wrap"><div class="home-empty"><b>外部資源整理中</b><p>完成確認後，會陸續加入值得推薦的學習網站。</p></div></div></section>`;
 }
 
 function contributePage() {

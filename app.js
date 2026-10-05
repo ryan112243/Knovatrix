@@ -273,10 +273,10 @@ function learnPage(id) {
     : canUseSolutions && (hideLearningNotes || isScienceExam)
       ? { files: "試題", solutions: "解題" }
       : canUseSolutions
-        ? { notes: "學習重點", files: "試題", solutions: "解題" }
+        ? { notes: "學習重點", files: "試題", solutions: "解題", ...(id === "junior" && learningState.subject === "數學" ? { proofs: "證明與公式" } : id === "junior-gifted" && learningState.subject === "數學競賽" ? { proofs: "證明與公式" } : {}) }
         : hideLearningNotes || isScienceExam
           ? { files: "試題" }
-          : { notes: "學習重點", files: "試題" };
+          : { notes: "學習重點", files: "試題", ...(id === "junior" && learningState.subject === "數學" ? { proofs: "證明與公式" } : id === "junior-gifted" && learningState.subject === "數學競賽" ? { proofs: "證明與公式" } : {}) };
   const isScienceQualificationExam = id === "senior-gifted" && learningState.subject === "科學班聯合學科資格考";
   const hasPublicResources = window.getPublicResources?.(id, learningState.subject, learningState.topic);
   const unitDescription = isScienceLabSelection
@@ -512,6 +512,19 @@ function ensureFeaturedNotes(panelHtml, levelId, subject, topic) {
     : `${panelHtml}${featuredNotesPanel(levelId, subject, topic)}`;
 }
 
+function juniorMathProofsPanel(gifted = false) {
+  const catalog = window.juniorMathProofCatalog;
+  if (!catalog) return `<div class="tab-panel empty-state"><b>證明資料載入中</b></div>`;
+  const proofFiles = gifted ? catalog.allProofs : catalog.curriculumProofs;
+  const proofCards = proofFiles.map(name => `<a class="proof-resource-card" href="files/junior-math/proofs/${encodeURIComponent(name)}" download><span class="resource-badge ${gifted ? "index" : "official"}">${gifted ? "資優延伸" : "課內"}</span><b>${name.replace(/\.docx$/i, "")}</b><small>下載 Word 文件 ↓</small></a>`).join("");
+  const formulaKeys = ["math", "physics", "chemistry"];
+  const formulaNames = { math: "數學公式表", physics: "物理公式表", chemistry: "化學公式表" };
+  const formulaCards = formulaKeys.map(key => `<a class="proof-resource-card formula-resource-card" href="files/junior-math/formulas/${encodeURIComponent(catalog.formulaFiles[key])}" download><span class="resource-badge index">公式表</span><b>${formulaNames[key]}</b><small>下載 Word 文件 ↓</small></a>`).join("");
+  const giftedLink = gifted ? "" : `<p class="proof-gifted-link">想看完整延伸證明？<a href="#/learn/junior-gifted?subject=${encodeURIComponent("數學競賽")}&topic=${encodeURIComponent("幾何篇")}&tab=proofs">前往國中資優版 →</a></p>`;
+  const curriculumPythagorean = gifted ? "" : `<article class="curriculum-proof-card"><span class="resource-badge official">課內</span><h5>畢氏定理｜相似三角形證明</h5><p>在 △ABC 中，∠A＝90°，從 A 向斜邊 BC 作高 AD。</p><ol><li>由 △ABD ∼ △CBA，得 AB²＝BD × BC。</li><li>由 △ACD ∼ △BCA，得 AC²＝CD × BC。</li><li>兩式相加：AB²＋AC²＝(BD＋CD) × BC＝BC²。</li></ol></article>`;
+  return `<div class="tab-panel proof-library"><div class="proof-library-intro"><b>國中數學證明${gifted ? "｜資優完整收錄" : "｜課內範圍"}</b><p>${gifted ? "完整收錄證明資料夾中的延伸主題，包含國中資優、競賽與更進階的數學內容。" : "只列出對應國中課程的證明；資優與競賽延伸內容不會混在這裡。"}</p></div><h4>證明講義 <span>${proofFiles.length + (gifted ? 0 : 1)} 份</span></h4>${curriculumPythagorean}<div class="proof-resource-grid">${proofCards}</div>${giftedLink}<h4 class="formula-library-heading">公式表</h4><div class="proof-resource-grid">${formulaCards}</div></div>`;
+}
+
 function elementaryNotesPanel(subject, topic) {
   const noteSets = {
     "數學": {
@@ -652,6 +665,8 @@ function elementaryExhibitionPanel() {
 }
 
 function tabPanel(tab, levelId, subject, topic) {
+  if (tab === "proofs" && levelId === "junior" && subject === "數學") return juniorMathProofsPanel(false);
+  if (tab === "proofs" && levelId === "junior-gifted" && subject === "數學競賽") return juniorMathProofsPanel(true);
   if (tab === "resources" && levelId === "elementary-gifted" && subject === "小學科展與生活探究") return elementaryExhibitionPanel();
   if (tab === "notes" && levelId === "elementary-gifted") return elementaryNotesPanel(subject, topic);
   if (tab === "notes" && levelId === "junior") return ensureFeaturedNotes(juniorNotesPanel(subject, topic), levelId, subject, topic);

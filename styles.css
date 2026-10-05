@@ -388,3 +388,23 @@ html { scroll-padding-top: 88px; }
   .archive-home-button { min-height: 40px; padding: 10px 13px; }
   .archive-page-actions .button { width: 100%; }
 }
+.proof-library-intro { margin-bottom: 1.5rem; padding: 1.15rem 1.25rem; border: 1px solid rgba(36, 105, 89, .16); border-radius: 16px; background: linear-gradient(135deg, rgba(226, 244, 235, .74), rgba(248, 251, 247, .94)); }
+.proof-library-intro b { display: block; margin-bottom: .4rem; color: #174e41; font-size: 1.05rem; }
+.proof-library-intro p { margin: 0; color: #52635d; line-height: 1.75; }
+.proof-library h4 { display: flex; align-items: center; gap: .55rem; margin: 1.4rem 0 .8rem; color: #263a34; }
+.proof-library h4 span { color: #71817a; font-size: .8rem; font-weight: 500; }
+.proof-resource-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); gap: .75rem; }
+.proof-resource-card { display: flex; min-width: 0; flex-direction: column; align-items: flex-start; gap: .55rem; padding: 1rem; border: 1px solid #e3eae5; border-radius: 13px; background: #fff; color: inherit; text-decoration: none; transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease; }
+.proof-resource-card:hover, .proof-resource-card:focus-visible { transform: translateY(-2px); border-color: #8ab6a3; box-shadow: 0 8px 24px rgba(20, 62, 49, .08); }
+.proof-resource-card b { overflow-wrap: anywhere; line-height: 1.5; }
+.proof-resource-card small { color: #5d766b; }
+.proof-resource-card .resource-badge { margin: 0; }
+.curriculum-proof-card { margin-bottom: .8rem; padding: 1rem 1.15rem; border: 1px solid #dce9e1; border-radius: 13px; background: #fbfdfb; }
+.curriculum-proof-card h5 { margin: .65rem 0; color: #263a34; font-size: 1rem; }
+.curriculum-proof-card p, .curriculum-proof-card li { color: #52635d; line-height: 1.75; }
+.curriculum-proof-card p { margin: .3rem 0; }
+.curriculum-proof-card ol { margin: .5rem 0 0; padding-left: 1.5rem; }
+.proof-gifted-link { margin: 1.2rem 0 1.5rem; color: #59675f; }
+.proof-gifted-link a { color: #1d6a54; font-weight: 700; text-decoration: none; }
+.formula-library-heading { margin-top: 2rem !important; }
+@media (max-width: 600px) { .proof-resource-grid { grid-template-columns: 1fr; } }

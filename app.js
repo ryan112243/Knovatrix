@@ -250,14 +250,21 @@ function learnPage(id) {
     : [...(subjectData[learningState.order] || subjectData.curriculum)];
   const proofLibraryTopic = (id === "junior" && learningState.subject === "數學")
     || (id === "junior-gifted" && learningState.subject === "資優數學主題")
-    || (id === "senior" && learningState.subject === "數學")
     ? "證明與公式"
+    : "";
+  const seniorProofTopic = id === "senior"
+    ? ({ "數學": "證明與公式", "物理": "證明", "化學": "證明" }[learningState.subject] || "")
+    : "";
+  const seniorFormulaTopic = id === "senior" && ["數學", "物理", "化學"].includes(learningState.subject)
+    ? "公式表"
     : "";
   const scienceFormulaTopic = (id === "junior" && learningState.subject === "理化")
     || (id === "junior-gifted" && learningState.subject === "資優自然主題")
     ? "公式表"
     : "";
   if (proofLibraryTopic && !topics.includes(proofLibraryTopic)) topics.unshift(proofLibraryTopic);
+  if (seniorProofTopic && !topics.includes(seniorProofTopic)) topics.unshift(seniorProofTopic);
+  if (seniorFormulaTopic && !topics.includes(seniorFormulaTopic)) topics.unshift(seniorFormulaTopic);
   if (scienceFormulaTopic && !topics.includes(scienceFormulaTopic)) topics.unshift(scienceFormulaTopic);
   const giftedSelection = isGiftedMathSelection ? giftedMathSelectionState() : null;
   if (isGiftedMathSelection) {
@@ -270,14 +277,24 @@ function learnPage(id) {
     learningState.topic = learningState.scienceLabSchool || "選擇學校";
   } else if (!learningState.topic || !topics.includes(learningState.topic)) learningState.topic = topics[0];
   const isProofLibrary = Boolean(proofLibraryTopic && learningState.topic === proofLibraryTopic);
+  const isSeniorProofLibrary = Boolean(seniorProofTopic && learningState.topic === seniorProofTopic);
+  const isSeniorFormulaLibrary = Boolean(seniorFormulaTopic && learningState.topic === seniorFormulaTopic);
   const isScienceFormulaLibrary = Boolean(scienceFormulaTopic && learningState.topic === scienceFormulaTopic);
-  if (isProofLibrary || isScienceFormulaLibrary) {
+  if (isProofLibrary || isSeniorProofLibrary || isSeniorFormulaLibrary || isScienceFormulaLibrary) {
     const files = isProofLibrary
-      ? (id === "senior" ? seniorMathProofFiles() : juniorMathProofFiles(id === "junior-gifted"))
-      : juniorScienceFormulaFiles();
-    const heading = isProofLibrary ? proofLibraryTopic : scienceFormulaTopic;
+      ? juniorMathProofFiles(id === "junior-gifted")
+      : isSeniorProofLibrary
+        ? seniorProofFiles(learningState.subject)
+        : isSeniorFormulaLibrary
+          ? seniorFormulaFiles(learningState.subject)
+          : juniorScienceFormulaFiles();
+    const heading = isProofLibrary
+      ? proofLibraryTopic
+      : isSeniorProofLibrary
+        ? seniorProofTopic
+        : isSeniorFormulaLibrary ? seniorFormulaTopic : scienceFormulaTopic;
     const proofRightsNotice = `<div class="rights-banner proof-rights-notice"><p>以下資料均為 Word 檔，點選檔名即可直接下載。證明與公式表由 Knovatrix 親自整理製作；若發現內容有誤或需要補充，歡迎透過「<a href="#/contribute">意見與共創</a>」回報。</p><p>本資料著作權屬 Knovatrix，歡迎作個人複習使用；如需營利使用、轉載或其他用途，請先聯絡取得同意。基於互信原則，檔案不加浮水印，方便大家閱讀；也請尊重著作權，勿未經同意另作他用。</p></div>`;
-    return `<section class="page-hero"><div class="wrap reveal"><div class="breadcrumbs"><a href="#/">首頁</a>　/　${level.name}</div><h1>${pageTitle}</h1></div></section><div class="wrap learning-shell"><aside class="sidebar" aria-label="學科與專題"><div class="sidebar-heading"><p class="sidebar-label">學科與專題</p><button class="collapse-sidebar" type="button" data-collapse-sidebar>全部收合</button></div>${subjectSidebar(subjectNames, id, topics)}</aside><section class="learning-main"><div class="learning-toolbar"><h2>${subjectDisplayName(id, learningState.subject)}</h2></div><article class="unit-card"><h3>${heading}</h3>${proofRightsNotice}<div class="proof-resource-grid">${files.map(file => { const folder = file.kind === "senior-proofs" ? "files/senior-math/proofs" : `files/junior-math/${file.kind}`; return `<a class="proof-resource-card" href="${folder}/${encodeURIComponent(file.name)}" download>${file.name.replace(/^(?:國中|高中)_/, "").replace(/\.docx$/i, "")}</a>`; }).join("")}</div></article></section></div>`;
+    return `<section class="page-hero"><div class="wrap reveal"><div class="breadcrumbs"><a href="#/">首頁</a>　/　${level.name}</div><h1>${pageTitle}</h1></div></section><div class="wrap learning-shell"><aside class="sidebar" aria-label="學科與專題"><div class="sidebar-heading"><p class="sidebar-label">學科與專題</p><button class="collapse-sidebar" type="button" data-collapse-sidebar>全部收合</button></div>${subjectSidebar(subjectNames, id, topics)}</aside><section class="learning-main"><div class="learning-toolbar"><h2>${subjectDisplayName(id, learningState.subject)}</h2></div><article class="unit-card"><h3>${heading}</h3>${proofRightsNotice}<div class="proof-resource-grid">${files.map(file => { const folder = file.kind === "senior-proofs" ? "files/senior-math/proofs" : file.kind === "senior-formulas" ? file.folder : `files/junior-math/${file.kind}`; return `<a class="proof-resource-card" href="${folder}/${encodeURIComponent(file.name)}" download>${file.name.replace(/^(?:國中|高中)_/, "").replace(/\.docx$/i, "")}</a>`; }).join("")}</div></article></section></div>`;
   }
   const orderedTopics = topics;
   if (id === "elementary-gifted" && learningState.tab === "solutions") learningState.tab = "notes";
@@ -552,8 +569,19 @@ function juniorMathProofFiles(gifted = false) {
   ];
 }
 
-function seniorMathProofFiles() {
-  return (window.seniorMathProofCatalog?.allProofs || []).map(name => ({ name, kind: "senior-proofs" }));
+function seniorProofFiles(subject) {
+  return (window.seniorMathProofCatalog?.proofsBySubject?.[subject] || [])
+    .map(name => ({ name, kind: "senior-proofs" }));
+}
+
+function seniorFormulaFiles(subject) {
+  const formulaFiles = {
+    "數學": { name: "高中數學公式表.docx", folder: "files/senior/formulas/math" },
+    "物理": { name: "高中物理公式表.docx", folder: "files/senior/formulas/physics" },
+    "化學": { name: "高中化學公式表.docx", folder: "files/senior/formulas/chemistry" }
+  };
+  const file = formulaFiles[subject];
+  return file ? [{ ...file, kind: "senior-formulas" }] : [];
 }
 
 function juniorScienceFormulaFiles() {

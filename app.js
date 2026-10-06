@@ -250,6 +250,7 @@ function learnPage(id) {
     : [...(subjectData[learningState.order] || subjectData.curriculum)];
   const proofLibraryTopic = (id === "junior" && learningState.subject === "數學")
     || (id === "junior-gifted" && learningState.subject === "資優數學主題")
+    || (id === "senior" && learningState.subject === "數學")
     ? "證明與公式"
     : "";
   const scienceFormulaTopic = (id === "junior" && learningState.subject === "理化")
@@ -272,11 +273,11 @@ function learnPage(id) {
   const isScienceFormulaLibrary = Boolean(scienceFormulaTopic && learningState.topic === scienceFormulaTopic);
   if (isProofLibrary || isScienceFormulaLibrary) {
     const files = isProofLibrary
-      ? juniorMathProofFiles(id === "junior-gifted")
+      ? (id === "senior" ? seniorMathProofFiles() : juniorMathProofFiles(id === "junior-gifted"))
       : juniorScienceFormulaFiles();
     const heading = isProofLibrary ? proofLibraryTopic : scienceFormulaTopic;
     const proofRightsNotice = `<div class="rights-banner proof-rights-notice"><p>以下資料均為 Word 檔，點選檔名即可直接下載。證明與公式表由 Knovatrix 親自整理製作；若發現內容有誤或需要補充，歡迎透過「<a href="#/contribute">意見與共創</a>」回報。</p><p>本資料著作權屬 Knovatrix，歡迎作個人複習使用；如需營利使用、轉載或其他用途，請先聯絡取得同意。基於互信原則，檔案不加浮水印，方便大家閱讀；也請尊重著作權，勿未經同意另作他用。</p></div>`;
-    return `<section class="page-hero"><div class="wrap reveal"><div class="breadcrumbs"><a href="#/">首頁</a>　/　${level.name}</div><h1>${pageTitle}</h1></div></section><div class="wrap learning-shell"><aside class="sidebar" aria-label="學科與專題"><div class="sidebar-heading"><p class="sidebar-label">學科與專題</p><button class="collapse-sidebar" type="button" data-collapse-sidebar>全部收合</button></div>${subjectSidebar(subjectNames, id, topics)}</aside><section class="learning-main"><div class="learning-toolbar"><h2>${subjectDisplayName(id, learningState.subject)}</h2></div><article class="unit-card"><h3>${heading}</h3>${proofRightsNotice}<div class="proof-resource-grid">${files.map(file => `<a class="proof-resource-card" href="files/junior-math/${file.kind}/${encodeURIComponent(file.name)}" download>${file.name.replace(/\.docx$/i, "")}</a>`).join("")}</div></article></section></div>`;
+    return `<section class="page-hero"><div class="wrap reveal"><div class="breadcrumbs"><a href="#/">首頁</a>　/　${level.name}</div><h1>${pageTitle}</h1></div></section><div class="wrap learning-shell"><aside class="sidebar" aria-label="學科與專題"><div class="sidebar-heading"><p class="sidebar-label">學科與專題</p><button class="collapse-sidebar" type="button" data-collapse-sidebar>全部收合</button></div>${subjectSidebar(subjectNames, id, topics)}</aside><section class="learning-main"><div class="learning-toolbar"><h2>${subjectDisplayName(id, learningState.subject)}</h2></div><article class="unit-card"><h3>${heading}</h3>${proofRightsNotice}<div class="proof-resource-grid">${files.map(file => { const folder = file.kind === "senior-proofs" ? "files/senior-math/proofs" : `files/junior-math/${file.kind}`; return `<a class="proof-resource-card" href="${folder}/${encodeURIComponent(file.name)}" download>${file.name.replace(/^(?:國中|高中)_/, "").replace(/\.docx$/i, "")}</a>`; }).join("")}</div></article></section></div>`;
   }
   const orderedTopics = topics;
   if (id === "elementary-gifted" && learningState.tab === "solutions") learningState.tab = "notes";
@@ -424,7 +425,7 @@ function subjectSidebar(subjectNames, id) {
     }
     const subjectData = level?.subjects?.[subject];
     const subjectTopics = Array.isArray(subjectData) ? [...subjectData] : [...(subjectData?.[learningState.order] || subjectData?.curriculum || [])];
-    if ((id === "junior" && subject === "數學") || (id === "junior-gifted" && subject === "資優數學主題")) subjectTopics.unshift("證明與公式");
+    if ((id === "junior" && subject === "數學") || (id === "junior-gifted" && subject === "資優數學主題") || (id === "senior" && subject === "數學")) subjectTopics.unshift("證明與公式");
     if ((id === "junior" && subject === "理化") || (id === "junior-gifted" && subject === "資優自然主題")) subjectTopics.unshift("公式表");
     return `<details class="subject-group" ${learningState.sidebarOpen && subject === learningState.subject ? "open" : ""}><summary data-subject="${subject}"><span>${subjectDisplayName(id, subject)}</span><span aria-hidden="true">⌄</span></summary><ul class="topic-list">${subjectTopics.map(topic => `<li><button class="topic-button ${subject === learningState.subject && topic === learningState.topic ? "active" : ""}" data-topic="${topic}" data-topic-subject="${subject}">${topic}</button></li>`).join("")}</ul></details>`;
   }).join("");
@@ -549,6 +550,10 @@ function juniorMathProofFiles(gifted = false) {
     ...proofFiles.map(name => ({ name, kind: "proofs" })),
     { name: catalog.formulaFiles.math, kind: "formulas" }
   ];
+}
+
+function seniorMathProofFiles() {
+  return (window.seniorMathProofCatalog?.allProofs || []).map(name => ({ name, kind: "senior-proofs" }));
 }
 
 function juniorScienceFormulaFiles() {

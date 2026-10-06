@@ -253,7 +253,7 @@ function learnPage(id) {
     ? "證明與公式"
     : "";
   const seniorProofTopic = id === "senior"
-    ? ({ "數學": "證明與公式", "物理": "證明", "化學": "證明" }[learningState.subject] || "")
+    ? ({ "數學": "證明", "物理": "證明", "化學": "證明" }[learningState.subject] || "")
     : "";
   const seniorFormulaTopic = id === "senior" && ["數學", "物理", "化學"].includes(learningState.subject)
     ? "公式表"
@@ -275,6 +275,8 @@ function learnPage(id) {
     const schoolNames = Object.keys(window.scienceClassExamCatalog || {});
     if (!schoolNames.includes(learningState.scienceLabSchool)) learningState.scienceLabSchool = "";
     learningState.topic = learningState.scienceLabSchool || "選擇學校";
+  } else if (id === "senior" && learningState.subject === "數學" && learningState.topic === "證明與公式") {
+    learningState.topic = "證明";
   } else if (!learningState.topic || !topics.includes(learningState.topic)) learningState.topic = topics[0];
   const isProofLibrary = Boolean(proofLibraryTopic && learningState.topic === proofLibraryTopic);
   const isSeniorProofLibrary = Boolean(seniorProofTopic && learningState.topic === seniorProofTopic);
@@ -442,7 +444,11 @@ function subjectSidebar(subjectNames, id) {
     }
     const subjectData = level?.subjects?.[subject];
     const subjectTopics = Array.isArray(subjectData) ? [...subjectData] : [...(subjectData?.[learningState.order] || subjectData?.curriculum || [])];
-    if ((id === "junior" && subject === "數學") || (id === "junior-gifted" && subject === "資優數學主題") || (id === "senior" && subject === "數學")) subjectTopics.unshift("證明與公式");
+    if ((id === "junior" && subject === "數學") || (id === "junior-gifted" && subject === "資優數學主題")) subjectTopics.unshift("證明與公式");
+    if (id === "senior" && ["數學", "物理", "化學"].includes(subject)) {
+      subjectTopics.unshift("公式表");
+      subjectTopics.unshift("證明");
+    }
     if ((id === "junior" && subject === "理化") || (id === "junior-gifted" && subject === "資優自然主題")) subjectTopics.unshift("公式表");
     return `<details class="subject-group" ${learningState.sidebarOpen && subject === learningState.subject ? "open" : ""}><summary data-subject="${subject}"><span>${subjectDisplayName(id, subject)}</span><span aria-hidden="true">⌄</span></summary><ul class="topic-list">${subjectTopics.map(topic => `<li><button class="topic-button ${subject === learningState.subject && topic === learningState.topic ? "active" : ""}" data-topic="${topic}" data-topic-subject="${subject}">${topic}</button></li>`).join("")}</ul></details>`;
   }).join("");

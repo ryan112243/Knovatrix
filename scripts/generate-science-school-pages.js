@@ -16,6 +16,7 @@ const schools = [
   ['北一女中科學班', 'fgsh'],
   ['師大附中科學班', 'ntnu'],
   ['武陵高中科學班', 'wlsh'],
+  ['新竹科學園區實中科學班', 'nehs'],
   ['臺中一中科學班', 'tcfsh'],
   ['彰化高中科學班', 'chsh'],
   ['嘉義高中科學班', 'cysh'],
@@ -55,10 +56,14 @@ fs.mkdirSync(pagesRoot, { recursive: true });
 let generated = 0;
 for (const [schoolName, slug] of schools) {
   const school = context.window.scienceClassExamCatalog[schoolName];
-  const years = Object.entries(school?.files || {})
-    .filter(([, files]) => Array.isArray(files) && files.length)
-    .sort(([a], [b]) => Number(b) - Number(a));
-  if (!years.length) continue;
+  const fileYears = Object.keys(school?.files || {}).map(Number);
+  const yearNumbers = Array.from({ length: 16 }, (_, index) => 115 - index);
+  for (const year of [98, 99]) {
+    if (fileYears.includes(year)) yearNumbers.push(year);
+  }
+  const years = yearNumbers
+    .sort((a, b) => b - a)
+    .map((year) => [String(year), school?.files?.[year] || []]);
 
   const folder = path.join(pagesRoot, slug);
   fs.mkdirSync(folder, { recursive: true });
@@ -71,6 +76,9 @@ for (const [schoolName, slug] of schools) {
       const note = file.path ? '本站檔案' : '公開來源';
       return `<li><a href="${escapeHtml(href)}"${external ? ' target="_blank" rel="noopener noreferrer"' : ''}>${escapeHtml(file.label || '開啟試題')}</a><small>${note}</small></li>`;
     }).filter(Boolean).join('\n');
+    if (!links) {
+      return `<section class="year-card pending" aria-labelledby="year-${escapeHtml(year)}"><h2 id="year-${escapeHtml(year)}">${escapeHtml(year)} 學年度</h2><p>目前沒有可收錄的題目或公開檔案</p></section>`;
+    }
     return `<section class="year-card" aria-labelledby="year-${escapeHtml(year)}"><h2 id="year-${escapeHtml(year)}">${escapeHtml(year)} 學年度</h2><ul>${links}</ul></section>`;
   }).join('\n');
 
@@ -97,6 +105,7 @@ for (const [schoolName, slug] of schools) {
     .school-archive .lead { max-width: 760px; }
     .year-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; }
     .year-card { padding: 18px 20px; border: 1px solid var(--line); border-radius: 10px; background: var(--white); }
+    .year-card.pending { background: #fafaf8; color: var(--muted); }
     .year-card h2 { margin: 0 0 12px; font-size: 20px; }
     .year-card ul { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
     .year-card li { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
@@ -112,7 +121,7 @@ for (const [schoolName, slug] of schools) {
   </header>
   <main class="seo-page school-archive">
     <section class="page-hero"><div class="wrap"><p class="eyebrow">Science class archives</p><h1>${escapeHtml(schoolName)}歷屆試題與公開範例</h1><p class="lead">${escapeHtml(school.note || `依學年度整理${schoolName}目前可查到的科學班甄選公開資料。`)}</p><div class="button-row"><a class="button" href="${relativeFromOutput(folder, 'science-class-exams.html')}">返回各校總覽</a><a class="button" href="${appRoute}">在 Knovatrix 學習頁查看</a></div></div></section>
-    <section class="section"><div class="wrap"><div class="section-head"><div><p class="eyebrow">Available materials</p><h2>按學年度瀏覽</h2></div><p>${years.length} 個學年度有整理到公開項目</p></div><div class="year-grid">${resourceYears}</div>
+    <section class="section"><div class="wrap"><div class="section-head"><div><p class="eyebrow">Available materials</p><h2>按學年度瀏覽</h2></div><p>列出 100–115 學年度；98、99 年僅在有檔案時列出。空白卡代表目前沒有可收錄題目。</p></div><div class="year-grid">${resourceYears}</div>
       <p class="source-note">檔案標示「本站檔案」代表檔案由 Knovatrix 提供下載；「公開來源」會開啟原發布頁面。題目、範例及解答的權利仍屬原出題方或發布單位。資料是否完整，請以學校與主辦單位最新公告為準；若發現連結或標示有誤，歡迎透過 Knovatrix「意見與共創」回報。</p>
     </div></section>
   </main>

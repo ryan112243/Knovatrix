@@ -344,17 +344,19 @@ function isScienceLabFile(file) {
 }
 
 function scienceSchoolYears(school) {
-  const configured = Array.isArray(school?.archiveYears) && school.archiveYears.length ? school.archiveYears : Object.keys(school?.files || {}).map(Number).sort((a, b) => b - a);
-  return configured.length ? configured : Array.from({ length: 16 }, (_, index) => 115 - index);
+  const years = Array.from({ length: 16 }, (_, index) => 115 - index);
+  const fileYears = Object.keys(school?.files || {}).map(Number);
+  for (const year of [98, 99]) {
+    if (fileYears.includes(year)) years.push(year);
+  }
+  return years.sort((a, b) => b - a);
 }
 
 function scienceExamPanel(schoolName, sourceFiles = null) {
   const school = window.scienceClassExamCatalog?.[schoolName];
   if (!school) return "";
   const files = sourceFiles || school.files || {};
-  const years = sourceFiles
-    ? Object.keys(files).map(Number).sort((a, b) => b - a)
-    : scienceSchoolYears(school);
+  const years = scienceSchoolYears(school);
   const fileHint = Object.keys(files).length ? " PDF 會在新分頁開啟預覽；壓縮檔則直接下載。" : "";
   return `<div class="tab-panel exam-panel"><div class="exam-source"><div><span>${school.city} · ${school.archiveLabel || "科學班歷屆"}</span><b>${schoolName}</b><p>${school.note || ""}${fileHint}</p></div></div><div class="exam-legend"><span><i class="direct"></i>有檔案</span><span><i class="pending"></i>沒有檔案</span></div><div class="year-grid">${years.map(year => {
     const rawFiles = Array.isArray(files[year])

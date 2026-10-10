@@ -22,6 +22,7 @@
     { "label": "數學試題整理版（16 題、2 頁；非官方原卷）", "path": "files/science-class/chsh/105/105彰化高中科學班數學試題整理版.pdf" }
   ],
   "106": [
+    { "label": "數學科試題（2 頁）", "path": "files/science-class/chsh/106/106彰化高中科學班數學試題.pdf" },
     {
       "label": "科學能力檢定試題及參考答案",
       "path": "files//science-class//chsh//106//106-科學能力檢定試題及參考答案.zip"
@@ -32,6 +33,7 @@
     }
   ],
   "107": [
+    { "label": "數學科試題（2 頁）", "path": "files/science-class/chsh/107/107彰化高中科學班數學試題.pdf" },
     {
       "label": "科學能力檢定試題及參考答案",
       "path": "files//science-class//chsh//107//107-科學能力檢定試題及參考答案.zip"
@@ -42,6 +44,7 @@
     }
   ],
   "108": [
+    { "label": "數學科試題（2 頁）", "path": "files/science-class/chsh/108/108彰化高中科學班數學試題.pdf" },
     {
       "label": "科學能力檢定試題及參考答案",
       "path": "files//science-class//chsh//108//108-科學能力檢定試題及參考答案.zip"
@@ -52,6 +55,7 @@
     }
   ],
   "109": [
+    { "label": "數學科試題（2 頁）", "path": "files/science-class/chsh/109/109彰化高中科學班數學試題.pdf" },
     {
       "label": "科學能力檢定試題及參考答案",
       "path": "files//science-class//chsh//109//109-科學能力檢定試題及參考答案.zip"
@@ -62,6 +66,7 @@
     }
   ],
   "110": [
+    { "label": "數學科試題（2 頁）", "path": "files/science-class/chsh/110/110彰化高中科學班數學試題.pdf" },
     {
       "label": "科學能力檢定試題及參考答案",
       "path": "files//science-class//chsh//110//110-科學能力檢定試題及參考答案.zip"
@@ -72,6 +77,7 @@
     }
   ],
   "111": [
+    { "label": "數學科試題（2 頁）", "path": "files/science-class/chsh/111/111彰化高中科學班數學試題.pdf" },
     {
       "label": "科學能力檢定試題及參考答案",
       "path": "files//science-class//chsh//111//111-科學能力檢定試題及參考答案.zip"
@@ -82,6 +88,7 @@
     }
   ],
   "112": [
+    { "label": "數學科試題（2 頁；原 PDF 另含答案卷，已分開）", "path": "files/science-class/chsh/112/112彰化高中科學班數學試題.pdf" },
     {
       "label": "科學能力檢定試題及參考答案",
       "path": "files//science-class//chsh//112//112-科學能力檢定試題及參考答案.zip"
@@ -92,6 +99,7 @@
     }
   ],
   "113": [
+    { "label": "數學科試題（2 頁）", "path": "files/science-class/chsh/113/113彰化高中科學班數學試題.pdf" },
     {
       "label": "科學能力檢定試題及參考答案",
       "path": "files//science-class//chsh//113//113-科學能力檢定試題及參考答案.zip"
@@ -102,6 +110,7 @@
     }
   ],
   "114": [
+    { "label": "數學科試題（2 頁）", "path": "files/science-class/chsh/114/114彰化高中科學班數學試題.pdf" },
     {
       "label": "科學能力檢定試題及參考答案",
       "path": "files//science-class//chsh//114//114-科學能力檢定試題及參考答案.zip"

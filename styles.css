@@ -361,10 +361,25 @@ html { scroll-padding-top: 88px; }
 .math-fraction { display: inline-grid; grid-template-rows: auto auto; margin: 0 .08em; vertical-align: middle; line-height: 1.05; text-align: center; }
 .math-fraction > span:first-child { padding: 0 .16em .05em; border-bottom: 1px solid currentColor; }
 .math-fraction > span:last-child { padding: .05em .16em 0; }
+.math-fraction { font-family: Cambria, "Cambria Math", "STIX Two Math", "Times New Roman", serif; font-size: 1.03em; }
 .detailed-notes sup, .detailed-notes sub { line-height: 0; }
 .detailed-notes sup { font-size: .72em; vertical-align: super; }
 .detailed-notes sub { font-size: .72em; vertical-align: sub; }
-.math-radicand { text-decoration: overline; text-decoration-thickness: 1px; text-decoration-skip-ink: none; }
+.math-root { display: inline-flex; align-items: stretch; margin: 0 .04em; vertical-align: -.12em; font-family: Cambria, "Cambria Math", "STIX Two Math", "Times New Roman", serif; }
+.math-root-sign { display: inline-flex; align-items: flex-end; padding-right: .015em; font-size: 1.28em; line-height: 1; }
+.math-radicand { display: inline-block; align-self: flex-start; min-height: 1em; padding: .02em .08em 0 .03em; border-top: 1px solid currentColor; text-decoration: none; line-height: 1.2; }
+.math-vector { position: relative; display: inline-block; padding: .12em .025em 0; }
+.math-vector::before { position: absolute; top: -.34em; right: 0; left: 0; content: "→"; font-family: Cambria, "Cambria Math", "Times New Roman", serif; font-size: .76em; line-height: 1; text-align: center; }
+.math-matrix { position: relative; display: inline-grid; grid-template-columns: repeat(var(--matrix-columns, 2), max-content); gap: .08em .5em; margin: .05em .28em; padding: .12em .35em; vertical-align: middle; font-family: Cambria, "Cambria Math", "STIX Two Math", "Times New Roman", serif; line-height: 1.15; }
+.math-matrix::before, .math-matrix::after { position: absolute; top: 0; bottom: 0; display: flex; align-items: center; font-size: 1.7em; line-height: 1; }
+.math-matrix::before { left: 0; }
+.math-matrix::after { right: 0; }
+.math-matrix-bmatrix::before, .math-matrix-bmatrix::after { content: "["; }
+.math-matrix-bmatrix::after { content: "]"; }
+.math-matrix-pmatrix::before, .math-matrix-pmatrix::after { content: "("; }
+.math-matrix-pmatrix::after { content: ")"; }
+.math-matrix-vmatrix::before, .math-matrix-vmatrix::after { content: "|"; }
+.math-matrix-Vmatrix::before, .math-matrix-Vmatrix::after { content: "‖"; }
 
 .math-arrow {
   display: inline-flex;

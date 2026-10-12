@@ -117,8 +117,29 @@ function renderMathRoots(input) {
       cursor = marker + 5;
       continue;
     }
-    output += input.slice(cursor, marker) + `√<span class="math-radicand">${renderMathFractions(group.value)}</span>`;
+    output += input.slice(cursor, marker) + `<span class="math-root"><span class="math-root-sign">√</span><span class="math-radicand">${renderMathRoots(renderMathFractions(group.value))}</span></span>`;
     cursor = group.end;
+  }
+  return output;
+}
+
+function renderUnicodeMathRoots(input) {
+  let output = "";
+  let cursor = 0;
+  while (cursor < input.length) {
+    const marker = input.indexOf("√", cursor);
+    if (marker < 0) return output + input.slice(cursor);
+    const end = readMathAtomRight(input, marker);
+    if (end <= marker + 1) {
+      output += input.slice(cursor, marker + 1);
+      cursor = marker + 1;
+      continue;
+    }
+    const grouped = input[marker + 1] === "(" || input[marker + 1] === "[";
+    const radicand = input.slice(marker + (grouped ? 2 : 1), end - (grouped ? 1 : 0));
+    output += input.slice(cursor, marker)
+      + `<span class="math-root"><span class="math-root-sign">√</span><span class="math-radicand">${renderUnicodeMathRoots(radicand)}</span></span>`;
+    cursor = end;
   }
   return output;
 }
@@ -140,24 +161,187 @@ function renderMathOverlines(input) {
   }
   return output;
 }
-function formatLearningMath(value) {
+function matchingMathGroupStart(input, end) {
+  const close = input[end - 1];
+  const open = close === ")" ? "(" : close === "]" ? "[" : null;
+  if (!open) return -1;
+  let depth = 0;
+  for (let index = end - 1; index >= 0; index -= 1) {
+    if (input[index] === close) depth += 1;
+    else if (input[index] === open && --depth === 0) return index;
+  }
+  return -1;
+}
+
+function readMathAtomLeft(input, end) {
+  while (end > 0 && /\s/.test(input[end - 1])) end -= 1;
+  let start = end;
+  const groupStart = matchingMathGroupStart(input, end);
+  if (groupStart >= 0) return groupStart;
+  for (const tag of ["sup", "sub"]) {
+    const closing = `</${tag}>`;
+    if (input.slice(Math.max(0, end - closing.length), end) === closing) {
+      const openingAt = input.lastIndexOf(`<${tag}>`, end - closing.length);
+      if (openingAt >= 0) start = openingAt;
+      break;
+    }
+  }
+  if (input[start - 1] === "}") {
+    let depth = 0;
+    let braceStart = -1;
+    for (let index = start - 1; index >= 0; index -= 1) {
+      if (input[index] === "}") depth += 1;
+      else if (input[index] === "{" && --depth === 0) {
+        braceStart = index;
+        break;
+      }
+    }
+    if (braceStart > 0 && /[_^]/.test(input[braceStart - 1])) start = braceStart - 1;
+  } else if (/[A-Za-z0-9]/.test(input[start - 1] || "") && /[_^]/.test(input[start - 2] || "")) {
+    start -= 1;
+  }
+  while (start > 0 && /[\p{L}\p{N}πμΔΓΩ∂°.]/u.test(input[start - 1])) start -= 1;
+  let foundAccent = true;
+  while (foundAccent) {
+    foundAccent = false;
+    for (const tag of ["sup", "sub"]) {
+      const closing = `</${tag}>`;
+      if (input.slice(Math.max(0, start - closing.length), start) === closing) {
+        const openingAt = input.lastIndexOf(`<${tag}>`, start - closing.length);
+        if (openingAt >= 0) {
+          start = openingAt;
+          while (start > 0 && /[\p{L}\p{N}πμΔΓΩ∂.]/u.test(input[start - 1])) start -= 1;
+          foundAccent = true;
+        }
+        break;
+      }
+    }
+  }
+  if (start > 0 && /[_^]/.test(input[start - 1])) {
+    start -= 1;
+    while (start > 0 && /[\p{L}\p{N}πμΔΓΩ.]/u.test(input[start - 1])) start -= 1;
+  }
+  return start === end ? -1 : start;
+}
+
+function readMathAtomRight(input, start) {
+  let end = start;
+  if (input.slice(start, start + 6) === "\\sqrt{") {
+    const root = readMathGroup(input, start + 5);
+    if (root) return root.end;
+  }
+  if (input[start] === "√") {
+    end += 1;
+    if (input[end] === "(" || input[end] === "[") {
+      const rootEnd = readMathAtomRight(input, end);
+      if (rootEnd > end) end = rootEnd;
+    } else {
+      const numericRadicand = /\d/.test(input[end] || "");
+      const radicandPattern = numericRadicand ? /[\d.]/ : /[\p{L}πμΔΓΩ∂]/u;
+      while (end < input.length && radicandPattern.test(input[end])) end += 1;
+    }
+    return end;
+  }
+  const open = input[start];
+  const close = open === "(" ? ")" : open === "[" ? "]" : null;
+  if (close) {
+    let depth = 0;
+    for (; end < input.length; end += 1) {
+      if (input[end] === open) depth += 1;
+      else if (input[end] === close && --depth === 0) return end + 1;
+    }
+    return -1;
+  }
+  while (end < input.length && /[\p{L}\p{N}πμΔΓΩ∂°.]/u.test(input[end])) end += 1;
+  if (end === start) return -1;
+  for (const tag of ["sup", "sub"]) {
+    const opening = `<${tag}>`;
+    if (input.slice(end, end + opening.length) === opening) {
+      const closingAt = input.indexOf(`</${tag}>`, end + opening.length);
+      if (closingAt >= 0) end = closingAt + tag.length + 3;
+    }
+  }
+  while (input[end] === "_" || input[end] === "^") {
+    if (input[end + 1] === "{") {
+      const group = readMathGroup(input, end + 1);
+      if (!group) break;
+      end = group.end;
+    } else if (input[end + 1]) end += 2;
+    else break;
+  }
+  return end;
+}
+
+function renderInlineSlashFractions(input) {
+  let output = "";
+  let cursor = 0;
+  while (cursor < input.length) {
+    let slash = input.indexOf("/", cursor);
+    while (slash >= 0 && input[slash - 1] === "<") slash = input.indexOf("/", slash + 1);
+    const division = input.indexOf("÷", cursor);
+    const operator = slash < 0 ? division : division < 0 ? slash : Math.min(slash, division);
+    if (operator < 0) return output + input.slice(cursor);
+    const operatorLength = input[operator] === "÷" ? 1 : 1;
+    const numeratorStart = readMathAtomLeft(input, operator);
+    let denominatorStart = operator + operatorLength;
+    while (/\s/.test(input[denominatorStart] || "")) denominatorStart += 1;
+    const denominatorEnd = readMathAtomRight(input, denominatorStart);
+    if (numeratorStart < cursor || numeratorStart < 0 || denominatorEnd < 0) {
+      output += input.slice(cursor, operator + operatorLength);
+      cursor = operator + operatorLength;
+      continue;
+    }
+    const numerator = input.slice(numeratorStart, operator).trim();
+    let numeratorMarkup = renderInlineSlashFractions(numerator);
+    let denominatorMarkup = renderInlineSlashFractions(input.slice(denominatorStart, denominatorEnd).trim());
+    let consumedEnd = denominatorEnd;
+    while (input[consumedEnd] === "/") {
+      let nextStart = consumedEnd + 1;
+      while (/\s/.test(input[nextStart] || "")) nextStart += 1;
+      const nextEnd = readMathAtomRight(input, nextStart);
+      if (nextEnd < 0) break;
+      numeratorMarkup = `<span class="math-fraction"><span>${numeratorMarkup}</span><span>${denominatorMarkup}</span></span>`;
+      denominatorMarkup = renderInlineSlashFractions(input.slice(nextStart, nextEnd).trim());
+      consumedEnd = nextEnd;
+    }
+    output += input.slice(cursor, numeratorStart)
+      + `<span class="math-fraction"><span>${numeratorMarkup}</span><span>${denominatorMarkup}</span></span>`;
+    cursor = consumedEnd;
+  }
+  return output;
+}
+
+function renderMathMatrices(input) {
+  return input.replace(/\\begin\{(bmatrix|pmatrix|vmatrix|Vmatrix|matrix)\}([\s\S]*?)\\end\{\1\}/g, (_, environment, body) => {
+    const rows = body.split(/\\\\/).map(row => row.split(/&(?:amp;)?/));
+    const columns = Math.max(...rows.map(row => row.length));
+    const cells = rows.flatMap(row => Array.from({ length: columns }, (_, index) => `<span>${formatLearningMath(row[index] || "", true)}</span>`));
+    return `<span class="math-matrix math-matrix-${environment}" style="--matrix-columns:${columns}" role="img" aria-label="${rows.length} 乘 ${columns} 矩陣">${cells.join("")}</span>`;
+  });
+}
+
+function formatLearningMath(value, insideMatrix = false) {
   const commands = {
     rightleftharpoons: "⇌", leftrightarrow: "↔", rightarrow: "→", leftarrow: "←", implies: "⇒",
     approx: "≈", propto: "∝", leq: "≤", geq: "≥", neq: "≠", times: " × ", div: " ÷ ",
     cdot: "·", pm: "±", mp: "∓", circ: "°", deg: "°", sim: "∼", infty: "∞", pi: "π",
     alpha: "α", beta: "β", gamma: "γ", delta: "δ", Delta: "Δ", Gamma: "Γ", theta: "θ",
     Theta: "Θ", lambda: "λ", mu: "μ", rho: "ρ", sigma: "σ", omega: "ω", phi: "φ", Phi: "Φ",
-    eta: "η", kappa: "κ", tau: "τ", nu: "ν", xi: "ξ", zeta: "ζ", sum: "Σ", Sigma: "Σ", prod: "Π", int: "∫", oint: "∮", cap: "∩", cup: "∪", perp: "⊥", parallel: "∥", angle: "∠", triangle: "△", varepsilon: "ε", hbar: "ℏ", sin: "sin", cos: "cos", tan: "tan", log: "log", ln: "ln", lim: "lim", dots: "…", ldots: "…", to: "→", iff: "⇔", searrow: "↘", nearrow: "↗"
+    eta: "η", kappa: "κ", tau: "τ", nu: "ν", xi: "ξ", zeta: "ζ", sum: "Σ", Sigma: "Σ", prod: "Π", Pi: "Π", int: "∫", oint: "∮", cap: "∩", cup: "∪", perp: "⊥", parallel: "∥", angle: "∠", triangle: "△", varepsilon: "ε", epsilon: "ε", hbar: "ℏ", in: "∈", ll: "≪", odot: "⊙", sin: "sin", cos: "cos", tan: "tan", log: "log", ln: "ln", lim: "lim", dots: "…", ldots: "…", to: "→", iff: "⇔", searrow: "↘", nearrow: "↗"
   };
   let output = String(value ?? "").replace(/\$([^$]+)\$/g, "$1").replace(/\$/g, "");
+  if (!insideMatrix) output = renderMathMatrices(output);
+  output = renderInlineSlashFractions(output);
   output = output.replace(/\\(?:text|mathrm|operatorname|mathcal|mathbb|mathbf|mathit)\{([^{}]*)\}/g, "$1");
-  output = renderMathOverlines(renderMathRoots(renderMathFractions(output)));
-  output = output.replace(/\\vec{([^{}]+)}/g, "$1⃗");
+  output = renderMathOverlines(renderMathRoots(renderMathFractions(renderUnicodeMathRoots(output))));
+  output = output.replace(/\\vec{([^{}]+)}/g, '<span class="math-vector">$1</span>');
+  output = output.replace(/\\(?:vert|lvert|rvert|mid)\b/g, "|").replace(/\\(?:Vert|lVert|rVert)\b/g, "‖").replace(/\{\s*\}/g, "");
   output = output
     .replace(/\\xrightarrow{([^{}]+)}/g, '<span class="math-arrow">→<small>$1</small></span>')
     .replace(/\\xrightleftharpoons{([^{}]+)}/g, '<span class="math-arrow">⇌<small>$1</small></span>');
   output = output.replace(/\\(quad|qquad)/g, "　").replace(/\\[,;:!]/g, " ");
-  output = output.replace(/\\(xrightleftharpoons|rightleftharpoons|leftrightarrow|xrightarrow|rightarrow|leftarrow|implies|iff|approx|propto|leq|geq|le|ge|neq|times|div|cdot|pm|mp|circ|deg|sim|infty|pi|alpha|beta|gamma|delta|Delta|Gamma|theta|Theta|lambda|mu|rho|sigma|omega|phi|Phi|eta|kappa|tau|nu|xi|zeta|sum|Sigma|prod|int|oint|cap|cup|perp|parallel|angle|triangle|varepsilon|hbar|sin|cos|tan|log|ln|lim|dots|ldots|to|searrow|nearrow)/g, (_, name) => commands[name] ?? (name === "le" ? "≤" : name === "ge" ? "≥" : name.startsWith("xrightarrow") ? "→" : name.startsWith("xright") ? "⇌" : ""));
+  output = output.replace(/\\(xrightleftharpoons|rightleftharpoons|leftrightarrow|xrightarrow|rightarrow|leftarrow|implies|iff|approx|propto|leq|geq|le|ge|neq|times|div|cdot|pm|mp|circ|deg|sim|infty|pi|Pi|alpha|beta|gamma|delta|Delta|Gamma|theta|Theta|lambda|mu|rho|sigma|omega|phi|Phi|eta|kappa|tau|nu|xi|zeta|sum|Sigma|prod|int|oint|cap|cup|perp|parallel|angle|triangle|varepsilon|epsilon|hbar|in|ll|odot|sin|cos|tan|log|ln|lim|dots|ldots|to|searrow|nearrow)/g, (_, name) => commands[name] ?? (name === "le" ? "≤" : name === "ge" ? "≥" : name.startsWith("xrightarrow") ? "→" : name.startsWith("xright") ? "⇌" : ""));
+  output = renderInlineSlashFractions(output);
   output = output.replace(/\\(?:left|right|begin|end)/g, "");
   output = output.replace(/\\%/g, "%").replace(/\\,/g, " ");
   output = output.replace(/\^\{([^{}]+)\}/g, "<sup>$1</sup>").replace(/\^([A-Za-z0-9+\-])/g, "<sup>$1</sup>");

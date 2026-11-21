@@ -4,7 +4,7 @@
   if (!school) return;
   school.files = {
   "100": [
-    { "label": "數學試題整理版（15 題、2 頁；非官方原卷）", "path": "files/science-class/chsh/100/100彰化高中科學班數學試題整理版.pdf" }
+    { "label": "第一階段數學試題（2 頁；來源：Math Pro 數學補給站）", "path": "files/science-class/chsh/100/100-chsh-science-math.pdf" }
   ],
   "101": [
     { "label": "數學試題整理版（20 題、2 頁；非官方原卷）", "path": "files/science-class/chsh/101/101彰化高中科學班數學試題整理版.pdf" }

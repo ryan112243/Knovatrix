@@ -10,7 +10,7 @@
     { "label": "數學試題整理版（20 題、2 頁；非官方原卷）", "path": "files/science-class/chsh/101/101彰化高中科學班數學試題整理版.pdf" }
   ],
   "102": [
-    { "label": "數學試題整理版（18 題、2 頁；非官方原卷）", "path": "files/science-class/chsh/102/102彰化高中科學班數學試題整理版.pdf" }
+    { "label": "第一階段數學試題（2 頁；來源：Math Pro 數學補給站）", "path": "files/science-class/chsh/102/102-chsh-science-math.pdf" }
   ],
   "103": [
     { "label": "數學試題整理版（17 題、2 頁；非官方原卷）", "path": "files/science-class/chsh/103/103彰化高中科學班數學試題整理版.pdf" }

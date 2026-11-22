@@ -62,15 +62,13 @@ function subjectDisplayName(levelId, subject) {
 const forms = [
   { icon: "🐞", title: "回報試題／詳解勘誤", desc: "告訴我們題目、答案或詳解哪裡需要修正。", fields: ["學制與科目", "單元或題號", "錯誤說明", "截圖（選填）"] },
   { icon: "📝", title: "投稿我的神人筆記", desc: "分享你的 PDF、圖片筆記或公開筆記連結。", fields: ["適用學制與單元", "筆記檔案", "筆記連結（選填）", "備註（選填）"] },
-  { icon: "💡", title: "補充特殊試題／科展", desc: "補上值得保存的特殊題目、資料或科展素材。", fields: ["年份與來源", "建議掛載單元", "資料檔案", "補充說明（選填）"] },
-  { icon: "🙋‍♂️", title: "影片拍攝難題許願", desc: "許願最想看團隊解說的題目與觀念。", fields: ["學制與單元", "想看哪一題", "題目照片"] }
+  { icon: "💡", title: "補充特殊試題／科展", desc: "補上值得保存的特殊題目、資料或科展素材。", fields: ["年份與來源", "建議掛載單元", "資料檔案", "補充說明（選填）"] }
 ];
 
 const formLinks = [
   "https://docs.google.com/forms/d/e/1FAIpQLSd3tSgs-UOBCmCeDjEiwtPIJW_z_ffC_lC8ubinkDvxo5G0Gw/viewform",
   "https://docs.google.com/forms/d/e/1FAIpQLSfJ72S7NDm8KJxnoAM4pqgYIbTATcXnDHYHipbfa5XbyVE_gQ/viewform",
-  "https://docs.google.com/forms/d/e/1FAIpQLScMXNeKfxpfMi9aDKnCZy_sJvYCKOfP1WnUgJV0MWV8uGP4zA/viewform",
-  "https://docs.google.com/forms/d/e/1FAIpQLSe29BhFmIi5Hr7-C3fSW1M2t-ZgCNg-BaA7rfX43NxkalnSfQ/viewform"
+  "https://docs.google.com/forms/d/e/1FAIpQLScMXNeKfxpfMi9aDKnCZy_sJvYCKOfP1WnUgJV0MWV8uGP4zA/viewform"
 ];
 
 function readMathGroup(input, start) {
@@ -353,7 +351,7 @@ const menuButton = document.querySelector(".menu-button");
 document.querySelector("#year").textContent = new Date().getFullYear();
 
 function homePage() {
-  return `<section class="hero"><div class="wrap hero-copy reveal"><p class="eyebrow">依單元整理的學習資源</p><h1>把知識整理成<br><span>可以走的路。</span></h1><p class="lead">從國小資優到高中奧賽，將精選題庫、重點實驗、圖解詳解與影音課程，放進一張清晰的學習矩陣。</p><div class="button-row"><a class="button" href="#/learn/junior">開始探索題庫 <span>→</span></a><a class="button secondary" href="#/contribute">一起共創</a></div><div class="proof-strip"><div class="proof-item"><b>5 大學習入口</b><small>常規課綱 × 資優競賽</small></div><div class="proof-item"><b>3 種學習資源</b><small>重點、題庫、影音詳解</small></div><div class="proof-item"><b>完全匿名共創</b><small>勘誤、投稿與難題許願</small></div></div></div></section>
+  return `<section class="hero"><div class="wrap hero-copy reveal"><p class="eyebrow">依單元整理的學習資源</p><h1>把知識整理成<br><span>可以走的路。</span></h1><p class="lead">從國小資優到高中奧賽，將精選題庫、重點實驗、圖解詳解與影音課程，放進一張清晰的學習矩陣。</p><div class="button-row"><a class="button" href="#/learn/junior">開始探索題庫 <span>→</span></a><a class="button secondary" href="#/contribute">一起共創</a></div><div class="proof-strip"><div class="proof-item"><b>5 大學習入口</b><small>常規課綱 × 資優競賽</small></div><div class="proof-item"><b>3 種學習資源</b><small>重點、題庫、影音詳解</small></div><div class="proof-item"><b>完全匿名共創</b><small>勘誤與投稿</small></div></div></div></section>
   <section class="section dark-section"><div class="wrap"><div class="section-head"><div><p class="eyebrow">Learning paths</p><h2>找到你的學習目標</h2></div><p>依目前階段進入，再用課綱順序或單元主題自由切換。每一份資源都回到清楚、可查找的知識位置。</p></div><div class="level-grid">${Object.entries(catalogLevels).map(([id, x], i) => `<a class="level-card" href="#/learn/${id}"><span class="num">0${i + 1}</span><h3>${x.name}</h3><p>${x.label}</p><span>↗</span></a>`).join("")}</div></div></section>
   <section class="section"><div class="wrap"><div class="section-head"><div><p class="eyebrow">Three-part learning</p><h2>一個單元，學習三部曲</h2></div></div><div class="feature-grid"><article class="feature-card"><span class="icon">📖</span><h3>學習重點</h3><p>公式定理、學長姐心法與課內必修實驗，整理成可快速複習的脈絡。</p></article><article class="feature-card"><span class="icon">📥</span><h3>試題</h3><p>升學考試、特招與競賽考古題，依單元歸檔並提供乾淨版 PDF。</p></article><article class="feature-card"><span class="icon">💡</span><h3>解題</h3><p>可摺疊文字詳解與手寫圖解，想看提示或完整推導都可以。</p></article></div></div></section>
   `;
@@ -965,7 +963,7 @@ function resourcesPage() {
 }
 
 function contributePage() {
-  return `<section class="page-hero"><div class="wrap reveal"><p class="eyebrow">Anonymous contribution</p><h1>你的回饋，會讓<br>下一份資源更好。</h1><p class="lead">四個完全匿名的入口，沒有姓名欄位。選擇最符合目的的表單，資料就能準確進入對應的處理流程。</p></div></section><section class="section"><div class="wrap"><div class="info-grid">${forms.map((f, i) => `<article class="info-card form-card"><span class="big-icon">${f.icon}</span><h3>${f.title}</h3><p>${f.desc}</p><ul>${f.fields.map(x => `<li>${x}</li>`).join("")}</ul><a class="button" href="${formLinks[i]}" target="_blank" rel="noopener noreferrer">開啟匿名表單 →</a></article>`).join("")}</div><div class="callout contact-callout"><div><h3>其他問題</h3><p>如果有任何其他方面的問題，請聯絡 <a href="mailto:yutze0314+Knovatrix@gmail.com">yutze0314+Knovatrix@gmail.com</a>。</p></div></div><div class="callout"><div><h3>隱私說明</h3><p>表單不收集稱呼或姓名；若使用檔案上傳，Google 會要求投稿者登入，表單頁會清楚標示。</p></div></div></div></section>`;
+  return `<section class="page-hero"><div class="wrap reveal"><p class="eyebrow">Anonymous contribution</p><h1>你的回饋，會讓<br>下一份資源更好。</h1><p class="lead">三個完全匿名的入口，沒有姓名欄位。選擇最符合目的的表單，資料就能準確進入對應的處理流程。</p></div></section><section class="section"><div class="wrap"><div class="info-grid">${forms.map((f, i) => `<article class="info-card form-card"><span class="big-icon">${f.icon}</span><h3>${f.title}</h3><p>${f.desc}</p><ul>${f.fields.map(x => `<li>${x}</li>`).join("")}</ul><a class="button" href="${formLinks[i]}" target="_blank" rel="noopener noreferrer">開啟匿名表單 →</a></article>`).join("")}</div><div class="callout contact-callout"><div><h3>其他問題</h3><p>如果有任何其他方面的問題，請聯絡 <a href="mailto:yutze0314+Knovatrix@gmail.com">yutze0314+Knovatrix@gmail.com</a>。</p></div></div><div class="callout"><div><h3>隱私說明</h3><p>表單不收集稱呼或姓名；若使用檔案上傳，Google 會要求投稿者登入，表單頁會清楚標示。</p></div></div></div></section>`;
 }
 
 function supportPage() {

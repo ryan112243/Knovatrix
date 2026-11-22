@@ -50,7 +50,8 @@ function hasPracticeBank(levelId, subject) {
     "elementary-gifted": ["數學", "自然科學"],
     junior: ["數學", "生物", "理化", "地球科學"],
     senior: ["數學", "物理", "化學", "生物", "地球科學"],
-    "junior-gifted": ["資優數學主題", "資優自然主題"]
+    "junior-gifted": ["資優數學主題", "資優自然主題"],
+    "senior-gifted": ["高中數學競賽高階理論", "高中自然科學高階特訓", "數學競賽", "物理奧賽", "化學奧賽", "生物奧賽", "地科奧賽", "資訊與 APCS"]
   };
   return supported[levelId]?.includes(subject) || false;
 }

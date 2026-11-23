@@ -124,4 +124,51 @@
     { "label": "科學能力檢定－數學科官方試題（原卷）", "path": "files/science-class/chsh/115/115彰化高中科學班數學官方試題.pdf" }
   ]
 };
+  // Completed Changhua science-class first-stage explanations (Word downloads).
+  for (const [year, subject, slug] of [
+    ["100", "數學", "math"],
+    ["101", "數學", "math"],
+    ["102", "數學", "math"],
+    ["103", "數學", "math"],
+    ["104", "數學", "math"],
+    ["105", "數學", "math"],
+    ["106", "化學", "chemistry"],
+    ["106", "物理", "physics"],
+    ["106", "數學", "math"],
+    ["107", "化學", "chemistry"],
+    ["107", "物理", "physics"],
+    ["107", "數學", "math"],
+    ["108", "化學", "chemistry"],
+    ["108", "物理", "physics"],
+    ["108", "數學", "math"],
+    ["109", "化學", "chemistry"],
+    ["109", "生物", "biology"],
+    ["109", "物理", "physics"],
+    ["109", "數學", "math"],
+    ["110", "化學", "chemistry"],
+    ["110", "生物", "biology"],
+    ["110", "物理", "physics"],
+    ["110", "數學", "math"],
+    ["111", "化學", "chemistry"],
+    ["111", "生物", "biology"],
+    ["111", "物理", "physics"],
+    ["111", "數學", "math"],
+    ["112", "化學", "chemistry"],
+    ["112", "生物", "biology"],
+    ["112", "物理", "physics"],
+    ["112", "數學", "math"],
+    ["113", "化學", "chemistry"],
+    ["113", "生物", "biology"],
+    ["113", "物理", "physics"],
+    ["113", "數學", "math"],
+    ["114", "化學", "chemistry"],
+    ["114", "生物", "biology"],
+    ["114", "物理", "physics"],
+    ["114", "數學", "math"],
+    ["115", "生物", "biology"],
+    ["115", "數學", "math"],
+  ]) {
+    school.files[year] ||= [];
+    school.files[year].push({ label: `${subject}初試詳解（Word）`, path: `files/science-class/chsh/solutions/${year}/${year}-chsh-${slug}-solution.docx`, type: "solution" });
+  }
 })();

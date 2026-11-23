@@ -547,7 +547,9 @@ function scienceExamPanel(schoolName, sourceFiles = null) {
       : files[year]
         ? [{ label: "試題", path: files[year] }]
         : [];
-    const localFiles = rawFiles.filter(file => sourceFiles ? isScienceLabFile(file) : !isScienceLabFile(file));
+    const localFiles = rawFiles.filter(file => sourceFiles
+      ? isScienceLabFile(file)
+      : !isScienceLabFile(file) && file.type !== "solution");
     if (!localFiles.length) return `<div class="year-card pending" aria-label="${year} 學年度沒有檔案"><b>${year}</b><small>學年度</small><span>沒有檔案</span></div>`;
     if (localFiles.length === 1) {
       const file = localFiles[0];
@@ -572,7 +574,19 @@ function scienceExamPanel(schoolName, sourceFiles = null) {
 function scienceMathSolutionsPanel(schoolName) {
   const school = window.scienceClassExamCatalog?.[schoolName];
   if (!school) return "";
-  return `<div class="tab-panel empty-state"><div><span>💡</span><b>${schoolName} 數學解題尚未收錄</b><p>目前先提供可核對來源的試題；解題內容待整理後再收錄。</p></div></div>`;
+  const years = scienceSchoolYears(school);
+  const solutionYears = years.map(year => {
+    const files = (school.files?.[year] || []).filter(file => file.type === "solution");
+    if (!files.length) return "";
+    return `<details class="year-card direct multi-file"><summary><b>${year}</b><small>學年度 · ${files.length} 份詳解</small><span>展開詳解 ↓</span></summary><div class="year-downloads">${files.map(file => {
+      const href = file.path?.replace(/\\/g, "/").replace(/\/{2,}/g, "/") || file.url || "";
+      const label = file.label || "初試詳解";
+      return href ? `<a href="${encodeURI(href)}" download>${label} ↓</a>` : "";
+    }).join("")}</div></details>`;
+  }).filter(Boolean).join("");
+  return solutionYears
+    ? `<div class="tab-panel exam-panel"><div class="rights-banner"><b>${schoolName}科學班初試詳解</b><p>以下收錄本站完成的各年度、各科初試詳解 Word 檔，按學年度展開下載。</p></div><div class="year-grid">${solutionYears}</div></div>`
+    : `<div class="tab-panel empty-state"><div><span>💡</span><b>${schoolName}初試詳解尚未收錄</b><p>目前尚無已完成的詳解檔案。</p></div></div>`;
 }
 
 function scienceLabExamPanel(schoolName) {

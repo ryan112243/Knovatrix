@@ -494,7 +494,7 @@ function learnPage(id) {
   const tabs = isGiftedMathDirectory || isScienceLabDirectory
 ? { files: isGiftedMathSelection ? (learningState.giftedCity ? "學校選擇" : "縣市選擇") : "學校選擇" }
     : isScienceExam
-      ? { files: "一般試題", lab: "實驗實作試題", solutions: "解題" }
+      ? { files: "一般試題", lab: "實驗實作試題", solutions: "詳解" }
     : isElementaryExhibition
     ? { notes: "探究指南", resources: "科展資源" }
     : id === "elementary-gifted"

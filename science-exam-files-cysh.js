@@ -1108,5 +1108,68 @@ school.files["106"] = [
     path: "files/science-class/cysh/106/106嘉義高中科學班數學試題整理版.pdf"
   }
 ];
-})();
 
+// Completed Chiayi Senior High School science-class preliminary explanations.
+for (const [year, subject, slug] of [
+  ["100", "化學", "chemistry"],
+  ["100", "生物", "biology"],
+  ["100", "物理", "physics"],
+  ["100", "數學", "math"],
+  ["101", "化學", "chemistry"],
+  ["101", "數學", "math"],
+  ["102", "數學", "math"],
+  ["103", "化學", "chemistry"],
+  ["103", "生物", "biology"],
+  ["103", "物理", "physics"],
+  ["103", "數學", "math"],
+  ["104", "化學", "chemistry"],
+  ["104", "生物", "biology"],
+  ["104", "物理", "physics"],
+  ["104", "數學", "math"],
+  ["105", "數學", "math"],
+  ["106", "數學", "math"],
+  ["107", "化學", "chemistry"],
+  ["107", "生物", "biology"],
+  ["107", "物理", "physics"],
+  ["107", "數學", "math"],
+  ["108", "化學", "chemistry"],
+  ["108", "生物", "biology"],
+  ["108", "物理", "physics"],
+  ["108", "數學", "math"],
+  ["109", "化學", "chemistry"],
+  ["109", "生物", "biology"],
+  ["109", "物理", "physics"],
+  ["109", "數學", "math"],
+  ["110", "化學", "chemistry"],
+  ["110", "生物", "biology"],
+  ["110", "物理", "physics"],
+  ["110", "數學", "math"],
+  ["111", "化學", "chemistry"],
+  ["111", "生物", "biology"],
+  ["111", "物理", "physics"],
+  ["111", "數學", "math"],
+  ["112", "化學", "chemistry"],
+  ["112", "生物", "biology"],
+  ["112", "物理", "physics"],
+  ["112", "數學", "math"],
+  ["113", "化學", "chemistry"],
+  ["113", "生物", "biology"],
+  ["113", "物理", "physics"],
+  ["113", "數學", "math"],
+  ["114", "化學", "chemistry"],
+  ["114", "生物", "biology"],
+  ["114", "物理", "physics"],
+  ["114", "數學", "math"],
+  ["115", "化學", "chemistry"],
+  ["115", "生物", "biology"],
+  ["115", "物理", "physics"],
+  ["115", "數學", "math"]
+]) {
+  school.files[year] ||= [];
+  school.files[year].push({
+    label: `${subject}初試詳解（Word）`,
+    path: `files/science-class/cysh/solutions/${year}/${year}-cysh-${slug}-solution.docx`,
+    type: "solution"
+  });
+}
+})();
